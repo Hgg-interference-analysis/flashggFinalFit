@@ -11,6 +11,6 @@ higgsCombine_width.freeze_phoid_brhgg_lumi_sf_resoshift_trigger.MultiDimFit.mH12
 higgsCombine_width.freeze_phoid_brhgg_lumi_sf_resoshift_trigger_scale.MultiDimFit.mH125.38.root:"freeze phoid+brhgg+lumi+sf+resoshift+trigger+scale":11 \
 higgsCombine_width.freeze_phoid_brhgg_lumi_sf_resoshift_trigger_scale_smear.MultiDimFit.mH125.38.root:"freeze phoid+brhgg+lumi+sf+resoshift+trigger+scale+smear":28 \
 higgsCombine_width.freeze_all.MultiDimFit.mH125.38.root:"stat only":46 \
---output breakdown --y-max 6 --y-cut 6 --breakdown "phoid,brhgg,lumi,sf,resoshift,trigger,scale,smear,rest,stat" \
+--output breakdown_freezeMH --y-max 6 --y-cut 6 --breakdown "phoid,brhgg,lumi,sf,resoshift,trigger,scale,smear,rest,stat" \
 --POI gamma
 

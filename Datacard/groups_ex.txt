@@ -1,0 +1,10 @@
+----------------------------------------------------------------------------------------------------------------------------------
+theory      group = BR_hgg THU_ggH_Mu_inorm THU_ggH_Res_inorm THU_ggH_Mig01_inorm THU_ggH_Mig12_inorm THU_ggH_VBF2j_inorm THU_ggH_VBF3j_inorm THU_ggH_PT60_inorm THU_ggH_PT120_inorm THU_ggH_qmtop_inorm
+lumi        group = lumi_13TeV_Uncorrelated_2018 lumi_13TeV_Correlated lumi_13TeV_Correlated_1718
+sf          group = CMS_hgg_LooseMvaSF_2018 CMS_hgg_PreselSF_2018 CMS_hgg_electronVetoSF_2018 
+trigger     group = CMS_hgg_TriggerWeight_2018
+pid         group = CMS_hgg_MuonID_2018 CMS_hgg_MuonIso_2018 CMS_hgg_ElectronID_2018 CMS_hgg_ElectronReco_2018 CMS_hgg_BTagCut_2018 CMS_hgg_BTagReshape_2018 CMS_hgg_PUJIDShift_2018
+pho_id      group = CMS_hgg_phoIdMva_2018
+scale       group = CMS_hgg_nuisance_NonLinearity_13TeVscale CMS_hgg_nuisance_HighR9EB_13TeVscale_2018 CMS_hgg_nuisance_HighR9EE_13TeVscale_2018 CMS_hgg_nuisance_LowR9EB_13TeVscale_2018 CMS_hgg_nuisance_LowR9EE_13TeVscale_2018 CMS_hgg_nuisance_ShowerShapeHighR9EB_13TeVscaleCorr CMS_hgg_nuisance_ShowerShapeHighR9EE_13TeVscaleCorr CMS_hgg_nuisance_ShowerShapeLowR9EB_13TeVscaleCorr CMS_hgg_nuisance_ShowerShapeLowR9EE_13TeVscaleCorr CMS_hgg_nuisance_MaterialCentralBarrel_13TeVscaleCorr CMS_hgg_nuisance_MaterialOuterBarrel_13TeVscaleCorr CMS_hgg_nuisance_MaterialForward_13TeVscaleCorr CMS_hgg_nuisance_FNUFEE_13TeVscaleCorr CMS_hgg_nuisance_FNUFEB_13TeVscaleCorr
+smear       group = CMS_hgg_nuisance_HighR9EBPhi_13TeVsmear_2018 CMS_hgg_nuisance_HighR9EBRho_13TeVsmear_2018 CMS_hgg_nuisance_HighR9EEPhi_13TeVsmear_2018 CMS_hgg_nuisance_HighR9EERho_13TeVsmear_2018 CMS_hgg_nuisance_LowR9EBPhi_13TeVsmear_2018 CMS_hgg_nuisance_LowR9EBRho_13TeVsmear_2018 CMS_hgg_nuisance_LowR9EEPhi_13TeVsmear_2018 CMS_hgg_nuisance_LowR9EERho_13TeVsmear_2018
+reso_shift  group = CMS_hgg_SigmaEOverEShift_2018

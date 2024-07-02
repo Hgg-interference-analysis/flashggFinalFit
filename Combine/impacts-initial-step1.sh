@@ -1,5 +1,5 @@
 combineTool.py -v 1 -M Impacts -d /afs/cern.ch/work/r/rgargiul/CMSSW_10_2_13/src/flashggFinalFit/Combine/Datacard_xsec.root \
--m 125.38 --setParameters gamma=1 -n prova --freezeParameters MH \
+-m 125.38 --setParameters gamma=1 -n prova \
 --redefineSignalPOIs gamma \
 --floatOtherPOIs 0 --saveInactivePOI 1 -t -1  \
  --saveSpecifiedNuis all --setRobustFitAlgo=Minuit2,Migrad \
