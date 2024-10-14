@@ -34,9 +34,9 @@ def get_options():
   return parser.parse_args()
 (opt,args) = get_options()
 
-print "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ RUNNING WS SCRIPTS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ RUNNING WS SCRIPTS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 def leave():
-  print "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ RUNNING WS SCRIPTS (END) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+  print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ RUNNING WS SCRIPTS (END) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
   sys.exit(1)
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -60,26 +60,26 @@ options['printOnly']   = opt.printOnly
 
 # Check if mode in allowed options
 if options['mode'] not in ['trees2ws','trees2ws_data','haddMC','haddData','mass_shift']:
-  print " --> [ERROR] mode %s not allowed. Please use one of the following: ['trees2ws','trees2ws_data','haddMC','haddData','mass_shift']. Leaving..."%options['mode']
+  print(" --> [ERROR] mode %s not allowed. Please use one of the following: ['trees2ws','trees2ws_data','haddMC','haddData','mass_shift']. Leaving..."%options['mode'])
   leave()
 
 # print info to user
-print " --> Input directory: %s"%options['inputDir']
-print " --> Year: %s"%(options['year'])
+print(" --> Input directory: %s"%options['inputDir'])
+print(" --> Year: %s"%(options['year']))
 if options['mode'] in ['trees2ws','trees2ws_data']:
-  print " --> Input config: %s"%options['inputConfig']
+  print(" --> Input config: %s"%options['inputConfig'])
 if options['mode'] in ['haddMC']:
-  print " --> flashgg path: %s"%options['flashggPath']
-  print " --> Output RooWorkspace directory: %s"%options['outputWSDir']
+  print(" --> flashgg path: %s"%options['flashggPath'])
+  print(" --> Output RooWorkspace directory: %s"%options['outputWSDir'])
 
-if options['mode'] == "trees2ws": print " --> Converting ROOT Trees to FinalFits compatible RooWorkspace for MC..."
-elif options['mode'] == "trees2ws_data": print " --> Converting ROOT Trees to FinalFits compatible RooWorkspace for data..."
-elif options['mode'] == "haddMC": print " --> Hadd MC workspaces..."
-elif options['mode'] == "haddData": print " --> Hadd data workspaces..."
-elif options['mode'] == "mass_shift": print " --> Ad-hoc shifting of mass in RooWorkspaces..."
+if options['mode'] == "trees2ws": print(" --> Converting ROOT Trees to FinalFits compatible RooWorkspace for MC...")
+elif options['mode'] == "trees2ws_data": print(" --> Converting ROOT Trees to FinalFits compatible RooWorkspace for data...")
+elif options['mode'] == "haddMC": print(" --> Hadd MC workspaces...")
+elif options['mode'] == "haddData": print(" --> Hadd data workspaces...")
+elif options['mode'] == "mass_shift": print(" --> Ad-hoc shifting of mass in RooWorkspaces...")
 
-if options['mode'] == "trees2ws" and len(options['selectProcess']): print " ==> Chosen to convert only the processes in this list: ",options['selectProcess']
-print " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+if options['mode'] == "trees2ws" and len(options['selectProcess']): print(" ==> Chosen to convert only the processes in this list: ",options['selectProcess'])
+print(" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Make directory to store job scripts and output
@@ -87,13 +87,13 @@ if not os.path.isdir("%s/outdir_%s"%(twd__,options['ext'])): os.system("mkdir %s
 
 # Write submission files: style depends on batch system
 writeSubFiles(options)
-print "  --> Finished writing submission scripts"
+print("  --> Finished writing submission scripts")
 
 # Submit scripts to batch system
 if not options['printOnly']:
   submitFiles(options)
 else:
-  print "  --> Running with printOnly option. Will not submit scripts"
+  print("  --> Running with printOnly option. Will not submit scripts")
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 leave()

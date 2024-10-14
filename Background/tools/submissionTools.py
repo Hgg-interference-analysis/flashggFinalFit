@@ -4,7 +4,7 @@ import re
 from commonObjects import *
 
 def run(cmd):
-  print "%s\n\n"%cmd
+  print("%s\n\n"%cmd)
   os.system(cmd)
 
 def writePreamble(_file):
@@ -99,7 +99,7 @@ def submitFiles(_opts):
     _executable = "condor_%s_%s"%(_opts['mode'],_opts['ext'])
     cmdLine = "cd %s; condor_submit %s.sub; cd %s"%(_jobdir,_executable,bwd__)
     run(cmdLine)
-    print "  --> Finished submitting files"
+    print("  --> Finished submitting files")
 
   # SGE
   elif _opts['batch'] in ['IC','SGE','Rome']:
@@ -116,7 +116,7 @@ def submitFiles(_opts):
         _subfile = "%s/%s_%s"%(_jobdir,_executable,c)
         cmdLine = "%s -q %s %s -o %s.log -e %s.err %s.sh"%(_subcmd,_opts['queue'],jobOptsStr,_subfile,_subfile,_subfile)
         run(cmdLine)
-    print "  --> Finished submitting files"
+    print("  --> Finished submitting files")
   
   # Running locally
   elif _opts['batch'] == 'local':
@@ -129,6 +129,6 @@ def submitFiles(_opts):
         _subfile = "%s/%s_%s"%(_jobdir,_executable,c)
         cmdLine = "bash %s.sh"%_subfile
         run(cmdLine)
-    print "  --> Finished running files"
+    print("  --> Finished running files")
 
  

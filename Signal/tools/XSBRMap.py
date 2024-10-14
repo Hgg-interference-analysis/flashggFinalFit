@@ -189,3 +189,4 @@ globalXSBRMap['INT']['decay'] = {'mode':'hgg'}
 globalXSBRMap['INT']['GG2H'] = {'mode':'ggH'}
 globalXSBRMap['INT']['GG2HPLUSINT'] = {'mode':'ggH'}
 globalXSBRMap['INT']['VBF'] = {'mode':'qqH'}
+globalXSBRMap['INT']['vh'] = {'mode':'WH'}

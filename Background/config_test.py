@@ -3,7 +3,7 @@
 backgroundScriptCfg = {
   
     # Setup
-    'inputWSDir':'/eos/user/a/amkrishn/hggWidth/mcNtuples/condor_output/forRuben/ws', # location of 'allData.root' file
+    'inputWSDir':'/eos/user/r/rgargiul/dataHggWidth/ws_postVBFcat_noVBFGGFmix/', # location of 'allData.root' file
     'cats':'auto', # auto: automatically inferred from input ws
     'catOffset':0, # add offset to category numbers (useful for categories from different allData.root files)  
     'ext':'2023-05-02', # extension to add to output directory

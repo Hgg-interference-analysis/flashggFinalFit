@@ -1,7 +1,7 @@
 # Python script to perform signal modelling fTest: extract number of gaussians for final fit
 # * run per category over single mass point
 
-print " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ HGG SIGNAL FTEST ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ "
+print(" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ HGG SIGNAL FTEST ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ")
 import ROOT
 import pandas as pd
 import pickle
@@ -22,7 +22,7 @@ from plottingTools import *
 MHLow, MHHigh = '120', '130'
 
 def leave():
-  print "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ HGG SIGNAL FTEST (END) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ "
+  print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ HGG SIGNAL FTEST (END) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ")
   exit()
 
 def get_options():
@@ -75,7 +75,7 @@ for proc in opt.procs.split(","):
   inputWS = f.Get(inputWSName__)
   proc_to_data = procToData(proc)
   if "INT" in proc_to_data: proc_to_data = "ggh"
-  print "===> In file ",WSFileName," look for roodataset = ","%s_%s_%s_%s"%(proc_to_data,opt.mass,sqrts__,opt.cat)
+  print(("===> In file ",WSFileName," look for roodataset = ","%s_%s_%s_%s"%(proc_to_data,opt.mass,sqrts__,opt.cat)))
   d = reduceDataset(inputWS.data("%s_%s_%s_%s"%(proc_to_data,opt.mass,sqrts__,opt.cat)),aset)
   df.loc[len(df)] = [proc,d.sumEntries(),1,1]
   inputWS.Delete()
@@ -86,7 +86,7 @@ if( opt.nProcsToFTest == -1)|( opt.nProcsToFTest > len(opt.procs.split(",")) ): 
 else: procsToFTest = list(df.sort_values('sumEntries',ascending=False)[0:opt.nProcsToFTest].proc.values)
 for pidx, proc in enumerate(procsToFTest): 
 
-  print "\n --> Process (%g): %s"%(pidx,proc)
+  print(("\n --> Process (%g): %s"%(pidx,proc)))
 
   # Split dataset to RV/WV: ssf requires input as dict (with mass point as key)
   datasets_RV, datasets_WV = od(), od()
@@ -111,16 +111,16 @@ for pidx, proc in enumerate(procsToFTest):
       ssf.buildNGaussians(nGauss)
       ssf.runFit()
       ssf.buildSplines()
-      if ssf.Ndof >= 1: 
-	ssfs[k] = ssf
-	if ssfs[k].getReducedChi2() < min_reduced_chi2: 
-	  min_reduced_chi2 = ssfs[k].getReducedChi2()
-	  nGauss_opt = nGauss
-	print "   * (%s,%s,RV): nGauss = %g, chi^2/n(dof) = %.4f"%(proc,opt.cat,nGauss,ssfs[k].getReducedChi2())
+      if ssf.Ndof >= 1:
+        ssfs[k] = ssf
+        if ssfs[k].getReducedChi2() < min_reduced_chi2:
+          min_reduced_chi2 = ssfs[k].getReducedChi2()
+          nGauss_opt = nGauss
+        print(("   * (%s,%s,RV): nGauss = %g, chi^2/n(dof) = %.4f"%(proc,opt.cat,nGauss,ssfs[k].getReducedChi2())))
     # Set optimum
     df.loc[df['proc']==proc,'nRV'] = nGauss_opt
     # Make plots
-    if( opt.doPlots )&( len(ssfs.keys())!=0 ):
+    if( opt.doPlots )&( len(list(ssfs.keys()))!=0 ):
       outdir="%s/%s/fTest/Plots"%(opt.outdir,opt.ext)
       if os.path.exists("/afs/cern.ch"): os.system("cp /afs/cern.ch/user/g/gpetrucc/php/index.php "+outdir)
       plotFTest(ssfs,_opt=nGauss_opt,_outdir=outdir,_extension="RV",_proc=proc,_cat=opt.cat,_mass=opt.mass)
@@ -139,15 +139,15 @@ for pidx, proc in enumerate(procsToFTest):
       ssf.runFit()
       ssf.buildSplines()
       if ssf.Ndof >= 1:
-	ssfs[k] = ssf
-	if ssfs[k].getReducedChi2() < min_reduced_chi2:
-	  min_reduced_chi2 = ssfs[k].getReducedChi2()
-	  nGauss_opt = nGauss
-	print "   * (%s,%s,WV): nGauss = %g, chi^2/n(dof) = %.4f"%(proc,opt.cat,nGauss,ssfs[k].getReducedChi2())
+        ssfs[k] = ssf
+        if ssfs[k].getReducedChi2() < min_reduced_chi2:
+          min_reduced_chi2 = ssfs[k].getReducedChi2()
+          nGauss_opt = nGauss
+        print(("   * (%s,%s,WV): nGauss = %g, chi^2/n(dof) = %.4f"%(proc,opt.cat,nGauss,ssfs[k].getReducedChi2())))
     # Set optimum
     df.loc[df['proc']==proc,'nWV'] = nGauss_opt
     # Make plots
-    if( opt.doPlots )&( len(ssfs.keys())!=0 ):
+    if( opt.doPlots )&( len(list(ssfs.keys()))!=0 ):
       outdir="%s/%s/fTest/Plots"%(opt.outdir,opt.ext)
       if os.path.exists("/afs/cern.ch"): os.system("cp /afs/cern.ch/user/g/gpetrucc/php/index.php "+outdir)
       plotFTest(ssfs,_opt=nGauss_opt,_outdir=outdir,_extension="WV",_proc=proc,_cat=opt.cat,_mass=opt.mass)

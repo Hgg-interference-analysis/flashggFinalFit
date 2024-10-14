@@ -45,8 +45,8 @@ if opt.cats in ['all','wall']:
   fs = glob.glob("%s/outdir_%s/CMS-HGG_sigfit_%s_*.root"%(swd__,opt.ext,opt.ext))
   print(fs)
   for f in fs:
-    cat = "_".join(re.sub(".root","",f.split("/")[-1].split("_%s_"%opt.ext)[-1]).split("_")[:-1])
-    print(cat)
+    cat = re.sub(".root","",f.split("/")[-1].split("_%s_"%opt.ext)[-1])
+    print(f"category: {cat}")
     inputFiles[cat] = f
     if citr == 0:
       w = ROOT.TFile(f).Get("wsig_13TeV")
@@ -57,9 +57,10 @@ if opt.cats in ['all','wall']:
     citr += 1
 else:
   for cat in opt.cats.split(","):
+    print(f"category: {cat}")
     years = opt.years.split(",")
     if len(years)!=1: print("Fix the code for more years")
-    f = "%s/outdir_%s/CMS-HGG_sigfit_%s_%s_%s.root"%(swd__,opt.ext,opt.ext,cat,years[0])
+    f = "%s/outdir_%s/CMS-HGG_sigfit_%s_%s.root"%(swd__,opt.ext,opt.ext,cat)
     inputFiles[cat] = f
     if citr == 0:
       w = ROOT.TFile(f).Get("wsig_13TeV")
@@ -78,8 +79,8 @@ hists = od()
 hists['data'] = xvar.createHistogram("h_data", ROOT.RooFit.Binning(opt.nBins))
 
 # Loop over files
-for cat,f in inputFiles.iteritems():
-  print " --> Processing %s: file = %s"%(cat,f)
+for cat,f in inputFiles.items():
+  print(" --> Processing %s: file = %s"%(cat,f))
 
   # Define cat weight
   wcat = catsWeights[cat] if opt.loadCatWeights != '' else 1.
@@ -98,33 +99,33 @@ for cat,f in inputFiles.iteritems():
       allNorms = w.allFunctions().selectByName("*%s*normThisLumi"%year)
       for norm in rooiter(allNorms):
         proc = norm.GetName().split("%s_"%outputWSObjectTitle__)[-1].split("_%s"%year)[0]
-        k  =  "%s__%s"%(proc,year)
+        k  =  "%s_%s"%(proc,year)
         _id = "%s_%s_%s_%s"%(proc,year,cat,sqrts__)
         print(proc,year,cat,sqrts__)
         print("%s_%s_normThisLumi"%(outputWSObjectTitle__,_id))
-        print(k)
+        print(f"k: {k}")
         norms[k] = w.function("%s_%s_normThisLumi"%(outputWSObjectTitle__,_id))
         print("norms[k]: %s"%norms[k])
     else:
       for proc in opt.procs.split(","):
-        k = "%s__%s"%(proc,year)
+        k = "%s_%s"%(proc,year)
         _id = "%s_%s_%s_%s"%(proc,year,cat,sqrts__)
         print(proc,year,cat,sqrts__)
         print("%s_%s_normThisLumi"%(outputWSObjectTitle__,_id))
-        print(k)
+        print(f"k: {k}")
         norms[k] = w.function("%s_%s_normThisLumi"%(outputWSObjectTitle__,_id))
         print("norms[k]: %s"%norms[k])
 
   # Iterate over norms: extract total category norm
   catNorm = 0
-  for k, norm in norms.iteritems():
-    proc, year = k.split("__")
+  for k, norm in norms.items():
+    proc, year = k.split("_")
     w.var("IntLumi").setVal(lumiScaleFactor*lumiMap[year])
     catNorm += norm.getVal()
 
   # Iterate over norms and extract data sets + pdfs
-  for k, norm in norms.iteritems():
-    proc, year = k.split("__")
+  for k, norm in norms.items():
+    proc, year = k.split("_")
     _id = "%s_%s_%s_%s"%(proc,year,cat,sqrts__)
     w.var("IntLumi").setVal(lumiScaleFactor*lumiMap[year])
 
@@ -153,10 +154,10 @@ for cat,f in inputFiles.iteritems():
     hpdfs[_id].Scale(wcat*float(opt.nBins)/320) # FIXME: hardcoded 320
 
   # Fill total histograms: data, per-year pdfs and pdfs
-  for _id,d in data_rwgt.iteritems(): d.fillHistogram(hists['data'],alist)
+  for _id,d in data_rwgt.items(): d.fillHistogram(hists['data'],alist)
 
   # Sum pdf histograms
-  for _id,p in hpdfs.iteritems():
+  for _id,p in hpdfs.items():
     if 'pdf' not in hists: 
       hists['pdf'] = p.Clone("h_pdf")
       hists['pdf'].Reset()
@@ -167,16 +168,18 @@ for cat,f in inputFiles.iteritems():
   if len(opt.years.split(",")) > 1:
     for year in opt.years.split(","):
       if 'pdf_%s'%year not in hists or hists['pdf_%s'%year]==None:
-	hists['pdf_%s'%year] = hists['pdf'].Clone()
-	hists['pdf_%s'%year].Reset()
+        hists['pdf_%s'%year] = hists['pdf'].Clone()
+        hists['pdf_%s'%year].Reset()
       # Fill
-      for _id,p in hpdfs.iteritems():
-	if year in _id: hists['pdf_%s'%year] += p
-      
+      for _id,p in hpdfs.items():
+        if year in _id: hists['pdf_%s'%year] += p
+
+  '''
   # Garbage removal
-  for d in data_rwgt.itervalues(): d.Delete()
-  for p in hpdfs.itervalues(): p.Delete()
+  for d in data_rwgt.values(): d.Delete()
+  for p in hpdfs.values(): p.Delete()
   w.Delete()
+  '''
   fin.Close()
 
 # Make plot

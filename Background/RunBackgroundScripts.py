@@ -19,9 +19,9 @@ def get_options():
 
 (opt,args) = get_options()
 
-print "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ RUNNING BACKGROUND SCRIPTS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ RUNNING BACKGROUND SCRIPTS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 def leave():
-  print "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ RUNNING BACKGROUND SCRIPTS (END) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+  print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ RUNNING BACKGROUND SCRIPTS (END) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
   sys.exit(1)
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -56,16 +56,16 @@ if opt.inputConfig != '':
     os.system("rm config.py")
 
   else:
-    print "[ERROR] %s config file does not exist. Leaving..."%opt.inputConfig
+    print("[ERROR] %s config file does not exist. Leaving..."%opt.inputConfig)
     leave()
 else:
-  print "[ERROR] Please specify config file to run from. Leaving..."%opt.inputConfig
+  print("[ERROR] Please specify config file to run from. Leaving..."%opt.inputConfig)
   leave()
 
 # Check if mode is allowed in options
 if options['mode'] not in ['fTestParallel']:
-  print " --> [ERROR] mode %s is not allowed. The only current supported mode is: [fTestParallel]. Leaving..."%options['mode']
-  print "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ RUNNING BACKGROUND SCRIPTS (END) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+  print(" --> [ERROR] mode %s is not allowed. The only current supported mode is: [fTestParallel]. Leaving..."%options['mode'])
+  print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ RUNNING BACKGROUND SCRIPTS (END) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
   sys.exit(1)
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -80,19 +80,19 @@ options['procs'] = 'none'
 if options['year'] == 'combined': options['year'] = 'all'
 
 # Print info to user
-print " --> Input data file: %s"%options['dataFile']
-print " --> Categories: %s"%options['cats']
-print " --> Extension: %s"%options['ext']
-print " --> Category offset: %g"%options['catOffset']
-print " --> Variable to fit: %s"%options['xvar']
-print " --> Year: %s ::: Corresponds to intLumi = %s fb^-1"%(options['year'],options['lumi'])
-print ""
-print " --> Job information:"
-print "     * Batch: %s"%options['batch']
-print "     * Queue: %s"%options['queue']
-print ""
-if options['mode'] == "fTestParallel": print " --> Running background fTest (in parallel)..."
-print " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+print(" --> Input data file: %s"%options['dataFile'])
+print(" --> Categories: %s"%options['cats'])
+print(" --> Extension: %s"%options['ext'])
+print(" --> Category offset: %g"%options['catOffset'])
+print(" --> Variable to fit: %s"%options['xvar'])
+print(" --> Year: %s ::: Corresponds to intLumi = %s fb^-1"%(options['year'],options['lumi']))
+print("")
+print(" --> Job information:")
+print("     * Batch: %s"%options['batch'])
+print("     * Queue: %s"%options['queue'])
+print("")
+if options['mode'] == "fTestParallel": print(" --> Running background fTest (in parallel)...")
+print(" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Make directory to store job scripts and output
@@ -100,13 +100,13 @@ if not os.path.isdir("%s/outdir_%s"%(bwd__,options['ext'])): os.system("mkdir %s
 
 # Write submission files: style depends on batch system
 writeSubFiles(options)
-print "  --> Finished writing submission scripts"
+print("  --> Finished writing submission scripts")
 
 # Submit scripts to batch system
 if not options['printOnly']:
   submitFiles(options)
 else:
-  print "  --> Running with printOnly option. Will not submit scripts"
+  print("  --> Running with printOnly option. Will not submit scripts")
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 leave()

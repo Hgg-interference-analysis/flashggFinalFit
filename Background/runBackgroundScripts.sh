@@ -20,7 +20,6 @@ BATCH=""
 QUEUE=""
 YEAR="2016"
 CATOFFSET=0
-PLOTDIR=""
 
 usage(){
 	echo "The script runs background scripts:"
@@ -37,14 +36,13 @@ echo "--pseudoDataOnly) "
 echo "--pseudoDataDat)"
 echo "--sigFile) "
 echo "--bkgPlotsOnly)"
-echo "--seed) for pseudodata random number gen seed (default $SEED))"
+echo "--seed) for pseudodata random number gen seed (default $SEED)"
 echo "--intLumi) specified in fb^-{1} (default $INTLUMI)) "
 echo "--year) dataset year (default $YEAR)) "
 echo "--isData) specified in fb^-{1} (default $DATA)) "
 echo "--unblind) specified in fb^-{1} (default $UNBLIND)) "
 echo "--batch) which batch system to use (None (''),HTCONDOR,IC) (default '$BATCH')) "
 echo "--queue) queue to submit jobs to (specific to batch))"
-echo "--pdir) directory where to put the plots)"
 }
 
 
@@ -52,7 +50,7 @@ echo "--pdir) directory where to put the plots)"
 
 
 # options may be followed by one colon to indicate they have a required argument
-if ! options=$(getopt -u -o hi:p:f: -l help,inputFile:,procs:,flashggCats:,ext:,catOffset:,fTestOnly,pseudoDataOnly,bkgPlotsOnly,pseudoDataDat:,sigFile:,seed:,intLumi:,year:,unblind,isData,batch:,queue:,pdir: -- "$@")
+if ! options=$(getopt -u -o hi:p:f: -l help,inputFile:,procs:,flashggCats:,ext:,catOffset:,fTestOnly,pseudoDataOnly,bkgPlotsOnly,pseudoDataDat:,sigFile:,seed:,intLumi:,year:,unblind,isData,batch:,queue: -- "$@")
 then
 # something went wrong, getopt will put out an error message for us
 exit 1
@@ -80,7 +78,6 @@ case $1 in
 --unblind) UNBLIND=1;;
 --batch) BATCH=$2; shift;;
 --queue) QUEUE=$2; shift;;
---pdir) PLOTDIR=$2; shift;;
 
 (--) shift; break;;
 (-*) usage; echo "$0: error - unrecognized option $1" 1>&2; usage >> /dev/stderr; exit 1;;
@@ -91,11 +88,7 @@ done
 
 
 OUTDIR="outdir_${EXT}"
-if [[ $PLOTDIR == "" ]]; then
-    PLOTDIR=$OUTDIR
-fi
-
-echo "[INFO] outdir is $OUTDIR, plotdir is $PLOTDIR INTLUMI $INTLUMI" 
+echo "[INFO] outdir is $OUTDIR, INTLUMI $INTLUMI" 
 
 if [ $ISDATA == 1 ]; then
 DATAEXT="-Data"
@@ -104,7 +97,6 @@ echo "INTLUMI is $INTLUMI, YEAR is $YEAR"
 OUTDIR="outdir_${EXT}"
 
 mkdir -p $OUTDIR
-mkdir -p $PLOTDIR
 
 if [ $FTESTONLY == 0 -a $PSEUDODATAONLY == 0 -a $BKGPLOTSONLY == 0 ]; then
 #IF not particular script specified, run all!
@@ -155,7 +147,7 @@ if [ $FTESTONLY == 1 ]; then
 
 echo "--------------------------------------"
 echo "Running Background F-Test"
-echo "-->Create background model"
+echo "-->Greate background model"
 echo "--------------------------------------"
 if [ $UNBLIND == 1 ]; then
 OPT=" --unblind"
@@ -167,14 +159,8 @@ if [ $ISDATA == 1 ]; then
 OPT=" --isData 1"
 fi
 
-mkdir -p "${PLOTDIR}/bkgfTest${DATAEXT}"
-if test -f "/afs/cern.ch/user/g/gpetrucc/php/index.php"; then
-    cp "/afs/cern.ch/user/g/gpetrucc/php/index.php" "${PLOTDIR}/bkgfTest${DATAEXT}"
-elif test -f "/cmshome/dimarcoe/php/index.php"; then
-    cp "/cmshome/dimarcoe/php/index.php" "${PLOTDIR}/bkgfTest${DATAEXT}"
-fi
 echo " ./bin/fTest -i $FILE --saveMultiPdf $OUTDIR/CMS-HGG_multipdf_$EXT_$CATS.root  -D $OUTDIR/bkgfTest$DATAEXT -f $CATS $OPT --year $YEAR --catOffset $CATOFFSET"
-./bin/fTest -i $FILE --saveMultiPdf $OUTDIR/CMS-HGG_multipdf_$EXT_$CATS.root  -D $OUTDIR/bkgfTest$DATAEXT -P $PLOTDIR/bkgfTest$DATAEXT -f $CATS $OPT --year $YEAR --catOffset $CATOFFSET
+./bin/fTest -i $FILE --saveMultiPdf $OUTDIR/CMS-HGG_multipdf_$EXT_$CATS.root  -D $OUTDIR/bkgfTest$DATAEXT -f $CATS $OPT --year $YEAR --catOffset $CATOFFSET
 
 OPT=""
 fi

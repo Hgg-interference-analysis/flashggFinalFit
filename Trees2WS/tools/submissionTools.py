@@ -5,14 +5,15 @@ from commonObjects import *
 from commonTools import *
 
 def run(cmd):
-  print "%s\n\n"%cmd
+  print("%s\n\n"%cmd)
   os.system(cmd)
 
 def writePreamble(_file,_otherBase=None):
   _file.write("#!/bin/bash\n")
   _file.write("ulimit -s unlimited\n")
   _file.write("set -e\n")
-  if _otherBase is not None: _file.write("cd %s\n"%_otherBase)
+  if _otherBase is not None:
+    _file.write("cd %s\n"%_otherBase)
   else: _file.write("cd %s/src\n"%os.environ['CMSSW_BASE'])
   _file.write("export SCRAM_ARCH=%s\n"%os.environ['SCRAM_ARCH'])
   _file.write("source /cvmfs/cms.cern.ch/cmsset_default.sh\n")
@@ -179,7 +180,7 @@ def writeSubFiles(_opts):
       # Separate submission file per process
       for widx,wsdir in enumerate(wsdirs):
         _f = open("%s/%s_%g.sh"%(_jobdir,_executable,widx),"w")
-        writePreamble(_f,_otherBase=_opts['flashggPath'])
+        writePreamble(_f,_otherBase=None)
         # Extract process name
         p = "_".join(wsdir.split("/")[-1].split("_")[1:])
         # Define output file name: remove number from files
@@ -222,7 +223,7 @@ def submitFiles(_opts):
     _executable = "condor_%s_%s"%(_opts['mode'],_opts['ext'])
     cmdLine = "cd %s; condor_submit %s.sub; cd %s"%(_jobdir,_executable,twd__)
     run(cmdLine)
-    print "  --> Finished submitting files"
+    print("  --> Finished submitting files")
 
   # SGE
   elif _opts['batch'] in ['IC','SGE','Rome']:
@@ -264,7 +265,7 @@ def submitFiles(_opts):
         cmdLine = "%s -q %s %s -o %s.log -e %s.err %s.sh"%(_subcmd,_opts['queue'],jobOptsStr,_subfile,_subfile,_subfile)
         run(cmdLine)
 
-    print "  --> Finished submitting files"
+    print("  --> Finished submitting files")
   
   # Running locally
   elif _opts['batch'] == 'local':
@@ -296,4 +297,4 @@ def submitFiles(_opts):
         cmdLine = "bash %s.sh"%(_subfile)
         run(cmdLine)
 
-    print "  --> Finished running files"
+    print("  --> Finished running files")

@@ -1,8 +1,0 @@
-{
-    "xsec":{
-        "pois":"r",
-        "fits":"profile1D:syst:all+bestfit:syst:all",
-        "points":"41:1+:",
-        "fit_opts":"--setParameters r=1,MH=125.38 --setParameterRanges r=0.8,1.2 --X-rtd FITTER_NEW_CROSSING_ALGO --X-rtd FITTER_BOUND --saveSpecifiedNuis all --saveInactivePOI 1 +--setParameters r=1 --setParameterRanges r=0.8,1.2 --robustFit=1 --setRobustFitAlgo=Minuit2,Migrad --X-rtd FITTER_NEW_CROSSING_ALGO --setRobustFitTolerance=0.1 --X-rtd FITTER_NEVER_GIVE_UP --X-rtd FITTER_BOUND --cminFallbackAlgo \"Minuit2,0:1.\" --saveSpecifiedNuis all --saveInactivePOI 1 --saveWorkspace"
-    }
-}

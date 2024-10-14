@@ -331,7 +331,7 @@ def theorySystFactory(d,systs,ftype,options,stxsMergeScheme=None,_removal=False)
     # Extract factory type
     f = ftype[s['name']]
     # For ggH theory uncertainties: require proc contains "ggH"
-    if "THU_ggH" in s['name']: mask = (d['type']=='sig')&(d['nominal_yield']!=0)&(d['proc'].str.contains('ggH'))
+    if "THU_ggH" in s['name']: mask = (d['type']=='sig')&(d['nominal_yield']!=0)&(d['proc'].str.contains('gg'))
     else: mask = (d['type']=='sig')&(d['nominal_yield']!=0)
     # Loop over tiers and use appropriate mode for compareYield function: skip mnorm as treated separately below
     if 'tiers' in s:

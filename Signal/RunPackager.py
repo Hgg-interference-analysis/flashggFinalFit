@@ -25,9 +25,9 @@ def get_options():
   return parser.parse_args()
 (opt,args) = get_options()
 
-print "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ RUNNING PACKAGER ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ RUNNING PACKAGER ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 def leave():
-  print "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ RUNNING PACKAGER (END) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+  print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ RUNNING PACKAGER (END) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
   sys.exit(1)
 
 # Store all opts in orderedDict for submissionTools
@@ -53,8 +53,8 @@ if options['cats'] == "auto":
   options['cats'] = extractListOfCats(WSFileNames)
 options['nCats'] = len(options['cats'].split(","))
 
-print " --> Packaging signal workspaces from: %s"%opt.exts
-print " --> For analysis categories: %s"%options['cats']
+print(" --> Packaging signal workspaces from: %s"%opt.exts)
+print(" --> For analysis categories: %s"%options['cats'])
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Make directory to store job scripts and output
@@ -62,13 +62,13 @@ if not os.path.isdir("%s/outdir_%s"%(swd__,options['ext'])): os.system("mkdir %s
 
 # Write submission files: style depends on batch system
 writeSubFiles(options)
-print "  --> Finished writing submission scripts"
+print("  --> Finished writing submission scripts")
 
 # Submit scripts to batch system
 if not options['printOnly']:
   submitFiles(options)
 else:
-  print "  --> Running with printOnly option. Will not submit scripts"
+  print("  --> Running with printOnly option. Will not submit scripts")
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 leave()

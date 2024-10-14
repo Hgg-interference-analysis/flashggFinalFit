@@ -56,31 +56,33 @@ if [[ $STEP == "fTest" ]] || [[ $STEP == "calcPhotonSyst" ]] || [[ $STEP == 'sig
 	if [[ $year == $YEAR ]] || [[ $YEAR == "all" ]]; then
 	    echo "====> Running $STEP for year $year"
 	    if [[ $STEP == "fTest" ]]; then
-		python RunSignalScripts.py --inputConfig config_test_${year}.py --mode fTest --modeOpts "--doPlots --outdir /eos/user/r/rgargiul/www/width_pdf/plots --nProcsToFTest -1" ${DROPT}
+		python3 RunSignalScripts.py --inputConfig config_test_${year}.py --mode fTest --modeOpts "--doPlots --outdir /eos/user/r/rgargiul/www/width_pdf/plots --nProcsToFTest -1" ${DROPT}
 	    elif [[ $STEP == "calcPhotonSyst" ]]; then
-		python RunSignalScripts.py --inputConfig config_test_${year}.py --mode calcPhotonSyst ${DROPT}
+		python3 RunSignalScripts.py --inputConfig config_test_${year}.py --mode calcPhotonSyst ${DROPT}
 	    elif [[ $STEP == 'signalFit' ]]; then
-		python RunSignalScripts.py --inputConfig config_test_${year}.py --mode signalFit --modeOpts="--doPlots --outdir /eos/user/r/rgargiul/www/width_pdf/plots --skipSystematics" ${DROPT}
+		python3 RunSignalScripts.py --inputConfig config_test_${year}.py --mode signalFit --modeOpts="--doPlots --outdir /eos/user/r/rgargiul/www/width_pdf/plots --skipSystematics" ${DROPT}
 	    fi
 	fi
     done
 elif [[ $STEP == 'packager' ]]; then
-    python RunPackager.py --cats "auto" --inputWSDir /eos/user/r/rgargiul/amrutha_ws/ --outputExt packaged --exts 2024-05-02_year2018 --year $YEAR --batch local --mergeYears
+    python RunPackager.py --cats "auto" --inputWSDir /eos/user/r/rgargiul/dataHggWidth/ws_postVBFcat_noVBFGGFmix/ --outputExt packaged --exts 2024-05-02_year2018 --year $YEAR --batch local --mergeYears
 elif [[ $STEP == 'plotter' ]]; then
-    smprocs=("GG2H","VBF","GG2HPLUSINT")
-    smprocs_csv=$(echo "${smprocs[*]}")
+    smprocs_csv=("VBF,GG2HPLUSINT,vh")
     echo $smprocs_csv
     # just plot all the (SM) processes, all the categories, all the years together. Can be split with --year ${YEAR}. Do not include BSM to maintain the expected total yield for SM
     echo "Now plotting all categories for these SM processes: $smprocs_csv"
     python RunPlotter.py --procs $smprocs_csv --cats "all" --years 2018 --ext packaged --outdir /eos/user/r/rgargiul/www/width_pdf/plots 
     # split by category, all processes together
-    significantCats=("UntaggedTag_0","UntaggedTag_1" "UntaggedTag_2","UntaggedTag_3","UntaggedTag_4","UntaggedTag_5","UntaggedTag_6","UntaggedTag_7","UntaggedTag_8","UntaggedTag_9")
+    significantCats=("UntaggedTag_0" "UntaggedTag_1" "UntaggedTag_2" "UntaggedTag_3" "UntaggedTag_4" "UntaggedTag_5" "UntaggedTag_6" "UntaggedTag_7" "UntaggedTag_8" "UntaggedTag_9" "VBFTag_0")
     significantCats_csv=$(echo "${significantCats[*]}")
+    smprocs_csv=("VBF,GG2HPLUSINT,vh")
     for cat in ${significantCats[*]}
     do
     	echo "=> Now plotting all processes together for cat: $cat"
     	python RunPlotter.py --procs $smprocs_csv --cats $cat --years 2018 --outdir /eos/user/r/rgargiul/www/width_pdf/plots --ext packaged --translateCats ../Plots/cats.json
     done
+    smprocs=("GG2H" "VBF" "GG2HPLUSINT" "vh")
+    smprocs_csv=$(echo "${smprocs[*]}")
     # split by process, all the categories together (the SM + some alternatives)
     for proc in ${smprocs[*]}
     do

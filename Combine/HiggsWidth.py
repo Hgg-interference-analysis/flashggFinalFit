@@ -36,14 +36,12 @@ class Higgswidth(PhysicsModel):
     def doParametersOfInterest(self):
         """Create POI and other parameters, and define the POI set."""
 
-        #self.modelBuilder.doVar("c[1,0.1,5.2]")
         self.modelBuilder.doVar("gamma[1,0,50]")
 
-        self.modelBuilder.factory_( "expr::ggH_s_func(\"1 - sqrt(@0)\", gamma)")
+        self.modelBuilder.factory_( "expr::ggH_s_func(\"(1 - sqrt(@0))\", gamma)")
         self.modelBuilder.factory_(  "expr::ggH_si_func(\"sqrt(@0)\", gamma)")
 
         self.modelBuilder.factory_( "expr::qqH_s_func(\"1\", gamma)")
-
 
         #prova con mu e basta
         #self.modelBuilder.doVar("r[1,0.8,1.2]")

@@ -11,6 +11,8 @@ def get_options():
   parser.add_option('--inputConfig',dest='inputConfig', default="", help='Input config: specify list of variables/analysis categories')
   parser.add_option('--inputTreeFile',dest='inputTreeFile', default=None, help='Input tree file')
   parser.add_option('--outputWSDir',dest='outputWSDir', default=None, help='Output dir (default is same as input dir)')
+  parser.add_option('--applyMassCut',dest='applyMassCut', default=False, action="store_true", help='Apply cut on CMS_hgg_mass')
+  parser.add_option('--massCutRange',dest='massCutRange', default='100,180', help='CMS_hgg_mass cut range')
   return parser.parse_args()
 (opt,args) = get_options()
 
@@ -18,18 +20,18 @@ from collections import OrderedDict as od
 from importlib import import_module
 
 import ROOT
+import pandas
+import numpy as np
 import uproot
-from root_numpy import array2tree
-from collections import OrderedDict as od
 
 from commonTools import *
 from commonObjects import *
 
 
-print " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ HGG TREES 2 WS (DATA) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ "
+print(" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ HGG TREES 2 WS (DATA) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ")
 def leave():
-  print "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ HGG TREES 2 WS (END) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-  sys.exit(1)
+  print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ HGG TREES 2 WS (END) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+  exit(0)
 
 # Function to add vars to workspace
 def add_vars_to_workspace(_ws=None,_dataVars=None):
@@ -74,10 +76,10 @@ if opt.inputConfig != '':
     cats             = _cfg['cats']
 
   else:
-    print "[ERROR] %s config file does not exist. Leaving..."%opt.inputConfig
+    print("[ERROR] %s config file does not exist. Leaving..."%opt.inputConfig)
     leave()
 else:
-  print "[ERROR] Please specify config file to run from. Leaving..."%opt.inputConfig
+  print("[ERROR] Please specify config file to run from. Leaving..."%opt.inputConfig)
   leave()
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -90,8 +92,6 @@ if cats == 'auto':
   cats = []
   for tn in listOfTreeNames:
     if "sigma" in tn: continue
-    elif "NOTAG" in tn: continue
-    elif "ERROR" in tn: continue
     c = tn.split("_%s_"%sqrts__)[-1].split(";")[0]
     cats.append(c)
 
@@ -104,7 +104,7 @@ if opt.outputWSDir is not None: outputWSDir = opt.outputWSDir+"/ws"
 else: outputWSDir = "/".join(opt.inputTreeFile.split("/")[:-1])+"/ws"
 if not os.path.exists(outputWSDir): os.system("mkdir %s"%outputWSDir)
 outputWSFile = outputWSDir+"/"+opt.inputTreeFile.split("/")[-1]
-print " --> Creating output workspace: (%s)"%outputWSFile
+print(" --> Creating output workspace: (%s)"%outputWSFile)
 fout = ROOT.TFile(outputWSFile,"RECREATE")
 foutdir = fout.mkdir(inputWSName__.split("/")[0])
 foutdir.cd()
@@ -118,11 +118,13 @@ aset = make_argset(ws,varNames)
 
 # Loop over categories and 
 for cat in cats:
-  print " --> Extracting events from category: %s"%cat
-  if inputTreeDir == '': treeName = "Data_%s_%s"%(sqrts__,cat)
-  else: treeName = "%s/Data_%s_%s"%(inputTreeDir,sqrts__,cat)
-  print "    * tree: %s"%treeName
+  print(" --> Extracting events from category: %s"%cat)
+  if inputTreeDir == '': treeName = "data_%s_%s"%(sqrts__,cat)
+  else: treeName = "%s/data_%s_%s"%(inputTreeDir,sqrts__,cat)
+  print("    * tree: %s"%treeName)
   t = f.Get(treeName)
+
+  print(t, treeName, t.GetEntries())
 
   # Define dataset for cat
   dname = "Data_%s_%s"%(sqrts__,cat)  
@@ -130,6 +132,8 @@ for cat in cats:
 
   # Loop over events in tree and add to dataset with weight 1
   for ev in t:
+    if opt.applyMassCut:
+      if(getattr(ev,"CMS_hgg_mass") < float(opt.massCutRange.split(",")[0])) | (getattr(ev,"CMS_hgg_mass") > float(opt.massCutRange.split(",")[1])): continue
     for var in dataVars: 
       if var == "weight": continue
       ws.var(var).setVal(getattr(ev,var))
@@ -143,5 +147,3 @@ ws.Write()
 
 # Close file
 fout.Close()
-ws.Delete()
-fout.Delete()

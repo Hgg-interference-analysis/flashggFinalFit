@@ -1,4 +1,4 @@
-print " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ HGG SIGNAL FITTER ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ "
+print(" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ HGG SIGNAL FITTER ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ")
 import ROOT
 import pandas as pd
 import pickle
@@ -24,7 +24,7 @@ MHLow, MHHigh = '120', '130'
 MHNominal = '125'
 
 def leave():
-  print "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ HGG SIGNAL FITTER (END) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ "
+  print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ HGG SIGNAL FITTER (END) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ")
   exit()
 
 def get_options():
@@ -71,20 +71,20 @@ ROOT.gROOT.SetBatch(True)
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # SETUP: signal fit
 if( len(opt.massPoints.split(",")) == 1 )&( opt.MHPolyOrder > 0 ):
-  print " --> [WARNING] Attempting to fit polynomials of O(MH^%g) for single mass point. Setting order to 0"%opt.MHPolyOrder
+  print(" --> [WARNING] Attempting to fit polynomials of O(MH^%g) for single mass point. Setting order to 0"%opt.MHPolyOrder)
   opt.MHPolyOrder=0
 
 # Add stopwatch function
 
 # Load replacement map
 if opt.analysis not in globalReplacementMap:
-  print " --> [ERROR] replacement map does not exist for analysis (%s). Please add to tools/replacementMap.py"%opt.analysis
+  print(" --> [ERROR] replacement map does not exist for analysis (%s). Please add to tools/replacementMap.py"%opt.analysis)
   leave()
 else: rMap = globalReplacementMap[opt.analysis]
 
 # Load XSBR map
 if opt.analysis not in globalXSBRMap:
-  print " --> [ERROR] XS * BR map does not exist for analysis (%s). Please add to tools/XSBRMap.py"%opt.analysis
+  print(" --> [ERROR] XS * BR map does not exist for analysis (%s). Please add to tools/XSBRMap.py"%opt.analysis)
   leave()
 else: xsbrMap = globalXSBRMap[opt.analysis]
 
@@ -112,7 +112,7 @@ if opt.skipZeroes:
   if "INT" in proc_to_data: proc_to_data = "ggh"
   d = reduceDataset(inputWS.data("%s_%s_%s_%s"%(proc_to_data,MHNominal,sqrts__,opt.cat)),aset)
   if( d.numEntries() == 0. )|( d.sumEntries <= 0. ):
-    print " --> (%s,%s) has zero events. Will not construct signal model"%(opt.proc,opt.cat)
+    print(" --> (%s,%s) has zero events. Will not construct signal model"%(opt.proc,opt.cat))
     exit()
   inputWS.Delete()
   f.Close()
@@ -120,29 +120,29 @@ if opt.skipZeroes:
 # Define proc x cat with which to extract shape: if skipVertexScenarioSplit label all events as "RV"
 procRVFit, catRVFit = opt.proc, opt.cat
 if opt.skipVertexScenarioSplit: 
-  print " --> Skipping vertex scenario split"
+  print(" --> Skipping vertex scenario split")
 else:
   procWVFit, catWVFit = opt.proc, opt.cat
 
 # Options for using diagonal process from getDiagProc output json
 if opt.useDiagonalProcForShape:
   if not os.path.exists("%s/outdir_%s/getDiagProc/json/diagonal_process.json"%(swd__,opt.ext)):
-    print " --> [ERROR] Diagonal process json from getDiagProc does not exist. Using nominal proc x cat for shape"
+    print(" --> [ERROR] Diagonal process json from getDiagProc does not exist. Using nominal proc x cat for shape")
   else:
     with open("%s/outdir_%s/getDiagProc/json/diagonal_process.json"%(swd__,opt.ext),"r") as jf: dproc = json.load(jf)
     procRVFit = dproc[opt.cat]
-    print " --> Using diagonal proc (%s,%s) for shape"%(procRVFit,opt.cat)
+    print(" --> Using diagonal proc (%s,%s) for shape"%(procRVFit,opt.cat))
     if not opt.skipVertexScenarioSplit: procWVFit = dproc[opt.cat]
 
 # Process for syst
 procSyst = opt.proc
 if opt.useDiagonalProcForSyst:
   if not os.path.exists("%s/outdir_%s/getDiagProc/json/diagonal_process.json"%(swd__,opt.ext)):
-    print " --> [ERROR] Diagonal process json from getDiagProc does not exist. Using nominal proc x cat for systematics"
+    print(" --> [ERROR] Diagonal process json from getDiagProc does not exist. Using nominal proc x cat for systematics")
   else:
     with open("%s/outdir_%s/getDiagProc/json/diagonal_process.json"%(swd__,opt.ext),"r") as jf: dproc = json.load(jf)
     procSyst = dproc[opt.cat]
-    print " --> Using diagonal proc (%s,%s) for systematics"%(procSyst,opt.cat)
+    print(" --> Using diagonal proc (%s,%s) for systematics"%(procSyst,opt.cat))
 
 # Define process with which to extract normalisation: nominal
 procNorm, catNorm = opt.proc, opt.cat
@@ -154,8 +154,8 @@ nominalDatasets = od()
 datasetRVForFit = od()
 for mp in opt.massPoints.split(","):
   if 'ALT' in procRVFit and mp!=MHNominal: continue
-  print "%s/output*%s*%s.root"%(opt.inputWSDir,mp,procRVFit)
-  print glob.glob("%s/output*%s*%s.root"%(opt.inputWSDir,mp,procRVFit))
+  print("%s/output*%s*%s.root"%(opt.inputWSDir,mp,procRVFit))
+  print(glob.glob("%s/output*%s*%s.root"%(opt.inputWSDir,mp,procRVFit)))
   WSFileName = glob.glob("%s/output*%s*%s.root"%(opt.inputWSDir,mp,procRVFit))[0]
   f = ROOT.TFile(WSFileName,"read")
   inputWS = f.Get(inputWSName__)
@@ -187,33 +187,33 @@ if( datasetRVForFit[MHNominal].numEntries() < opt.replacementThreshold  )|( data
 
   # Check if replacement dataset has too few entries: if so throw error
   if( datasetRVForFit[MHNominal].numEntries() < opt.replacementThreshold )|( datasetRVForFit[MHNominal].sumEntries() < 0. ):
-    print " --> [ERROR] replacement dataset (%s,%s) has too few entries (%g < %g)"%(procReplacementFit,catReplacementFit,datasetRVForFit[MHNominal].numEntries(),opt.replacementThreshold)
+    print(" --> [ERROR] replacement dataset (%s,%s) has too few entries (%g < %g)"%(procReplacementFit,catReplacementFit,datasetRVForFit[MHNominal].numEntries(),opt.replacementThreshold))
     sys.exit(1)
 
   else:
     procRVFit, catRVFit = procReplacementFit, catReplacementFit
     if opt.skipVertexScenarioSplit: 
-      print " --> Too few entries in nominal dataset (%g < %g). Using replacement (proc,cat) = (%s,%s) for extracting shape"%(nominal_numEntries,opt.replacementThreshold,procRVFit,catRVFit)
+      print(" --> Too few entries in nominal dataset (%g < %g). Using replacement (proc,cat) = (%s,%s) for extracting shape"%(nominal_numEntries,opt.replacementThreshold,procRVFit,catRVFit))
       for mp in opt.massPoints.split(","):
         if 'ALT' in procRVFit and mp!=MHNominal: continue
-        print "     * MH = %s GeV: numEntries = %g, sumEntries = %.6f"%(mp,datasetRVForFit[mp].numEntries(),datasetRVForFit[mp].sumEntries())
+        print("     * MH = %s GeV: numEntries = %g, sumEntries = %.6f"%(mp,datasetRVForFit[mp].numEntries(),datasetRVForFit[mp].sumEntries()))
     else: 
-      print " --> RV: Too few entries in nominal dataset (%g < %g). Using replacement (proc,cat) = (%s,%s) for extracting shape"%(nominal_numEntries,opt.replacementThreshold,procRVFit,catRVFit)
+      print(" --> RV: Too few entries in nominal dataset (%g < %g). Using replacement (proc,cat) = (%s,%s) for extracting shape"%(nominal_numEntries,opt.replacementThreshold,procRVFit,catRVFit))
       for mp in opt.massPoints.split(","):
         if 'ALT' in procRVFit and mp!=MHNominal: continue
-        print "     * MH = %s: numEntries = %g, sumEntries = %.6f"%(mp,datasetRVForFit[mp].numEntries(),datasetRVForFit[mp].sumEntries())
+        print("     * MH = %s: numEntries = %g, sumEntries = %.6f"%(mp,datasetRVForFit[mp].numEntries(),datasetRVForFit[mp].sumEntries()))
 
 else:
   if opt.skipVertexScenarioSplit: 
-    print " --> Using (proc,cat) = (%s,%s) for extracting shape"%(procRVFit,catRVFit)
+    print(" --> Using (proc,cat) = (%s,%s) for extracting shape"%(procRVFit,catRVFit))
     for mp in opt.massPoints.split(","):
       if 'ALT' in procRVFit and mp!=MHNominal: continue
-      print "     * MH = %s: numEntries = %g, sumEntries = %.6f"%(mp,datasetRVForFit[mp].numEntries(),datasetRVForFit[mp].sumEntries())
+      print("     * MH = %s: numEntries = %g, sumEntries = %.6f"%(mp,datasetRVForFit[mp].numEntries(),datasetRVForFit[mp].sumEntries()))
   else: 
-    print " --> RV: Using (proc,cat) = (%s,%s) for extracting shape"%(procRVFit,catRVFit)
+    print(" --> RV: Using (proc,cat) = (%s,%s) for extracting shape"%(procRVFit,catRVFit))
     for mp in opt.massPoints.split(","):
       if 'ALT' in procRVFit and mp!=MHNominal: continue
-      print "     * MH = %s: numEntries = %g, sumEntries = %.6f"%(mp,datasetRVForFit[mp].numEntries(),datasetRVForFit[mp].sumEntries())
+      print("     * MH = %s: numEntries = %g, sumEntries = %.6f"%(mp,datasetRVForFit[mp].numEntries(),datasetRVForFit[mp].sumEntries()))
 
 # Repeat for WV scenario
 if not opt.skipVertexScenarioSplit:
@@ -234,54 +234,58 @@ if not opt.skipVertexScenarioSplit:
   if( datasetWVForFit[MHNominal].numEntries() < opt.replacementThreshold  )|( datasetWVForFit[MHNominal].sumEntries() < 0. ):
     nominal_numEntries = datasetWVForFit[MHNominal].numEntries()
     procReplacementFit, catReplacementFit = rMap['procWV'], rMap['catWV']
+    print("+++++++++++++++ ", procReplacementFit, catReplacementFit)
     for mp in opt.massPoints.split(","):
       if 'ALT' in procReplacementFit and mp!=MHNominal: continue
       WSFileName = glob.glob("%s/output*%s*%s.root"%(opt.inputWSDir,mp,procReplacementFit))[0]
       f = ROOT.TFile(WSFileName,"read")
+      print("+++++++++++++", WSFileName)
       inputWS = f.Get(inputWSName__)
       proc_to_data = procToData(procReplacementFit)
+      print("++++++++++++",proc_to_data)
       if "INT" in proc_to_data: proc_to_data = "ggh"
+      print("+++++++ attempt to read: ", "%s_%s_%s_%s"%(proc_to_data,mp,sqrts__,catReplacementFit))
       d = reduceDataset(inputWS.data("%s_%s_%s_%s"%(proc_to_data,mp,sqrts__,catReplacementFit)),aset)
       datasetWVForFit[mp] = splitRVWV(d,aset,mode="WV")
       inputWS.Delete()
       f.Close()
     # Check if replacement dataset has too few entries: if so throw error
     if( datasetWVForFit[MHNominal].numEntries() < opt.replacementThreshold )|( datasetWVForFit[MHNominal].sumEntries() < 0. ):
-      print " --> [ERROR] replacement dataset (%s,%s) has too few entries (%g < %g)"%(procReplacementFit,catReplacementFit,datasetWVForFit[MHNominal].numEntries,opt.replacementThreshold)
+      print(" --> [ERROR] replacement dataset (%s,%s) has too few entries (%g < %g)"%(procReplacementFit,catReplacementFit,datasetWVForFit[MHNominal].numEntries,opt.replacementThreshold))
       sys.exit(1)
     else:
       procWVFit, catWVFit = procReplacementFit, catReplacementFit
-      print " --> WV: Too few entries in nominal dataset (%g < %g). Using replacement (proc,cat) = (%s,%s) for extracting shape"%(nominal_numEntries,opt.replacementThreshold,procWVFit,catWVFit)
+      print(" --> WV: Too few entries in nominal dataset (%g < %g). Using replacement (proc,cat) = (%s,%s) for extracting shape"%(nominal_numEntries,opt.replacementThreshold,procWVFit,catWVFit))
       for mp in opt.massPoints.split(","):
         if 'ALT' in procWVFit and mp!=MHNominal: continue
-        print "     * MH = %s: numEntries = %g, sumEntries = %.6f"%(mp,datasetWVForFit[mp].numEntries(),datasetWVForFit[mp].sumEntries())
+        print("     * MH = %s: numEntries = %g, sumEntries = %.6f"%(mp,datasetWVForFit[mp].numEntries(),datasetWVForFit[mp].sumEntries()))
   else:
-    print " --> WV: Using (proc,cat) = (%s,%s) for extracting shape"%(procWVFit,catRVFit)
+    print(" --> WV: Using (proc,cat) = (%s,%s) for extracting shape"%(procWVFit,catRVFit))
     for mp in opt.massPoints.split(","):
       if 'ALT' in procWVFit and mp!=MHNominal: continue
-      print "     * MH = %s: numEntries = %g, sumEntries = %.6f"%(mp,datasetWVForFit[mp].numEntries(),datasetWVForFit[mp].sumEntries())
+      print("     * MH = %s: numEntries = %g, sumEntries = %.6f"%(mp,datasetWVForFit[mp].numEntries(),datasetWVForFit[mp].sumEntries()))
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # BEAMSPOT REWEIGH
 if not opt.skipBeamspotReweigh:
   # Datasets for fit
-  for mp,d in datasetRVForFit.iteritems(): 
+  for mp,d in datasetRVForFit.items(): 
     if 'ALT' in d and mp!=MHNominal: continue
     drw = beamspotReweigh(datasetRVForFit[mp],opt.beamspotWidthData,opt.beamspotWidthMC,xvar,dZ,_x=opt.xvar)
     datasetRVForFit[mp] = drw
   if not opt.skipVertexScenarioSplit:
-    for mp,d in datasetWVForFit.iteritems(): 
+    for mp,d in datasetWVForFit.items(): 
       if mp!=MHNominal: continue
       drw = beamspotReweigh(datasetWVForFit[mp],opt.beamspotWidthData,opt.beamspotWidthMC,xvar,dZ,_x=opt.xvar)
       datasetWVForFit[mp] = drw
-      print " --> Beamspot reweigh: RV(sumEntries) = %.6f, WV(sumEntries) = %.6f"%(datasetRVForFit[mp].sumEntries(),datasetWVForFit[mp].sumEntries())
+      print(" --> Beamspot reweigh: RV(sumEntries) = %.6f, WV(sumEntries) = %.6f"%(datasetRVForFit[mp].sumEntries(),datasetWVForFit[mp].sumEntries()))
   else:
-    for mp,d in datasetRVForFit.iteritems():
+    for mp,d in datasetRVForFit.items():
       if mp!=MHNominal: continue
-      print " --> Beamspot reweigh: sumEntries = %.6f"%datasetRVForFit[mp].sumEntries()
+      print(" --> Beamspot reweigh: sumEntries = %.6f"%datasetRVForFit[mp].sumEntries())
 
   # Nominal datasets for saving to output Workspace: preserve norm for eff * acc calculation
-  for mp,d in nominalDatasets.iteritems():
+  for mp,d in nominalDatasets.items():
     drw = beamspotReweigh(d,opt.beamspotWidthData,opt.beamspotWidthMC,xvar,dZ,_x=opt.xvar,preserveNorm=True)
     nominalDatasets[mp] = drw
 
@@ -290,16 +294,19 @@ if not opt.skipBeamspotReweigh:
 if not opt.useDCB:
   with open("%s/outdir_%s/fTest/json/nGauss_%s.json"%(swd__,opt.ext,catRVFit)) as jf: ngauss = json.load(jf)
   nRV = int(ngauss["%s__%s"%(procRVFit,catRVFit)]['nRV'])
-  if opt.skipVertexScenarioSplit: print " --> Fitting function: convolution of nGaussians (%g)"%nRV
+  if opt.skipVertexScenarioSplit: print(" --> Fitting function: convolution of nGaussians (%g)"%nRV)
   else: 
     with open("%s/outdir_%s/fTest/json/nGauss_%s.json"%(swd__,opt.ext,catWVFit)) as jf: ngauss = json.load(jf)
     nWV = int(ngauss["%s__%s"%(procWVFit,catWVFit)]['nWV'])
-    print " --> Fitting function: convolution of nGaussians (RV=%g,WV=%g)"%(nRV,nWV)
+    print(" --> Fitting function: convolution of nGaussians (RV=%g,WV=%g)"%(nRV,nWV))
 else:
-  print " --> Fitting function: DCB + 1 Gaussian"
+  print(" --> Fitting function: DCB + 1 Gaussian")
 
 if opt.doVoigtian:
-  print " --> Will add natural Higgs width as parameter in Pdf (Gaussians -> Voigtians)"
+  print(" --> Will add natural Higgs width as parameter in Pdf (Gaussians -> Voigtians)")
+
+
+print("scripts/signalFit.py line 305")
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # FIT: simultaneous signal fit (ssf)
@@ -323,14 +330,14 @@ if not opt.skipVertexScenarioSplit:
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # FINAL MODEL: construction
-print "\n --> Constructing final model"
+print("\n --> Constructing final model")
 fm = FinalModel(ssfMap,opt.proc,opt.cat,opt.ext,opt.year,sqrts__,nominalDatasets,xvar,MH,MHLow,MHHigh,opt.massPoints,xsbrMap,procSyst,opt.scales,opt.scalesCorr,opt.scalesGlobal,opt.smears,opt.doVoigtian,opt.useDCB,opt.skipVertexScenarioSplit,opt.skipSystematics,opt.doEffAccFromJson)
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # SAVE: to output workspace
 foutDir = "%s/outdir_%s/signalFit/output"%(swd__,opt.ext)
 foutName = "%s/outdir_%s/signalFit/output/CMS-HGG_sigfit_%s_%s_%s_%s.root"%(swd__,opt.ext,opt.ext,opt.proc,opt.year,opt.cat)
-print "\n --> Saving output workspace to file: %s"%foutName
+print("\n --> Saving output workspace to file: %s"%foutName)
 if not os.path.isdir(foutDir): os.system("mkdir %s"%foutDir)
 fout = ROOT.TFile(foutName,"RECREATE")
 outWS = ROOT.RooWorkspace("%s_%s"%(outputWSName__,sqrts__),"%s_%s"%(outputWSName__,sqrts__))
@@ -341,7 +348,7 @@ fout.Close()
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # PLOTTING
 if opt.doPlots:
-  print "\n --> Making plots..."
+  print("\n --> Making plots...")
   outdir="%s/%s/signalFit/Plots"%(opt.outdir,opt.ext)
   if not os.path.isdir(outdir): os.system("mkdir -p %s"%outdir)
   if os.path.exists("/afs/cern.ch"): os.system("cp /afs/cern.ch/user/g/gpetrucc/php/index.php "+outdir)

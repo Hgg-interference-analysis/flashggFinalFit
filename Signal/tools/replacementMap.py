@@ -383,7 +383,7 @@ globalReplacementMap["AC"]["catRVMap"]["RECO_ZH_LEP_Tag1"] = "RECO_ZH_LEP_Tag1"
 
 globalReplacementMap['INT'] = od()
 globalReplacementMap['INT']['procWV'] = "GG2H"
-globalReplacementMap['INT']['catWV'] = "RECO_0J_PTH_GT10_Tag1"
+globalReplacementMap['INT']['catWV'] = "UntaggedTag_3"
 
 globalReplacementMap['AC']['procRVMap'] = od()
 globalReplacementMap["AC"]["procRVMap"]["Untagged_0"] = "GG2H"

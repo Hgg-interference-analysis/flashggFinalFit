@@ -13,5 +13,5 @@ for proc in allprocs:
     for cat in allcats:
         fname = "{base}_{proc}_{year}_{cat}.root".format(base=base,proc=proc,year=year,cat=cat)
         if not access(fname,F_OK):
-            print "File ",fname," not present!"
+            print("File ",fname," not present!")
         

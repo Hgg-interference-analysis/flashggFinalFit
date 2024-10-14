@@ -2,7 +2,7 @@
 # * Relies on the presense of NOTAG dataset. If not there, script will give NAN as output
 # * Also needs to run on all processed categories: take from file
 
-print " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ HGG GET FRACTIONS MAKER RUN II ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ "
+print(" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ HGG GET FRACTIONS MAKER RUN II ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ")
 import os, sys
 import re
 from optparse import OptionParser
@@ -17,7 +17,7 @@ from commonTools import *
 from commonObjects import *
 
 def leave():
-  print " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ HGG GET FRACTIONS RUN II (END) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ "
+  print(" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ HGG GET FRACTIONS RUN II (END) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ")
   sys.exit(1)
 
 def get_options():
@@ -37,7 +37,7 @@ if not WSFileNames: leave()
 allCats = extractListOfCats(WSFileNames)
 if containsNOTAG(WSFileNames): allCats += ",NOTAG"
 else:
-  print " --> [ERROR] getEffAcc.py requires NOTAG dataset. Must use standard weights method in signalFit.py"
+  print(" --> [ERROR] getEffAcc.py requires NOTAG dataset. Must use standard weights method in signalFit.py")
   leave()
 
 # Define dataframe to store yields: cow = centralObjectWeight
@@ -47,10 +47,10 @@ data = pd.DataFrame( columns=columns_data )
 
 # Loop over mass points: write separate json file for each masspoint
 for _mp in opt.massPoints.split(","):
-  print " --> Processing mass point: %s"%_mp
+  print(" --> Processing mass point: %s"%_mp)
   # Loop over processes
   for _proc in opt.procs.split(","):
-    print "    * proc = %s"%_proc
+    print("    * proc = %s"%_proc)
     # Find corresponding file
     _WSFileName = glob.glob("%s/output*M%s*%s.root"%(opt.inputWSDir,_mp,_proc))[0]
     f = ROOT.TFile(_WSFileName,'read')
@@ -108,7 +108,7 @@ for _mp in opt.massPoints.split(","):
 # Calculate fractional cross section of each STXS bin (in terms of stage0 bin) for normalisation: output in txt file
 if opt.doSTXSFractions:
   if opt.skipCOWCorr:
-    print " --> [ERROR] Must include centralObjectWeight corrections for signal normalisation fractions"
+    print(" --> [ERROR] Must include centralObjectWeight corrections for signal normalisation fractions")
     leave()
   if not os.path.isdir("%s/outdir_%s/getEffAcc/fractions"%(swd__,opt.ext)): os.system("mkdir %s/outdir_%s/getEffAcc/fractions"%(swd__,opt.ext))
 

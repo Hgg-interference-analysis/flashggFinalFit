@@ -18,5 +18,5 @@ trees2wsCfg = {
     
     # Analysis categories: python list of cats or use 'auto' to extract from input tree
     'cats':'auto',
-    'outputWSDir': '/eos/user/r/rgargiul/amrutha_ws/new_ws_si'
+    'outputWSDir': '/eos/user/r/rgargiul/dataHggWidth/ws_postVBFcat_noVBFGGFmix'
 }

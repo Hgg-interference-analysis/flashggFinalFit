@@ -24,14 +24,14 @@ for fname in glob.glob("%s/output*M*.root"%opt.inputWSDir):
     altmodel = m.group(1) if m else ""
     #print newbasename, "  altmodel = ",altmodel
     proc = ""
-    for prefix,suffix in procmap.iteritems():
+    for prefix,suffix in procmap.items():
         if prefix in fname:
             proc = suffix
             break
     newname = "%s_%s%s.root" % (newbasename,proc,altmodel)
     cmds.append("mv -i %s %s" % (fname,newname))
     if opt.dryRun:
-        print cmds[-1]
+        print(cmds[-1])
 
 if not opt.dryRun:
     for c in cmds:
