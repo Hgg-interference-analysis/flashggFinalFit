@@ -1,3 +1,5 @@
+#!/bin/bash
+
 outdate=`date +%F` 
 
 STEP=0

@@ -1,1 +1,1 @@
-python RunBackgroundScripts.py --inputConfig config_test.py --mode fTestParallel
+python RunBackgroundScripts.py --inputConfig config_test_oldws.py --mode fTestParallel

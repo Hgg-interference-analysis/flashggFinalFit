@@ -36,7 +36,7 @@ def get_options():
   parser.add_option("--cat", dest='cat', default='', help="RECO category")
   parser.add_option('--mass', dest='mass', default='125', help="Mass point to fit")
   parser.add_option('--doPlots', dest='doPlots', default=False, action="store_true", help="Produce Signal fTest plots")
-  parser.add_option('--nBins', dest='nBins', default=80, type='int', help="Number of bins for fit")
+  parser.add_option('--nBins', dest='nBins', default=160, type='int', help="Number of bins for fit")
   parser.add_option('--threshold', dest='threshold', default=30, type='int', help="Threshold number of events")
   parser.add_option('--nGaussMax', dest='nGaussMax', default=5, type='int', help="Max number of gaussians to test")
   parser.add_option('--skipWV', dest='skipWV', default=False, action="store_true", help="Skip processing of WV case")
@@ -48,7 +48,7 @@ def get_options():
 
 ROOT.gStyle.SetOptStat(0)
 ROOT.gROOT.SetBatch(True)
-if opt.doPlots: 
+if opt.doPlots:
   if not os.path.isdir("%s/%s/fTest/Plots"%(opt.outdir,opt.ext)): os.system("mkdir -p %s/%s/fTest/Plots"%(opt.outdir,opt.ext))
 
 # Load xvar to fit
@@ -91,6 +91,7 @@ for pidx, proc in enumerate(procsToFTest):
   # Split dataset to RV/WV: ssf requires input as dict (with mass point as key)
   datasets_RV, datasets_WV = od(), od()
   WSFileName = glob.glob("%s/output*M%s*%s.root"%(opt.inputWSDir,opt.mass,proc))[0]
+  print(WSFileName)
   f = ROOT.TFile(WSFileName,"read")
   inputWS = f.Get(inputWSName__)
   proc_to_data = procToData(proc)
@@ -101,7 +102,7 @@ for pidx, proc in enumerate(procsToFTest):
 
   # Run fTest: RV
   # If numEntries below threshold then keep as n = 1
-  if datasets_RV[opt.mass].numEntries() < opt.threshold: continue  
+  if datasets_RV[opt.mass].numEntries() < opt.threshold: continue
   else:
     ssfs = od()
     min_reduced_chi2, nGauss_opt = 999, 1

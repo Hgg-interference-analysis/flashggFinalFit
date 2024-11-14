@@ -17,9 +17,9 @@ from shanePalette import set_color_palette
 from commonObjects import *
 from commonTools import *
 
-print " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ HGG YIELDS TABLES RUN II ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ "
+print(" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ HGG YIELDS TABLES RUN II ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ")
 def leave():
-  print " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ HGG YIELDS TABLES RUN II (END) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ "
+  print(" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ HGG YIELDS TABLES RUN II (END) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ")
   sys.exit(1)
 
 
@@ -268,12 +268,12 @@ elif opt.group == "top":
   stage0 = cp_top
   target_procs = target_procs_top_ac
 else:
-  print " --> [ERROR] target group of categories %s does not exist"%opt.group
+  print(" --> [ERROR] target group of categories %s does not exist"%opt.group)
   leave()
 
 # Load input dataFrame from pickle file
 if not os.path.exists( opt.inputPklDir ): 
-  print " --> [ERROR] Input directory with pickle files does not exist. Leaving"
+  print(" --> [ERROR] Input directory with pickle files does not exist. Leaving")
   leave()
 yfiles = glob.glob("%s/*.pkl" % opt.inputPklDir)
 data = pd.concat([pd.read_pickle(f) for f in yfiles],sort=False)
@@ -282,7 +282,7 @@ data = pd.concat([pd.read_pickle(f) for f in yfiles],sort=False)
 # Load cat info dataframe
 if opt.loadCatInfo != '':
   if not os.path.exists( opt.loadCatInfo ):
-    print " --> [ERROR] Cat info pickle file does not exist. Leaving"
+    print(" --> [ERROR] Cat info pickle file does not exist. Leaving")
     leave()
   with open( opt.loadCatInfo, "rb" ) as fin: catinfo_data = pickle.load(fin)
 
@@ -305,7 +305,7 @@ for cat in target_procs:
     _target_yield += data[mask][data[mask].apply(lambda x: "_".join(x['proc'].split("_")[:-2]) in target_procs[cat], axis=1)][opt.yieldVar].sum()*_rate
     for s0 in stage0: 
       s0_y = data[mask][data[mask].apply(lambda x: "_".join(x['proc'].split("_")[:-2]) in stage0[s0], axis=1)][opt.yieldVar].sum()*_rate
-      if s0 in _s0_yields.keys():
+      if s0 in list(_s0_yields.keys()):
         _s0_yields[s0] += s0_y
       else:
         _s0_yields[s0] = s0_y
@@ -319,23 +319,23 @@ for cat in target_procs:
   # Add values to dataframe
   _target_bins_str = '-'
   vals = [cat,_target_bins_str,_nominal_yield,_target_yield]
-  for _ys0 in _s0_yields.itervalues(): vals.append(_ys0)
+  for _ys0 in _s0_yields.values(): vals.append(_ys0)
   if opt.loadCatInfo != '': vals.extend( [_effSigma,_bkg,_SoverSplusB] )
   tab_data.loc[len(tab_data)] = vals
 
 # Make table
-nColumns = 4+len(stage0.keys())
+nColumns = 4+len(list(stage0.keys()))
 foutname = "Tables/yields_table_lite_%s%s.txt"%(opt.group,opt.ext)
 if not os.path.isdir('Tables'): os.system("mkdir Tables")
 fout = open(foutname,"w")
 fout.write("\\begin{tabular}{%s}\n"%("l|"+("c"*(nColumns-1))))
 #fout.write("    \\hline \\hline \n")
 #fout.write("    \\multirow{3}{*}{Analysis categories} & \\multicolumn{%g}{c|}{SM 125 GeV Higgs boson expected signal} & \\multirow{3}{*}{S/S+B} \\\\ \\cline{2-%g}\n"%(3+len(stage0.keys()),nColumns-1))
-fout.write("    \\multirow{3}{*}{Analysis categories} & \\multicolumn{%g}{c}{SM 125 GeV Higgs boson expected signal} & \\multirow{3}{*}{S/S+B} \\\\ \n"%(2+len(stage0.keys())))
+fout.write("    \\multirow{3}{*}{Analysis categories} & \\multicolumn{%g}{c}{SM 125 GeV Higgs boson expected signal} & \\multirow{3}{*}{S/S+B} \\\\ \n"%(2+len(list(stage0.keys()))))
 #fout.write("     & \\multirow{2}{*}{\\begin{tabular}[c]{@{}c@{}}Total\\\\Yield\\end{tabular}} & \\multirow{2}{*}{\\begin{tabular}[c]{@{}c@{}}Target\\\\Fraction\\end{tabular}} & \\multicolumn{%g}{c|}{Production Mode Fractions} & \\multirow{2}{*}{\\begin{tabular}[c]{@{}c@{}}$\\sigma_{\\rm{eff}}$\\\\(GeV)\\end{tabular}} & \\\\ \\cline{4-%g}\n"%(len(stage0.keys()),nColumns-2))
-fout.write("     & \\multirow{2}{*}{Total}  & \\multicolumn{%g}{c}{Production Mode Fractions} & \\multirow{2}{*}{\\begin{tabular}[c]{@{}c@{}}$\\sigma_{\\rm{eff}}$\\\\(GeV)\\end{tabular}} & \\\\ \n"%(len(stage0.keys())))
-s0_str = Translate(stage0.keys()[0],translateStage0)
-for s0 in stage0.keys()[1:]: s0_str += " & %s"%Translate(s0,translateStage0)
+fout.write("     & \\multirow{2}{*}{Total}  & \\multicolumn{%g}{c}{Production Mode Fractions} & \\multirow{2}{*}{\\begin{tabular}[c]{@{}c@{}}$\\sigma_{\\rm{eff}}$\\\\(GeV)\\end{tabular}} & \\\\ \n"%(len(list(stage0.keys()))))
+s0_str = Translate(list(stage0.keys())[0],translateStage0)
+for s0 in list(stage0.keys())[1:]: s0_str += " & %s"%Translate(s0,translateStage0)
 #fout.write("     & & & %s & & \\\\ \\hline \\hline \n"%s0_str)
 fout.write("     & & %s & & \\\\ \\hline \n"%s0_str)
 # Add numbers
@@ -358,5 +358,5 @@ for ir,r in tab_data.iterrows():
   tag_itr -= 1
 #fout.write("     \\hline \n")
 fout.write("\\end{tabular}\n")
-print "Written latex table in ",foutname
+print("Written latex table in ",foutname)
 

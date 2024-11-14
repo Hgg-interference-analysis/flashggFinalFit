@@ -12,7 +12,7 @@ signalScriptCfg = {
     'year':'%s'%_year, # Use 'combined' if merging all years: not recommended
     'massPoints':'120,125,130',
     'xvar': 'CMS_hgg_mass',
-    'outdir': '/eos/user/r/rgargiul/www/width_pdf/plots_postVBFcat',
+    #'outdir': '/eos/user/r/rgargiul/www/width_pdf/plots_postVBFcat',
 
     #Photon shape systematics
     'scales': 'HighR9EB,HighR9EE,LowR9EB,LowR9EE,Gain1EB,Gain6EB', # separate nuisance per year
@@ -21,6 +21,6 @@ signalScriptCfg = {
     'smears': 'HighR9EBPhi,HighR9EBRho,HighR9EEPhi,HighR9EERho,LowR9EBPhi,LowR9EBRho,LowR9EEPhi,LowR9EERho', # separate nuisance per year
 
     # Job submission options
-    'batch':'condor', # ['condor','SGE','IC','Rome','local']
+    'batch':'local', # ['condor','SGE','IC','Rome','local']
     'queue':'espresso'
 }

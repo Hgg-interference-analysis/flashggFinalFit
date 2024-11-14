@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 # HYBRID:   aicEnvelope_job0_hybrid_exp3_pol3_truth_job0_toy99_cat3_toy99
 # STANDARD: aicEnvelope_job0_sb_truth_pow1_cat0_truth_job0_toy99_cat0_toy99 

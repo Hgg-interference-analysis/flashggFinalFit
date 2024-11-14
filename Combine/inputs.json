@@ -2,8 +2,8 @@
     "xsec":{
         "pois":"gamma",
         "fits":"profile1D:syst:all+bestfit:syst:all",
-        "points":"50:1+:",
-        "fit_opts":"-v 1 --setParameters gamma=1,MH=125.38 --freezeParameters MH --setParameterRanges gamma=0,50 --X-rtd FITTER_NEW_CROSSING_ALGO --X-rtd FITTER_BOUND --saveSpecifiedNuis all --saveInactivePOI 1 + --setParameters gamma=1,MH=125.38 --freezeParameters MH --setParameterRanges gamma=0,50 --robustFit=1 --setRobustFitAlgo=Minuit2,Migrad --X-rtd FITTER_NEW_CROSSING_ALGO --setRobustFitTolerance=0.1 --X-rtd FITTER_NEVER_GIVE_UP --X-rtd FITTER_BOUND --cminFallbackAlgo \"Minuit2,0:1.\" --saveSpecifiedNuis all --saveInactivePOI 1 --saveWorkspace"
+        "points":"41:1+:",
+        "fit_opts":"-v 1 -m 125.38 --setParameters gamma=1,MH=125.38,mu=1,pdfindex_UntaggedTag_9_13TeV=2 --freezeParameters MH,mu --setParameterRanges gamma=0,10 --X-rtd FITTER_NEW_CROSSING_ALGO --X-rtd FITTER_BOUND --saveSpecifiedNuis all --saveInactivePOI 1 + -m 125.38 --setParameters gamma=1,MH=125.38,mu=1,pdfindex_UntaggedTag_9_13TeV=2 --freezeParameters MH,mu --setParameterRanges gamma=0,4 --robustFit=1 --setRobustFitAlgo=Minuit2,Migrad --X-rtd FITTER_NEW_CROSSING_ALGO --setRobustFitTolerance=0.1 --X-rtd FITTER_NEVER_GIVE_UP --X-rtd FITTER_BOUND --cminFallbackAlgo \"Minuit2,0:1.\" --saveSpecifiedNuis all --saveInactivePOI 1 --saveWorkspace"
 
     }
 }

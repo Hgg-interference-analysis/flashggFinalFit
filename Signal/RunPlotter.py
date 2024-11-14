@@ -61,6 +61,8 @@ else:
     years = opt.years.split(",")
     if len(years)!=1: print("Fix the code for more years")
     f = "%s/outdir_%s/CMS-HGG_sigfit_%s_%s.root"%(swd__,opt.ext,opt.ext,cat)
+    if "packaged_oldws" in opt.ext:
+      f = "%s/outdir_%s/CMS-HGG_sigfit_packaged_%s.root"%(swd__,opt.ext,cat)
     inputFiles[cat] = f
     if citr == 0:
       w = ROOT.TFile(f).Get("wsig_13TeV")

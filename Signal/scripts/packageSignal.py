@@ -31,6 +31,9 @@ print(f"opt.exts: {opt.exts}")
 # Extract all files to be merged
 fNames = {}
 for ext in opt.exts.split(","): fNames[ext] = glob.glob("outdir_%s/signalFit/output/CMS-HGG_sigfit_%s_*_%s.root"%(ext,ext,opt.cat))
+print("outdir_%s/signalFit/output/CMS-HGG_sigfit_%s_*_%s.root"%(ext,ext,opt.cat))
+
+print(fNames)
 
 # Define ouput packaged workspace
 print(" --> Packaging output workspaces")

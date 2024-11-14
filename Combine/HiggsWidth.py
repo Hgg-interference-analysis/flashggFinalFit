@@ -24,6 +24,7 @@ class Higgswidth(PhysicsModel):
         if "ggh" in process: return "ggH_si_func"
         elif "ggH" in process: return "ggH_s_func"
         elif "qqH" in process: return "qqH_s_func"
+        elif "vh" in process: return "vh_s_func"
         else:
             return 1
            
@@ -36,21 +37,28 @@ class Higgswidth(PhysicsModel):
     def doParametersOfInterest(self):
         """Create POI and other parameters, and define the POI set."""
 
+        '''
         self.modelBuilder.doVar("gamma[1,0,50]")
 
         self.modelBuilder.factory_( "expr::ggH_s_func(\"(1 - sqrt(@0))\", gamma)")
         self.modelBuilder.factory_(  "expr::ggH_si_func(\"sqrt(@0)\", gamma)")
 
         self.modelBuilder.factory_( "expr::qqH_s_func(\"1\", gamma)")
-
-        #prova con mu e basta
-        #self.modelBuilder.doVar("r[1,0.8,1.2]")
-
-        #self.modelBuilder.factory_( "expr::ggH_si_func(\"@0\", r)")
-        #self.modelBuilder.factory_( "expr::ggH_s_func(\"0*@0\", r)")
-        #self.modelBuilder.factory_( "expr::qqH_s_func(\"@0\", r)")
+        self.modelBuilder.factory_( "expr::vh_s_func(\"1\", gamma)")
 
         self.modelBuilder.doSet("POI","gamma")
+        '''
+
+        self.modelBuilder.doVar("gamma[1,0,50]")
+        self.modelBuilder.doVar("mu[1,0.5,1.5]")
+
+        self.modelBuilder.factory_( "expr::ggH_s_func(\"(@1 - sqrt(@0*@1))\", gamma, mu)")
+        self.modelBuilder.factory_(  "expr::ggH_si_func(\"sqrt(@0*@1)\", gamma, mu)")
+
+        self.modelBuilder.factory_( "expr::qqH_s_func(\"@0\", mu)")
+        self.modelBuilder.factory_( "expr::vh_s_func(\"@0\", mu)")
+
+        self.modelBuilder.doSet("POI","gamma,mu")
 
 
 higgswidth = Higgswidth()

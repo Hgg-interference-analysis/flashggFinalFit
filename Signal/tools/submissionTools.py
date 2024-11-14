@@ -2,12 +2,23 @@ import os
 import glob
 import re
 from commonObjects import *
+import os
+import time
+from multiprocessing import Process
 
 MHNominal = '125'
 
 def run(cmd):
-  print("%s\n\n"%cmd)
-  os.system(cmd)
+  def bg():
+    # ignore first call
+    if os.fork() != 0:
+        return
+    os.system(cmd)
+
+  p = Process(target=bg)
+  p.start()
+  p.join()
+
 
 def writePreamble(_file):
   _file.write("#!/bin/bash\n")
@@ -243,14 +254,14 @@ def submitFiles(_opts):
         for cidx in range(_opts['nCats']):
           pcidx = pidx*_opts['nCats']+cidx
           _subfile = "%s/%s_%g"%(_jobdir,_executable,pcidx)
-          cmdLine = "bash %s.sh > %s 2>&1 &"%(_subfile, _subfile+".log")
+          cmdLine = "bash %s.sh > %s 2>&1"%(_subfile, _subfile+".log")
           run(cmdLine)
     # Separate submission per category  
     elif( _opts['mode'] == "packageSignal" )|( _opts['mode'] == "fTest" )|( _opts['mode'] == "calcPhotonSyst" )|(( _opts['mode'] == "signalFit" )&( _opts['groupSignalFitJobsByCat'] )):
       for cidx in range(_opts['nCats']):
         c = _opts['cats'].split(",")[cidx]
         _subfile = "%s/%s_%s"%(_jobdir,_executable,c)
-        cmdLine = "bash %s.sh"%_subfile
+        cmdLine = "bash %s.sh > %s 2>&1"%(_subfile, _subfile+".log")
         run(cmdLine)
     # Single submission
     elif(_opts['mode'] == "getEffAcc")|(_opts['mode'] == "getDiagProc"):

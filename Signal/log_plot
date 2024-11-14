@@ -1,0 +1,591 @@
+Requested to run the step plotter for the year: 2018
+
+VBF,GG2HPLUSINT,vh
+Now plotting all categories for these SM processes: VBF,GG2HPLUSINT,vh
+=> Now plotting all processes together for cat: UntaggedTag_0
+=> Now plotting all processes together for cat: UntaggedTag_1
+=> Now plotting all processes together for cat: UntaggedTag_2
+=> Now plotting all processes together for cat: UntaggedTag_3
+=> Now plotting all processes together for cat: UntaggedTag_4
+=> Now plotting all processes together for cat: UntaggedTag_5
+=> Now plotting all processes together for cat: UntaggedTag_6
+=> Now plotting all processes together for cat: UntaggedTag_7
+=> Now plotting all processes together for cat: UntaggedTag_8
+=> Now plotting all processes together for cat: UntaggedTag_9
+=> Now plotting all processes together for cat: VBFTag_0
+=> Now plotting proc GG2H for all categories
+=> Now plotting proc VBF for all categories
+=> Now plotting proc GG2HPLUSINT for all categories
+=> Now plotting proc vh for all categories
+=> Now plotting proc GG2H for cat UntaggedTag_0
+Info in <TCanvas::SaveAs>: ROOT file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_0_GG2H_2018.root has been created
+Info in <TCanvas::Print>: pdf file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_0_GG2H_2018.pdf has been created
+Info in <TCanvas::Print>: png file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_0_GG2H_2018.png has been created
+opt.cats: UntaggedTag_0
+opt.procs: GG2H
+category: UntaggedTag_0
+ --> Processing UntaggedTag_0: file = /afs/cern.ch/work/r/rgargiul/CMSSW_14_1_0_pre4/src/flashggFinalFit/Signal/outdir_packaged/CMS-HGG_sigfit_packaged_UntaggedTag_0.root
+GG2H 2018 UntaggedTag_0 13TeV
+hggpdfsmrel_GG2H_2018_UntaggedTag_0_13TeV_normThisLumi
+k: GG2H_2018
+norms[k]: RooFormulaVar::hggpdfsmrel_GG2H_2018_UntaggedTag_0_13TeV_normThisLumi[ actualVars=(fxs_GG2H_13TeV,fbr_13TeV,fea_GG2H_2018_UntaggedTag_0_13TeV,rate_GG2H_2018_UntaggedTag_0_13TeV,IntLumi) formula="@0*@1*@2*@3*@4" ] = 7.92849e-05
+
+=> Now plotting proc GG2H for cat UntaggedTag_1
+Info in <TCanvas::SaveAs>: ROOT file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_1_GG2H_2018.root has been created
+Info in <TCanvas::Print>: pdf file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_1_GG2H_2018.pdf has been created
+Info in <TCanvas::Print>: png file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_1_GG2H_2018.png has been created
+opt.cats: UntaggedTag_1
+opt.procs: GG2H
+category: UntaggedTag_1
+ --> Processing UntaggedTag_1: file = /afs/cern.ch/work/r/rgargiul/CMSSW_14_1_0_pre4/src/flashggFinalFit/Signal/outdir_packaged/CMS-HGG_sigfit_packaged_UntaggedTag_1.root
+GG2H 2018 UntaggedTag_1 13TeV
+hggpdfsmrel_GG2H_2018_UntaggedTag_1_13TeV_normThisLumi
+k: GG2H_2018
+norms[k]: RooFormulaVar::hggpdfsmrel_GG2H_2018_UntaggedTag_1_13TeV_normThisLumi[ actualVars=(fxs_GG2H_13TeV,fbr_13TeV,fea_GG2H_2018_UntaggedTag_1_13TeV,rate_GG2H_2018_UntaggedTag_1_13TeV,IntLumi) formula="@0*@1*@2*@3*@4" ] = 0.00100313
+
+=> Now plotting proc GG2H for cat UntaggedTag_2
+Info in <TCanvas::SaveAs>: ROOT file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_2_GG2H_2018.root has been created
+Info in <TCanvas::Print>: pdf file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_2_GG2H_2018.pdf has been created
+Info in <TCanvas::Print>: png file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_2_GG2H_2018.png has been created
+opt.cats: UntaggedTag_2
+opt.procs: GG2H
+category: UntaggedTag_2
+ --> Processing UntaggedTag_2: file = /afs/cern.ch/work/r/rgargiul/CMSSW_14_1_0_pre4/src/flashggFinalFit/Signal/outdir_packaged/CMS-HGG_sigfit_packaged_UntaggedTag_2.root
+GG2H 2018 UntaggedTag_2 13TeV
+hggpdfsmrel_GG2H_2018_UntaggedTag_2_13TeV_normThisLumi
+k: GG2H_2018
+norms[k]: RooFormulaVar::hggpdfsmrel_GG2H_2018_UntaggedTag_2_13TeV_normThisLumi[ actualVars=(fxs_GG2H_13TeV,fbr_13TeV,fea_GG2H_2018_UntaggedTag_2_13TeV,rate_GG2H_2018_UntaggedTag_2_13TeV,IntLumi) formula="@0*@1*@2*@3*@4" ] = 0.000632341
+
+=> Now plotting proc GG2H for cat UntaggedTag_3
+Info in <TCanvas::SaveAs>: ROOT file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_3_GG2H_2018.root has been created
+Info in <TCanvas::Print>: pdf file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_3_GG2H_2018.pdf has been created
+Info in <TCanvas::Print>: png file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_3_GG2H_2018.png has been created
+opt.cats: UntaggedTag_3
+opt.procs: GG2H
+category: UntaggedTag_3
+ --> Processing UntaggedTag_3: file = /afs/cern.ch/work/r/rgargiul/CMSSW_14_1_0_pre4/src/flashggFinalFit/Signal/outdir_packaged/CMS-HGG_sigfit_packaged_UntaggedTag_3.root
+GG2H 2018 UntaggedTag_3 13TeV
+hggpdfsmrel_GG2H_2018_UntaggedTag_3_13TeV_normThisLumi
+k: GG2H_2018
+norms[k]: RooFormulaVar::hggpdfsmrel_GG2H_2018_UntaggedTag_3_13TeV_normThisLumi[ actualVars=(fxs_GG2H_13TeV,fbr_13TeV,fea_GG2H_2018_UntaggedTag_3_13TeV,rate_GG2H_2018_UntaggedTag_3_13TeV,IntLumi) formula="@0*@1*@2*@3*@4" ] = 0.00261749
+
+=> Now plotting proc GG2H for cat UntaggedTag_4
+Info in <TCanvas::SaveAs>: ROOT file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_4_GG2H_2018.root has been created
+Info in <TCanvas::Print>: pdf file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_4_GG2H_2018.pdf has been created
+Info in <TCanvas::Print>: png file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_4_GG2H_2018.png has been created
+opt.cats: UntaggedTag_4
+opt.procs: GG2H
+category: UntaggedTag_4
+ --> Processing UntaggedTag_4: file = /afs/cern.ch/work/r/rgargiul/CMSSW_14_1_0_pre4/src/flashggFinalFit/Signal/outdir_packaged/CMS-HGG_sigfit_packaged_UntaggedTag_4.root
+GG2H 2018 UntaggedTag_4 13TeV
+hggpdfsmrel_GG2H_2018_UntaggedTag_4_13TeV_normThisLumi
+k: GG2H_2018
+norms[k]: RooFormulaVar::hggpdfsmrel_GG2H_2018_UntaggedTag_4_13TeV_normThisLumi[ actualVars=(fxs_GG2H_13TeV,fbr_13TeV,fea_GG2H_2018_UntaggedTag_4_13TeV,rate_GG2H_2018_UntaggedTag_4_13TeV,IntLumi) formula="@0*@1*@2*@3*@4" ] = 0.000602152
+
+=> Now plotting proc GG2H for cat UntaggedTag_5
+Info in <TCanvas::SaveAs>: ROOT file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_5_GG2H_2018.root has been created
+Info in <TCanvas::Print>: pdf file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_5_GG2H_2018.pdf has been created
+Info in <TCanvas::Print>: png file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_5_GG2H_2018.png has been created
+opt.cats: UntaggedTag_5
+opt.procs: GG2H
+category: UntaggedTag_5
+ --> Processing UntaggedTag_5: file = /afs/cern.ch/work/r/rgargiul/CMSSW_14_1_0_pre4/src/flashggFinalFit/Signal/outdir_packaged/CMS-HGG_sigfit_packaged_UntaggedTag_5.root
+GG2H 2018 UntaggedTag_5 13TeV
+hggpdfsmrel_GG2H_2018_UntaggedTag_5_13TeV_normThisLumi
+k: GG2H_2018
+norms[k]: RooFormulaVar::hggpdfsmrel_GG2H_2018_UntaggedTag_5_13TeV_normThisLumi[ actualVars=(fxs_GG2H_13TeV,fbr_13TeV,fea_GG2H_2018_UntaggedTag_5_13TeV,rate_GG2H_2018_UntaggedTag_5_13TeV,IntLumi) formula="@0*@1*@2*@3*@4" ] = 0.00386009
+
+=> Now plotting proc GG2H for cat UntaggedTag_6
+Info in <TCanvas::SaveAs>: ROOT file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_6_GG2H_2018.root has been created
+Info in <TCanvas::Print>: pdf file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_6_GG2H_2018.pdf has been created
+Info in <TCanvas::Print>: png file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_6_GG2H_2018.png has been created
+opt.cats: UntaggedTag_6
+opt.procs: GG2H
+category: UntaggedTag_6
+ --> Processing UntaggedTag_6: file = /afs/cern.ch/work/r/rgargiul/CMSSW_14_1_0_pre4/src/flashggFinalFit/Signal/outdir_packaged/CMS-HGG_sigfit_packaged_UntaggedTag_6.root
+GG2H 2018 UntaggedTag_6 13TeV
+hggpdfsmrel_GG2H_2018_UntaggedTag_6_13TeV_normThisLumi
+k: GG2H_2018
+norms[k]: RooFormulaVar::hggpdfsmrel_GG2H_2018_UntaggedTag_6_13TeV_normThisLumi[ actualVars=(fxs_GG2H_13TeV,fbr_13TeV,fea_GG2H_2018_UntaggedTag_6_13TeV,rate_GG2H_2018_UntaggedTag_6_13TeV,IntLumi) formula="@0*@1*@2*@3*@4" ] = 0.000894801
+
+=> Now plotting proc GG2H for cat UntaggedTag_7
+Info in <TCanvas::SaveAs>: ROOT file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_7_GG2H_2018.root has been created
+Info in <TCanvas::Print>: pdf file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_7_GG2H_2018.pdf has been created
+Info in <TCanvas::Print>: png file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_7_GG2H_2018.png has been created
+opt.cats: UntaggedTag_7
+opt.procs: GG2H
+category: UntaggedTag_7
+ --> Processing UntaggedTag_7: file = /afs/cern.ch/work/r/rgargiul/CMSSW_14_1_0_pre4/src/flashggFinalFit/Signal/outdir_packaged/CMS-HGG_sigfit_packaged_UntaggedTag_7.root
+GG2H 2018 UntaggedTag_7 13TeV
+hggpdfsmrel_GG2H_2018_UntaggedTag_7_13TeV_normThisLumi
+k: GG2H_2018
+norms[k]: RooFormulaVar::hggpdfsmrel_GG2H_2018_UntaggedTag_7_13TeV_normThisLumi[ actualVars=(fxs_GG2H_13TeV,fbr_13TeV,fea_GG2H_2018_UntaggedTag_7_13TeV,rate_GG2H_2018_UntaggedTag_7_13TeV,IntLumi) formula="@0*@1*@2*@3*@4" ] = 0.0050677
+
+=> Now plotting proc GG2H for cat UntaggedTag_8
+Info in <TCanvas::SaveAs>: ROOT file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_8_GG2H_2018.root has been created
+Info in <TCanvas::Print>: pdf file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_8_GG2H_2018.pdf has been created
+Info in <TCanvas::Print>: png file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_8_GG2H_2018.png has been created
+opt.cats: UntaggedTag_8
+opt.procs: GG2H
+category: UntaggedTag_8
+ --> Processing UntaggedTag_8: file = /afs/cern.ch/work/r/rgargiul/CMSSW_14_1_0_pre4/src/flashggFinalFit/Signal/outdir_packaged/CMS-HGG_sigfit_packaged_UntaggedTag_8.root
+GG2H 2018 UntaggedTag_8 13TeV
+hggpdfsmrel_GG2H_2018_UntaggedTag_8_13TeV_normThisLumi
+k: GG2H_2018
+norms[k]: RooFormulaVar::hggpdfsmrel_GG2H_2018_UntaggedTag_8_13TeV_normThisLumi[ actualVars=(fxs_GG2H_13TeV,fbr_13TeV,fea_GG2H_2018_UntaggedTag_8_13TeV,rate_GG2H_2018_UntaggedTag_8_13TeV,IntLumi) formula="@0*@1*@2*@3*@4" ] = 0.000847036
+
+=> Now plotting proc GG2H for cat UntaggedTag_9
+Info in <TCanvas::SaveAs>: ROOT file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_9_GG2H_2018.root has been created
+Info in <TCanvas::Print>: pdf file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_9_GG2H_2018.pdf has been created
+Info in <TCanvas::Print>: png file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_9_GG2H_2018.png has been created
+opt.cats: UntaggedTag_9
+opt.procs: GG2H
+category: UntaggedTag_9
+ --> Processing UntaggedTag_9: file = /afs/cern.ch/work/r/rgargiul/CMSSW_14_1_0_pre4/src/flashggFinalFit/Signal/outdir_packaged/CMS-HGG_sigfit_packaged_UntaggedTag_9.root
+GG2H 2018 UntaggedTag_9 13TeV
+hggpdfsmrel_GG2H_2018_UntaggedTag_9_13TeV_normThisLumi
+k: GG2H_2018
+norms[k]: RooFormulaVar::hggpdfsmrel_GG2H_2018_UntaggedTag_9_13TeV_normThisLumi[ actualVars=(fxs_GG2H_13TeV,fbr_13TeV,fea_GG2H_2018_UntaggedTag_9_13TeV,rate_GG2H_2018_UntaggedTag_9_13TeV,IntLumi) formula="@0*@1*@2*@3*@4" ] = 0.00576961
+
+=> Now plotting proc GG2H for cat VBFTag_0
+Info in <TCanvas::SaveAs>: ROOT file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_VBFTag_0_GG2H_2018.root has been created
+Info in <TCanvas::Print>: pdf file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_VBFTag_0_GG2H_2018.pdf has been created
+Info in <TCanvas::Print>: png file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_VBFTag_0_GG2H_2018.png has been created
+opt.cats: VBFTag_0
+opt.procs: GG2H
+category: VBFTag_0
+ --> Processing VBFTag_0: file = /afs/cern.ch/work/r/rgargiul/CMSSW_14_1_0_pre4/src/flashggFinalFit/Signal/outdir_packaged/CMS-HGG_sigfit_packaged_VBFTag_0.root
+GG2H 2018 VBFTag_0 13TeV
+hggpdfsmrel_GG2H_2018_VBFTag_0_13TeV_normThisLumi
+k: GG2H_2018
+norms[k]: RooFormulaVar::hggpdfsmrel_GG2H_2018_VBFTag_0_13TeV_normThisLumi[ actualVars=(fxs_GG2H_13TeV,fbr_13TeV,fea_GG2H_2018_VBFTag_0_13TeV,rate_GG2H_2018_VBFTag_0_13TeV,IntLumi) formula="@0*@1*@2*@3*@4" ] = 0.00571041
+
+=> Now plotting proc VBF for cat UntaggedTag_0
+Info in <TCanvas::SaveAs>: ROOT file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_0_VBF_2018.root has been created
+Info in <TCanvas::Print>: pdf file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_0_VBF_2018.pdf has been created
+Info in <TCanvas::Print>: png file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_0_VBF_2018.png has been created
+opt.cats: UntaggedTag_0
+opt.procs: VBF
+category: UntaggedTag_0
+ --> Processing UntaggedTag_0: file = /afs/cern.ch/work/r/rgargiul/CMSSW_14_1_0_pre4/src/flashggFinalFit/Signal/outdir_packaged/CMS-HGG_sigfit_packaged_UntaggedTag_0.root
+VBF 2018 UntaggedTag_0 13TeV
+hggpdfsmrel_VBF_2018_UntaggedTag_0_13TeV_normThisLumi
+k: VBF_2018
+norms[k]: RooFormulaVar::hggpdfsmrel_VBF_2018_UntaggedTag_0_13TeV_normThisLumi[ actualVars=(fxs_VBF_13TeV,fbr_13TeV,fea_VBF_2018_UntaggedTag_0_13TeV,rate_VBF_2018_UntaggedTag_0_13TeV,IntLumi) formula="@0*@1*@2*@3*@4" ] = 2.10887e-05
+
+=> Now plotting proc VBF for cat UntaggedTag_1
+Info in <TCanvas::SaveAs>: ROOT file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_1_VBF_2018.root has been created
+Info in <TCanvas::Print>: pdf file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_1_VBF_2018.pdf has been created
+Info in <TCanvas::Print>: png file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_1_VBF_2018.png has been created
+opt.cats: UntaggedTag_1
+opt.procs: VBF
+category: UntaggedTag_1
+ --> Processing UntaggedTag_1: file = /afs/cern.ch/work/r/rgargiul/CMSSW_14_1_0_pre4/src/flashggFinalFit/Signal/outdir_packaged/CMS-HGG_sigfit_packaged_UntaggedTag_1.root
+VBF 2018 UntaggedTag_1 13TeV
+hggpdfsmrel_VBF_2018_UntaggedTag_1_13TeV_normThisLumi
+k: VBF_2018
+norms[k]: RooFormulaVar::hggpdfsmrel_VBF_2018_UntaggedTag_1_13TeV_normThisLumi[ actualVars=(fxs_VBF_13TeV,fbr_13TeV,fea_VBF_2018_UntaggedTag_1_13TeV,rate_VBF_2018_UntaggedTag_1_13TeV,IntLumi) formula="@0*@1*@2*@3*@4" ] = 0.000243088
+
+=> Now plotting proc VBF for cat UntaggedTag_2
+Info in <TCanvas::SaveAs>: ROOT file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_2_VBF_2018.root has been created
+Info in <TCanvas::Print>: pdf file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_2_VBF_2018.pdf has been created
+Info in <TCanvas::Print>: png file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_2_VBF_2018.png has been created
+opt.cats: UntaggedTag_2
+opt.procs: VBF
+category: UntaggedTag_2
+ --> Processing UntaggedTag_2: file = /afs/cern.ch/work/r/rgargiul/CMSSW_14_1_0_pre4/src/flashggFinalFit/Signal/outdir_packaged/CMS-HGG_sigfit_packaged_UntaggedTag_2.root
+VBF 2018 UntaggedTag_2 13TeV
+hggpdfsmrel_VBF_2018_UntaggedTag_2_13TeV_normThisLumi
+k: VBF_2018
+norms[k]: RooFormulaVar::hggpdfsmrel_VBF_2018_UntaggedTag_2_13TeV_normThisLumi[ actualVars=(fxs_VBF_13TeV,fbr_13TeV,fea_VBF_2018_UntaggedTag_2_13TeV,rate_VBF_2018_UntaggedTag_2_13TeV,IntLumi) formula="@0*@1*@2*@3*@4" ] = 9.90021e-05
+
+=> Now plotting proc VBF for cat UntaggedTag_3
+Info in <TCanvas::SaveAs>: ROOT file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_3_VBF_2018.root has been created
+Info in <TCanvas::Print>: pdf file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_3_VBF_2018.pdf has been created
+Info in <TCanvas::Print>: png file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_3_VBF_2018.png has been created
+opt.cats: UntaggedTag_3
+opt.procs: VBF
+category: UntaggedTag_3
+ --> Processing UntaggedTag_3: file = /afs/cern.ch/work/r/rgargiul/CMSSW_14_1_0_pre4/src/flashggFinalFit/Signal/outdir_packaged/CMS-HGG_sigfit_packaged_UntaggedTag_3.root
+VBF 2018 UntaggedTag_3 13TeV
+hggpdfsmrel_VBF_2018_UntaggedTag_3_13TeV_normThisLumi
+k: VBF_2018
+norms[k]: RooFormulaVar::hggpdfsmrel_VBF_2018_UntaggedTag_3_13TeV_normThisLumi[ actualVars=(fxs_VBF_13TeV,fbr_13TeV,fea_VBF_2018_UntaggedTag_3_13TeV,rate_VBF_2018_UntaggedTag_3_13TeV,IntLumi) formula="@0*@1*@2*@3*@4" ] = 0.000342198
+
+=> Now plotting proc VBF for cat UntaggedTag_4
+Info in <TCanvas::SaveAs>: ROOT file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_4_VBF_2018.root has been created
+Info in <TCanvas::Print>: pdf file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_4_VBF_2018.pdf has been created
+Info in <TCanvas::Print>: png file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_4_VBF_2018.png has been created
+opt.cats: UntaggedTag_4
+opt.procs: VBF
+category: UntaggedTag_4
+ --> Processing UntaggedTag_4: file = /afs/cern.ch/work/r/rgargiul/CMSSW_14_1_0_pre4/src/flashggFinalFit/Signal/outdir_packaged/CMS-HGG_sigfit_packaged_UntaggedTag_4.root
+VBF 2018 UntaggedTag_4 13TeV
+hggpdfsmrel_VBF_2018_UntaggedTag_4_13TeV_normThisLumi
+k: VBF_2018
+norms[k]: RooFormulaVar::hggpdfsmrel_VBF_2018_UntaggedTag_4_13TeV_normThisLumi[ actualVars=(fxs_VBF_13TeV,fbr_13TeV,fea_VBF_2018_UntaggedTag_4_13TeV,rate_VBF_2018_UntaggedTag_4_13TeV,IntLumi) formula="@0*@1*@2*@3*@4" ] = 4.42069e-05
+
+=> Now plotting proc VBF for cat UntaggedTag_5
+Info in <TCanvas::SaveAs>: ROOT file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_5_VBF_2018.root has been created
+Info in <TCanvas::Print>: pdf file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_5_VBF_2018.pdf has been created
+Info in <TCanvas::Print>: png file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_5_VBF_2018.png has been created
+opt.cats: UntaggedTag_5
+opt.procs: VBF
+category: UntaggedTag_5
+ --> Processing UntaggedTag_5: file = /afs/cern.ch/work/r/rgargiul/CMSSW_14_1_0_pre4/src/flashggFinalFit/Signal/outdir_packaged/CMS-HGG_sigfit_packaged_UntaggedTag_5.root
+VBF 2018 UntaggedTag_5 13TeV
+hggpdfsmrel_VBF_2018_UntaggedTag_5_13TeV_normThisLumi
+k: VBF_2018
+norms[k]: RooFormulaVar::hggpdfsmrel_VBF_2018_UntaggedTag_5_13TeV_normThisLumi[ actualVars=(fxs_VBF_13TeV,fbr_13TeV,fea_VBF_2018_UntaggedTag_5_13TeV,rate_VBF_2018_UntaggedTag_5_13TeV,IntLumi) formula="@0*@1*@2*@3*@4" ] = 0.000269076
+
+=> Now plotting proc VBF for cat UntaggedTag_6
+Info in <TCanvas::SaveAs>: ROOT file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_6_VBF_2018.root has been created
+Info in <TCanvas::Print>: pdf file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_6_VBF_2018.pdf has been created
+Info in <TCanvas::Print>: png file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_6_VBF_2018.png has been created
+opt.cats: UntaggedTag_6
+opt.procs: VBF
+category: UntaggedTag_6
+ --> Processing UntaggedTag_6: file = /afs/cern.ch/work/r/rgargiul/CMSSW_14_1_0_pre4/src/flashggFinalFit/Signal/outdir_packaged/CMS-HGG_sigfit_packaged_UntaggedTag_6.root
+VBF 2018 UntaggedTag_6 13TeV
+hggpdfsmrel_VBF_2018_UntaggedTag_6_13TeV_normThisLumi
+k: VBF_2018
+norms[k]: RooFormulaVar::hggpdfsmrel_VBF_2018_UntaggedTag_6_13TeV_normThisLumi[ actualVars=(fxs_VBF_13TeV,fbr_13TeV,fea_VBF_2018_UntaggedTag_6_13TeV,rate_VBF_2018_UntaggedTag_6_13TeV,IntLumi) formula="@0*@1*@2*@3*@4" ] = 2.84917e-05
+
+=> Now plotting proc VBF for cat UntaggedTag_7
+Info in <TCanvas::SaveAs>: ROOT file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_7_VBF_2018.root has been created
+Info in <TCanvas::Print>: pdf file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_7_VBF_2018.pdf has been created
+Info in <TCanvas::Print>: png file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_7_VBF_2018.png has been created
+opt.cats: UntaggedTag_7
+opt.procs: VBF
+category: UntaggedTag_7
+ --> Processing UntaggedTag_7: file = /afs/cern.ch/work/r/rgargiul/CMSSW_14_1_0_pre4/src/flashggFinalFit/Signal/outdir_packaged/CMS-HGG_sigfit_packaged_UntaggedTag_7.root
+VBF 2018 UntaggedTag_7 13TeV
+hggpdfsmrel_VBF_2018_UntaggedTag_7_13TeV_normThisLumi
+k: VBF_2018
+norms[k]: RooFormulaVar::hggpdfsmrel_VBF_2018_UntaggedTag_7_13TeV_normThisLumi[ actualVars=(fxs_VBF_13TeV,fbr_13TeV,fea_VBF_2018_UntaggedTag_7_13TeV,rate_VBF_2018_UntaggedTag_7_13TeV,IntLumi) formula="@0*@1*@2*@3*@4" ] = 0.000168106
+
+=> Now plotting proc VBF for cat UntaggedTag_8
+Info in <TCanvas::SaveAs>: ROOT file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_8_VBF_2018.root has been created
+Info in <TCanvas::Print>: pdf file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_8_VBF_2018.pdf has been created
+Info in <TCanvas::Print>: png file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_8_VBF_2018.png has been created
+opt.cats: UntaggedTag_8
+opt.procs: VBF
+category: UntaggedTag_8
+ --> Processing UntaggedTag_8: file = /afs/cern.ch/work/r/rgargiul/CMSSW_14_1_0_pre4/src/flashggFinalFit/Signal/outdir_packaged/CMS-HGG_sigfit_packaged_UntaggedTag_8.root
+VBF 2018 UntaggedTag_8 13TeV
+hggpdfsmrel_VBF_2018_UntaggedTag_8_13TeV_normThisLumi
+k: VBF_2018
+norms[k]: RooFormulaVar::hggpdfsmrel_VBF_2018_UntaggedTag_8_13TeV_normThisLumi[ actualVars=(fxs_VBF_13TeV,fbr_13TeV,fea_VBF_2018_UntaggedTag_8_13TeV,rate_VBF_2018_UntaggedTag_8_13TeV,IntLumi) formula="@0*@1*@2*@3*@4" ] = 1.25851e-05
+
+=> Now plotting proc VBF for cat UntaggedTag_9
+Info in <TCanvas::SaveAs>: ROOT file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_9_VBF_2018.root has been created
+Info in <TCanvas::Print>: pdf file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_9_VBF_2018.pdf has been created
+Info in <TCanvas::Print>: png file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_9_VBF_2018.png has been created
+opt.cats: UntaggedTag_9
+opt.procs: VBF
+category: UntaggedTag_9
+ --> Processing UntaggedTag_9: file = /afs/cern.ch/work/r/rgargiul/CMSSW_14_1_0_pre4/src/flashggFinalFit/Signal/outdir_packaged/CMS-HGG_sigfit_packaged_UntaggedTag_9.root
+VBF 2018 UntaggedTag_9 13TeV
+hggpdfsmrel_VBF_2018_UntaggedTag_9_13TeV_normThisLumi
+k: VBF_2018
+norms[k]: RooFormulaVar::hggpdfsmrel_VBF_2018_UntaggedTag_9_13TeV_normThisLumi[ actualVars=(fxs_VBF_13TeV,fbr_13TeV,fea_VBF_2018_UntaggedTag_9_13TeV,rate_VBF_2018_UntaggedTag_9_13TeV,IntLumi) formula="@0*@1*@2*@3*@4" ] = 8.89818e-05
+
+=> Now plotting proc VBF for cat VBFTag_0
+Info in <TCanvas::SaveAs>: ROOT file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_VBFTag_0_VBF_2018.root has been created
+Info in <TCanvas::Print>: pdf file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_VBFTag_0_VBF_2018.pdf has been created
+Info in <TCanvas::Print>: png file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_VBFTag_0_VBF_2018.png has been created
+opt.cats: VBFTag_0
+opt.procs: VBF
+category: VBFTag_0
+ --> Processing VBFTag_0: file = /afs/cern.ch/work/r/rgargiul/CMSSW_14_1_0_pre4/src/flashggFinalFit/Signal/outdir_packaged/CMS-HGG_sigfit_packaged_VBFTag_0.root
+VBF 2018 VBFTag_0 13TeV
+hggpdfsmrel_VBF_2018_VBFTag_0_13TeV_normThisLumi
+k: VBF_2018
+norms[k]: RooFormulaVar::hggpdfsmrel_VBF_2018_VBFTag_0_13TeV_normThisLumi[ actualVars=(fxs_VBF_13TeV,fbr_13TeV,fea_VBF_2018_VBFTag_0_13TeV,rate_VBF_2018_VBFTag_0_13TeV,IntLumi) formula="@0*@1*@2*@3*@4" ] = 0.00191482
+
+=> Now plotting proc GG2HPLUSINT for cat UntaggedTag_0
+Info in <TCanvas::SaveAs>: ROOT file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_0_GG2HPLUSINT_2018.root has been created
+Info in <TCanvas::Print>: pdf file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_0_GG2HPLUSINT_2018.pdf has been created
+Info in <TCanvas::Print>: png file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_0_GG2HPLUSINT_2018.png has been created
+opt.cats: UntaggedTag_0
+opt.procs: GG2HPLUSINT
+category: UntaggedTag_0
+ --> Processing UntaggedTag_0: file = /afs/cern.ch/work/r/rgargiul/CMSSW_14_1_0_pre4/src/flashggFinalFit/Signal/outdir_packaged/CMS-HGG_sigfit_packaged_UntaggedTag_0.root
+GG2HPLUSINT 2018 UntaggedTag_0 13TeV
+hggpdfsmrel_GG2HPLUSINT_2018_UntaggedTag_0_13TeV_normThisLumi
+k: GG2HPLUSINT_2018
+norms[k]: RooFormulaVar::hggpdfsmrel_GG2HPLUSINT_2018_UntaggedTag_0_13TeV_normThisLumi[ actualVars=(fxs_GG2HPLUSINT_13TeV,fbr_13TeV,fea_GG2HPLUSINT_2018_UntaggedTag_0_13TeV,rate_GG2HPLUSINT_2018_UntaggedTag_0_13TeV,IntLumi) formula="@0*@1*@2*@3*@4" ] = 7.82751e-05
+
+=> Now plotting proc GG2HPLUSINT for cat UntaggedTag_1
+Info in <TCanvas::SaveAs>: ROOT file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_1_GG2HPLUSINT_2018.root has been created
+Info in <TCanvas::Print>: pdf file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_1_GG2HPLUSINT_2018.pdf has been created
+Info in <TCanvas::Print>: png file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_1_GG2HPLUSINT_2018.png has been created
+opt.cats: UntaggedTag_1
+opt.procs: GG2HPLUSINT
+category: UntaggedTag_1
+ --> Processing UntaggedTag_1: file = /afs/cern.ch/work/r/rgargiul/CMSSW_14_1_0_pre4/src/flashggFinalFit/Signal/outdir_packaged/CMS-HGG_sigfit_packaged_UntaggedTag_1.root
+GG2HPLUSINT 2018 UntaggedTag_1 13TeV
+hggpdfsmrel_GG2HPLUSINT_2018_UntaggedTag_1_13TeV_normThisLumi
+k: GG2HPLUSINT_2018
+norms[k]: RooFormulaVar::hggpdfsmrel_GG2HPLUSINT_2018_UntaggedTag_1_13TeV_normThisLumi[ actualVars=(fxs_GG2HPLUSINT_13TeV,fbr_13TeV,fea_GG2HPLUSINT_2018_UntaggedTag_1_13TeV,rate_GG2HPLUSINT_2018_UntaggedTag_1_13TeV,IntLumi) formula="@0*@1*@2*@3*@4" ] = 0.000944734
+
+=> Now plotting proc GG2HPLUSINT for cat UntaggedTag_2
+Info in <TCanvas::SaveAs>: ROOT file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_2_GG2HPLUSINT_2018.root has been created
+Info in <TCanvas::Print>: pdf file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_2_GG2HPLUSINT_2018.pdf has been created
+Info in <TCanvas::Print>: png file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_2_GG2HPLUSINT_2018.png has been created
+opt.cats: UntaggedTag_2
+opt.procs: GG2HPLUSINT
+category: UntaggedTag_2
+ --> Processing UntaggedTag_2: file = /afs/cern.ch/work/r/rgargiul/CMSSW_14_1_0_pre4/src/flashggFinalFit/Signal/outdir_packaged/CMS-HGG_sigfit_packaged_UntaggedTag_2.root
+GG2HPLUSINT 2018 UntaggedTag_2 13TeV
+hggpdfsmrel_GG2HPLUSINT_2018_UntaggedTag_2_13TeV_normThisLumi
+k: GG2HPLUSINT_2018
+norms[k]: RooFormulaVar::hggpdfsmrel_GG2HPLUSINT_2018_UntaggedTag_2_13TeV_normThisLumi[ actualVars=(fxs_GG2HPLUSINT_13TeV,fbr_13TeV,fea_GG2HPLUSINT_2018_UntaggedTag_2_13TeV,rate_GG2HPLUSINT_2018_UntaggedTag_2_13TeV,IntLumi) formula="@0*@1*@2*@3*@4" ] = 0.000602567
+
+=> Now plotting proc GG2HPLUSINT for cat UntaggedTag_3
+Info in <TCanvas::SaveAs>: ROOT file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_3_GG2HPLUSINT_2018.root has been created
+Info in <TCanvas::Print>: pdf file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_3_GG2HPLUSINT_2018.pdf has been created
+Info in <TCanvas::Print>: png file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_3_GG2HPLUSINT_2018.png has been created
+opt.cats: UntaggedTag_3
+opt.procs: GG2HPLUSINT
+category: UntaggedTag_3
+ --> Processing UntaggedTag_3: file = /afs/cern.ch/work/r/rgargiul/CMSSW_14_1_0_pre4/src/flashggFinalFit/Signal/outdir_packaged/CMS-HGG_sigfit_packaged_UntaggedTag_3.root
+GG2HPLUSINT 2018 UntaggedTag_3 13TeV
+hggpdfsmrel_GG2HPLUSINT_2018_UntaggedTag_3_13TeV_normThisLumi
+k: GG2HPLUSINT_2018
+norms[k]: RooFormulaVar::hggpdfsmrel_GG2HPLUSINT_2018_UntaggedTag_3_13TeV_normThisLumi[ actualVars=(fxs_GG2HPLUSINT_13TeV,fbr_13TeV,fea_GG2HPLUSINT_2018_UntaggedTag_3_13TeV,rate_GG2HPLUSINT_2018_UntaggedTag_3_13TeV,IntLumi) formula="@0*@1*@2*@3*@4" ] = 0.0023066
+
+=> Now plotting proc GG2HPLUSINT for cat UntaggedTag_4
+Info in <TCanvas::SaveAs>: ROOT file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_4_GG2HPLUSINT_2018.root has been created
+Info in <TCanvas::Print>: pdf file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_4_GG2HPLUSINT_2018.pdf has been created
+Info in <TCanvas::Print>: png file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_4_GG2HPLUSINT_2018.png has been created
+opt.cats: UntaggedTag_4
+opt.procs: GG2HPLUSINT
+category: UntaggedTag_4
+ --> Processing UntaggedTag_4: file = /afs/cern.ch/work/r/rgargiul/CMSSW_14_1_0_pre4/src/flashggFinalFit/Signal/outdir_packaged/CMS-HGG_sigfit_packaged_UntaggedTag_4.root
+GG2HPLUSINT 2018 UntaggedTag_4 13TeV
+hggpdfsmrel_GG2HPLUSINT_2018_UntaggedTag_4_13TeV_normThisLumi
+k: GG2HPLUSINT_2018
+norms[k]: RooFormulaVar::hggpdfsmrel_GG2HPLUSINT_2018_UntaggedTag_4_13TeV_normThisLumi[ actualVars=(fxs_GG2HPLUSINT_13TeV,fbr_13TeV,fea_GG2HPLUSINT_2018_UntaggedTag_4_13TeV,rate_GG2HPLUSINT_2018_UntaggedTag_4_13TeV,IntLumi) formula="@0*@1*@2*@3*@4" ] = 0.000563591
+
+=> Now plotting proc GG2HPLUSINT for cat UntaggedTag_5
+Info in <TCanvas::SaveAs>: ROOT file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_5_GG2HPLUSINT_2018.root has been created
+Info in <TCanvas::Print>: pdf file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_5_GG2HPLUSINT_2018.pdf has been created
+Info in <TCanvas::Print>: png file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_5_GG2HPLUSINT_2018.png has been created
+opt.cats: UntaggedTag_5
+opt.procs: GG2HPLUSINT
+category: UntaggedTag_5
+ --> Processing UntaggedTag_5: file = /afs/cern.ch/work/r/rgargiul/CMSSW_14_1_0_pre4/src/flashggFinalFit/Signal/outdir_packaged/CMS-HGG_sigfit_packaged_UntaggedTag_5.root
+GG2HPLUSINT 2018 UntaggedTag_5 13TeV
+hggpdfsmrel_GG2HPLUSINT_2018_UntaggedTag_5_13TeV_normThisLumi
+k: GG2HPLUSINT_2018
+norms[k]: RooFormulaVar::hggpdfsmrel_GG2HPLUSINT_2018_UntaggedTag_5_13TeV_normThisLumi[ actualVars=(fxs_GG2HPLUSINT_13TeV,fbr_13TeV,fea_GG2HPLUSINT_2018_UntaggedTag_5_13TeV,rate_GG2HPLUSINT_2018_UntaggedTag_5_13TeV,IntLumi) formula="@0*@1*@2*@3*@4" ] = 0.00358244
+
+=> Now plotting proc GG2HPLUSINT for cat UntaggedTag_6
+Info in <TCanvas::SaveAs>: ROOT file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_6_GG2HPLUSINT_2018.root has been created
+Info in <TCanvas::Print>: pdf file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_6_GG2HPLUSINT_2018.pdf has been created
+Info in <TCanvas::Print>: png file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_6_GG2HPLUSINT_2018.png has been created
+opt.cats: UntaggedTag_6
+opt.procs: GG2HPLUSINT
+category: UntaggedTag_6
+ --> Processing UntaggedTag_6: file = /afs/cern.ch/work/r/rgargiul/CMSSW_14_1_0_pre4/src/flashggFinalFit/Signal/outdir_packaged/CMS-HGG_sigfit_packaged_UntaggedTag_6.root
+GG2HPLUSINT 2018 UntaggedTag_6 13TeV
+hggpdfsmrel_GG2HPLUSINT_2018_UntaggedTag_6_13TeV_normThisLumi
+k: GG2HPLUSINT_2018
+norms[k]: RooFormulaVar::hggpdfsmrel_GG2HPLUSINT_2018_UntaggedTag_6_13TeV_normThisLumi[ actualVars=(fxs_GG2HPLUSINT_13TeV,fbr_13TeV,fea_GG2HPLUSINT_2018_UntaggedTag_6_13TeV,rate_GG2HPLUSINT_2018_UntaggedTag_6_13TeV,IntLumi) formula="@0*@1*@2*@3*@4" ] = 0.000836083
+
+=> Now plotting proc GG2HPLUSINT for cat UntaggedTag_7
+Info in <TCanvas::SaveAs>: ROOT file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_7_GG2HPLUSINT_2018.root has been created
+Info in <TCanvas::Print>: pdf file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_7_GG2HPLUSINT_2018.pdf has been created
+Info in <TCanvas::Print>: png file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_7_GG2HPLUSINT_2018.png has been created
+opt.cats: UntaggedTag_7
+opt.procs: GG2HPLUSINT
+category: UntaggedTag_7
+ --> Processing UntaggedTag_7: file = /afs/cern.ch/work/r/rgargiul/CMSSW_14_1_0_pre4/src/flashggFinalFit/Signal/outdir_packaged/CMS-HGG_sigfit_packaged_UntaggedTag_7.root
+GG2HPLUSINT 2018 UntaggedTag_7 13TeV
+hggpdfsmrel_GG2HPLUSINT_2018_UntaggedTag_7_13TeV_normThisLumi
+k: GG2HPLUSINT_2018
+norms[k]: RooFormulaVar::hggpdfsmrel_GG2HPLUSINT_2018_UntaggedTag_7_13TeV_normThisLumi[ actualVars=(fxs_GG2HPLUSINT_13TeV,fbr_13TeV,fea_GG2HPLUSINT_2018_UntaggedTag_7_13TeV,rate_GG2HPLUSINT_2018_UntaggedTag_7_13TeV,IntLumi) formula="@0*@1*@2*@3*@4" ] = 0.00472713
+
+=> Now plotting proc GG2HPLUSINT for cat UntaggedTag_8
+Info in <TCanvas::SaveAs>: ROOT file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_8_GG2HPLUSINT_2018.root has been created
+Info in <TCanvas::Print>: pdf file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_8_GG2HPLUSINT_2018.pdf has been created
+Info in <TCanvas::Print>: png file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_8_GG2HPLUSINT_2018.png has been created
+opt.cats: UntaggedTag_8
+opt.procs: GG2HPLUSINT
+category: UntaggedTag_8
+ --> Processing UntaggedTag_8: file = /afs/cern.ch/work/r/rgargiul/CMSSW_14_1_0_pre4/src/flashggFinalFit/Signal/outdir_packaged/CMS-HGG_sigfit_packaged_UntaggedTag_8.root
+GG2HPLUSINT 2018 UntaggedTag_8 13TeV
+hggpdfsmrel_GG2HPLUSINT_2018_UntaggedTag_8_13TeV_normThisLumi
+k: GG2HPLUSINT_2018
+norms[k]: RooFormulaVar::hggpdfsmrel_GG2HPLUSINT_2018_UntaggedTag_8_13TeV_normThisLumi[ actualVars=(fxs_GG2HPLUSINT_13TeV,fbr_13TeV,fea_GG2HPLUSINT_2018_UntaggedTag_8_13TeV,rate_GG2HPLUSINT_2018_UntaggedTag_8_13TeV,IntLumi) formula="@0*@1*@2*@3*@4" ] = 0.000823935
+
+=> Now plotting proc GG2HPLUSINT for cat UntaggedTag_9
+Info in <TCanvas::SaveAs>: ROOT file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_9_GG2HPLUSINT_2018.root has been created
+Info in <TCanvas::Print>: pdf file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_9_GG2HPLUSINT_2018.pdf has been created
+Info in <TCanvas::Print>: png file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_9_GG2HPLUSINT_2018.png has been created
+opt.cats: UntaggedTag_9
+opt.procs: GG2HPLUSINT
+category: UntaggedTag_9
+ --> Processing UntaggedTag_9: file = /afs/cern.ch/work/r/rgargiul/CMSSW_14_1_0_pre4/src/flashggFinalFit/Signal/outdir_packaged/CMS-HGG_sigfit_packaged_UntaggedTag_9.root
+GG2HPLUSINT 2018 UntaggedTag_9 13TeV
+hggpdfsmrel_GG2HPLUSINT_2018_UntaggedTag_9_13TeV_normThisLumi
+k: GG2HPLUSINT_2018
+norms[k]: RooFormulaVar::hggpdfsmrel_GG2HPLUSINT_2018_UntaggedTag_9_13TeV_normThisLumi[ actualVars=(fxs_GG2HPLUSINT_13TeV,fbr_13TeV,fea_GG2HPLUSINT_2018_UntaggedTag_9_13TeV,rate_GG2HPLUSINT_2018_UntaggedTag_9_13TeV,IntLumi) formula="@0*@1*@2*@3*@4" ] = 0.00551695
+
+=> Now plotting proc GG2HPLUSINT for cat VBFTag_0
+Info in <TCanvas::SaveAs>: ROOT file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_VBFTag_0_GG2HPLUSINT_2018.root has been created
+Info in <TCanvas::Print>: pdf file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_VBFTag_0_GG2HPLUSINT_2018.pdf has been created
+Info in <TCanvas::Print>: png file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_VBFTag_0_GG2HPLUSINT_2018.png has been created
+opt.cats: VBFTag_0
+opt.procs: GG2HPLUSINT
+category: VBFTag_0
+ --> Processing VBFTag_0: file = /afs/cern.ch/work/r/rgargiul/CMSSW_14_1_0_pre4/src/flashggFinalFit/Signal/outdir_packaged/CMS-HGG_sigfit_packaged_VBFTag_0.root
+GG2HPLUSINT 2018 VBFTag_0 13TeV
+hggpdfsmrel_GG2HPLUSINT_2018_VBFTag_0_13TeV_normThisLumi
+k: GG2HPLUSINT_2018
+norms[k]: RooFormulaVar::hggpdfsmrel_GG2HPLUSINT_2018_VBFTag_0_13TeV_normThisLumi[ actualVars=(fxs_GG2HPLUSINT_13TeV,fbr_13TeV,fea_GG2HPLUSINT_2018_VBFTag_0_13TeV,rate_GG2HPLUSINT_2018_VBFTag_0_13TeV,IntLumi) formula="@0*@1*@2*@3*@4" ] = 0.00569941
+
+=> Now plotting proc vh for cat UntaggedTag_0
+Info in <TCanvas::SaveAs>: ROOT file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_0_vh_2018.root has been created
+Info in <TCanvas::Print>: pdf file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_0_vh_2018.pdf has been created
+Info in <TCanvas::Print>: png file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_0_vh_2018.png has been created
+opt.cats: UntaggedTag_0
+opt.procs: vh
+category: UntaggedTag_0
+ --> Processing UntaggedTag_0: file = /afs/cern.ch/work/r/rgargiul/CMSSW_14_1_0_pre4/src/flashggFinalFit/Signal/outdir_packaged/CMS-HGG_sigfit_packaged_UntaggedTag_0.root
+vh 2018 UntaggedTag_0 13TeV
+hggpdfsmrel_vh_2018_UntaggedTag_0_13TeV_normThisLumi
+k: vh_2018
+norms[k]: RooFormulaVar::hggpdfsmrel_vh_2018_UntaggedTag_0_13TeV_normThisLumi[ actualVars=(fxs_vh_13TeV,fbr_13TeV,fea_vh_2018_UntaggedTag_0_13TeV,rate_vh_2018_UntaggedTag_0_13TeV,IntLumi) formula="@0*@1*@2*@3*@4" ] = 2.76156e-05
+
+=> Now plotting proc vh for cat UntaggedTag_1
+Info in <TCanvas::SaveAs>: ROOT file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_1_vh_2018.root has been created
+Info in <TCanvas::Print>: pdf file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_1_vh_2018.pdf has been created
+Info in <TCanvas::Print>: png file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_1_vh_2018.png has been created
+opt.cats: UntaggedTag_1
+opt.procs: vh
+category: UntaggedTag_1
+ --> Processing UntaggedTag_1: file = /afs/cern.ch/work/r/rgargiul/CMSSW_14_1_0_pre4/src/flashggFinalFit/Signal/outdir_packaged/CMS-HGG_sigfit_packaged_UntaggedTag_1.root
+vh 2018 UntaggedTag_1 13TeV
+hggpdfsmrel_vh_2018_UntaggedTag_1_13TeV_normThisLumi
+k: vh_2018
+norms[k]: RooFormulaVar::hggpdfsmrel_vh_2018_UntaggedTag_1_13TeV_normThisLumi[ actualVars=(fxs_vh_13TeV,fbr_13TeV,fea_vh_2018_UntaggedTag_1_13TeV,rate_vh_2018_UntaggedTag_1_13TeV,IntLumi) formula="@0*@1*@2*@3*@4" ] = 0.000232963
+
+=> Now plotting proc vh for cat UntaggedTag_2
+Info in <TCanvas::SaveAs>: ROOT file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_2_vh_2018.root has been created
+Info in <TCanvas::Print>: pdf file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_2_vh_2018.pdf has been created
+Info in <TCanvas::Print>: png file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_2_vh_2018.png has been created
+opt.cats: UntaggedTag_2
+opt.procs: vh
+category: UntaggedTag_2
+ --> Processing UntaggedTag_2: file = /afs/cern.ch/work/r/rgargiul/CMSSW_14_1_0_pre4/src/flashggFinalFit/Signal/outdir_packaged/CMS-HGG_sigfit_packaged_UntaggedTag_2.root
+vh 2018 UntaggedTag_2 13TeV
+hggpdfsmrel_vh_2018_UntaggedTag_2_13TeV_normThisLumi
+k: vh_2018
+norms[k]: RooFormulaVar::hggpdfsmrel_vh_2018_UntaggedTag_2_13TeV_normThisLumi[ actualVars=(fxs_vh_13TeV,fbr_13TeV,fea_vh_2018_UntaggedTag_2_13TeV,rate_vh_2018_UntaggedTag_2_13TeV,IntLumi) formula="@0*@1*@2*@3*@4" ] = 6.80833e-05
+
+=> Now plotting proc vh for cat UntaggedTag_3
+Info in <TCanvas::SaveAs>: ROOT file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_3_vh_2018.root has been created
+Info in <TCanvas::Print>: pdf file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_3_vh_2018.pdf has been created
+Info in <TCanvas::Print>: png file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_3_vh_2018.png has been created
+opt.cats: UntaggedTag_3
+opt.procs: vh
+category: UntaggedTag_3
+ --> Processing UntaggedTag_3: file = /afs/cern.ch/work/r/rgargiul/CMSSW_14_1_0_pre4/src/flashggFinalFit/Signal/outdir_packaged/CMS-HGG_sigfit_packaged_UntaggedTag_3.root
+vh 2018 UntaggedTag_3 13TeV
+hggpdfsmrel_vh_2018_UntaggedTag_3_13TeV_normThisLumi
+k: vh_2018
+norms[k]: RooFormulaVar::hggpdfsmrel_vh_2018_UntaggedTag_3_13TeV_normThisLumi[ actualVars=(fxs_vh_13TeV,fbr_13TeV,fea_vh_2018_UntaggedTag_3_13TeV,rate_vh_2018_UntaggedTag_3_13TeV,IntLumi) formula="@0*@1*@2*@3*@4" ] = 0.000249895
+
+=> Now plotting proc vh for cat UntaggedTag_4
+Info in <TCanvas::SaveAs>: ROOT file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_4_vh_2018.root has been created
+Info in <TCanvas::Print>: pdf file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_4_vh_2018.pdf has been created
+Info in <TCanvas::Print>: png file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_4_vh_2018.png has been created
+opt.cats: UntaggedTag_4
+opt.procs: vh
+category: UntaggedTag_4
+ --> Processing UntaggedTag_4: file = /afs/cern.ch/work/r/rgargiul/CMSSW_14_1_0_pre4/src/flashggFinalFit/Signal/outdir_packaged/CMS-HGG_sigfit_packaged_UntaggedTag_4.root
+vh 2018 UntaggedTag_4 13TeV
+hggpdfsmrel_vh_2018_UntaggedTag_4_13TeV_normThisLumi
+k: vh_2018
+norms[k]: RooFormulaVar::hggpdfsmrel_vh_2018_UntaggedTag_4_13TeV_normThisLumi[ actualVars=(fxs_vh_13TeV,fbr_13TeV,fea_vh_2018_UntaggedTag_4_13TeV,rate_vh_2018_UntaggedTag_4_13TeV,IntLumi) formula="@0*@1*@2*@3*@4" ] = 2.72956e-05
+
+=> Now plotting proc vh for cat UntaggedTag_5
+Info in <TCanvas::SaveAs>: ROOT file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_5_vh_2018.root has been created
+Info in <TCanvas::Print>: pdf file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_5_vh_2018.pdf has been created
+Info in <TCanvas::Print>: png file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_5_vh_2018.png has been created
+opt.cats: UntaggedTag_5
+opt.procs: vh
+category: UntaggedTag_5
+ --> Processing UntaggedTag_5: file = /afs/cern.ch/work/r/rgargiul/CMSSW_14_1_0_pre4/src/flashggFinalFit/Signal/outdir_packaged/CMS-HGG_sigfit_packaged_UntaggedTag_5.root
+vh 2018 UntaggedTag_5 13TeV
+hggpdfsmrel_vh_2018_UntaggedTag_5_13TeV_normThisLumi
+k: vh_2018
+norms[k]: RooFormulaVar::hggpdfsmrel_vh_2018_UntaggedTag_5_13TeV_normThisLumi[ actualVars=(fxs_vh_13TeV,fbr_13TeV,fea_vh_2018_UntaggedTag_5_13TeV,rate_vh_2018_UntaggedTag_5_13TeV,IntLumi) formula="@0*@1*@2*@3*@4" ] = 0.000179041
+
+=> Now plotting proc vh for cat UntaggedTag_6
+Info in <TCanvas::SaveAs>: ROOT file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_6_vh_2018.root has been created
+Info in <TCanvas::Print>: pdf file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_6_vh_2018.pdf has been created
+Info in <TCanvas::Print>: png file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_6_vh_2018.png has been created
+opt.cats: UntaggedTag_6
+opt.procs: vh
+category: UntaggedTag_6
+ --> Processing UntaggedTag_6: file = /afs/cern.ch/work/r/rgargiul/CMSSW_14_1_0_pre4/src/flashggFinalFit/Signal/outdir_packaged/CMS-HGG_sigfit_packaged_UntaggedTag_6.root
+vh 2018 UntaggedTag_6 13TeV
+hggpdfsmrel_vh_2018_UntaggedTag_6_13TeV_normThisLumi
+k: vh_2018
+norms[k]: RooFormulaVar::hggpdfsmrel_vh_2018_UntaggedTag_6_13TeV_normThisLumi[ actualVars=(fxs_vh_13TeV,fbr_13TeV,fea_vh_2018_UntaggedTag_6_13TeV,rate_vh_2018_UntaggedTag_6_13TeV,IntLumi) formula="@0*@1*@2*@3*@4" ] = 1.61908e-05
+
+=> Now plotting proc vh for cat UntaggedTag_7
+Info in <TCanvas::SaveAs>: ROOT file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_7_vh_2018.root has been created
+Info in <TCanvas::Print>: pdf file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_7_vh_2018.pdf has been created
+Info in <TCanvas::Print>: png file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_7_vh_2018.png has been created
+opt.cats: UntaggedTag_7
+opt.procs: vh
+category: UntaggedTag_7
+ --> Processing UntaggedTag_7: file = /afs/cern.ch/work/r/rgargiul/CMSSW_14_1_0_pre4/src/flashggFinalFit/Signal/outdir_packaged/CMS-HGG_sigfit_packaged_UntaggedTag_7.root
+vh 2018 UntaggedTag_7 13TeV
+hggpdfsmrel_vh_2018_UntaggedTag_7_13TeV_normThisLumi
+k: vh_2018
+norms[k]: RooFormulaVar::hggpdfsmrel_vh_2018_UntaggedTag_7_13TeV_normThisLumi[ actualVars=(fxs_vh_13TeV,fbr_13TeV,fea_vh_2018_UntaggedTag_7_13TeV,rate_vh_2018_UntaggedTag_7_13TeV,IntLumi) formula="@0*@1*@2*@3*@4" ] = 0.000115202
+
+=> Now plotting proc vh for cat UntaggedTag_8
+Info in <TCanvas::SaveAs>: ROOT file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_8_vh_2018.root has been created
+Info in <TCanvas::Print>: pdf file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_8_vh_2018.pdf has been created
+Info in <TCanvas::Print>: png file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_8_vh_2018.png has been created
+opt.cats: UntaggedTag_8
+opt.procs: vh
+category: UntaggedTag_8
+ --> Processing UntaggedTag_8: file = /afs/cern.ch/work/r/rgargiul/CMSSW_14_1_0_pre4/src/flashggFinalFit/Signal/outdir_packaged/CMS-HGG_sigfit_packaged_UntaggedTag_8.root
+vh 2018 UntaggedTag_8 13TeV
+hggpdfsmrel_vh_2018_UntaggedTag_8_13TeV_normThisLumi
+k: vh_2018
+norms[k]: RooFormulaVar::hggpdfsmrel_vh_2018_UntaggedTag_8_13TeV_normThisLumi[ actualVars=(fxs_vh_13TeV,fbr_13TeV,fea_vh_2018_UntaggedTag_8_13TeV,rate_vh_2018_UntaggedTag_8_13TeV,IntLumi) formula="@0*@1*@2*@3*@4" ] = 6.84013e-06
+
+=> Now plotting proc vh for cat UntaggedTag_9
+Info in <TCanvas::SaveAs>: ROOT file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_9_vh_2018.root has been created
+Info in <TCanvas::Print>: pdf file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_9_vh_2018.pdf has been created
+Info in <TCanvas::Print>: png file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_UntaggedTag_9_vh_2018.png has been created
+opt.cats: UntaggedTag_9
+opt.procs: vh
+category: UntaggedTag_9
+ --> Processing UntaggedTag_9: file = /afs/cern.ch/work/r/rgargiul/CMSSW_14_1_0_pre4/src/flashggFinalFit/Signal/outdir_packaged/CMS-HGG_sigfit_packaged_UntaggedTag_9.root
+vh 2018 UntaggedTag_9 13TeV
+hggpdfsmrel_vh_2018_UntaggedTag_9_13TeV_normThisLumi
+k: vh_2018
+norms[k]: RooFormulaVar::hggpdfsmrel_vh_2018_UntaggedTag_9_13TeV_normThisLumi[ actualVars=(fxs_vh_13TeV,fbr_13TeV,fea_vh_2018_UntaggedTag_9_13TeV,rate_vh_2018_UntaggedTag_9_13TeV,IntLumi) formula="@0*@1*@2*@3*@4" ] = 6.12182e-05
+
+=> Now plotting proc vh for cat VBFTag_0
+Info in <TCanvas::SaveAs>: ROOT file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_VBFTag_0_vh_2018.root has been created
+Info in <TCanvas::Print>: pdf file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_VBFTag_0_vh_2018.pdf has been created
+Info in <TCanvas::Print>: png file /eos/user/r/rgargiul/www/width_pdf/plots/packaged/Plots/smodel_VBFTag_0_vh_2018.png has been created
+opt.cats: VBFTag_0
+opt.procs: vh
+category: VBFTag_0
+ --> Processing VBFTag_0: file = /afs/cern.ch/work/r/rgargiul/CMSSW_14_1_0_pre4/src/flashggFinalFit/Signal/outdir_packaged/CMS-HGG_sigfit_packaged_VBFTag_0.root
+vh 2018 VBFTag_0 13TeV
+hggpdfsmrel_vh_2018_VBFTag_0_13TeV_normThisLumi
+k: vh_2018
+norms[k]: RooFormulaVar::hggpdfsmrel_vh_2018_VBFTag_0_13TeV_normThisLumi[ actualVars=(fxs_vh_13TeV,fbr_13TeV,fea_vh_2018_VBFTag_0_13TeV,rate_vh_2018_VBFTag_0_13TeV,IntLumi) formula="@0*@1*@2*@3*@4" ] = 0.000529831
+

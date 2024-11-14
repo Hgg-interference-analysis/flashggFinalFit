@@ -119,9 +119,9 @@ double getProbabilityFtest(double chi2, int ndof,RooAbsPdf *pdfNull, RooAbsPdf *
   int ntoys =5000;
   TCanvas *can = new TCanvas();
   can->SetLogy();
-  TH1F toyhist(Form("toys_fTest_%s.pdf",pdfNull->GetName()),";Chi2;",60,-2,10);
-  TH1I toyhistStatN(Form("Status_%s.pdf",pdfNull->GetName()),";FitStatus;",8,-4,4);
-  TH1I toyhistStatT(Form("Status_%s.pdf",pdfTest->GetName()),";FitStatus;",8,-4,4);
+  TH1F toyhist(Form("toys_fTest_%s.root",pdfNull->GetName()),";Chi2;",60,-2,10);
+  TH1I toyhistStatN(Form("Status_%s.root",pdfNull->GetName()),";FitStatus;",8,-4,4);
+  TH1I toyhistStatT(Form("Status_%s.root",pdfTest->GetName()),";FitStatus;",8,-4,4);
 
   TGraph *gChi2 = new TGraph();
   gChi2->SetLineColor(kGreen+2);
@@ -207,7 +207,7 @@ double getProbabilityFtest(double chi2, int ndof,RooAbsPdf *pdfNull, RooAbsPdf *
   toyhistStatN.Draw();
   toyhistStatT.Draw("same");
   leg->Draw();
-  stas->SaveAs(Form("%s_fitstatus.pdf",name.c_str()));
+  stas->SaveAs(Form("%s_fitstatus.root",name.c_str()));
   //reassign params
   params_null->assignValueOnly(preParams_null);
   params_test->assignValueOnly(preParams_test);
@@ -227,7 +227,7 @@ double getGoodnessOfFit(RooRealVar *mass, RooAbsPdf *mpdf, RooDataSet *data, std
   double prob;
   int ntoys = 500;
   // Routine to calculate the goodness of fit. 
-  name+="_gofTest.pdf";
+  name+="_gofTest.root";
   RooRealVar norm("norm","norm",data->sumEntries(),0,10E6);
   //norm.removeRange();
 
@@ -280,7 +280,7 @@ double getGoodnessOfFit(RooRealVar *mass, RooAbsPdf *mpdf, RooDataSet *data, std
     double medianChi2 = toy_chi2[(int)(((float)ntoys)/2)];
     double rms = TMath::Sqrt(medianChi2);
 
-    TH1F toyhist(Form("gofTest_%s.pdf",pdf->GetName()),";Chi2;",50,medianChi2-5*rms,medianChi2+5*rms);
+    TH1F toyhist(Form("gofTest_%s.root",pdf->GetName()),";Chi2;",50,medianChi2-5*rms,medianChi2+5*rms);
     for (std::vector<double>::iterator itx = toy_chi2.begin();itx!=toy_chi2.end();itx++){
       toyhist.Fill((*itx));
     }
@@ -343,6 +343,7 @@ void plot(RooRealVar *mass, RooAbsPdf *pdf, RooDataSet *data, string name,vector
   delete canv;
   delete lat;
 }
+
 void plot(RooRealVar *mass, RooMultiPdf *pdfs, RooCategory *catIndex, RooDataSet *data, string name, vector<string> flashggCats_, int cat, int bestFitPdf=-1){
   
   int color[7] = {kBlue,kRed,kMagenta,kGreen+1,kOrange+7,kAzure+10,kBlack};
@@ -448,7 +449,8 @@ void plot(RooRealVar *mass, RooMultiPdf *pdfs, RooCategory *catIndex, RooDataSet
   line3->Draw();
   hdatasub->Draw("PESAME");
   // enf extra bit for ratio plot///
-  canv->SaveAs(Form("%s.pdf",name.c_str()));
+  canv->SaveAs(Form("%s.root",name.c_str()));
+  canv->SaveAs(Form("%s.root",name.c_str()));
   canv->SaveAs(Form("%s.png",name.c_str()));
   catIndex->setIndex(currentIndex);
   delete canv;
@@ -496,7 +498,8 @@ void plot(RooRealVar *mass, map<string,RooAbsPdf*> pdfs, RooDataSet *data, strin
   plot->Draw();
   leg->Draw("same");
   CMS_lumi( canv, 0, 0);
-  canv->SaveAs(Form("%s.pdf",name.c_str()));
+  canv->SaveAs(Form("%s.root",name.c_str()));
+  canv->SaveAs(Form("%s.root",name.c_str()));
   canv->SaveAs(Form("%s.png",name.c_str()));
   delete canv;
 }
@@ -844,14 +847,15 @@ int main(int argc, char* argv[]){
 					if (chi2<0. && order>1) chi2=0.;
 					if (prev_pdf!=NULL){
 						prob = getProbabilityFtest(chi2,order-prev_order,prev_pdf,bkgPdf,mass,data
-								,Form("%s/Ftest_from_%s%d_cat%d.pdf",outDir.c_str(),funcType->c_str(),order,(cat+catOffset)));
+								,Form("%s/Ftest_from_%s%d_cat%d.root",outDir.c_str(),funcType->c_str(),order,(cat+catOffset)));
 						std::cout << "[INFO]  F-test Prob(chi2>chi2(data)) == " << prob << std::endl;
 					} else {
 						prob = 0;
 					}
 					double gofProb=0;
 					// otherwise we get it later ...
-					if (!saveMultiPdf) plot(mass,bkgPdf,data,Form("%s/%s%d_cat%d.pdf",outDir.c_str(),funcType->c_str(),order,(cat+catOffset)),flashggCats_,fitStatus,&gofProb);
+					if (!saveMultiPdf) plot(mass,bkgPdf,data,Form("%s/%s%d_cat%d.root",outDir.c_str(),funcType->c_str(),order,(cat+catOffset)),flashggCats_,fitStatus,&gofProb);
+          if (!saveMultiPdf) plot(mass,bkgPdf,data,Form("%s/%s%d_cat%d.root",outDir.c_str(),funcType->c_str(),order,(cat+catOffset)),flashggCats_,fitStatus,&gofProb);
 					cout << "[INFO]\t " << *funcType << " " << order << " " << prevNll << " " << thisNll << " " << chi2 << " " << prob << endl;
 					//fprintf(resFile,"%15s && %d && %10.2f && %10.2f && %10.2f \\\\\n",funcType->c_str(),order,thisNll,chi2,prob);
 					prevNll=thisNll;
@@ -907,7 +911,8 @@ int main(int argc, char* argv[]){
 
 						// Calculate goodness of fit for the thing to be included (will use toys for lowstats)!
 						double gofProb =0; 
-						plot(mass,bkgPdf,data,Form("%s/%s%d_cat%d.pdf",outDir.c_str(),funcType->c_str(),order,(cat+catOffset)),flashggCats_,fitStatus,&gofProb);
+						plot(mass,bkgPdf,data,Form("%s/%s%d_cat%d.root",outDir.c_str(),funcType->c_str(),order,(cat+catOffset)),flashggCats_,fitStatus,&gofProb);
+            plot(mass,bkgPdf,data,Form("%s/%s%d_cat%d.root",outDir.c_str(),funcType->c_str(),order,(cat+catOffset)),flashggCats_,fitStatus,&gofProb);
 
 						if ((prob < upperEnvThreshold) ) { // Looser requirements for the envelope
 
@@ -982,8 +987,7 @@ int main(int argc, char* argv[]){
 			outputws->import(catIndex);
 			outputws->import(dataBinned);
 			outputws->import(*data);
-			plot(mass,pdf,&catIndex,data,Form("%s/multipdf_%s",outDir.c_str(),catname.c_str()),flashggCats_,cat,bestFitPdfIndex);
-
+			plot(mass,pdf,&catIndex,data,Form("%s/multipdf_%s.root",outDir.c_str(),catname.c_str()),flashggCats_,cat,bestFitPdfIndex);
 		}
 
 		}

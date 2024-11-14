@@ -233,6 +233,7 @@ if not opt.skipVertexScenarioSplit:
   # Check nominal mass dataset
   if( datasetWVForFit[MHNominal].numEntries() < opt.replacementThreshold  )|( datasetWVForFit[MHNominal].sumEntries() < 0. ):
     nominal_numEntries = datasetWVForFit[MHNominal].numEntries()
+    nominal_sumEntries = datasetWVForFit[MHNominal].sumEntries()
     procReplacementFit, catReplacementFit = rMap['procWV'], rMap['catWV']
     print("+++++++++++++++ ", procReplacementFit, catReplacementFit)
     for mp in opt.massPoints.split(","):
@@ -250,12 +251,12 @@ if not opt.skipVertexScenarioSplit:
       inputWS.Delete()
       f.Close()
     # Check if replacement dataset has too few entries: if so throw error
-    if( datasetWVForFit[MHNominal].numEntries() < opt.replacementThreshold )|( datasetWVForFit[MHNominal].sumEntries() < 0. ):
-      print(" --> [ERROR] replacement dataset (%s,%s) has too few entries (%g < %g)"%(procReplacementFit,catReplacementFit,datasetWVForFit[MHNominal].numEntries,opt.replacementThreshold))
+    if (datasetWVForFit[MHNominal].numEntries() < opt.replacementThreshold) | ( datasetWVForFit[MHNominal].sumEntries() < 0. ):
+      print(" --> [ERROR] replacement dataset (%s,%s) has too few entries (%g < %g) or negative sumEntries (%g)"%(procReplacementFit,catReplacementFit,datasetWVForFit[MHNominal].numEntries,opt.replacementThreshold,datasetWVForFit[MHNominal].sumEntries()))
       sys.exit(1)
     else:
       procWVFit, catWVFit = procReplacementFit, catReplacementFit
-      print(" --> WV: Too few entries in nominal dataset (%g < %g). Using replacement (proc,cat) = (%s,%s) for extracting shape"%(nominal_numEntries,opt.replacementThreshold,procWVFit,catWVFit))
+      print(" --> WV: Too few entries in nominal dataset (%g < %g) or negative sumEntries (%g). Using replacement (proc,cat) = (%s,%s) for extracting shape"%(nominal_numEntries,opt.replacementThreshold,nominal_sumEntries, procWVFit,catWVFit))
       for mp in opt.massPoints.split(","):
         if 'ALT' in procWVFit and mp!=MHNominal: continue
         print("     * MH = %s: numEntries = %g, sumEntries = %.6f"%(mp,datasetWVForFit[mp].numEntries(),datasetWVForFit[mp].sumEntries()))
@@ -359,4 +360,4 @@ if opt.doPlots:
     plotPdfComponents(ssfWV,_outdir=outdir,_extension="WV_",_proc=procWVFit,_cat=catRVFit) 
   # Plot interpolation
   plotInterpolation(fm,_outdir=outdir) 
-  plotSplines(fm,_outdir=outdir,_nominalMass=MHNominal) 
+  plotSplines(fm,_outdir=outdir,_nominalMass=MHNominal, splinesToPlot=['xs','br','ea'])

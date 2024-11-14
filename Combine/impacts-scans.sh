@@ -1,5 +1,5 @@
 combineTool.py -v 2 -M Impacts -d /afs/cern.ch/work/r/rgargiul/CMSSW_14_1_0_pre4/src/flashggFinalFit/Combine/Datacard_xsec.root \
--m 125.38 --setParameters gamma=1,MH=125.38 -n prova \
+-m 125.38 --setParameters gamma=1,MH=125.38,pdfindex_UntaggedTag_9_13TeV=2 -n prova \
 --redefineSignalPOIs gamma \
  -t -1 \
  --saveSpecifiedNuis all --setRobustFitAlgo=Minuit2,Migrad \

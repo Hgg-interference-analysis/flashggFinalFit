@@ -56,11 +56,11 @@ if [[ $STEP == "fTest" ]] || [[ $STEP == "calcPhotonSyst" ]] || [[ $STEP == 'sig
 	if [[ $year == $YEAR ]] || [[ $YEAR == "all" ]]; then
 	    echo "====> Running $STEP for year $year"
 	    if [[ $STEP == "fTest" ]]; then
-		python3 RunSignalScripts.py --inputConfig config_test_${year}.py --mode fTest --modeOpts "--doPlots --outdir /eos/user/r/rgargiul/www/width_pdf/plots --nProcsToFTest -1" ${DROPT}
+		python3 RunSignalScripts.py --inputConfig config_test_${year}.py --mode fTest --modeOpts "--skipWV --doPlots --outdir /eos/user/r/rgargiul/www/width_pdf/plots --nProcsToFTest -1" ${DROPT}
 	    elif [[ $STEP == "calcPhotonSyst" ]]; then
 		python3 RunSignalScripts.py --inputConfig config_test_${year}.py --mode calcPhotonSyst ${DROPT}
 	    elif [[ $STEP == 'signalFit' ]]; then
-		python3 RunSignalScripts.py --inputConfig config_test_${year}.py --mode signalFit --modeOpts="--doPlots --outdir /eos/user/r/rgargiul/www/width_pdf/plots --skipSystematics" ${DROPT}
+		python3 RunSignalScripts.py --inputConfig config_test_${year}.py --mode signalFit --modeOpts="--skipVertexScenarioSplit --doPlots --outdir /eos/user/r/rgargiul/www/width_pdf/plots --skipSystematics" ${DROPT}
 	    fi
 	fi
     done
@@ -89,4 +89,17 @@ elif [[ $STEP == 'plotter' ]]; then
     	echo "=> Now plotting proc $proc for all categories"
     	python RunPlotter.py --procs $proc --cats "all" --years 2018 --ext packaged --outdir /eos/user/r/rgargiul/www/width_pdf/plots
     done
+
+    for proc in ${smprocs[*]}
+    do
+      	for cat in ${significantCats[*]}
+        do
+            echo "=> Now plotting proc $proc for cat $cat"
+            python RunPlotter.py --procs $proc --cats $cat --years 2018 \
+ --ext packaged --outdir /eos/user/r/rgargiul/www/width_pdf/plots
+        done
+    done
+
+
 fi
+
