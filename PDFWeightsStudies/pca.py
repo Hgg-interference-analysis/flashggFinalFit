@@ -11,37 +11,43 @@ import sys
 
 files = {
   "int": "/eos/user/r/rgargiul/dataHggWidth/trees/trees_postVBFcat_int/output_GluGluHToGG_int_M125_13TeV-sherpa_*.root",
-  "ggh": "/eos/user/r/rgargiul/dataHggWidth/trees/trees_postVBFcat_sig/output_GluGluHToGG_M125_TuneCP5_13TeV-amcatnloFXFX-pythia8.root",
+  "ggh": "/eos/user/r/rgargiul/dataHggWidth/trees/sample_ggH_for_pdfweights_studies.root",
   "vh": "/eos/user/r/rgargiul/dataHggWidth/trees/trees_postVBFcat_sig/output_VHToGG_M125_TuneCP5_13TeV-amcatnloFXFX-madspin-pythia8.root",
   "vbf": "/eos/user/r/rgargiul/dataHggWidth/trees/trees_postVBFcat_sig/output_VBFHToGG_M125_TuneCP5_13TeV-amcatnlo-pythia8.root"
 }
 
-processes = files.keys()
+processes = list(files.keys())
 
-ngenweights = {"int": 111, "ggh": 46, "vh": 46, "vbf": 46} #only int is OK
-npdfweights = {"int": 100, "ggh": 30, "vh": 30, "vbf": 30} #only int is OK
+ngenweights = {"int": 111, "ggh": 60, "vh": 60, "vbf": 60} #only int is OK
+npdfweights = {"int": 100, "ggh": 60, "vh": 60, "vbf": 60} #only int is OK
+
+branchname = {"int": "genweight", "ggh": "pdfWeights", "vbf": "pdfWeights", "vh": "pdfWeights"}
 
 cats = [f"UntaggedTag_{i}" for i in range(10)] + ["VBFTag_0"]
 
-for proc in processes:
+for proc in ["ggh"]:
   trees = []
 
   for cat in cats[-1:]:
     if proc != "int":
-      trees.append(f"{files[proc]}:tagsDumper/trees/{proc}_125_13TeV_{cat}")
+      trees.append(f"{files[proc]}:tagsDumper/trees/MC_13TeV_{cat}")
     else:
       trees.append(f"{files[proc]}:tagsDumper/trees/ggh_125_13TeV_{cat}")
 
   print("starting to concatenate")
 
-  array = uproot.concatenate([trees], filter_name="genweight", library="pd").to_numpy()
+  array = uproot.concatenate([trees], filter_name=branchname[proc], library="pd").to_numpy()
+
+  array = array.flatten()
 
   if len(array) % ngenweights[proc] != 0: raise ValueError("Something wrong in array sizes")
 
   array = array.reshape(int(len(array)/ngenweights[proc]), ngenweights[proc])
 
+  print(array)
+
   print("starting to sample")
-  if len(array) > 100000:
+  if len(array) > 1000000:
     indices = np.random.choice(len(array), 100000)
     array = array[indices]
 
@@ -68,11 +74,18 @@ for proc in processes:
 
   my_transformed = pca.components_ @ sample
 
-  print(f"proc: {proc}", pca.components_)
+  outf = open(f"{proc}_pcamatrix.dat", "w")
+  for i in range(5):
+    for j in range(npdfweights[proc]):
+      outf.write(f"{pca.components_[i, j]} ")
+    outf.write("\n")
+  outf.close()
 
   pca_transformed = pca.transform(sample.reshape(1, npdfweights[proc]))[0]
 
-  if not np.allclose(my_transformed, pca_transformed):
+  print(my_transformed, pca_transformed)
+
+  if np.sqrt(((my_transformed-pca_transformed)**2).sum()) > 1e-3:
     raise ValueError("Transformation badly defined")
 
   break
