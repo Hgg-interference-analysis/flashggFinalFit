@@ -98,8 +98,6 @@ OUTDIR="outdir_${EXT}"
 
 mkdir -p $OUTDIR
 
-echo $BKGPLOTSONLY, $FTESTONLY, $PSEUDODATAONLY
-
 if [ $FTESTONLY == 0 -a $PSEUDODATAONLY == 0 -a $BKGPLOTSONLY == 0 ]; then
 #IF not particular script specified, run all!
 FTESTONLY=1
@@ -185,7 +183,7 @@ fi
 echo "./scripts/subBkgPlots.py -b CMS-HGG_multipdf_$EXT.root -d $OUTDIR/bkgPlots$DATAEXT -S 13 --isMultiPdf --useBinnedData  --doBands --massStep 1 $SIG -L 100 -H 180 -f $CATS -l $CATS --intLumi $INTLUMI $OPT --batch $BATCH -q $QUEUE --year $YEAR"
 ./scripts/subBkgPlots.py -b CMS-HGG_multipdf_$EXT.root -d $OUTDIR/bkgPlots$DATAEXT -S 13 --isMultiPdf --useBinnedData  --doBands  --massStep 1 $SIG -L 100 -H 180 -f $CATS -l $CATS --intLumi $INTLUMI $OPT --batch $BATCH -q $QUEUE --year $YEAR
 
-# FIX THIS FOR CONDOR:
+# FIX THIS FOR CONDOR: 
 #continueLoop=1
 #while (($continueLoop==1))
 #do
@@ -197,7 +195,7 @@ echo "./scripts/subBkgPlots.py -b CMS-HGG_multipdf_$EXT.root -d $OUTDIR/bkgPlots
 #  if (($number==0)) ; then
 #     ((continueLoop=0))
 #  fi
-#done
+#done 
 
 OPT=""
 fi

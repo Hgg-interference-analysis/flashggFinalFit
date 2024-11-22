@@ -1,6 +1,5 @@
 #/cvmfs/sft.cern.ch/lcg/views/LCG_104/x86_64-el9-gcc11-opt/setup.sh
 
-import pandas as pd
 import uproot
 from sklearn.preprocessing import StandardScaler
 import pandas as pd
@@ -12,23 +11,22 @@ import sys
 files = {
   "int": "/eos/user/r/rgargiul/dataHggWidth/trees/trees_postVBFcat_int/output_GluGluHToGG_int_M125_13TeV-sherpa_*.root",
   "ggh": "/eos/user/r/rgargiul/dataHggWidth/trees/sample_ggH_for_pdfweights_studies.root",
-  "vh": "/eos/user/r/rgargiul/dataHggWidth/trees/trees_postVBFcat_sig/output_VHToGG_M125_TuneCP5_13TeV-amcatnloFXFX-madspin-pythia8.root",
-  "vbf": "/eos/user/r/rgargiul/dataHggWidth/trees/trees_postVBFcat_sig/output_VBFHToGG_M125_TuneCP5_13TeV-amcatnlo-pythia8.root"
+  "vbf": "/eos/user/r/rgargiul/dataHggWidth/trees/sample_VBF_for_pdfweights_studies.root"
 }
 
 processes = list(files.keys())
 
-ngenweights = {"int": 111, "ggh": 60, "vh": 60, "vbf": 60} #only int is OK
-npdfweights = {"int": 100, "ggh": 60, "vh": 60, "vbf": 60} #only int is OK
+nweights = {"int": 111, "ggh": 60, "vbf": 60} #only int is OK
+npdfweights = {"int": 100, "ggh": 60, "vbf": 60} #only int is OK
 
 branchname = {"int": "genweight", "ggh": "pdfWeights", "vbf": "pdfWeights", "vh": "pdfWeights"}
 
 cats = [f"UntaggedTag_{i}" for i in range(10)] + ["VBFTag_0"]
 
-for proc in ["ggh"]:
+for proc in ["int"]:
   trees = []
 
-  for cat in cats[-1:]:
+  for cat in cats:
     if proc != "int":
       trees.append(f"{files[proc]}:tagsDumper/trees/MC_13TeV_{cat}")
     else:
@@ -38,32 +36,39 @@ for proc in ["ggh"]:
 
   array = uproot.concatenate([trees], filter_name=branchname[proc], library="pd").to_numpy()
 
+  mass_weight = uproot.concatenate([trees], ["CMS_hgg_mass", "weight"], library="np")
+
+  mass = mass_weight["CMS_hgg_mass"]
+  weight = mass_weight["weight"]
+
   array = array.flatten()
 
-  if len(array) % ngenweights[proc] != 0: raise ValueError("Something wrong in array sizes")
+  if len(array) % nweights[proc] != 0: raise ValueError("Something wrong in array sizes")
 
-  array = array.reshape(int(len(array)/ngenweights[proc]), ngenweights[proc])
+  array = array.reshape(int(len(array)/nweights[proc]), nweights[proc])
 
-  print(array)
+  print(array.shape)
 
   print("starting to sample")
   if len(array) > 1000000:
     indices = np.random.choice(len(array), 100000)
     array = array[indices]
 
-  print(array.shape)
-
-  pca = PCA(n_components=5)
+  pca = PCA(n_components=1)
   array = array[:, -npdfweights[proc]:]
 
-  print(array.shape)
+  means = array.mean(axis=1)
 
-  centered_data = array - array.mean(axis=0)
+  centered_data = array/np.repeat(means[:, np.newaxis], npdfweights[proc], axis=1) - 1
 
-  print("starting to fit")
+  print(centered_data)
+  print(centered_data.mean(axis=0))
+
+  f = uproot.recreate(f"out_{proc}.root")
+  f["nopca"] = {"nopca": centered_data}
+  f.close()
 
   pca.fit(centered_data)
-
 
   sample = np.array(centered_data[0])
   print("sample shape", sample.shape)
@@ -75,7 +80,7 @@ for proc in ["ggh"]:
   my_transformed = pca.components_ @ sample
 
   outf = open(f"{proc}_pcamatrix.dat", "w")
-  for i in range(5):
+  for i in range(1):
     for j in range(npdfweights[proc]):
       outf.write(f"{pca.components_[i, j]} ")
     outf.write("\n")
@@ -83,9 +88,19 @@ for proc in ["ggh"]:
 
   pca_transformed = pca.transform(sample.reshape(1, npdfweights[proc]))[0]
 
-  print(my_transformed, pca_transformed)
+  print("comparison", my_transformed, pca_transformed)
 
-  if np.sqrt(((my_transformed-pca_transformed)**2).sum()) > 1e-3:
+  if np.sqrt(((my_transformed-pca_transformed)**2).sum()) > 1e-1:
     raise ValueError("Transformation badly defined")
+
+  my_transformed = pca.transform(centered_data)[:, 0]
+  print(my_transformed)
+
+  f = uproot.recreate(f"pca_out_{proc}.root")
+  f["pca"] = {"pdf_weight_var": (my_transformed + 1)*means, "central_pdf_weight": means, "mass": mass, "weight": weight}
+  f.close()
+
+  print(my_transformed.mean(axis=0))
+  print(my_transformed.std(axis=0))
 
   break

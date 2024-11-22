@@ -7,9 +7,9 @@ backgroundScriptCfg = {
     'cats':'auto', # auto: automatically inferred from input ws
     'catOffset':0, # add offset to category numbers (useful for categories from different allData.root files)  
     'ext':'2023-05-02', # extension to add to output directory
-    'year':'combined', # Use combined when merging all years in category (for plots)
+    'year':'2018', # Use combined when merging all years in category (for plots)
     'xvar': 'CMS_hgg_mass', # not yet used, should be passed to the C++ macros
-    'plotdir': '/eos/user/r/rgargiul/www/index.php /eos/user/r/rgargiul/www/width_pdf/plots/',
+    'plotdir': '/eos/user/r/rgargiul/www/width_pdf/plots/',
 
     # Job submission options
     'batch':'local', # [condor,SGE,IC,Rome,local]
