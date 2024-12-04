@@ -35,7 +35,6 @@ def leave():
 def run(cmd,opt):
   if opt.dryRun:
     print("%s\n\n"%cmd)
-  else:
     os.system(cmd)
 
 def getPdfIndicesFromJson(pdfjson):

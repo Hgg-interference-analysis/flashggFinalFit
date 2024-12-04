@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 # Script for submitting signal fitting jobs for finalfitslite
 import os, sys
@@ -92,6 +92,7 @@ if options['procs'] == "auto":
 options['nProcs'] = len(options['procs'].split(","))
 
 if options['cats'] == "auto":
+  print(WSFileNames)
   options['cats'] = extractListOfCats(WSFileNames)
 options['nCats'] = len(options['cats'].split(","))
 

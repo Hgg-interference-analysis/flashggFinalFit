@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 print(" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ HGG SIGNAL FITTER ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ")
 import ROOT
 import pandas as pd
@@ -313,7 +315,8 @@ print("scripts/signalFit.py line 305")
 ssfMap = od()
 name = "Total" if opt.skipVertexScenarioSplit else "RV"
 ssfRV = SimultaneousFit(name,opt.proc,opt.cat,datasetRVForFit,xvar.Clone(),MH,MHLow,MHHigh,opt.massPoints,opt.nBins,opt.MHPolyOrder,opt.minimizerMethod,opt.minimizerTolerance)
-if opt.useDCB: ssfRV.buildDCBplusGaussian()
+#if opt.useDCB: ssfRV.buildDCBplusGaussian()
+if opt.useDCB: ssfRV.buildDCB()
 else: ssfRV.buildNGaussians(nRV)
 ssfRV.runFit()
 ssfRV.buildSplines()
@@ -351,7 +354,7 @@ if opt.doPlots:
   print("\n --> Making plots...")
   outdir="%s/%s/signalFit/Plots"%(opt.outdir,opt.ext)
   if not os.path.isdir(outdir): os.system("mkdir -p %s"%outdir)
-  if os.path.exists("/afs/cern.ch"): os.system("cp /afs/cern.ch/user/g/gpetrucc/php/index.php "+outdir)
+  if os.path.exists("/eos/user/a/amkrishn/www/"): os.system("cp /eos/user/a/amkrishn/www/index.php "+outdir)
   if opt.skipVertexScenarioSplit:
     plotPdfComponents(ssfRV,_outdir=outdir,_extension="total_",_proc=procRVFit,_cat=catRVFit) 
   if not opt.skipVertexScenarioSplit:

@@ -80,6 +80,9 @@ hists['data'] = xvar.createHistogram("h_data", ROOT.RooFit.Binning(opt.nBins))
 
 # Loop over files
 for cat,f in inputFiles.items():
+
+  #if opt.cats in ["all"]:
+  cat = cat.split("_")[0] + "_" + cat.split("_")[1]
   print(" --> Processing %s: file = %s"%(cat,f))
 
   # Define cat weight
@@ -89,7 +92,6 @@ for cat,f in inputFiles.items():
   fin = ROOT.TFile(f)
   w = fin.Get("wsig_13TeV")
   w.var("MH").setVal(float(opt.MH))
-
   # Extract normalisations
   norms = od()
   data_rwgt = od()
@@ -98,7 +100,8 @@ for cat,f in inputFiles.items():
     if opt.procs == 'all':
       allNorms = w.allFunctions().selectByName("*%s*normThisLumi"%year)
       for norm in rooiter(allNorms):
-        proc = norm.GetName().split("%s_"%outputWSObjectTitle__)[-1].split("_%s"%year)[0]
+        #proc = norm.GetName().split("%s_"%outputWSObjectTitle__)[-1].split("_%s"%year)[0]
+        proc = norm.GetName().split("%s_"%outputWSObjectTitle__)[-1]
         k  =  "%s_%s"%(proc,year)
         _id = "%s_%s_%s_%s"%(proc,year,cat,sqrts__)
         print(proc,year,cat,sqrts__)

@@ -1,1 +1,1 @@
-hadd -f /eos/user/r/rgargiul/dataHggWidth/trees/trees_postVBFcat_data/allData2018.root /eos/user/r/rgargiul/dataHggWidth/trees/trees_postVBFcat_data/output*.root &
+hadd -f /eos/user/a/amkrishn/hggWidth/mcNtuples/condor_output/2018/UL18_data_newFNUF_VBFTag0/allData2018.root /eos/user/a/amkrishn/hggWidth/mcNtuples/condor_output/2018/UL18_data_newFNUF_VBFTag0/output*.root &

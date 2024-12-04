@@ -37,7 +37,7 @@ fsub = open("./t2w_jobs/t2w_%s.sh"%(opt.ext),"w")
 fsub.write("#!/bin/bash\n\n")
 fsub.write("cd %s\n\n"%os.environ['PWD'])
 fsub.write("eval `scramv1 runtime -sh`\n\n")
-fsub.write("export PYTHONPATH=$PYTHONPATH:/afs/cern.ch/work/r/rgargiul/CMSSW_10_2_13/src/flashggFinalFit/Combine\n")
+#fsub.write("export PYTHONPATH=$PYTHONPATH:/afs/cern.ch/work/r/rgargiul/CMSSW_10_2_13/src/flashggFinalFit/Combine\n")
 fsub.write("text2workspace.py Datacard_%s.txt -o Datacard_%s.root %s %s\n"%(opt.ext,opt.ext,opt.common_opts,models[opt.mode]))
 fsub.close()
 

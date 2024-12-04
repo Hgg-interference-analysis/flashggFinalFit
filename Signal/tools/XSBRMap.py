@@ -15,17 +15,7 @@ globalXSBRMap['example'] = od()
 globalXSBRMap['example']['decay'] = {'mode':'hgg'}
 globalXSBRMap['example']['GG2H'] = {'mode':'ggH'}
 globalXSBRMap['example']['VBF'] = {'mode':'qqH'}
-globalXSBRMap['example']['WH2HQQ'] = {'mode':'WH','factor':BR_W_qq}
-globalXSBRMap['example']['ZH2HQQ'] = {'mode':'qqZH','factor':BR_Z_qq}
-globalXSBRMap['example']['QQ2HLNU'] = {'mode':'WH','factor':BR_W_lnu}
-globalXSBRMap['example']['QQ2HLL'] = {'mode':'qqZH','factor':(BR_Z_ll+BR_Z_nunu)}
-globalXSBRMap['example']['GG2HQQ'] = {'mode':'ggZH','factor':BR_Z_qq}
-globalXSBRMap['example']['GG2HLL'] = {'mode':'ggZH','factor':BR_Z_ll}
-globalXSBRMap['example']['GG2HNUNU'] = {'mode':'ggZH','factor':BR_Z_nunu}
-globalXSBRMap['example']['TTH'] = {'mode':'ttH'}
-globalXSBRMap['example']['BBH'] = {'mode':'bbH'}
-globalXSBRMap['example']['THQ'] = {'mode':'tHq'}
-globalXSBRMap['example']['THW'] = {'mode':'tHW'}
+globalXSBRMap['example']['vh'] = {'mode':'WH'}
 # ...
 
 # STXS analysis: add factor for bin composition

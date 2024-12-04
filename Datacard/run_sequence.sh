@@ -1,5 +1,5 @@
 #ext=`date +%F` 
-ext='2023-03-02'
+ext='newShiftwithAllYears'
 
 STEP=0
 usage(){
@@ -35,12 +35,13 @@ if [[ $DR ]]; then
     DROPT=" --printOnly "
 fi
 
-smprocs=("GG2H" "VBF" "GG2HPLUSINT" "vh")
+smprocs=("GG2H" "VBF" "vh")
+#smprocs=("GG2H" "VBF")
 smprocs_csv=$(IFS=, ; echo "${smprocs[*]}")
 
 if [[ $STEP == "yields" ]]; then
     # for mu-simple: exclude ALT processes
-    python3 RunYields.py --cats "auto" --inputWSDirMap 2018=/eos/user/r/rgargiul/dataHggWidth/ws_postVBFcat_noVBFGGFmix/ --procs $smprocs_csv --doSystematics  --mergeYears --skipZeroes --ext ${ext}_xsec --batch local --queue cmsan ${DROPT}
+    python3 RunYields.py --cats "auto" --inputWSDirMap 2018=/eos/user/a/amkrishn/hggWidth/mcNtuples/condor_output/2018/UL18_sigMC_newFNUF_VBFTag0/hadded_trees/ws_sig --procs $smprocs_csv --doSystematics --skipZeroes --ext ${ext} --batch local --queue cmsan ${DROPT}
     
 elif [[ $STEP == "datacards" ]]; then
     for fit in "xsec"
@@ -61,6 +62,3 @@ elif [[ $STEP == "links" ]]; then
 else
     echo "Step $STEP is not one among yields,datacard,links. Exiting."
 fi
-
-
-s

@@ -994,6 +994,12 @@ int main(int argc, char* argv[]){
 		}
 
 		FILE *dfile = fopen(datfile.c_str(),"w");
+		cout << "datafile"<<datfile.c_str()<<endl;
+		if (dfile == NULL) {
+		  perror("Error opening file");
+		  exit(EXIT_FAILURE);
+		}
+		//printf("cat = %d, catOffset = %d\n", cat, catOffset);
 		cout << "[RESULT] Recommended options" << endl;
 
 		for (int cat=startingCategory; cat<ncats; cat++){
