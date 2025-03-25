@@ -1,18 +1,19 @@
 #!/bin/bash
 
-outdate=`date +%F` 
-
+YEAR=2018
 STEP=0
+
 usage(){
-    echo "Script to run fits and plots of fit output. dryRun option is for the fitting only, that can be run in batch."
+    echo "The script runs background scripts:"
     echo "options:"
     
     echo "-h|--help) "
+    echo "-y|--year) "
     echo "-s|--step) "
     echo "-d|--dryRun) "
 }
 # options may be followed by one colon to indicate they have a required argument
-if ! options=$(getopt -u -o s:hd -l help,step:,dryRun -- "$@")
+if ! options=$(getopt -u -o s:y:dh -l help,step:,year:,dryRun -- "$@")
 then
 # something went wrong, getopt will put out an error message for us
 exit 1
@@ -22,6 +23,7 @@ while [ $# -gt 0 ]
 do
 case $1 in
 -h|--help) usage; exit 0;;
+-y|--year) YEAR=$2; shift ;;
 -s|--step) STEP=$2; shift ;;
 -d|--dryRun) DR=$2; shift ;;
 (--) shift; break;;
@@ -41,7 +43,7 @@ fits=("xsec")
 if [[ $STEP == "t2w" ]]; then
     for fit in ${fits[*]}
     do
-        python3 RunText2Workspace.py --ext $fit --mode $fit --batch local
+        python3 RunText2Workspace.py --ext ${YEAR}_$fit --mode $fit --batch local
     done
 elif [[ $STEP == "fit" ]]; then
     for obs in " " #" --doObserved "

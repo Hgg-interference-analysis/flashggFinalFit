@@ -1,12 +1,11 @@
-combineTool.py -v 1 -M Impacts -d /afs/cern.ch/work/r/rgargiul/CMSSW_14_1_0_pre4/src/flashggFinalFit/Combine/Datacard_xsec.root \
--m 125.38 --setParameters gamma=1,MH=125.38,pdfindex_UntaggedTag_9_13TeV=2 -n prova \
---redefineSignalPOIs gamma \
---floatOtherPOIs 0 --saveInactivePOI 1 -t -1  \
+combineTool.py -v 1 -M Impacts -d /afs/cern.ch/work/r/rgargiul/CMSSW_14_1_0_pre4/src/flashggFinalFit/Combine/Datacard_${1}_xsec.root \
+ -m 125.38 --setParameters gamma=1,MH=125.38,mu=1,mu_V=1 -n _${1}_prova \
+ --floatOtherPOIs 1 --saveInactivePOI 1 -t -1 \
  --saveSpecifiedNuis all --setRobustFitAlgo=Minuit2,Migrad \
                           --cminDefaultMinimizerStrategy 0 \
                          --X-rtd MINIMIZER_freezeDisassociatedParams \
                          --X-rtd MINIMIZER_multiMin_hideConstants \
                          --X-rtd MINIMIZER_multiMin_maskConstraints \
                          --X-rtd MINIMIZER_multiMin_maskChannels=2 \
---freezeParameters MH \
---doInitialFit
+ --setParameterRanges gamma=0,25:CMS_hgg_nuisance_IntNorm_13TeVscaleCorr=-1.5,1.5 \
+ --doInitialFit

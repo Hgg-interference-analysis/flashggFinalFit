@@ -15,7 +15,7 @@ def get_options():
   parser.add_option('--years', dest='years', default='2016,2017,2018', help="Comma separated list of years to include")  
   parser.add_option('--cats', dest='cats', default='', help="Comma separated list of analysis categories to include. all = sum of all categories, wall = weighted sum of categories (requires S/S+B from ./Plots/getCatInfo.py)")
   parser.add_option('--loadCatWeights', dest='loadCatWeights', default='', help="Load S/S+B weights for analysis categories (path to weights json file)")
-  parser.add_option('--ext', dest='ext', default='test', help="Extension: defines output dir where signal models are saved")
+  parser.add_option('--ext', dest='ext', default='packaged', help="Extension: defines output dir where signal models are saved")
   parser.add_option("--xvar", dest="xvar", default='CMS_hgg_mass:m_{#gamma#gamma}:GeV', help="x-var (name:title:units)")
   parser.add_option("--mass", dest="mass", default='125', help="Mass of datasets")
   parser.add_option("--MH", dest="MH", default='125', help="Higgs mass (for pdf)")
@@ -27,6 +27,9 @@ def get_options():
   parser.add_option("--label", dest="label", default='Simulation Preliminary', help="CMS Sub-label")
   parser.add_option("--doFWHM", dest="doFWHM", default=False, action='store_true', help="Do FWHM")
   parser.add_option("--outdir", dest='outdir', default=swd__, help="Output directory (default is the current one)")
+  parser.add_option('--minMassForIntegration', dest='minMassForIntegration', default=110, help="Min. mass when summing entries")
+  parser.add_option('--maxMassForIntegration', dest='maxMassForIntegration', default=135, help="Max. mass when summing entries")
+
   return parser.parse_args()
 (opt,args) = get_options()
 
@@ -40,6 +43,9 @@ citr = 0
 print("opt.cats: %s"%opt.cats)
 
 print("opt.procs: %s"%opt.procs)
+
+print("opt.ext: ", opt.ext)
+
 
 if opt.cats in ['all','wall']:
   fs = glob.glob("%s/outdir_%s/CMS-HGG_sigfit_%s_*.root"%(swd__,opt.ext,opt.ext))
@@ -60,7 +66,7 @@ else:
     print(f"category: {cat}")
     years = opt.years.split(",")
     if len(years)!=1: print("Fix the code for more years")
-    f = "%s/outdir_%s/CMS-HGG_sigfit_%s_%s.root"%(swd__,opt.ext,opt.ext,cat)
+    f = "%s/outdir_%s/CMS-HGG_sigfit_%s_%s_%s.root"%(swd__,opt.ext,opt.ext,cat,years[0])
     if "packaged_oldws" in opt.ext:
       f = "%s/outdir_%s/CMS-HGG_sigfit_packaged_%s.root"%(swd__,opt.ext,cat)
     inputFiles[cat] = f
@@ -138,13 +144,23 @@ for cat,f in inputFiles.items():
     # Make empty copy of dataset
     d = w.data("sig_mass_m%s_%s"%(opt.mass,_id))
     d_rwgt = d.emptyClone(_id)
-    
+
+    sumEntries = 0
+    for i in range(d.numEntries()):
+        p = d.get(i)
+        mass = p.getRealValue("CMS_hgg_mass")
+        if mass < opt.minMassForIntegration or mass > opt.maxMassForIntegration: continue
+        sumEntries += d.weight()
+
     # Calc norm factor
     if d.sumEntries() == 0: nf = 0
-    else: nf = nval/d.sumEntries()
+    else: nf = nval/sumEntries
+
     # Fill dataset with correct normalisation + reweight if using cat weights
     for i in range(d.numEntries()):
       p = d.get(i)
+      mass = p.getRealValue("CMS_hgg_mass")
+      if mass < opt.minMassForIntegration or mass > opt.maxMassForIntegration: continue
       rw, rwe = d.weight()*nf*wcat, d.weightError()*nf*wcat
       d_rwgt.add(p,rw,rwe)
     # Add dataset to container
@@ -160,7 +176,7 @@ for cat,f in inputFiles.items():
 
   # Sum pdf histograms
   for _id,p in hpdfs.items():
-    if 'pdf' not in hists: 
+    if 'pdf' not in hists:
       hists['pdf'] = p.Clone("h_pdf")
       hists['pdf'].Reset()
     # Fill

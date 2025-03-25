@@ -1,0 +1,8 @@
+executable            = /afs/cern.ch/work/r/rgargiul/CMSSW_14_1_0_pre4/src/flashggFinalFit/HaddTrees/runall_condor.sh
+input                 = input
+arguments             = $(ProcId) 17
+output                = output/log.$(ClusterId).$(ProcId).out
+error                 = error/log.$(ClusterId).$(ProcId).err
+log                   = log/log.$(ClusterId).log
++JobFlavour = "longlunch"
+queue 19

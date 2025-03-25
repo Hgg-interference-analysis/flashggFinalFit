@@ -17,8 +17,11 @@ def splitRVWV(_d,_argset,mode="RV"):
     print(" --> [ERROR] unrecognised mode (%s) in splitRVWV function"%mode)
     return 0
 
-def beamspotReweigh(d,widthData,widthMC,_xvar,_dZ,_x='CMS_hgg_mass',preserveNorm=True):
-  isumw = d.sumEntries()
+def beamspotReweigh(d,widthData,widthMC,_xvar,_dZ,_x='CMS_hgg_mass',preserveNorm=True, mh=125):
+  ROOT.RooMsgService.instance().setGlobalKillBelow(ROOT.RooFit.WARNING)
+
+  isumw = d.sumEntries("1", f"intrange_{mh}")
+
   drw = d.emptyClone()
   rw = ROOT.RooRealVar("weight","weight",-100000,1000000)
   for i in range(0,d.numEntries()):
@@ -31,14 +34,17 @@ def beamspotReweigh(d,widthData,widthMC,_xvar,_dZ,_x='CMS_hgg_mass',preserveNorm
       f = dataBeamspot/mcBeamspot
     # Set weights and vars
     rw.setVal(f*d.weight())
-    _xvar.setVal(x)
+    _xvar.setVal(float(x))
     _dZ.setVal(dz)
     # Add point to dataset
     drw.add( ROOT.RooArgSet(_xvar,_dZ), rw.getVal() )
 
   # If preserve norm of original dataset
   if preserveNorm:
-    fsumw = drw.sumEntries()
+    ROOT.RooMsgService.instance().setGlobalKillBelow(ROOT.RooFit.WARNING)
+
+    fsumw = drw.sumEntries("1", f"intrange_{mh}")
+
     drw_pn = d.emptyClone()
     for i in range(0,drw.numEntries()):
       x, dz = drw.get(i).getRealValue(_x), drw.get(i).getRealValue("dZ")

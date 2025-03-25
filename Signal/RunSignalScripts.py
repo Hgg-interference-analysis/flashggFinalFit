@@ -80,7 +80,7 @@ if options['mode'] not in ['fTest','getEffAcc','getDiagProc','calcPhotonSyst','s
   print(" --> [ERROR] mode %s not allowed. Please use one of the following: ['fTest','getEffAcc','getDiagProc','calcPhotonSyst','signalFit']. Leaving..."%options['mode'])
   leave()
 
-if options['mode'] == "signalFit": options['batch'] = "condor"
+#if options['mode'] == "signalFit": options['batch'] = "condor"
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Extract list of filenames

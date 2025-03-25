@@ -9,6 +9,7 @@ import matplotlib.pyplot as plt
 import sys
 
 files = {
+  "ggh_sherpa": "/eos/user/r/rgargiul/dataHggWidth/trees/sample_ggH_sherpa_for_pdfweights_studies.root",
   "int": "/eos/user/r/rgargiul/dataHggWidth/trees/trees_postVBFcat_int/output_GluGluHToGG_int_M125_13TeV-sherpa_*.root",
   "ggh": "/eos/user/r/rgargiul/dataHggWidth/trees/sample_ggH_for_pdfweights_studies.root",
   "vbf": "/eos/user/r/rgargiul/dataHggWidth/trees/sample_VBF_for_pdfweights_studies.root"
@@ -16,23 +17,20 @@ files = {
 
 processes = list(files.keys())
 
-nweights = {"int": 111, "ggh": 60, "vbf": 60} #only int is OK
-npdfweights = {"int": 100, "ggh": 60, "vbf": 60} #only int is OK
+nweights = {"ggh_sherpa": 100, "int": 111, "ggh": 60, "vbf": 60} #only int is OK
+npdfweights = {"ggh_sherpa": 100, "int": 100, "ggh": 60, "vbf": 60} #only int is OK
 
-branchname = {"int": "genweight", "ggh": "pdfWeights", "vbf": "pdfWeights", "vh": "pdfWeights"}
+branchname = {"ggh_sherpa": "pdfWeights", "int": "genweight", "ggh": "pdfWeights", "vbf": "pdfWeights", "vh": "pdfWeights"}
+
+treename = {"ggh_sherpa": "ggh", "int": "ggh_125", "ggh": "MC", "vbf": "vbf"}
 
 cats = [f"UntaggedTag_{i}" for i in range(10)] + ["VBFTag_0"]
 
-for proc in ["int"]:
+for proc in ["ggh_sherpa"]:
   trees = []
 
   for cat in cats:
-    if proc != "int":
-      trees.append(f"{files[proc]}:tagsDumper/trees/MC_13TeV_{cat}")
-    else:
-      trees.append(f"{files[proc]}:tagsDumper/trees/ggh_125_13TeV_{cat}")
-
-  print("starting to concatenate")
+      trees.append(f"{files[proc]}:tagsDumper/trees/{treename[proc]}_13TeV_{cat}")
 
   array = uproot.concatenate([trees], filter_name=branchname[proc], library="pd").to_numpy()
 
@@ -47,22 +45,28 @@ for proc in ["int"]:
 
   array = array.reshape(int(len(array)/nweights[proc]), nweights[proc])
 
-  print(array.shape)
-
-  print("starting to sample")
-  if len(array) > 1000000:
-    indices = np.random.choice(len(array), 100000)
+  if len(array) > 300000:
+    indices = np.random.choice(len(array), 300000)
     array = array[indices]
+    mass = mass[indices]
+    weight = weight[indices]
 
   pca = PCA(n_components=1)
   array = array[:, -npdfweights[proc]:]
 
-  means = array.mean(axis=1)
+  print(array.shape)
 
-  centered_data = array/np.repeat(means[:, np.newaxis], npdfweights[proc], axis=1) - 1
+  means_axis1 = array.mean(axis=1)
 
-  print(centered_data)
-  print(centered_data.mean(axis=0))
+  centered_data = array/np.repeat(means_axis1[:, np.newaxis], npdfweights[proc], axis=1) - 1
+
+  means_axis0 = centered_data.mean(axis=0)
+  centered_data -= np.repeat(means_axis0[np.newaxis, :], len(centered_data), axis=0)
+
+  outf = open(f"{proc}_offset.dat", "w")
+  for j in range(npdfweights[proc]):
+      outf.write(f"{means_axis0[j]} ")
+  outf.close()
 
   f = uproot.recreate(f"out_{proc}.root")
   f["nopca"] = {"nopca": centered_data}
@@ -71,11 +75,6 @@ for proc in ["int"]:
   pca.fit(centered_data)
 
   sample = np.array(centered_data[0])
-  print("sample shape", sample.shape)
-
-  print("starting to transform")
-
-  print("pca comp shape", pca.components_.shape)
 
   my_transformed = pca.components_ @ sample
 
@@ -88,19 +87,15 @@ for proc in ["int"]:
 
   pca_transformed = pca.transform(sample.reshape(1, npdfweights[proc]))[0]
 
-  print("comparison", my_transformed, pca_transformed)
-
-  if np.sqrt(((my_transformed-pca_transformed)**2).sum()) > 1e-1:
+  if np.sqrt(((my_transformed-pca_transformed)**2).sum()) > 1e-3:
     raise ValueError("Transformation badly defined")
 
   my_transformed = pca.transform(centered_data)[:, 0]
-  print(my_transformed)
 
   f = uproot.recreate(f"pca_out_{proc}.root")
-  f["pca"] = {"pdf_weight_var": (my_transformed + 1)*means, "central_pdf_weight": means, "mass": mass, "weight": weight}
+  f["pca"] = {
+    "pdf_weight_var": (my_transformed + 1)*means_axis1,
+     "central_pdf_weight": means_axis1, "mass": mass, "weight": weight
+  }
   f.close()
 
-  print(my_transformed.mean(axis=0))
-  print(my_transformed.std(axis=0))
-
-  break

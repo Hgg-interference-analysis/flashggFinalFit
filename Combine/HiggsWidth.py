@@ -1,8 +1,7 @@
 from HiggsAnalysis.CombinedLimit.PhysicsModel import *
 
- 
 ### This is the base python class to study the Higgs width
- 
+
 class Higgswidth(PhysicsModel):
     def __init__(self):
         self.mHRange = []
@@ -18,7 +17,7 @@ class Higgswidth(PhysicsModel):
     def setModelBuilder(self, modelBuilder):
         PhysicsModel.setModelBuilder(self,modelBuilder)
         self.modelBuilder.doModelBOnly = False
- 
+
     def getYieldScale(self,bin,process):
         #print(process)
         if "ggh" in process: return "ggH_si_func"
@@ -51,14 +50,25 @@ class Higgswidth(PhysicsModel):
 
         self.modelBuilder.doVar("gamma[1,0,50]")
         self.modelBuilder.doVar("mu[1,0.5,1.5]")
+        self.modelBuilder.doVar("mu_V[1,0.5,1.5]")
 
-        self.modelBuilder.factory_( "expr::ggH_s_func(\"(@1 - sqrt(@0*@1))\", gamma, mu)")
-        self.modelBuilder.factory_(  "expr::ggH_si_func(\"sqrt(@0*@1)\", gamma, mu)")
+        self.modelBuilder.factory_( "expr::ggH_s_func(\"@1 - sqrt(@0*@1)\", gamma,mu)")
+        self.modelBuilder.factory_(  "expr::ggH_si_func(\"sqrt(@0*@1)\", gamma,mu)")
+        self.modelBuilder.factory_( "expr::qqH_s_func(\"@0\", mu_V)")
+        self.modelBuilder.factory_( "expr::vh_s_func(\"@0\", mu_V)")
+
+        self.modelBuilder.doSet("POI","gamma,mu,mu_V")
+
+        '''
+        self.modelBuilder.doVar("mu[1,0.5,1.5]")
+
+        self.modelBuilder.factory_( "expr::ggH_s_func(\"0*@0\", mu)")
+        self.modelBuilder.factory_(  "expr::ggH_si_func(\"@0\", mu)")
 
         self.modelBuilder.factory_( "expr::qqH_s_func(\"@0\", mu)")
         self.modelBuilder.factory_( "expr::vh_s_func(\"@0\", mu)")
 
-        self.modelBuilder.doSet("POI","gamma,mu")
-
+        self.modelBuilder.doSet("POI","mu")
+        '''
 
 higgswidth = Higgswidth()

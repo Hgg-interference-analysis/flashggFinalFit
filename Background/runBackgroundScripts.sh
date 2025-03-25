@@ -3,6 +3,8 @@
 #bash variables
 FILE="";
 EXT="auto"; #extensiom for all folders and files created by this script
+ADDINT=0
+INTFILE="none"
 PROCS="ggh"
 CATS="UntaggedTag_0,UntaggedTag_1,UntaggedTag_2,UntaggedTag_3,UntaggedTag_4,VBFTag_0,VBFTag_1,VBFTag_2,VHHadronicTag,VHTightTag,VHLooseTag"
 SCALES="HighR9EE,LowR9EE,HighR9EB,LowR9EB"
@@ -30,6 +32,7 @@ echo "-i|--inputFile)"
 echo "-p|--procs ) (default= ggh)"
 echo "-f|--flashggCats) (default= UntaggedTag_0,UntaggedTag_1,UntaggedTag_2,UntaggedTag_3,UntaggedTag_4,VBFTag_0,VBFTag_1,VBFTag_2,TTHHadronicTag,TTHLeptonicTag,VHHadronicTag,VHTightTag,VHLooseTag,VHEtTag)"
 echo "--ext)  (default= auto)"
+echo "--addInt) (default= false) "
 echo "--catOffset) "
 echo "--fTestOnly) "
 echo "--pseudoDataOnly) "
@@ -49,8 +52,9 @@ echo "--queue) queue to submit jobs to (specific to batch))"
 #------------------------------ parsing
 
 
+
 # options may be followed by one colon to indicate they have a required argument
-if ! options=$(getopt -u -o hi:p:f: -l help,inputFile:,procs:,flashggCats:,ext:,catOffset:,fTestOnly,pseudoDataOnly,bkgPlotsOnly,pseudoDataDat:,sigFile:,seed:,intLumi:,year:,unblind,isData,batch:,queue: -- "$@")
+if ! options=$(getopt -u -o hi:p:f: -l help,inputFile:,procs:,flashggCats:,ext:,addInt:,intFile:,catOffset:,fTestOnly,pseudoDataOnly,bkgPlotsOnly,pseudoDataDat:,sigFile:,seed:,intLumi:,year:,unblind,isData,batch:,queue: -- "$@")
 then
 # something went wrong, getopt will put out an error message for us
 exit 1
@@ -65,6 +69,8 @@ case $1 in
 -p|--procs) PROCS=$2; shift ;;
 -f|--flashggCats) CATS=$2; shift ;;
 --ext) EXT=$2; echo "test" ; shift ;;
+--addInt) ADDINT=$2; shift ;;
+--intFile) INTFILE=$2; shift ;;
 --catOffset) CATOFFSET=$2; shift ;;
 --fTestOnly) FTESTONLY=1; echo "ftest" ;;
 --pseudoDataOnly) PSEUDODATAONLY=1;;
@@ -85,6 +91,11 @@ case $1 in
 esac
 shift
 done
+
+
+echo - ------------------------------------------ ADDINT: $ADDINT
+
+echo - ------------------------------------------ INTFILE: $INTFILE
 
 
 OUTDIR="outdir_${EXT}"
@@ -120,6 +131,8 @@ if [[ $BATCH == "HTCONDOR" ]]; then
     echo "[INFO] Batch = $BATCH, Using QUEUE = $QUEUE"
 fi
 
+
+
 ####################################################
 ################## PSEUDODATAONLY ###################
 ####################################################
@@ -140,30 +153,52 @@ FILE=$OUTDIR/pseudoData/pseudoWS.root
 
 fi
 
+
+
+
+
+
+
+
+
 ####################################################
 ################## F-TEST ###################
 ####################################################
 if [ $FTESTONLY == 1 ]; then
 
-echo "--------------------------------------"
-echo "Running Background F-Test"
-echo "-->Greate background model"
-echo "--------------------------------------"
-if [ $UNBLIND == 1 ]; then
-OPT=" --unblind"
-fi
-if [ $ISDATA == 0 ]; then
-FILE=$OUTDIR/pseudoData/pseudoWS.root
-fi
-if [ $ISDATA == 1 ]; then
-OPT=" --isData 1"
+  echo "--------------------------------------"
+  echo "Running Background F-Test"
+  echo "-->Greate background model"
+  echo "--------------------------------------"
+  if [ $UNBLIND == 1 ]; then
+  OPT=" --unblind"
+  fi
+  if [ $ISDATA == 0 ]; then
+  FILE=$OUTDIR/pseudoData/pseudoWS.root
+  fi
+  if [ $ISDATA == 1 ]; then
+  OPT=" --isData 1"
+  fi
+
+  echo ADDINT: $ADDINT
+
+  if [ $ADDINT == 0 ]; then
+  echo ADDINT: 0
+    echo " ./bin/fTest -i $FILE --saveMultiPdf $OUTDIR/CMS-HGG_multipdf_${EXT}_${CATS}_$YEAR.root  -D $OUTDIR/bkgfTest$DATAEXT -f $CATS $OPT --year $YEAR --catOffset $CATOFFSET --addInt $ADDINT"
+./bin/fTest -i $FILE --saveMultiPdf $OUTDIR/CMS-HGG_multipdf_${EXT}_${CATS}_$YEAR.root  -D $OUTDIR/bkgfTest$DATAEXT -f $CATS $OPT --year $YEAR --catOffset $CATOFFSET --addInt $ADDINT --intFile $INTFILE
+
+  fi
+  if [ $ADDINT == 1 ]; then
+  echo ADDINT: 1
+    echo " ./bin/fTest -i $FILE --saveMultiPdf $OUTDIR/CMS-HGG_multipdf_${EXT}_withsummedint_${CATS}_$YEAR.root  -D $OUTDIR/bkgfTest$DATAEXT -f $CATS $OPT --year $YEAR --catOffset $CATOFFSET --addInt $ADDINT --intFile $INTFILE"
+./bin/fTest -i $FILE --saveMultiPdf $OUTDIR/CMS-HGG_multipdf_${EXT}_withsummedint_${CATS}_$YEAR.root  -D $OUTDIR/bkgfTest$DATAEXT -f $CATS $OPT --year $YEAR --catOffset $CATOFFSET --addInt $ADDINT --intFile $INTFILE
+
+  fi
+
+  OPT=""
 fi
 
-echo " ./bin/fTest -i $FILE --saveMultiPdf $OUTDIR/CMS-HGG_multipdf_$EXT_$CATS.root  -D $OUTDIR/bkgfTest$DATAEXT -f $CATS $OPT --year $YEAR --catOffset $CATOFFSET"
-./bin/fTest -i $FILE --saveMultiPdf $OUTDIR/CMS-HGG_multipdf_$EXT_$CATS.root  -D $OUTDIR/bkgfTest$DATAEXT -f $CATS $OPT --year $YEAR --catOffset $CATOFFSET
 
-OPT=""
-fi
 
 ####################################################
 ################### BKGPLOTS ###################

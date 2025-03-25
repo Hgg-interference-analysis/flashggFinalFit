@@ -58,10 +58,13 @@ def get_options():
   parser.add_option('--beamspotWidthData', dest='beamspotWidthData', default=3.4, type='float', help="Width of beamspot in data [cm]")
   parser.add_option('--beamspotWidthMC', dest='beamspotWidthMC', default=5.14, type='float', help="Width of beamspot in MC [cm]")
   parser.add_option('--MHPolyOrder', dest='MHPolyOrder', default=1, type='int', help="Order of polynomial for MH dependence")
-  parser.add_option('--nBins', dest='nBins', default=80, type='int', help="Number of bins for fit")
+  parser.add_option('--nBins', dest='nBins', default=160, type='int', help="Number of bins for fit")
   # Minimizer options
   parser.add_option('--minimizerMethod', dest='minimizerMethod', default='TNC', help="(Scipy) Minimizer method")
   parser.add_option('--minimizerTolerance', dest='minimizerTolerance', default=1e-8, type='float', help="(Scipy) Minimizer toleranve")
+  parser.add_option('--minMassForIntegration', dest='minMassForIntegration', default=110, help="Min. mass when summing entries")
+  parser.add_option('--maxMassForIntegration', dest='maxMassForIntegration', default=135, help="Max. mass when summing entries")
+
   return parser.parse_args()
 (opt,args) = get_options()
 
@@ -93,7 +96,10 @@ nominalWSFileName = glob.glob("%s/output*%s*.root"%(opt.inputWSDir,MHNominal))[0
 f0 = ROOT.TFile(nominalWSFileName,"read")
 inputWS0 = f0.Get(inputWSName__)
 xvar = inputWS0.var(opt.xvar)
-xvarFit = xvar.Clone()
+
+for m in opt.massPoints.split(","):
+  xvar.setRange(f"intrange_{m}", opt.minMassForIntegration + float(m) - 125, opt.maxMassForIntegration + float(m) - 125)
+
 dZ = inputWS0.var("dZ")
 aset = ROOT.RooArgSet(xvar,dZ)
 f0.Close()
@@ -162,6 +168,11 @@ for mp in opt.massPoints.split(","):
   proc_to_data = procToData(procRVFit)
   if "INT" in proc_to_data: proc_to_data = "ggh"
   d = reduceDataset(inputWS.data("%s_%s_%s_%s"%(proc_to_data,mp,sqrts__,catRVFit)),aset)
+  _xvar = inputWS.var(opt.xvar)
+
+  for m in opt.massPoints.split(","):
+    _xvar.setRange(f"intrange_{m}", opt.minMassForIntegration + float(m) - 125, opt.maxMassForIntegration + float(m) - 125)
+
   nominalDatasets[mp] = d.Clone()
   if opt.skipVertexScenarioSplit: datasetRVForFit[mp] = d
   else: datasetRVForFit[mp] = splitRVWV(d,aset,mode="RV")
@@ -272,22 +283,27 @@ if not opt.skipBeamspotReweigh:
   # Datasets for fit
   for mp,d in datasetRVForFit.items(): 
     if 'ALT' in d and mp!=MHNominal: continue
-    drw = beamspotReweigh(datasetRVForFit[mp],opt.beamspotWidthData,opt.beamspotWidthMC,xvar,dZ,_x=opt.xvar)
+    print(f"pre beamspot reweight sumEntries - M{mp} - range largo:", datasetRVForFit[mp].sumEntries())
+    print(f"pre beamspot reweight sumEntries - M{mp} - range stretto:", datasetRVForFit[mp].sumEntries("1", f"intrange_{mp}"))
+
+    drw = beamspotReweigh(datasetRVForFit[mp],opt.beamspotWidthData,opt.beamspotWidthMC,xvar,dZ,_x=opt.xvar,mh=mp)
     datasetRVForFit[mp] = drw
   if not opt.skipVertexScenarioSplit:
     for mp,d in datasetWVForFit.items(): 
       if mp!=MHNominal: continue
-      drw = beamspotReweigh(datasetWVForFit[mp],opt.beamspotWidthData,opt.beamspotWidthMC,xvar,dZ,_x=opt.xvar)
+      drw = beamspotReweigh(datasetWVForFit[mp],opt.beamspotWidthData,opt.beamspotWidthMC,xvar,dZ,_x=opt.xvar,mh=mp)
       datasetWVForFit[mp] = drw
       print(" --> Beamspot reweigh: RV(sumEntries) = %.6f, WV(sumEntries) = %.6f"%(datasetRVForFit[mp].sumEntries(),datasetWVForFit[mp].sumEntries()))
   else:
     for mp,d in datasetRVForFit.items():
       if mp!=MHNominal: continue
       print(" --> Beamspot reweigh: sumEntries = %.6f"%datasetRVForFit[mp].sumEntries())
+      print(f"post beamspot reweight sumEntries - M{mp} - range largo:", datasetRVForFit[mp].sumEntries())
+      print(f"post beamspot reweight sumEntries - M{mp} - range stretto:", datasetRVForFit[mp].sumEntries("1", f"intrange_{mp}"))
 
   # Nominal datasets for saving to output Workspace: preserve norm for eff * acc calculation
   for mp,d in nominalDatasets.items():
-    drw = beamspotReweigh(d,opt.beamspotWidthData,opt.beamspotWidthMC,xvar,dZ,_x=opt.xvar,preserveNorm=True)
+    drw = beamspotReweigh(d,opt.beamspotWidthData,opt.beamspotWidthMC,xvar,dZ,_x=opt.xvar,preserveNorm=True,mh=mp)
     nominalDatasets[mp] = drw
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -313,8 +329,11 @@ print("scripts/signalFit.py line 305")
 # FIT: simultaneous signal fit (ssf)
 ssfMap = od()
 name = "Total" if opt.skipVertexScenarioSplit else "RV"
-ssfRV = SimultaneousFit(name,opt.proc,opt.cat,datasetRVForFit,xvar.Clone(),MH,MHLow,MHHigh,opt.massPoints,opt.nBins,opt.MHPolyOrder,opt.minimizerMethod,opt.minimizerTolerance)
-if opt.useDCB: ssfRV.buildDCBplusGaussian()
+
+print("MHPOLYORDER: ", opt.MHPolyOrder)
+
+ssfRV = SimultaneousFit(name,opt.proc,opt.cat,datasetRVForFit,xvar,MH,MHLow,MHHigh,opt.massPoints,opt.nBins,opt.MHPolyOrder,opt.minimizerMethod,opt.minimizerTolerance,opt.minMassForIntegration, opt.maxMassForIntegration,opt.year)
+if opt.useDCB: ssfRV.buildDCB() #ssfRV.buildDCBplusGaussian()
 else: ssfRV.buildNGaussians(nRV)
 ssfRV.runFit()
 ssfRV.buildSplines()
@@ -322,7 +341,7 @@ ssfMap[name] = ssfRV
 
 if not opt.skipVertexScenarioSplit:
   name = "WV"
-  ssfWV = SimultaneousFit(name,opt.proc,opt.cat,datasetWVForFit,xvar.Clone(),MH,MHLow,MHHigh,opt.massPoints,opt.nBins,opt.MHPolyOrder,opt.minimizerMethod,opt.minimizerTolerance)
+  ssfWV = SimultaneousFit(name,opt.proc,opt.cat,datasetWVForFit,xvar,MH,MHLow,MHHigh,opt.massPoints,opt.nBins,opt.MHPolyOrder,opt.minimizerMethod,opt.minimizerTolerance,opt.minMassForIntegration, opt.maxMassForIntegration.opt.year)
   if opt.useDCB: ssfWV.buildDCBplusGaussian()
   else: ssfWV.buildNGaussians(nWV)
   ssfWV.runFit()
@@ -354,10 +373,10 @@ if opt.doPlots:
   if not os.path.isdir(outdir): os.system("mkdir -p %s"%outdir)
   if os.path.exists("/afs/cern.ch"): os.system("cp /afs/cern.ch/user/g/gpetrucc/php/index.php "+outdir)
   if opt.skipVertexScenarioSplit:
-    plotPdfComponents(ssfRV,_outdir=outdir,_extension="total_",_proc=procRVFit,_cat=catRVFit) 
+    plotPdfComponents(ssfRV,_outdir=outdir,_extension="total_",_proc=procRVFit,_cat=catRVFit,minMassForIntegration=opt.minMassForIntegration, maxMassForIntegration=opt.maxMassForIntegration)
   if not opt.skipVertexScenarioSplit:
-    plotPdfComponents(ssfRV,_outdir=outdir,_extension="RV_",_proc=procRVFit,_cat=catRVFit) 
-    plotPdfComponents(ssfWV,_outdir=outdir,_extension="WV_",_proc=procWVFit,_cat=catRVFit) 
+    plotPdfComponents(ssfRV,_outdir=outdir,_extension="RV_",_proc=procRVFit,_cat=catRVFit,minMassForIntegration=opt.minMassForIntegration, maxMassForIntegration=opt.maxMassForIntegration)
+    plotPdfComponents(ssfWV,_outdir=outdir,_extension="WV_",_proc=procWVFit,_cat=catRVFit,minMassForIntegration=opt.minMassForIntegration, maxMassForIntegration=opt.maxMassForIntegration)
   # Plot interpolation
-  plotInterpolation(fm,_outdir=outdir) 
+  plotInterpolation(fm,_outdir=outdir,minMassForIntegration=opt.minMassForIntegration, maxMassForIntegration=opt.maxMassForIntegration)
   plotSplines(fm,_outdir=outdir,_nominalMass=MHNominal, splinesToPlot=['xs','br','ea'])

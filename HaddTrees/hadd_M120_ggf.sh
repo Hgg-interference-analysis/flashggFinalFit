@@ -1,11 +1,4 @@
 source /cvmfs/cms.cern.ch/cmsset_default.sh
-
-
-cd /afs/cern.ch/work/r/rgargiul/CMSSW_14_1_0_pre4/src/flashggFinalFit/HaddSignalAndInterference/
-
-cmsenv
-
-cd /eos/user/r/rgargiul/amrutha_ws/signal_trees/untaggedTag_UL18_sigMC_vbfcat/GGF_120
-
-hadd -f output_GluGluHToGG_M120_TuneCP5_13TeV-amcatnloFXFX-pythia8.root output_GluGluHToGG_M120_TuneCP5_13TeV-amcatnloFXFX-pythia8_*.root
-
+cd /eos/cms/store/group/phys_higgs/cmshgg/rgargiul/trees/trees_sig_UL${1}/
+mkdir hadded
+hadd -f hadded/output_GluGluHToGG_M120_TuneCP5_13TeV-amcatnloFXFX-pythia8.root output_GluGluHToGG_M120_TuneCP5_13TeV-amcatnloFXFX-pythia8_*.root

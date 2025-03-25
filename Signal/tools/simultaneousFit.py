@@ -7,6 +7,7 @@ import scipy.stats
 from collections import OrderedDict as od
 from array import array
 import ctypes
+from commonTools import *
 
 # Parameter lookup table for initialisation
 # So far defined up to MHPolyOrder=2
@@ -15,19 +16,19 @@ pLUT['DCB'] = od()
 pLUT['DCB']['dm_p0'] = [0.1,-2.5,2.5]
 pLUT['DCB']['dm_p1'] = [0.0,-0.1,0.1]
 pLUT['DCB']['dm_p2'] = [0.0,-0.001,0.001]
-pLUT['DCB']['sigma_p0'] = [2.,1.,20.]
+pLUT['DCB']['sigma_p0'] = [2.,0.5,20.]
 pLUT['DCB']['sigma_p1'] = [0.0,-0.1,0.1]
 pLUT['DCB']['sigma_p2'] = [0.0,-0.001,0.001]
-pLUT['DCB']['n1_p0'] = [20.,1.00001,500]
+pLUT['DCB']['n1_p0'] = [20.,1.00001,50]
 pLUT['DCB']['n1_p1'] = [0.0,-0.1,0.1]
 pLUT['DCB']['n1_p2'] = [0.0,-0.001,0.001]
-pLUT['DCB']['n2_p0'] = [20.,1.00001,500]
+pLUT['DCB']['n2_p0'] = [20.,1.00001,50]
 pLUT['DCB']['n2_p1'] = [0.0,-0.1,0.1]
 pLUT['DCB']['n2_p2'] = [0.0,-0.001,0.001]
-pLUT['DCB']['a1_p0'] = [1.,1.,10.]
+pLUT['DCB']['a1_p0'] = [1.,0.1,4.]
 pLUT['DCB']['a1_p1'] = [0.0,-0.1,0.1]
 pLUT['DCB']['a1_p2'] = [0.0,-0.001,0.001]
-pLUT['DCB']['a2_p0'] = [1.,1.,20.]
+pLUT['DCB']['a2_p0'] = [1.,0.1,4.]
 pLUT['DCB']['a2_p1'] = [0.0,-0.1,0.1]
 pLUT['DCB']['a2_p2'] = [0.0,-0.001,0.001]
 pLUT['Gaussian_wdcb'] = od()
@@ -69,13 +70,13 @@ def poisson_interval(x,eSumW2,level=0.68):
   return eLo, eHi
 
 # Function to calc chi2 for binned fit given pdf, RooDataHist and xvar as inputs
-#def calcChi2(x,pdf,d,errorType="Sumw2",_verbose=False,fitRange=[100,180]):
-#def calcChi2(x,pdf,d,errorType="Poisson",_verbose=False,fitRange=[110,140]):
-def calcChi2(x,pdf,d,errorType="Poisson",_verbose=False,fitRange=[113,128]):
+def calcChi2(x,pdf,d,errorType="Poisson",_verbose=False, fitRange=[100,180], mh=125):
+  ROOT.RooMsgService.instance().setGlobalKillBelow(ROOT.RooFit.WARNING)
 
   k = 0. # number of non empty bins (for calc degrees of freedom)
+
   normFactor = d.sumEntries()
-  
+
   # Using numpy and poisson error
   bins, nPdf, nData, eDataSumW2 = [], [],[],[]
   for i in range(d.numEntries()):
@@ -141,7 +142,7 @@ def nChi2Addition(X,ssf,verbose=False):
   C = len(X)-1 # number of fit params (-1 for MH)
   for mp,d in ssf.DataHists.items():
     ssf.MH.setVal(int(mp))
-    chi2, k  = calcChi2(ssf.xvar,ssf.Pdfs['final'],d,_verbose=verbose)
+    chi2, k  = calcChi2(ssf.xvar,ssf.Pdfs['final'],d,_verbose=verbose, fitRange=[float(mp)-7, float(mp) + 3], mh=mp)
     chi2sum += chi2
     K += k
   # N degrees of freedom
@@ -149,10 +150,10 @@ def nChi2Addition(X,ssf,verbose=False):
   ssf.setNdof(ndof)
   return chi2sum
 
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~   
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 class SimultaneousFit:
   # Constructor
-  def __init__(self,_name,_proc,_cat,_datasetForFit,_xvar,_MH,_MHLow,_MHHigh,_massPoints,_nBins,_MHPolyOrder,_minimizerMethod,_minimizerTolerance,verbose=True):
+  def __init__(self,_name,_proc,_cat,_datasetForFit,_xvar,_MH,_MHLow,_MHHigh,_massPoints,_nBins,_MHPolyOrder,_minimizerMethod,_minimizerTolerance,minMassForIntegration=110,maxMassForIntegration=135,year=2018,verbose=True):
     self.name = _name
     self.proc = _proc
     self.cat = _cat
@@ -167,6 +168,10 @@ class SimultaneousFit:
     self.minimizerMethod = _minimizerMethod
     self.minimizerTolerance = _minimizerTolerance
     self.verbose = verbose
+    self.minMassForIntegration = minMassForIntegration
+    self.maxMassForIntegration = maxMassForIntegration
+    self.year = year
+
     # Prepare vars
     self.MH.setConstant(False)
     self.MH.setVal(125)
@@ -194,7 +199,7 @@ class SimultaneousFit:
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~   
   # Function for setting N degrees of freedom
   def setNdof(self,_ndof): self.Ndof = _ndof  
-  
+
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~   
   # Function to extract param bounds
   def extractXBounds(self):
@@ -212,24 +217,30 @@ class SimultaneousFit:
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~   
   # Function to normalise datasets and convert to RooDataHists for calc chi2
   def prepareDataHists(self):
+    ROOT.RooMsgService.instance().setGlobalKillBelow(ROOT.RooFit.WARNING)
+
     # Loop over datasets and normalise to 1
     for k,d in self.datasetForFit.items():
-      sumw = d.sumEntries()
+      sumw = d.sumEntries("1", f"intrange_{k}")
+
+      minMassForIntegration = self.minMassForIntegration + float(k) - 125
+      maxMassForIntegration = self.maxMassForIntegration + float(k) - 125
       drw = d.emptyClone()
       self.Vars['weight'] = ROOT.RooRealVar("weight","weight",-10000,10000)
       for i in range(0,d.numEntries()):
+        if d.get(i).getRealValue(self.xvar.GetName()) < minMassForIntegration or d.get(i).getRealValue(self.xvar.GetName()) > maxMassForIntegration: continue
         self.xvar.setVal(d.get(i).getRealValue(self.xvar.GetName()))
         self.Vars['weight'].setVal((1/sumw)*d.weight())
         drw.add(ROOT.RooArgSet(self.xvar,self.Vars['weight']),self.Vars['weight'].getVal())
       # Convert to RooDataHist
       self.DataHists[k] = ROOT.RooDataHist("%s_hist"%d.GetName(),"%s_hist"%d.GetName(),ROOT.RooArgSet(self.xvar),drw)
-  
+
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~   
   def buildDCBplusGaussian(self,_recursive=True):
 
     # DCB
     # Define polynominal functions (in dMH)
-    for f in ['dm','sigma','n1','n2','a1','a2']: 
+    for f in ['dm','sigma','n1','n2','a1','a2']:
       k = "%s_dcb"%f
       self.Varlists[k] = ROOT.RooArgList("%s_coeffs"%k)
       # Create coeff for polynominal of order MHPolyOrder: y = a+bx+cx^2+...
@@ -274,7 +285,36 @@ class SimultaneousFit:
     for pdf in ['dcb','gaus']: _pdfs.add(self.Pdfs[pdf])
     _coeffs.add(self.Coeffs['frac_constrained'])
     self.Pdfs['final'] = ROOT.RooAddPdf("%s_%s"%(self.proc,self.cat),"%s_%s"%(self.proc,self.cat),_pdfs,_coeffs,_recursive)
-    
+
+
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~   
+  def buildDCB(self,_recursive=False):
+
+    if 1: # self.proc == "GG2HPLUSINT: # or self.cat == "VBFTag_0" or (self.proc == "vh" and self.cat=="UntaggedTag_0") or (self.proc == "vh" and self.cat=="UntaggedTag_8"):
+      init_par = json.load(open(f"{swd__}/fits_{self.proc}_{self.year}.json", "r"))
+      for par in ['dm', "sigma", "n1", "n2", "a1", "a2"]: pLUT['DCB'][f"{par}_p0"][0] = init_par[self.cat][par]
+
+    # DCB
+    # Define polynominal functions (in dMH)
+    for f in ['dm','sigma','n1','n2','a1','a2']:
+      k = "%s_dcb"%f
+      self.Varlists[k] = ROOT.RooArgList("%s_coeffs"%k)
+      print("self.MHPolyOrder", self.MHPolyOrder)
+      # Create coeff for polynominal of order MHPolyOrder: y = a+bx+cx^2+...
+      for po in range(0,self.MHPolyOrder+1):
+        print(f, " ", pLUT['DCB']["%s_p%s"%(f,po)][0])
+        self.Vars['%s_p%g'%(k,po)] = ROOT.RooRealVar("%s_p%g"%(k,po),"%s_p%g"%(k,po),pLUT['DCB']["%s_p%s"%(f,po)][0],pLUT['DCB']["%s_p%s"%(f,po)][1],pLUT['DCB']["%s_p%s"%(f,po)][2])
+        self.Varlists[k].add( self.Vars['%s_p%g'%(k,po)] )
+        if f == "a2" or f == "n2": self.Vars['%s_p%g'%(k,po)].setConstant(True)
+      # Define polynominal
+      self.Polynomials[k] = ROOT.RooPolyVar(k,k,self.dMH,self.Varlists[k])
+    # Mean function
+    self.Polynomials['mean_dcb'] = ROOT.RooFormulaVar("mean_dcb","mean_dcb","(@0+@1)",ROOT.RooArgList(self.MH,self.Polynomials['dm_dcb']))
+    # Build DCB
+    self.Pdfs['dcb'] = ROOT.RooDoubleCBFast("dcb","dcb",self.xvar,self.Polynomials['mean_dcb'],self.Polynomials['sigma_dcb'],self.Polynomials['a1_dcb'],self.Polynomials['n1_dcb'],self.Polynomials['a2_dcb'],self.Polynomials['n2_dcb'])
+
+    self.Pdfs['final'] = self.Pdfs['dcb']
+
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~   
   def buildNGaussians(self,nGaussians,_recursive=True):
 
@@ -339,7 +379,6 @@ class SimultaneousFit:
     self.Chi2 = self.getChi2()
     # Print parameter pre-fit values
     if self.verbose: self.printFitParameters(title="Pre-fit")
-
     # Run fit
     if self.verbose: print(" --> (%s) Running fit"%self.name)
     self.FitResult = minimize(nChi2Addition,x0,args=self,bounds=xbounds,method=self.minimizerMethod)

@@ -100,7 +100,7 @@ def factoryType(d,s):
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Function to extract yield variations for signal row in dataFrame
-def calcSystYields(_nominalDataName,_nominalDataContents,_inputWS,_systFactoryTypes,skipCOWCorr=True,proc="ggH",year='2016',ignoreWarnings=False):
+def calcSystYields(_nominalDataName,_nominalDataContents,_inputWS,_systFactoryTypes,skipCOWCorr=True,proc="ggH",year='2016',ignoreWarnings=False,minMassForIntegration=110,maxMassForIntegration=135):
 
   errMessage = "WARNING" if ignoreWarnings else "ERROR"
   errString = "Using nominal yield" if ignoreWarnings else ""
@@ -120,7 +120,11 @@ def calcSystYields(_nominalDataName,_nominalDataContents,_inputWS,_systFactoryTy
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   # For systematics stored as weights (a_w,s_w) in nominal RooDataSets
   # Extract nominal dataset
+
   data_nominal = _inputWS.data(_nominalDataName)
+  print("_nominalDataName: ", _nominalDataName)
+  print("_nominalDataContents: ", _nominalDataContents)
+
   # CHECK: is weight in contents: if not then add syst to systToSkip container + print warning
   systToSkip = []
   for s,f in _systFactoryTypes.items():
@@ -129,6 +133,8 @@ def calcSystYields(_nominalDataName,_nominalDataContents,_inputWS,_systFactoryTy
       if( "%sUp01sigma"%s not in _nominalDataContents )|( "%sDown01sigma"%s not in _nominalDataContents ):
         systToSkip.append(s)
         print(" --> [%s] Weight in nominal RooDataSet for systematic (%s) does not exist for (%s,%s). %s"%(errMessage,s,proc,year,errString))
+        print("nominalDataContents: ", _nominalDataContents)
+        print("missing: ", f"{s}Up01sigma", " or ", f"{s}Down01sigma")
         if not ignoreWarnings: sys.exit(1) 
     else:
       if s not in _nominalDataContents:
@@ -139,6 +145,9 @@ def calcSystYields(_nominalDataName,_nominalDataContents,_inputWS,_systFactoryTy
   # Loop over events and extract reweighted yields
   for i in range(0,data_nominal.numEntries()):
     p = data_nominal.get(i)
+    massvar = p.getRealValue("CMS_hgg_mass")
+    if massvar < minMassForIntegration or massvar > maxMassForIntegration: continue
+
     w = data_nominal.weight()
     f_COWCorr = p.getRealValue("centralObjectWeight") if "centralObjectWeight" in _nominalDataContents else 1.
     f_NNLOPS = abs(p.getRealValue("NNLOPSweight")) if "NNLOPSweight" in _nominalDataContents else 1.

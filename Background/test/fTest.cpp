@@ -62,13 +62,17 @@ RooRealVar *intLumi_ = new RooRealVar("IntLumi","hacked int lumi", 1000.);
 
 TRandom3 *RandomGen = new TRandom3();
 
-RooAbsPdf* getPdf(PdfModelBuilder &pdfsModel, string type, int order, const char* ext=""){
-  
-  if (type=="Bernstein") return pdfsModel.getBernstein(Form("%s_bern%d",ext,order),order); 
-  else if (type=="Chebychev") return pdfsModel.getChebychev(Form("%s_cheb%d",ext,order),order); 
-  else if (type=="Exponential") return pdfsModel.getExponentialSingle(Form("%s_exp%d",ext,order),order); 
-  else if (type=="PowerLaw") return pdfsModel.getPowerLawSingle(Form("%s_pow%d",ext,order),order); 
-  else if (type=="Laurent") return pdfsModel.getLaurentSeries(Form("%s_lau%d",ext,order),order); 
+RooAbsPdf* getPdf(PdfModelBuilder &pdfsModel, string type, int order, const char* _ext="", bool addInt=false){
+
+  string ext(_ext);
+
+  if (addInt) ext += string("_withsummedint_");
+
+  if (type=="Bernstein") return pdfsModel.getBernstein(Form("%s_bern%d",ext.c_str(),order),order);
+  else if (type=="Chebychev") return pdfsModel.getChebychev(Form("%s_cheb%d",ext.c_str(),order),order);
+  else if (type=="Exponential") return pdfsModel.getExponentialSingle(Form("%s_exp%d",ext.c_str(),order),order);
+  else if (type=="PowerLaw") return pdfsModel.getPowerLawSingle(Form("%s_pow%d",ext.c_str(),order),order);
+  else if (type=="Laurent") return pdfsModel.getLaurentSeries(Form("%s_lau%d",ext.c_str(),order),order);
   else {
     cerr << "[ERROR] -- getPdf() -- type " << type << " not recognised." << endl;
     return NULL;
@@ -450,7 +454,6 @@ void plot(RooRealVar *mass, RooMultiPdf *pdfs, RooCategory *catIndex, RooDataSet
   hdatasub->Draw("PESAME");
   // enf extra bit for ratio plot///
   canv->SaveAs(Form("%s.root",name.c_str()));
-  canv->SaveAs(Form("%s.root",name.c_str()));
   canv->SaveAs(Form("%s.png",name.c_str()));
   catIndex->setIndex(currentIndex);
   delete canv;
@@ -608,10 +611,10 @@ int main(int argc, char* argv[]){
   int ncats;
   int singleCategory;
   int catOffset;
-  string datfile;
+  string datfile, intFile;
   string outDir;
   string outfilename;
-  bool is2011=false;
+  bool is2011=false, addInt=false;
   bool verbose=false;
   bool saveMultiPdf=false;
   int isFlashgg_ =1;
@@ -626,6 +629,8 @@ int main(int argc, char* argv[]){
     ("ncats,c", po::value<int>(&ncats)->default_value(5),                                       "Number of categories")
     ("singleCat", po::value<int>(&singleCategory)->default_value(-1),                           "Run A single Category")
     ("datfile,d", po::value<string>(&datfile)->default_value("dat/fTest.dat"),                  "Right results to datfile for BiasStudy")
+    ("addInt", po::value<bool>(&addInt)->default_value(0),                                   "Add interference?")
+    ("intFile", po::value<string>(&intFile)->default_value(""),                               "interferenceFile")
     ("outDir,D", po::value<string>(&outDir)->default_value("plots/fTest"),                      "Out directory for plots")
     ("saveMultiPdf", po::value<string>(&outfilename),         					"Save a MultiPdf model with the appropriate pdfs")
     ("runFtestCheckWithToys", 									"When running the F-test, use toys to calculate pvals (and make plots) ")
@@ -672,6 +677,9 @@ int main(int argc, char* argv[]){
   TFile *outputfile;
   RooWorkspace *outputws;
 
+  outDir += year_.c_str();
+  if (addInt) outDir += "withsummedint";
+
   if (saveMultiPdf){
 	outputfile = new TFile(outfilename.c_str(),"RECREATE");
 	outputws = new RooWorkspace(); outputws->SetName("multipdf");
@@ -690,6 +698,8 @@ int main(int argc, char* argv[]){
 		inWS = (RooWorkspace*)inFile->Get("cms_hgg_workspace");//FIXME
 	}
 	if (verbose) std::cout << "[INFO]  inWS open " << inWS << std::endl;
+
+
 	if (saveMultiPdf){
 		transferMacros(inFile,outputfile);
 
@@ -746,9 +756,11 @@ int main(int argc, char* argv[]){
 	std::string ext = is2011 ? "7TeV" : "8TeV";
         if( isFlashgg_ ){
           if( year_ == "all" ){ ext = "13TeV"; }
-          //else{ ext = "13TeV"; } //FIXME 
           else{ ext = Form("%s_13TeV",year_.c_str()); }
         }
+
+  cout << "ext: " << ext << endl;
+
 	//if (isFlashgg_) ext = "13TeV";
         //FIXME trying to remove duplicated names for 2016+2017 combination
 	//if (isFlashgg_) ext = Form("13TeV_%d",year_);
@@ -767,7 +779,8 @@ int main(int argc, char* argv[]){
 		RooDataSet *dataFull;
 		RooDataSet *dataFull0;
 		if (isData_) {
-    dataFull = (RooDataSet*)inWS->data(Form("Data_13TeV_%s",catname.c_str()));
+      dataFull = (RooDataSet*)inWS->data(Form("Data_13TeV_%s",catname.c_str()));
+
     /*dataFull= (RooDataSet*) dataFull0->emptyClone();
     for (int i =0 ; i < dataFull0->numEntries() ; i++){
     double m = dataFull0->get(i)->getRealValue("CMS_hgg_mass");
@@ -779,10 +792,11 @@ int main(int argc, char* argv[]){
     }
     dataFull->add(*dataFull0->get(),1.0);
     }*/
-		if (verbose) std::cout << "[INFO] opened data for  "  << Form("Data_%s",catname.c_str()) <<" - " << dataFull <<std::endl;
+  		if (verbose) std::cout << "[INFO] opened data for  "  << Form("Data_%s",catname.c_str()) <<" - " << dataFull <<std::endl;
     }
-		else 
+		else
     {dataFull = (RooDataSet*)inWS->data(Form("data_mass_%s",catname.c_str()));
+
 		if (verbose) std::cout << "[INFO] opened data for  "  << Form("data_mass_%s",catname.c_str()) <<" - " << dataFull <<std::endl;
     }
 
@@ -805,6 +819,19 @@ int main(int argc, char* argv[]){
 			//RooDataSet *data = (RooDataSet*)dataFull;
 		}
 		RooDataHist thisdataBinned(thisdataBinned_name.c_str(),"data",*mass,*dataFull);
+
+    if (addInt) {
+        TFile *intRootFile = TFile::Open(intFile.c_str());
+        RooWorkspace *intWS;
+        intWS = (RooWorkspace*)intRootFile->Get("tagsDumper/cms_hgg_13TeV");
+        RooDataSet *intFull = (RooDataSet*)intWS->data(Form("ggh_125_13TeV_%s",catname.c_str()));
+        string intDataBinned_name= Form("roohist_int_mass_cat%d",cat);
+        RooDataHist intDataBinned(intDataBinned_name.c_str(),"int",*mass,*intFull);
+        intDataBinned.Print();
+        double intLumiValue = intLumi_->getVal();
+        thisdataBinned.add(intDataBinned, "1", intLumiValue);
+    }
+
 		data = (RooDataSet*)&thisdataBinned;
 
 		RooArgList storedPdfs("store");
@@ -829,7 +856,7 @@ int main(int argc, char* argv[]){
 			int counter =0;
 			//	while (prob<0.05){
 			while (prob<0.05 && order < 7){ //FIXME
-				RooAbsPdf *bkgPdf = getPdf(pdfsModel,*funcType,order,Form("ftest_pdf_%d_%s",(cat+catOffset),ext.c_str()));
+				RooAbsPdf *bkgPdf = getPdf(pdfsModel,*funcType,order,Form("ftest_pdf_%d_%s",(cat+catOffset),ext.c_str()), addInt);
 				if (!bkgPdf){
 					// assume this order is not allowed
 					order++;
@@ -887,7 +914,7 @@ int main(int argc, char* argv[]){
 				std::cout << "[INFO] Upper end Threshold for highest order function " << upperEnvThreshold <<std::endl;
 
 				while (prob<upperEnvThreshold){
-					RooAbsPdf *bkgPdf = getPdf(pdfsModel,*funcType,order,Form("env_pdf_%d_%s",(cat+catOffset),ext.c_str()));
+					RooAbsPdf *bkgPdf = getPdf(pdfsModel,*funcType,order,Form("env_pdf_%d_%s",(cat+catOffset),ext.c_str()), addInt);
 					if (!bkgPdf ){
 						// assume this order is not allowed
 						if (order >6) { std::cout << " [WARNING] could not add ] " << std::endl; break ;}
@@ -910,7 +937,7 @@ int main(int argc, char* argv[]){
 						cache_pdf=prev_pdf;
 
 						// Calculate goodness of fit for the thing to be included (will use toys for lowstats)!
-						double gofProb =0; 
+						double gofProb =0;
 						plot(mass,bkgPdf,data,Form("%s/%s%d_cat%d.root",outDir.c_str(),funcType->c_str(),order,(cat+catOffset)),flashggCats_,fitStatus,&gofProb);
             plot(mass,bkgPdf,data,Form("%s/%s%d_cat%d.root",outDir.c_str(),funcType->c_str(),order,(cat+catOffset)),flashggCats_,fitStatus,&gofProb);
 
@@ -952,7 +979,6 @@ int main(int argc, char* argv[]){
 
 		if (saveMultiPdf){
 
-
 			// Put selectedModels into a MultiPdf
 			string catindexname;
 			string catname;
@@ -987,7 +1013,7 @@ int main(int argc, char* argv[]){
 			outputws->import(catIndex);
 			outputws->import(dataBinned);
 			outputws->import(*data);
-			plot(mass,pdf,&catIndex,data,Form("%s/multipdf_%s.root",outDir.c_str(),catname.c_str()),flashggCats_,cat,bestFitPdfIndex);
+			plot(mass,pdf,&catIndex,data,Form("%s/multipdf_%s_%s.root",outDir.c_str(),catname.c_str(), year_.c_str()),flashggCats_,cat,bestFitPdfIndex);
 		}
 
 		}

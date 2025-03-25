@@ -112,7 +112,7 @@ def submitFiles(_opts):
     for cidx in range(_opts['nCats']):
       c = _opts['cats'].split(",")[cidx]
       _subfile = "%s/%s_%s"%(_jobdir,_executable,c)
-      cmdLine = "bash %s.sh"%_subfile
+      cmdLine = "bash %s.sh > %s.log 2>&1 & "%(_subfile,_subfile)
       run(cmdLine)
     print("  --> Finished running files")
 

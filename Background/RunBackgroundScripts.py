@@ -13,6 +13,8 @@ def get_options():
   # Take inputs from a config file
   parser.add_option('--inputConfig', dest='inputConfig', default='', help="Name of input config file (if specified will ignore other options)")
   parser.add_option('--mode', dest='mode', default='std', help="Which script to run. Options: ['fTestOnly','fTestParallel','bkgPlotsOnly']")
+  parser.add_option('--addInt', dest='addInt', default='0', help="")
+  parser.add_option('--intFile', dest='intFile', default='none', help="")
   parser.add_option('--jobOpts', dest='jobOpts', default='', help="Additional options to add to job submission. For Condor separate individual options with a colon (specify all within quotes e.g. \"option_xyz = abc+option_123 = 456\")")
   parser.add_option('--printOnly', dest='printOnly', default=False, action="store_true", help="Dry run: print submission files only") 
   return parser.parse_args()
@@ -36,7 +38,7 @@ if opt.inputConfig != '':
     _cfg = backgroundScriptCfg
 
     #Extract options
-    options['dataFile']     = "%s/allData.root"%_cfg['inputWSDir']
+    options['dataFile']     = "%s/allData%s.root"%(_cfg['inputWSDir'], _cfg['year'])
     options['cats']         = _cfg['cats']
     options['catOffset']    = _cfg['catOffset']
     options['ext']          = _cfg['ext']
@@ -51,7 +53,8 @@ if opt.inputConfig != '':
     options['mode']                    = opt.mode
     options['jobOpts']                 = opt.jobOpts
     options['printOnly']               = opt.printOnly
-
+    options['addInt'] = opt.addInt
+    options['intFile'] = opt.intFile
     # Delete copy of file
     os.system("rm config.py")
 
@@ -70,6 +73,7 @@ if options['mode'] not in ['fTestParallel']:
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # If cat == auto: extract list of categories from datafile
+print(options['dataFile'])
 if options['cats'] == 'auto':
   options['cats'] = extractListOfCatsFromData(options['dataFile'])
 options['nCats'] = len(options['cats'].split(","))

@@ -6,6 +6,8 @@ __pycache__/
 # C extensions
 *.so
 
+**/outdir*/
+
 # Distribution / packaging
 .Python
 build/
@@ -200,3 +202,5 @@ Signal/outdir_*
 Background/outdir_*
 
 */jobs*
+
+/*log.*

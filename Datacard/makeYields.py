@@ -42,6 +42,8 @@ def get_options():
   # For systematics:
   parser.add_option('--doSystematics', dest='doSystematics', default=False, action="store_true", help="Include systematics calculations and add to datacard")
   parser.add_option('--ignore-warnings', dest='ignore_warnings', default=False, action="store_true", help="Skip errors for missing systematics. Instead output warning message")
+  parser.add_option('--minMassForIntegration', dest='minMassForIntegration', default=110, help="Min. mass when summing entries")
+  parser.add_option('--maxMassForIntegration', dest='maxMassForIntegration', default=135, help="Max. mass when summing entries")
   return parser.parse_args()
 (opt,args) = get_options()
 
@@ -96,7 +98,7 @@ for year in years:
     if opt.mergeYears: _cat = opt.cat
     else: _cat = "%s_%s"%(opt.cat,year)
 
-    # Input flashgg ws 
+    # Input flashgg ws
     _inputWSFile = glob.glob("%s/*M%s*_%s.root"%(inputWSDirMap[year],opt.mass,proc))[0]
     _nominalDataName = "%s_%s_%s_%s"%(_proc_s0,opt.mass,sqrts__,opt.cat)
 
@@ -111,7 +113,7 @@ for year in years:
       f.Close()
     if skipProc: continue
 
-    # Input model ws 
+    # Input model ws
     if opt.cat == "NOTAG": _modelWSFile, _model = '-', '-'
     else:
       _modelWSFile = "%s/CMS-HGG_sigfit_%s_%s.root"%(opt.sigModelWSDir,opt.sigModelExt,_cat)
@@ -209,9 +211,11 @@ for ir,r in data[data['type']=='sig'].iterrows():
 
   # Open input WS file and extract workspace
   f_in = ROOT.TFile(r.inputWSFile)
+  print(f_in)
   inputWS = f_in.Get(inputWSName__)
   # Extract nominal RooDataSet and yield
   rdata_nominal = inputWS.data(r.nominalDataName)
+  rdata_nominal.Print()
 
   # Calculate nominal yield, sumw2 and add COW correction for in acceptance events
   contents = ""
@@ -219,11 +223,17 @@ for ir,r in data[data['type']=='sig'].iterrows():
   sumw2 = 0
   for i in range(0,rdata_nominal.numEntries()):
     p = rdata_nominal.get(i)
+    massvar = p.getRealValue("CMS_hgg_mass")
+
+    if i == 0: contents = p.contentsString()
+    if i == 0: print(p.contentsString())
+
+    if massvar < opt.minMassForIntegration or massvar > opt.maxMassForIntegration: continue
     w = rdata_nominal.weight()
     y += w
     sumw2 += w*w
     # Extract contents from first event
-    if i == 0: contents = p.contentsString()
+
     if not opt.skipCOWCorr:
       f_COWCorr = p.getRealValue("centralObjectWeight") if "centralObjectWeight" in contents else 1.
       f_NNLOPS = abs(p.getRealValue("NNLOPSweight")) if "NNLOPSweight" in contents else 1.
@@ -240,7 +250,7 @@ for ir,r in data[data['type']=='sig'].iterrows():
     # For experimental systematics: skip NOTAG events
     if "NOTAG" not in r['cat']:
       # Skip centralObjectWeight correction as concerns events in acceptance
-      experimentalSystYields = calcSystYields(r['nominalDataName'],contents,inputWS,experimentalFactoryType,skipCOWCorr=True,proc=r['proc'],year=r['year'],ignoreWarnings=opt.ignore_warnings)
+      experimentalSystYields = calcSystYields(r['nominalDataName'],contents,inputWS,experimentalFactoryType,skipCOWCorr=True,proc=r['proc'],year=r['year'],ignoreWarnings=opt.ignore_warnings,minMassForIntegration=opt.minMassForIntegration,maxMassForIntegration=opt.maxMassForIntegration)
       for s,f in experimentalFactoryType.items():
         if f in ['a_w','a_h']: 
           for direction in ['up','down']: 
@@ -249,7 +259,7 @@ for ir,r in data[data['type']=='sig'].iterrows():
           data.at[ir,"%s_yield"%s] = experimentalSystYields[s]
 
     # For theoretical systematics:
-    theorySystYields = calcSystYields(r['nominalDataName'],contents,inputWS,theoryFactoryType,skipCOWCorr=opt.skipCOWCorr,proc=r['proc'],year=r['year'],ignoreWarnings=opt.ignore_warnings)
+    theorySystYields = calcSystYields(r['nominalDataName'],contents,inputWS,theoryFactoryType,skipCOWCorr=opt.skipCOWCorr,proc=r['proc'],year=r['year'],ignoreWarnings=opt.ignore_warnings,minMassForIntegration=opt.minMassForIntegration,maxMassForIntegration=opt.maxMassForIntegration)
     for s,f in theoryFactoryType.items():
       if f in ['a_w','a_h']: 
         for direction in ['up','down']: 

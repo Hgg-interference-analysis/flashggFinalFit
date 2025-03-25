@@ -185,7 +185,7 @@ def plotFTestResults(ssfs,_opt,_outdir="./",_extension='',_proc='',_cat='',_mass
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Signal fit plots
 # Plot final pdf at MH = 125 (with data) + individual Pdf components
-def plotPdfComponents(ssf,_outdir='./',_extension='',_proc='',_cat=''):
+def plotPdfComponents(ssf,_outdir='./',_extension='',_proc='',_cat='',minMassForIntegration=110,maxMassForIntegration=135):
   canv = ROOT.TCanvas()
   canv.SetLeftMargin(0.15)
   ssf.MH.setVal(125)
@@ -194,7 +194,7 @@ def plotPdfComponents(ssf,_outdir='./',_extension='',_proc='',_cat=''):
   hists = od()
   hmax, hmin = 0, 0
   # Total pdf histogram
-  hists['final'] = ssf.Pdfs['final'].createHistogram("h_final%s"%_extension,ssf.xvar,ROOT.RooFit.Binning(1600))
+  hists['final'] = ssf.Pdfs['final'].createHistogram("h_final%s"%_extension,ssf.xvar,ROOT.RooFit.Binning(ssf.nBins))
   hists['final'].SetLineWidth(2)
   hists['final'].SetLineColor(1)
   hists['final'].SetTitle("")
@@ -203,7 +203,7 @@ def plotPdfComponents(ssf,_outdir='./',_extension='',_proc='',_cat=''):
   if hists['final'].GetMaximum()>hmax: hmax = hists['final'].GetMaximum()
   if hists['final'].GetMinimum()<hmin: hmin = hists['final'].GetMinimum()
   #hists['final'].GetXaxis().SetRangeUser(115,140)
-  hists['final'].GetXaxis().SetRangeUser(100,150)
+  hists['final'].GetXaxis().SetRangeUser(minMassForIntegration,maxMassForIntegration)
   # Create data histogram
   hists['data'] = ssf.xvar.createHistogram("h_data%s"%_extension,ROOT.RooFit.Binning(ssf.nBins))
   ssf.DataHists['125'].fillHistogram(hists['data'],ROOT.RooArgList(ssf.xvar))
@@ -211,8 +211,8 @@ def plotPdfComponents(ssf,_outdir='./',_extension='',_proc='',_cat=''):
   hists['data'].GetXaxis().SetTitle("m_{#gamma#gamma} [GeV]")
   hists['data'].SetMinimum(0)
   #hists['data'].GetXaxis().SetRangeUser(115,140)
-  hists['data'].GetXaxis().SetRangeUser(100,150)
-  hists['data'].Scale(float(ssf.nBins)/1600)
+  hists['data'].GetXaxis().SetRangeUser(minMassForIntegration,maxMassForIntegration)
+  hists['data'].Scale(1/hists['data'].Integral())
   hists['data'].SetMarkerStyle(20)
   hists['data'].SetMarkerColor(1)
   hists['data'].SetLineColor(1)
@@ -244,7 +244,7 @@ def plotPdfComponents(ssf,_outdir='./',_extension='',_proc='',_cat=''):
       hists[k].Draw("HIST SAME")
       pdfItr += 1
   # Add legend
-  leg = ROOT.TLegend(0.58,0.6,0.86,0.8)
+  leg = ROOT.TLegend(0.2,0.68,0.5,0.88)
   leg.SetFillStyle(0)
   leg.SetLineColor(0)
   leg.SetTextSize(0.04)
@@ -270,14 +270,21 @@ def plotPdfComponents(ssf,_outdir='./',_extension='',_proc='',_cat=''):
   lat1.SetTextAlign(11)
   lat1.SetNDC()
   lat1.SetTextSize(0.035)
-  lat1.DrawLatex(0.65,0.3,"#chi^{2}/n(dof) = %.4f"%(ssf.getChi2()/ssf.Ndof))
+  lat1.DrawLatex(0.22,0.58,"#chi^{2}/n(dof) = %.4f"%(ssf.getChi2()/ssf.Ndof))
+  lat1 = ROOT.TLatex()
+  lat1.SetTextFont(42)
+  lat1.SetTextAlign(11)
+  lat1.SetNDC()
+  lat1.SetTextSize(0.035)
+  lat1.DrawLatex(0.22,0.48,"#fit prob = %.4f"%(ROOT.TMath.Prob(ssf.getChi2(), int(ssf.Ndof))))
 
   canv.Update()
   canv.SaveAs("%s/%sshape_pdf_components_%s_%s.png"%(_outdir,_extension,_proc,_cat))
   canv.SaveAs("%s/%sshape_pdf_components_%s_%s.pdf"%(_outdir,_extension,_proc,_cat))
+  canv.SaveAs("%s/%sshape_pdf_components_%s_%s.root"%(_outdir,_extension,_proc,_cat))
 
 # Plot final pdf for each mass point
-def plotInterpolation(_finalModel,_outdir='./',_massPoints='120,121,122,123,124,125,126,127,128,129,130'):
+def plotInterpolation(_finalModel,_outdir='./',_massPoints='120,121,122,123,124,125,126,127,128,129,130',minMassForIntegration=110,maxMassForIntegration=135):
 
   canv = ROOT.TCanvas()
   colors = [ROOT.kRed,ROOT.kCyan,ROOT.kBlue+1,ROOT.kOrange-3,ROOT.kMagenta-7,ROOT.kGreen+1,ROOT.kYellow-7,ROOT.kViolet+6,ROOT.kTeal+1,ROOT.kPink+1,ROOT.kAzure+1]
@@ -290,9 +297,11 @@ def plotInterpolation(_finalModel,_outdir='./',_massPoints='120,121,122,123,124,
   hists = od()
   hmax = 0.0001 
   for mp in _massPoints.split(","):
+    print(mp)
     _finalModel.MH.setVal(int(mp))
     hists[mp] = _finalModel.Pdfs['final'].createHistogram("h_%s"%mp,_finalModel.xvar,ROOT.RooFit.Binning(3200))
     norm = _finalModel.Functions['final_normThisLumi'].getVal()
+
     if norm == 0.: hists[mp].Scale(0.)
     else: hists[mp].Scale((norm*3200)/(hists[mp].Integral()*_finalModel.xvar.getBins()))
     if mp in _finalModel.Datasets:
@@ -308,6 +317,7 @@ def plotInterpolation(_finalModel,_outdir='./',_massPoints='120,121,122,123,124,
     if mp in _finalModel.Datasets:
       dh[mp] = ROOT.RooDataHist("dh_%s"%mp,"dh_%s"%mp,ROOT.RooArgSet(_finalModel.xvar),_finalModel.Datasets[mp])
       hists['data_%s'%mp] = _finalModel.xvar.createHistogram("h_data_%s"%mp,ROOT.RooFit.Binning(_finalModel.xvar.getBins()))
+      hists['data_%s'%mp].GetXaxis().SetRangeUser(minMassForIntegration + float(mp) - 125, maxMassForIntegration + float(mp) - 125)
       dh[mp].fillHistogram(hists['data_%s'%mp],ROOT.RooArgList(_finalModel.xvar))
       if norm == 0.: hists['data_%s'%mp].Scale(0)
       else: hists['data_%s'%mp].Scale(norm/(hists['data_%s'%mp].Integral()))
@@ -321,7 +331,7 @@ def plotInterpolation(_finalModel,_outdir='./',_massPoints='120,121,122,123,124,
   haxes.GetYaxis().SetTitle("Events / %.2f GeV"%((_finalModel.xvar.getMax()-_finalModel.xvar.getMin())/_finalModel.xvar.getBins()))
   haxes.SetMinimum(0)
   haxes.SetMaximum(hmax*1.2)
-  haxes.GetXaxis().SetRangeUser(100,150)
+  haxes.GetXaxis().SetRangeUser(105,140)
   haxes.Draw("AXIS")
 
   # Draw rest of histograms
@@ -342,7 +352,7 @@ def plotInterpolation(_finalModel,_outdir='./',_massPoints='120,121,122,123,124,
   canv.Update()
   canv.SaveAs("%s/%s_model_vs_mH.png"%(_outdir,_finalModel.name))
   canv.SaveAs("%s/%s_model_vs_mH.pdf"%(_outdir,_finalModel.name))
-
+  canv.SaveAs("%s/%s_model_vs_mH.root"%(_outdir,_finalModel.name))
 
 
 
@@ -444,7 +454,7 @@ def plotSignalModel(_hists,_opt,_outdir=".",offset=0.02):
   h_axes.GetYaxis().SetTitleSize(0.05)
   h_axes.GetYaxis().SetTitleOffset(1.2)
   h_axes.Draw()
-    
+
   # Extract effSigma
   effSigma = getEffSigma(_hists['pdf'])
   effSigma_low, effSigma_high = _hists['pdf'].GetMean()-effSigma, _hists['pdf'].GetMean()+effSigma

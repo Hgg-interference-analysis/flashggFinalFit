@@ -48,7 +48,12 @@ print(" --> Loading per category dataframes into single dataframe")
 skipCats = []
 if opt.pruneCat: skipCats = opt.pruneCat.split(",")
 extStr = "_%s"%opt.ext if opt.ext != '' else ''
+print("./yields%s/*.pkl"%extStr)
+
 pkl_files = glob.glob("./yields%s/*.pkl"%extStr)
+
+print(pkl_files)
+
 pkl_files.sort() # Categories in alphabetical order
 data = pd.DataFrame()
 for f_pkl_name in pkl_files:
