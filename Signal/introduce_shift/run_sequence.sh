@@ -37,14 +37,14 @@ if [[ -z $YEAR || -z $inwsDir || -z $ext ]]; then
 fi
 
 procs=("GG2H" "VBF" "vh")
-cats=("UntaggedTag_0" "UntaggedTag_1" "UntaggedTag_2" "UntaggedTag_3" "UntaggedTag_4" "UntaggedTag_5" "UntaggedTag_6" "UntaggedTag_7" "UntaggedTag_8" "UntaggedTag_9" "VBFTag_0")
+#cats=("UntaggedTag_0" "UntaggedTag_1" "UntaggedTag_2" "UntaggedTag_3" "UntaggedTag_4" "VBFTag_0")
 #procs=("GG2H" "VBF")
-#cats=("UntaggedTag_0" "UntaggedTag_1" "UntaggedTag_2" "UntaggedTag_3" "UntaggedTag_4" "UntaggedTag_5" "UntaggedTag_6" "UntaggedTag_7" "UntaggedTag_8" "UntaggedTag_9")
+cats=("UntaggedTag_0" "UntaggedTag_1" "UntaggedTag_2" "UntaggedTag_3" "UntaggedTag_4" "UntaggedTag_5" "UntaggedTag_6" "UntaggedTag_7" "UntaggedTag_8" "UntaggedTag_9" "VBFTag_0")
     for proc in ${procs[*]}; do
         for cat in ${cats[*]}; do
         inputWS=${inwsDir}/CMS-HGG_sigfit_${ext}_${proc}_${YEAR}_${cat}.root
         echo "Running: python3 introduce_shift.py --inputWS $inputWS --ext $ext --cat $cat --proc $proc"
-        python3 introduce_shift.py --inputWS $inputWS --cat ${cat} --proc ${proc} --ext ${ext}
+        python3 introduce_shift.py --inputWS $inputWS --cat ${cat} --proc ${proc} --ext ${ext} --year ${YEAR}
         done
     done
 
