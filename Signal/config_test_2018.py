@@ -4,15 +4,15 @@ _year = '2018'
 
 signalScriptCfg = {
     # Setup
-    'inputWSDir': '/eos/user/a/amkrishn/hggWidth/mcNtuples/condor_output/2018/UL18_sigMC_newFNUF_VBFTag0/hadded_trees/ws_sig',
+    'inputWSDir': '/eos/cms/store/group/phys_higgs/cmshgg/rgargiul/ws_2018',
     #'procs':'auto',
     'procs':'GG2H,VBF,vh',
     'cats':'auto',
-    'ext':'newFNUF_VBFTag0_%s'%_year,
+    'ext':'final%s'%_year,
     'analysis':'example', # To specify which replacement dataset mapping (defined in ./python/replacementMap.py)
     'year':'%s'%_year, # Use 'combined' if merging all years: not recommended
-    #'massPoints':'120,125,130',
-    'massPoints':'125',
+    'massPoints':'120,125,130',
+    #'massPoints':'125',
     'xvar': 'CMS_hgg_mass',
     #'outdir': '/eos/user/a/amkrishn/www/hggWidth/finalfit/sig_el9/postVBFcat', #condor does not transfer output files to eos
 

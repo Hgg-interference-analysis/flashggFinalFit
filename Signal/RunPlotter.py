@@ -33,6 +33,8 @@ def get_options():
 ROOT.gROOT.SetBatch(True)
 ROOT.gStyle.SetOptStat(0)
 
+outputWSObjectTitle__ = "dcb"
+
 # Extract input files: for first file extract xvar
 inputFiles = od()
 citr = 0
@@ -82,6 +84,7 @@ hists['data'] = xvar.createHistogram("h_data", ROOT.RooFit.Binning(opt.nBins))
 for cat,f in inputFiles.items():
 
   #if opt.cats in ["all"]:
+  #  cat = cat.split("_")[0] 
   cat = cat.split("_")[0] + "_" + cat.split("_")[1]
   print(" --> Processing %s: file = %s"%(cat,f))
 

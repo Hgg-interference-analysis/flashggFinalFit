@@ -60,9 +60,10 @@ def get_options():
   parser.add_option('--beamspotWidthData', dest='beamspotWidthData', default=3.4, type='float', help="Width of beamspot in data [cm]")
   parser.add_option('--beamspotWidthMC', dest='beamspotWidthMC', default=5.14, type='float', help="Width of beamspot in MC [cm]")
   parser.add_option('--MHPolyOrder', dest='MHPolyOrder', default=1, type='int', help="Order of polynomial for MH dependence")
-  parser.add_option('--nBins', dest='nBins', default=80, type='int', help="Number of bins for fit")
+  parser.add_option('--nBins', dest='nBins', default=160, type='int', help="Number of bins for fit")
   # Minimizer options
   parser.add_option('--minimizerMethod', dest='minimizerMethod', default='TNC', help="(Scipy) Minimizer method")
+  #parser.add_option('--minimizerMethod', dest='minimizerMethod', default='L-BFGS-B', help="(Scipy) Minimizer method")
   parser.add_option('--minimizerTolerance', dest='minimizerTolerance', default=1e-8, type='float', help="(Scipy) Minimizer toleranve")
   return parser.parse_args()
 (opt,args) = get_options()
@@ -302,7 +303,8 @@ if not opt.useDCB:
     nWV = int(ngauss["%s__%s"%(procWVFit,catWVFit)]['nWV'])
     print(" --> Fitting function: convolution of nGaussians (RV=%g,WV=%g)"%(nRV,nWV))
 else:
-  print(" --> Fitting function: DCB + 1 Gaussian")
+  #print(" --> Fitting function: DCB + 1 Gaussian")
+  print(" --> Fitting function: DCB")
 
 if opt.doVoigtian:
   print(" --> Will add natural Higgs width as parameter in Pdf (Gaussians -> Voigtians)")
@@ -314,7 +316,7 @@ print("scripts/signalFit.py line 305")
 # FIT: simultaneous signal fit (ssf)
 ssfMap = od()
 name = "Total" if opt.skipVertexScenarioSplit else "RV"
-ssfRV = SimultaneousFit(name,opt.proc,opt.cat,datasetRVForFit,xvar.Clone(),MH,MHLow,MHHigh,opt.massPoints,opt.nBins,opt.MHPolyOrder,opt.minimizerMethod,opt.minimizerTolerance)
+ssfRV = SimultaneousFit(name,opt.proc,opt.cat,datasetRVForFit,xvar.Clone(),MH,MHLow,MHHigh,opt.massPoints,opt.nBins,opt.MHPolyOrder,opt.minimizerMethod,opt.minimizerTolerance,opt.year)
 #if opt.useDCB: ssfRV.buildDCBplusGaussian()
 if opt.useDCB: ssfRV.buildDCB()
 else: ssfRV.buildNGaussians(nRV)
@@ -325,7 +327,8 @@ ssfMap[name] = ssfRV
 if not opt.skipVertexScenarioSplit:
   name = "WV"
   ssfWV = SimultaneousFit(name,opt.proc,opt.cat,datasetWVForFit,xvar.Clone(),MH,MHLow,MHHigh,opt.massPoints,opt.nBins,opt.MHPolyOrder,opt.minimizerMethod,opt.minimizerTolerance)
-  if opt.useDCB: ssfWV.buildDCBplusGaussian()
+  #if opt.useDCB: ssfWV.buildDCBplusGaussian()
+  if opt.useDCB: ssfWV.buildDCB()
   else: ssfWV.buildNGaussians(nWV)
   ssfWV.runFit()
   ssfWV.buildSplines()

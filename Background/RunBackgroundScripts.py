@@ -36,7 +36,7 @@ if opt.inputConfig != '':
     _cfg = backgroundScriptCfg
 
     #Extract options
-    options['dataFile']     = "%s/allData.root"%_cfg['inputWSDir']
+    options['dataFile']     = "%s/allData%s.root"%(_cfg['inputWSDir'],_cfg['year'])
     options['cats']         = _cfg['cats']
     options['catOffset']    = _cfg['catOffset']
     options['ext']          = _cfg['ext']
@@ -53,8 +53,7 @@ if opt.inputConfig != '':
     options['printOnly']               = opt.printOnly
 
     # Delete copy of file
-    os.system("rm config.py")
-
+    os.system("rm config.py")  
   else:
     print("[ERROR] %s config file does not exist. Leaving..."%opt.inputConfig)
     leave()

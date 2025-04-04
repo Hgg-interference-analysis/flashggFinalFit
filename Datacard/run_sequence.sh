@@ -1,17 +1,19 @@
 #ext=`date +%F` 
-ext='newShiftwithAllYears'
-
+#ext='final2018'
+YEAR=2018
 STEP=0
 usage(){
     echo "Script to run yields and datacard making. Yields need to be done before running datacards"
     echo "options:"
     
     echo "-h|--help) "
+    echo "-y|--year) "
     echo "-s|--step) "
     echo "-d|--dryRun) "
 }
 # options may be followed by one colon to indicate they have a required argument
-if ! options=$(getopt -u -o s:hd -l help,step:,dryRun -- "$@")
+#if ! options=$(getopt -u -o s:hd -l help,step:,dryRun -- "$@")
+if ! options=$(getopt -u -o s:y:dh -l help,step:,year:,dryRun -- "$@")
 then
 # something went wrong, getopt will put out an error message for us
 exit 1
@@ -21,6 +23,7 @@ while [ $# -gt 0 ]
 do
 case $1 in
 -h|--help) usage; exit 0;;
+-y|--year) YEAR=$2; shift ;;
 -s|--step) STEP=$2; shift ;;
 -d|--dryRun) DR=$2; shift ;;
 (--) shift; break;;
@@ -38,19 +41,17 @@ fi
 smprocs=("GG2H" "VBF" "vh")
 #smprocs=("GG2H" "VBF")
 smprocs_csv=$(IFS=, ; echo "${smprocs[*]}")
-
+ext='final'$YEAR
 if [[ $STEP == "yields" ]]; then
     # for mu-simple: exclude ALT processes
-    python3 RunYields.py --cats "auto" --inputWSDirMap 2018=/eos/user/a/amkrishn/hggWidth/mcNtuples/condor_output/2018/UL18_sigMC_newFNUF_VBFTag0/hadded_trees/ws_sig --procs $smprocs_csv --doSystematics --skipZeroes --ext ${ext} --batch local --queue cmsan ${DROPT}
+    python3 RunYields.py --cats "auto" --inputWSDirMap $YEAR=/eos/cms/store/group/phys_higgs/cmshgg/rgargiul/ws_$YEAR --procs $smprocs_csv --doSystematics --skipZeroes --ext ${ext} --batch local --queue cmsan ${DROPT}
     
-elif [[ $STEP == "datacards" ]]; then
-    for fit in "xsec"
-    do
-	echo "making datacards for all years together for type of fit: $fit"
-        python3 makeDatacard.py --years 2018 --doSystematics --ext ${ext}_${fit}  --output "Datacard_${fit}"
-	python3 cleanDatacard.py --datacard "Datacard_${fit}" --factor 2 --removeDoubleSided
-	mv "Datacard_${fit}_cleaned.txt" "Datacard_${fit}.txt"
-    done
+elif [[ $STEP == "datacard" ]]; then
+    echo "making datacard for ext: $ext"
+    python3 makeDatacard.py --years $YEAR --doSystematics --ext ${ext}
+    python3 cleanDatacard.py --datacard Datacard.txt --factor 2 --removeDoubleSided
+    mv "Datacard_cleaned.txt" "Datacard_${ext}.txt"
+    
 elif [[ $STEP == "links" ]]; then
     cd Models 
     rm signal background 

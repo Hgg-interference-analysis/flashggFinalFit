@@ -35,8 +35,8 @@ if [[ $DR ]]; then
 fi
 
 #fits=("latest_cat0" "latest_cat1" "latest_cat2" "latest_cat3" "latest_cat4" "latest_cat5" "latest_cat6" "latest_cat7" "latest_cat8" "latest_cat9" "latest_cat10")
-fits=("newShiftwithAllYears")
-mode=("mu_inclusive")
+fits=("fullRun2")
+mode=("mu")
 
 if [[ $STEP == "t2w" ]]; then
     for fit in ${fits[*]}
@@ -53,35 +53,29 @@ elif [[ $STEP == "fit" ]]; then
     done
 
 elif [[ $STEP == "redefPOI" ]]; then
-    for fit in ${fits[*]}
-    do
-	directory="runFits${fit}_${mode}"
-	file_stat="condor_profile1D_statonly_${fit}_r.sh"
-	file_syst="condor_profile1D_syst_${fit}_r.sh"
-	if [ ! -d "$directory" ]; then
-	    echo "Error: Directory $directory does not exist."
-	    exit 1
-	fi
-
-	search_string="-t -1 -P r"
-        replace_string="--expectSignal 1 -t -1 --redefineSignalPOIs GammaH,r -P GammaH"
-	
-	for file in "$directory/$file_stat" "$directory/$file_syst"
+	for fit in ${fits[*]}
 	do
-
-	    if [ -f "$file" ]; then
-		echo "Processing $file..."
-		sed -i.bak "s|$search_string|$replace_string|g" "$file"
-	    else
-		echo "Warning: File $file does not exist, skipping."
-	    fi
-	done
-
+	    directory="runFits${fit}_${mode}"
+        for r in "r_ggH" "r_VBF" "r_VH"; do
+	        if [ ! -d "$directory" ]; then
+		    echo "Error: Directory $directory does not exist."
+		    exit 1
+	        fi
+	        search_string="-P ${r}"
+		replace_string="--redefineSignalPOIs GammaH,${r} -P GammaH"
+	        for file in $directory/*.sh; do
+                    if [ -f "$file" ]; then
+		        echo "Processing $file..."
+		        sed -i.bak "s|$search_string|$replace_string|g" "$file"
+		    else
+		        echo "Warning: File $file does not exist, skipping."
+		    fi
+	        done
+	    done
         cd "$directory" || { echo "Failed to navigate to $directory"; exit 1; }
-
-        # Find and submit all .sub files
+        ## Find and submit all .sub files
         for sub_file in *.sub; do
-            if [ -f "$sub_file" ]; then
+        if [ -f "$sub_file" ]; then
                 echo "Submitting job: $sub_file"
                 condor_submit "$sub_file"
                 if [ $? -ne 0 ]; then
@@ -91,11 +85,11 @@ elif [[ $STEP == "redefPOI" ]]; then
                 echo "No .sub files found in $directory"
             fi
         done
-	# Return to the parent directory
-        cd - > /dev/null || exit 1
-	
-    done
+        # Return to the parent directory
+            cd - > /dev/null || exit 1
     
+    done	
+
 elif [[ $STEP == "collect" ]]; then
     for obs in " " # " --doObserved "
     do

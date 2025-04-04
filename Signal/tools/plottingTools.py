@@ -202,7 +202,8 @@ def plotPdfComponents(ssf,_outdir='./',_extension='',_proc='',_cat=''):
   if hists['final'].GetMaximum()>hmax: hmax = hists['final'].GetMaximum()
   if hists['final'].GetMinimum()<hmin: hmin = hists['final'].GetMinimum()
   #hists['final'].GetXaxis().SetRangeUser(115,140)
-  hists['final'].GetXaxis().SetRangeUser(100,150)
+  #hists['final'].GetXaxis().SetRangeUser(100,150)
+  hists['final'].GetXaxis().SetRangeUser(110,140)
   # Create data histogram
   hists['data'] = ssf.xvar.createHistogram("h_data%s"%_extension,ROOT.RooFit.Binning(ssf.nBins))
   ssf.DataHists['125'].fillHistogram(hists['data'],ROOT.RooArgList(ssf.xvar))
@@ -210,7 +211,8 @@ def plotPdfComponents(ssf,_outdir='./',_extension='',_proc='',_cat=''):
   hists['data'].GetXaxis().SetTitle("m_{#gamma#gamma} [GeV]")
   hists['data'].SetMinimum(0)
   #hists['data'].GetXaxis().SetRangeUser(115,140)
-  hists['data'].GetXaxis().SetRangeUser(100,150)
+  #hists['data'].GetXaxis().SetRangeUser(100,150)
+  hists['data'].GetXaxis().SetRangeUser(110,140)
   hists['data'].Scale(float(ssf.nBins)/1600)
   hists['data'].SetMarkerStyle(20)
   hists['data'].SetMarkerColor(1)
@@ -274,6 +276,7 @@ def plotPdfComponents(ssf,_outdir='./',_extension='',_proc='',_cat=''):
   canv.Update()
   canv.SaveAs("%s/%sshape_pdf_components_%s_%s.png"%(_outdir,_extension,_proc,_cat))
   canv.SaveAs("%s/%sshape_pdf_components_%s_%s.pdf"%(_outdir,_extension,_proc,_cat))
+  canv.SaveAs("%s/%sshape_pdf_components_%s_%s.root"%(_outdir,_extension,_proc,_cat))
 
 # Plot final pdf for each mass point
 def plotInterpolation(_finalModel,_outdir='./',_massPoints='120,121,122,123,124,125,126,127,128,129,130'):
@@ -341,6 +344,7 @@ def plotInterpolation(_finalModel,_outdir='./',_massPoints='120,121,122,123,124,
   canv.Update()
   canv.SaveAs("%s/%s_model_vs_mH.png"%(_outdir,_finalModel.name))
   canv.SaveAs("%s/%s_model_vs_mH.pdf"%(_outdir,_finalModel.name))
+  canv.SaveAs("%s/%s_model_vs_mH.root"%(_outdir,_finalModel.name))
 
 
 
@@ -577,3 +581,4 @@ def plotSignalModel(_hists,_opt,_outdir=".",offset=0.02):
   # Save canvas
   canv.SaveAs("%s/smodel_%s%s%s.pdf"%(_outdir,catExt,procExt,yearExt))
   canv.SaveAs("%s/smodel_%s%s%s.png"%(_outdir,catExt,procExt,yearExt))
+  canv.SaveAs("%s/smodel_%s%s%s.root"%(_outdir,catExt,procExt,yearExt))

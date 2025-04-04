@@ -31,7 +31,6 @@ print(f"opt.exts: {opt.exts}")
 # Extract all files to be merged
 fNames = {}
 for ext in opt.exts.split(","): fNames[ext] = glob.glob("outdir_%s/signalFit/output/CMS-HGG_sigfit_%s_*_%s.root"%(ext,ext,opt.cat))
-
 # Define ouput packaged workspace
 print(" --> Packaging output workspaces")
 packagedWS = ROOT.RooWorkspace("wsig_13TeV","wsig_13TeV")
@@ -40,7 +39,7 @@ packagedWS.imp = getattr(packagedWS,"import")
 # Extract merged datasets
 data_merged = {}
 data_merged_names = []
-for mp in opt.massPoints.split(","): 
+for mp in opt.massPoints.split(","):
   data_merged["m%s"%mp] = ROOT.TFile(fNames[opt.exts.split(",")[0]][0]).Get("wsig_13TeV").data("sig_mass_m%s_%s"%(MHNominal,opt.cat)).emptyClone("sig_mass_m%s_%s"%(mp,opt.cat))
   data_merged_names.append( data_merged["m%s"%mp].GetName() )
 

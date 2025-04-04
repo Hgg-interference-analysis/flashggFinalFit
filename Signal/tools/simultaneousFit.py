@@ -7,6 +7,7 @@ import scipy.stats
 from collections import OrderedDict as od
 from array import array
 import ctypes
+from commonTools import *
 
 # Parameter lookup table for initialisation
 # So far defined up to MHPolyOrder=2
@@ -15,19 +16,22 @@ pLUT['DCB'] = od()
 pLUT['DCB']['dm_p0'] = [0.1,-2.5,2.5]
 pLUT['DCB']['dm_p1'] = [0.0,-0.1,0.1]
 pLUT['DCB']['dm_p2'] = [0.0,-0.001,0.001]
-pLUT['DCB']['sigma_p0'] = [2.,1.,20.]
+#pLUT['DCB']['sigma_p0'] = [2.,1.,20.]
+#pLUT['DCB']['sigma_p1'] = [0.0,-0.1,0.1]
+#pLUT['DCB']['sigma_p2'] = [0.0,-0.001,0.001]
+pLUT['DCB']['sigma_p0'] = [1.0,0.7,20.0]
 pLUT['DCB']['sigma_p1'] = [0.0,-0.1,0.1]
 pLUT['DCB']['sigma_p2'] = [0.0,-0.001,0.001]
-pLUT['DCB']['n1_p0'] = [20.,1.00001,500]
+pLUT['DCB']['n1_p0'] = [2.,0.05,50.]
 pLUT['DCB']['n1_p1'] = [0.0,-0.1,0.1]
 pLUT['DCB']['n1_p2'] = [0.0,-0.001,0.001]
-pLUT['DCB']['n2_p0'] = [20.,1.00001,500]
+pLUT['DCB']['n2_p0'] = [2.,0.05,50.]
 pLUT['DCB']['n2_p1'] = [0.0,-0.1,0.1]
 pLUT['DCB']['n2_p2'] = [0.0,-0.001,0.001]
-pLUT['DCB']['a1_p0'] = [1.,1.,10.]
+pLUT['DCB']['a1_p0'] = [1.,0.1,4.]
 pLUT['DCB']['a1_p1'] = [0.0,-0.1,0.1]
 pLUT['DCB']['a1_p2'] = [0.0,-0.001,0.001]
-pLUT['DCB']['a2_p0'] = [1.,1.,20.]
+pLUT['DCB']['a2_p0'] = [1.,0.1,4.]
 pLUT['DCB']['a2_p1'] = [0.0,-0.1,0.1]
 pLUT['DCB']['a2_p2'] = [0.0,-0.001,0.001]
 pLUT['Gaussian_wdcb'] = od()
@@ -75,7 +79,7 @@ def calcChi2(x,pdf,d,errorType="Poisson",_verbose=False,fitRange=[110,140]):
 
   k = 0. # number of non empty bins (for calc degrees of freedom)
   normFactor = d.sumEntries()
-  
+  #print("fitrange: ", fitRange)
   # Using numpy and poisson error
   bins, nPdf, nData, eDataSumW2 = [], [],[],[]
   for i in range(d.numEntries()):
@@ -84,6 +88,8 @@ def calcChi2(x,pdf,d,errorType="Poisson",_verbose=False,fitRange=[110,140]):
     if( x.getVal() < fitRange[0] )|( x.getVal() > fitRange[1] ): continue
     ndata = d.weight()
     if ndata*ndata == 0: continue
+    #print("i, x.getVal()", i, x.getVal())
+
     npdf = pdf.getVal(ROOT.RooArgSet(x))*normFactor*d.binVolume()
     eLo, eHi = ctypes.c_double(), ctypes.c_double()
     #eLo, eHi = ROOT.Double(), ROOT.Double()
@@ -94,6 +100,7 @@ def calcChi2(x,pdf,d,errorType="Poisson",_verbose=False,fitRange=[110,140]):
     eDataSumW2.append(eHi) if npdf>ndata else eDataSumW2.append(eLo)
     k += 1
 
+  #print("len(bins), len(npdf)", len(bins), len(nPdf))
   # Convert to numpy array
   nPdf = np.asarray(nPdf)
   nData = np.asarray(nData)
@@ -120,8 +127,12 @@ def calcChi2(x,pdf,d,errorType="Poisson",_verbose=False,fitRange=[110,140]):
     e = eDataSumW2
     terms = (nPdf-nData)**2/(eDataSumW2**2)
    
+  #print("len(terms)", len(terms))
   # If verbose: print to screen
+  #print("end of calcChi2")
+  #print(_verbose)
   if _verbose:
+    #print("inside verbose")
     for i in range(len(terms)):
       print(" --> [DEBUG] Bin %g : nPdf = %.6f, nData = %.6f, e(%s) = %.6f --> chi2 term = %.6f"%(bins[i],nPdf[i],nData[i],errorType,e[i],terms[i]))
 
@@ -141,7 +152,7 @@ def nChi2Addition(X,ssf,verbose=False):
   C = len(X)-1 # number of fit params (-1 for MH)
   for mp,d in ssf.DataHists.items():
     ssf.MH.setVal(int(mp))
-    chi2, k  = calcChi2(ssf.xvar,ssf.Pdfs['final'],d,_verbose=verbose)
+    chi2, k  = calcChi2(ssf.xvar,ssf.Pdfs['final'],d,_verbose=verbose,fitRange=[float(mp)-7, float(mp) + 3])
     chi2sum += chi2
     K += k
   # N degrees of freedom
@@ -152,7 +163,7 @@ def nChi2Addition(X,ssf,verbose=False):
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~   
 class SimultaneousFit:
   # Constructor
-  def __init__(self,_name,_proc,_cat,_datasetForFit,_xvar,_MH,_MHLow,_MHHigh,_massPoints,_nBins,_MHPolyOrder,_minimizerMethod,_minimizerTolerance,verbose=True):
+  def __init__(self,_name,_proc,_cat,_datasetForFit,_xvar,_MH,_MHLow,_MHHigh,_massPoints,_nBins,_MHPolyOrder,_minimizerMethod,_minimizerTolerance,year=2018,verbose=True):
     self.name = _name
     self.proc = _proc
     self.cat = _cat
@@ -167,6 +178,7 @@ class SimultaneousFit:
     self.minimizerMethod = _minimizerMethod
     self.minimizerTolerance = _minimizerTolerance
     self.verbose = verbose
+    self.year = year
     # Prepare vars
     self.MH.setConstant(False)
     self.MH.setVal(125)
@@ -279,7 +291,10 @@ class SimultaneousFit:
   def buildDCB(self,_recursive=True):
 
     # DCB                                                                                                                                                                                                 
-    # Define polynominal functions (in dMH)                                                                                                                                                               
+    # Define polynominal functions (in dMH)   
+    # Initial parameters   
+    init_par = json.load(open(f"{swd__}/fits_{self.proc}_{self.year}.json", "r"))
+    for par in ['dm', "sigma", "n1", "n2", "a1", "a2"]: pLUT['DCB'][f"{par}_p0"][0] = init_par[self.cat][par]                                                                                                                                                        
     for f in ['dm','sigma','n1','n2','a1','a2']:
       k = "%s_dcb"%f
       self.Varlists[k] = ROOT.RooArgList("%s_coeffs"%k)

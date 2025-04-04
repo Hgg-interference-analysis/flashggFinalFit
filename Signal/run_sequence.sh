@@ -60,26 +60,29 @@ if [[ $STEP == "fTest" ]] || [[ $STEP == "calcPhotonSyst" ]] || [[ $STEP == 'sig
 	    elif [[ $STEP == "calcPhotonSyst" ]]; then
 		python3 RunSignalScripts.py --inputConfig config_test_${year}.py --mode calcPhotonSyst ${DROPT}
 	    elif [[ $STEP == 'signalFit' ]]; then
-		python3 RunSignalScripts.py --inputConfig config_test_${year}.py --mode signalFit --modeOpts="--skipVertexScenarioSplit --useDCB --doPlots --outdir /eos/user/a/amkrishn/www/hggWidth/finalfit/sig_el9/newFNUF_VBFTag0" ${DROPT}
+		python3 RunSignalScripts.py --inputConfig config_test_${year}.py --mode signalFit --modeOpts="--skipVertexScenarioSplit --useDCB --doPlots" ${DROPT}
 	    fi
 	fi
     done
 elif [[ $STEP == 'packager' ]]; then
-    python3 RunPackager.py --cats "auto" --inputWSDir /eos/user/a/amkrishn/hggWidth/mcNtuples/condor_output/2018/UL18_sigMC_newFNUF_VBFTag0/hadded_trees/ws_sig --outputExt packaged --exts newFNUF_VBFTag0_2018 --year $YEAR --massPoints 125 --batch local
+    #python3 RunPackager.py --cats "auto" --inputWSDir /eos/user/a/amkrishn/hggWidth/mcNtuples/condor_output/2018/UL18_sigMC_newFNUF_VBFTag0/hadded_trees/ws_sig --outputExt packaged --exts newFNUF_VBFTag0_2018 --year $YEAR --massPoints 125 --batch local
+    python3 RunPackager.py --cats UntaggedTag_0,UntaggedTag_1,UntaggedTag_2,UntaggedTag_3,UntaggedTag_4,UntaggedTag_5,UntaggedTag_6,UntaggedTag_7,UntaggedTag_8,UntaggedTag_9,VBFTag_0 --outputExt packaged --exts final$YEAR --year $YEAR --massPoints 120,125,130 --batch local
 elif [[ $STEP == 'plotter' ]]; then
     smprocs_csv=("VBF,GG2H,vh")
     echo $smprocs_csv
     # just plot all the (SM) processes, all the categories, all the years together. Can be split with --year ${YEAR}. Do not include BSM to maintain the expected total yield for SM
     echo "Now plotting all categories for these SM processes: $smprocs_csv"
-    python3 RunPlotter.py --procs $smprocs_csv --cats "all" --years 2018 --ext newFNUF_VBFTag0_packaged --outdir /eos/user/a/amkrishn/www/hggWidth/finalfit/sig_el9/newFNUF_VBFTag0 
+    python3 RunPlotter.py --procs $smprocs_csv --cats "all" --years $years --ext packaged --outdir /eos/user/a/amkrishn/www/hggWidth/finalfit/sig_el9/final 
     # split by category, all processes together
-    significantCats=("UntaggedTag_0_2018" "UntaggedTag_1_2018" "UntaggedTag_2_2018" "UntaggedTag_3_2018" "UntaggedTag_4_2018" "UntaggedTag_5_2018" "UntaggedTag_6_2018" "UntaggedTag_7_2018" "UntaggedTag_8_2018" "UntaggedTag_9_2018" "VBFTag_0_2018")
+    for year in ${years[*]}; do
+    significantCats=("UntaggedTag_0_$year" "UntaggedTag_1_$year" "UntaggedTag_2_$year" "UntaggedTag_3_$year" "UntaggedTag_4_$year" "UntaggedTag_5_$year" "UntaggedTag_6_$year" "UntaggedTag_7_$year" "UntaggedTag_8_$year" "UntaggedTag_9_$year" "VBFTag_0_$year")
+    done
     significantCats_csv=$(echo "${significantCats[*]}")
     smprocs_csv=("GG2H,VBF,vh")
     for cat in ${significantCats[*]}
     do
     	echo "=> Now plotting all processes together for cat: $cat"
-    	python3 RunPlotter.py --procs $smprocs_csv --cats $cat --years 2018 --outdir /eos/user/a/amkrishn/www/hggWidth/finalfit/sig_el9/newFNUF_VBFTag0 --ext newFNUF_VBFTag0_packaged --translateCats ../Plots/cats.json
+    	python3 RunPlotter.py --procs $smprocs_csv --cats $cat --years $years --outdir /eos/user/a/amkrishn/www/hggWidth/finalfit/sig_el9/final --ext packaged --translateCats ../Plots/cats.json
     done
     smprocs=("GG2H" "VBF" "vh")
     smprocs_csv=$(echo "${smprocs[*]}")
@@ -87,6 +90,6 @@ elif [[ $STEP == 'plotter' ]]; then
     for proc in ${smprocs[*]}
     do
     	echo "=> Now plotting proc $proc for all categories"
-    	python3 RunPlotter.py --procs $proc --cats "all" --years 2018 --ext newFNUF_VBFTag0_packaged --outdir eos/user/a/amkrishn/www/hggWidth/finalfit/sig_el9/newFNUF_VBFTag0
+    	python3 RunPlotter.py --procs $proc --cats "all" --years $years --ext packaged --outdir eos/user/a/amkrishn/www/hggWidth/finalfit/sig_el9/final
     done
 fi

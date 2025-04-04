@@ -1,12 +1,1 @@
-combineTool.py -v 1 -M Impacts -d /afs/cern.ch/work/r/rgargiul/CMSSW_14_1_0_pre4/src/flashggFinalFit/Combine/Datacard_xsec.root \
--m 125.38 --setParameters gamma=1,MH=125.38 -n prova \
---redefineSignalPOIs gamma \
---floatOtherPOIs 0 --saveInactivePOI 1 -t -1  \
- --saveSpecifiedNuis all --setRobustFitAlgo=Minuit2,Migrad \
-                          --cminDefaultMinimizerStrategy 0 \
-                         --X-rtd MINIMIZER_freezeDisassociatedParams \
-                         --X-rtd MINIMIZER_multiMin_hideConstants \
-                         --X-rtd MINIMIZER_multiMin_maskConstraints \
-                         --X-rtd MINIMIZER_multiMin_maskChannels=2 \
---freezeParameters MH \
---doInitialFit
+combine -M MultiDimFit -n _initialFit_Test --algo singles --redefineSignalPOIs GammaH -P GammaH --freezeParameters MH --floatOtherPOIs 1 --saveInactivePOI 1 -t -1 --setParameterRanges GammaH=0,60 --X-rtd MINIMIZER_freezeDisassociatedParams --X-rtd MINIMIZER_multiMin_hideConstants --X-rtd MINIMIZER_multiMin_maskConstraints --X-rtd MINIMIZER_multiMin_maskChannels=2 --alignEdges 1 -m 125.38 -d /afs/cern.ch/user/a/amkrishn/CMSSW_14_1_0_pre4/src/flashggFinalFit/Combine/Datacard_fullRun2.root --setParameters GammaH=1,MH=125.38,r_ggH=1.0,r_VBF=1.0,r_VH=1.0

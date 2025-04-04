@@ -131,8 +131,10 @@ if opt.doSystematics: sdata = pandas.DataFrame()
 # Loop over categories: fill dataframe
 for cat in cats:
   print( " --> Extracting events from category: %s"%cat)
-  if inputTreeDir == '': treeName = "%s_%s_%s_%s"%(opt.productionMode,opt.inputMass,sqrts__,cat)
-  else: treeName = "%s/%s_%s_%s_%s"%(inputTreeDir,opt.productionMode,opt.inputMass,sqrts__,cat)
+  #if inputTreeDir == '': treeName = "%s_%s_%s_%s"%(opt.productionMode,opt.inputMass,sqrts__,cat)
+  #else: treeName = "%s/%s_%s_%s_%s"%(inputTreeDir,opt.productionMode,opt.inputMass,sqrts__,cat)
+  if inputTreeDir == '': treeName = "%s_%s_%s"%(opt.productionMode,sqrts__,cat)
+  else: treeName = "%s/%s_%s_%s"%(inputTreeDir,opt.productionMode,sqrts__,cat)
   print("    * tree: %s"%treeName)
   # Extract tree from uproot
   t = f[treeName]
@@ -282,8 +284,9 @@ for stxsId in data[stxsVar].unique():
           mask = (sdf['type']=='%s%s'%(s,direction))&(sdf['cat']==cat)
           
           # Define RooDataHist
-          hName = "%s_%s_%s_%s_%s%s01sigma"%(opt.productionMode,opt.inputMass,sqrts__,cat,s,direction)
-
+          #hName = "%s_%s_%s_%s_%s%s01sigma"%(opt.productionMode,opt.inputMass,sqrts__,cat,s,direction)
+          hName = "%s_%s_%s_%s%s01sigma"%(opt.productionMode,sqrts__,cat,s,direction)
+          
           # Make argset: drop weight column for histogrammed observables
           systematicsVarsDropWeight = []
           for var in systematicsVars:

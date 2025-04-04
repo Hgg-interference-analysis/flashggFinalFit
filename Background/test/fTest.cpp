@@ -343,7 +343,7 @@ void plot(RooRealVar *mass, RooAbsPdf *pdf, RooDataSet *data, string name,vector
   delete canv;
   delete lat;
 }
-void plot(RooRealVar *mass, RooMultiPdf *pdfs, RooCategory *catIndex, RooDataSet *data, string name, vector<string> flashggCats_, int cat, int bestFitPdf=-1){
+void plot(RooRealVar *mass, RooMultiPdf *pdfs, RooCategory *catIndex, RooDataSet *data, string name, vector<string> flashggCats_, int cat, string year_, int bestFitPdf=-1){
   
   int color[7] = {kBlue,kRed,kMagenta,kGreen+1,kOrange+7,kAzure+10,kBlack};
   TLegend *leg = new TLegend(0.5,0.55,0.92,0.88);
@@ -393,6 +393,9 @@ void plot(RooRealVar *mass, RooMultiPdf *pdfs, RooCategory *catIndex, RooDataSet
     ext=" (Best Fit Pdf) ";
     pdf= pdfs->getCurrentPdf();
     nomBkgCurve = (RooCurve*)plot->getObject(plot->numItems()-1);
+    RooCurve *nomBkgCurve_clone = (RooCurve*)nomBkgCurve->Clone();
+    nomBkgCurve_clone->SetName("curve");
+    nomBkgCurve_clone->SaveAs( ( TString(flashggCats_[cat].c_str()) + TString(year_) + TString(".root")).Data() );
     bestcol = col;
     }
     leg->AddEntry(pdfLeg,Form("%s%s",pdfs->getCurrentPdf()->GetName(),ext.c_str()),"L");
@@ -982,7 +985,7 @@ int main(int argc, char* argv[]){
 			outputws->import(catIndex);
 			outputws->import(dataBinned);
 			outputws->import(*data);
-			plot(mass,pdf,&catIndex,data,Form("%s/multipdf_%s",outDir.c_str(),catname.c_str()),flashggCats_,cat,bestFitPdfIndex);
+			plot(mass,pdf,&catIndex,data,Form("%s/multipdf_%s",outDir.c_str(),catname.c_str()),flashggCats_,cat,"_"+year_,bestFitPdfIndex);
 
 		}
 

@@ -134,7 +134,8 @@ signal_shape_systematics = [
                 {'name':'MaterialOuterBarrel','title':'MaterialOuterBarrel','type':'signal_shape','mode':'scalesCorr','mean':'0.0','sigma':'1.0'},
                 {'name':'MaterialForward','title':'MaterialForward','type':'signal_shape','mode':'scalesCorr','mean':'0.0','sigma':'1.0'},
                 {'name':'FNUFEE','title':'FNUFEE','type':'signal_shape','mode':'scalesCorr','mean':'0.0','sigma':'1.0'},
-                {'name':'FNUFEB','title':'FNUFEB','type':'signal_shape','mode':'scalesCorr','mean':'0.0','sigma':'1.0'},
+                {'name':'FNUFInnerEB','title':'FNUFInnerEB','type':'signal_shape','mode':'scalesCorr','mean':'0.0','sigma':'1.0'},
+                {'name':'FNUFOuterEB','title':'FNUFOuterEB','type':'signal_shape','mode':'scalesCorr','mean':'0.0','sigma':'1.0'},
                 {'name':'HighR9EBPhi','title':'HighR9EBPhi','type':'signal_shape','mode':'smears','mean':'0.0','sigma':'1.0'},
                 {'name':'HighR9EBRho','title':'HighR9EBRho','type':'signal_shape','mode':'smears','mean':'0.0','sigma':'1.0'},
                 {'name':'HighR9EEPhi','title':'HighR9EEPhi','type':'signal_shape','mode':'smears','mean':'0.0','sigma':'1.0'},
@@ -142,5 +143,6 @@ signal_shape_systematics = [
                 {'name':'LowR9EBPhi','title':'LowR9EBPhi','type':'signal_shape','mode':'smears','mean':'0.0','sigma':'1.0'},
                 {'name':'LowR9EBRho','title':'LowR9EBRho','type':'signal_shape','mode':'smears','mean':'0.0','sigma':'1.0'},
                 {'name':'LowR9EEPhi','title':'LowR9EEPhi','type':'signal_shape','mode':'smears','mean':'0.0','sigma':'1.0'},
-                {'name':'LowR9EERho','title':'LowR9EERho','type':'signal_shape','mode':'smears','mean':'0.0','sigma':'1.0'}
+                {'name':'LowR9EERho','title':'LowR9EERho','type':'signal_shape','mode':'smears','mean':'0.0','sigma':'1.0'},
+                {'name':'alpha','title':'alpha','type':'signal_shape','mode':'other','mean':'0.0','sigma':'1.0'}
               ]
