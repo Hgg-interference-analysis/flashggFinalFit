@@ -46,7 +46,7 @@ def getValueFromJson(row,uncertainties,sname):
   p = re.sub("_2016postVFP_%s"%decayMode,"",p)
   p = re.sub("_2017_%s"%decayMode,"",p)
   p = re.sub("_2018_%s"%decayMode,"",p)
-  if p in uncertainties: 
+  if p in uncertainties:
     if type(uncertainties[p][sname])==list: return uncertainties[p][sname]
     else: return [uncertainties[p][sname]]
   else: return '-'
@@ -197,8 +197,8 @@ def calcSystYields(_nominalDataName,_nominalDataContents,_inputWS,_systFactoryTy
 
         else:
           if "scaleWeight" in s: centralWeightStr = "scaleWeight_0"
-          elif "alphaSWeight" in s: centralWeightStr = "scaleWeight_0" 
-          elif "pdfWeight" in s: centralWeightStr = "pdfWeight_0"
+          elif "alphaSWeight" in s: centralWeightStr = "scaleWeight_0"
+          elif "pdfWeight" in s: centralWeightStr = "scaleWeight_0"
           else: centralWeightStr = "centralObjectWeight"
           f_central = p.getRealValue(centralWeightStr) if centralWeightStr in _nominalDataContents else 1.
           f = p.getRealValue(s)
@@ -340,13 +340,21 @@ def theorySystFactory(d,systs,ftype,options,stxsMergeScheme=None,_removal=False)
     # Extract factory type
     f = ftype[s['name']]
     # For ggH theory uncertainties: require proc contains "ggH"
-    if "THU_ggH" in s['name']: mask = (d['type']=='sig')&(d['nominal_yield']!=0)&(d['proc'].str.contains('gg'))
-    else: mask = (d['type']=='sig')&(d['nominal_yield']!=0)
+    ggh_pure_mask = (d['type']=='sig') & (d['nominal_yield']!=0)& ( d['proc'].str.contains('ggH') )
+    ggh_plus_int_mask = (d['type']=='sig')&(d['nominal_yield']!=0)&( d['proc'].str.contains('ggh') )
+    if "THU_ggH" in s['name']:
+      mask = (d['type']=='sig')&(d['nominal_yield']!=0)&( d['proc'].str.contains('ggH') | d['proc'].str.contains('ggh') )
+    else:
+      mask = (d['type']=='sig')&(d['nominal_yield']!=0)
+    if "scaleWeight" in s['name']:
+      mask = (d['type']=='sig')&(d['nominal_yield']!=0)&( d['proc'].str.contains('qqH') | d['proc'].str.contains('vh') )
     # Loop over tiers and use appropriate mode for compareYield function: skip mnorm as treated separately below
     if 'tiers' in s:
-      for tier in s['tiers']: 
+      for tier in s['tiers']:
         if tier == 'mnorm': continue
         d.loc[mask,"%s_%s"%(s['name'],tier)] = d[mask].apply(lambda x: compareYield(x,f,s['name'],mode=tier), axis=1)
+        if "THU_ggH" in s['name'] or "alphaS" in s['name'] or "pdf" in s['name']:
+           d.loc[ggh_plus_int_mask,"%s_%s"%(s['name'],tier)] = d[ggh_pure_mask].apply(lambda x: compareYield(x,f,s['name'],mode=tier), axis=1).values
 
   # For merging STXS bins in parameter scheme: calculate mnorm systematics (merged-STXS-normalisation)
   # One nuisance per merge

@@ -1,0 +1,11 @@
+combine -M MultiDimFit Datacard_${1}_xsec.root -n _scan_singles_${1} \
+ --floatOtherPOIs 1 -t -1 --toysFile higgsCombineTest.GenerateOnly.mH126.123456.root -v 1  -P gamma \
+ --setParameters gamma=1,MH=125.38,mu=1,mu_V=1 \
+ --setParameterRanges gamma=0.1,9.9 \
+ --cminDefaultMinimizerStrategy 0 \
+ --algo singles \
+ --X-rtd MINIMIZER_freezeDisassociatedParams \
+ --X-rtd MINIMIZER_multiMin_hideConstants \
+ --X-rtd MINIMIZER_multiMin_maskConstraints \
+ --X-rtd MINIMIZER_multiMin_maskChannels=2 \
+ --freezeParameters MH

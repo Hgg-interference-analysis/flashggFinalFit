@@ -1,4 +1,14 @@
 # Byte-compiled / optimized / DLL files
+**/higgsCombine*
+
+**/jobs/*
+
+HistoMaker/*.root
+
+**/log*
+
+log*
+
 __pycache__/
 *.py[cod]
 *$py.class

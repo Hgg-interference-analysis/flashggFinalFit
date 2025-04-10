@@ -141,6 +141,7 @@ def fit(proc, year, cat, _hists, sname):
   sigma_down = f.GetParameter(5)
   rate_down = _hists["down"].Integral()
 
+
   if _hists["up"].GetRMS() != 0 and _hists["down"].GetRMS() !=0 : #RMS calculation can fail because of negative events
     _hists["up"].GetXaxis().SetRangeUser(122, 128)
     _hists["down"].GetXaxis().SetRangeUser(122, 128)
@@ -148,6 +149,7 @@ def fit(proc, year, cat, _hists, sname):
     mean_down = _hists["down"].GetMean()
     sigma_up = _hists["up"].GetRMS()
     sigma_down = _hists["down"].GetRMS()
+
 
   print("sigma_up, sigma_down: ", sigma_up, sigma_down, file=sys.stderr)
   print("rate_up, rate_down: ", rate_up, rate_down, file=sys.stderr)
@@ -206,6 +208,18 @@ for ir,r in data.iterrows():
       hists = getHistograms(inputWS,r['nominalDataName'],sname)
 
       # If nominal yield = 0:
+      if "MCSmear" in sname and "EB" in sname and "Rho" in sname:
+          r9_flag = "high" if "High" in sname else "low"
+          for direction in ["up", "down"]:
+            tail = "up_smeared7permille_pt_gt_50" if direction == "up" else "down_nosmear"
+            filename = f"{cwd__}/HistoMaker/{opt.cat}_{opt.year}_{r['proc']}_{r9_flag}r9EBsmear{tail}.root"
+            print(filename)
+            file = ROOT.TFile(filename)
+            ROOT.gROOT.cd()
+            print(f"{opt.cat}_{r9_flag}r9EBsmear{tail}")
+            hists[direction] = file.Get(f"{opt.cat}_{r9_flag}r9EBsmear{tail}").Clone()
+            file.Close()
+
       fit_res = fit(r["proc"], opt.year, opt.cat, hists, sname)
       print(r["proc"], opt.cat, s, fit_res, "\n\n")
 

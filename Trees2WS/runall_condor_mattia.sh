@@ -2,6 +2,8 @@
 
 cd /afs/cern.ch/work/r/rgargiul/CMSSW_14_1_0_pre4/src/flashggFinalFit/
 
+#0-11
+
 source /cvmfs/cms.cern.ch/cmsset_default.sh
 
 cmsenv

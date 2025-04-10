@@ -44,7 +44,7 @@ python3 trees2ws.py --inputConfig config.py \
 fi
 if [ $1 -eq 7 ]; then
 python3 trees2ws.py --inputConfig config.py \
-  --inputTreeFile /eos/cms/store/group/phys_higgs/cmshgg/rgargiul/trees/trees_sig_UL17/hadded/output_VHToGG_M125_TuneCP5_13TeV-amcatnloFXFX-madspin-pythia8_corr.root \
+  --inputTreeFile /eos/cms/store/group/phys_higgs/cmshgg/rgargiul/trees/trees_sig_UL17/hadded/output_VHToGG_M125_TuneCP5_13TeV-amcatnloFXFX-madspin-pythia8.root \
   --productionMode vh --year 2017 --inputMass 125 --doSystematics
 fi
 if [ $1 -eq 8 ]; then

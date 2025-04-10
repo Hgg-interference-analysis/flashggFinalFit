@@ -47,7 +47,7 @@ smprocs_csv=$(IFS=, ; echo "${smprocs[*]}")
 
 if [[ $STEP == "yields" ]]; then
     # for mu-simple: exclude ALT processes
-    python3 RunYields.py --cats "auto" --inputWSDirMap ${YEAR}=/eos/cms/store/group/phys_higgs/cmshgg/rgargiul/ws_${YEAR} --procs $smprocs_csv --doSystematics --skipZeroes --ext ${ext}_xsec --batch local --queue cmsan ${DROPT}
+    python3 RunYields.py --cats "auto" --inputWSDirMap ${YEAR}=/eos/cms/store/group/phys_higgs/cmshgg/rgargiul/ws_withTheoryWeight/ws_${YEAR} --procs $smprocs_csv --doSystematics --skipZeroes --ext ${ext}_xsec --batch local --queue cmsan ${DROPT}
 
 elif [[ $STEP == "datacards" ]]; then
     for fit in "xsec"
@@ -55,6 +55,9 @@ elif [[ $STEP == "datacards" ]]; then
 	echo "making datacards for all years together for type of fit: $fit"
         python3 makeDatacard.py --years ${YEAR} --doSystematics --ext ${ext}_${fit}  --output "Datacard_${YEAR}_${fit}"
 
+  mv Datacard_${YEAR}_${fit}.txt Datacard_${YEAR}_${fit}_toclean.txt
+  cat Datacard_${YEAR}_${fit}_toclean.txt | grep -v "CMS_hgg_scale_0 " | grep -v "THU_ggH_VBF" > Datacard_${YEAR}_${fit}.txt
+  rm Datacard_${YEAR}_${fit}_toclean.txt
 	#python3 cleanDatacard.py --datacard "Datacard_${fit}" --factor 2 --removeDoubleSided
 	#mv "Datacard_${fit}_cleaned.txt" "Datacard_${fit}.txt"
     done

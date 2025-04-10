@@ -1,0 +1,55 @@
+./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_0_2016preVFP.root
+
+Attaching file ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_0_2016preVFP.root as _file0...
+(TFile *) 0x3ad4c70
+UntaggedTag_0,0.76131,1.15984,0.523473
+./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_1_2016preVFP.root
+
+Attaching file ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_1_2016preVFP.root as _file0...
+(TFile *) 0x41fb0c0
+UntaggedTag_1,1.14091,1.43781,0.26023
+./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_2_2016preVFP.root
+
+Attaching file ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_2_2016preVFP.root as _file0...
+(TFile *) 0x36bd630
+UntaggedTag_2,0.914379,1.26559,0.384096
+./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_3_2016preVFP.root
+
+Attaching file ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_3_2016preVFP.root as _file0...
+(TFile *) 0x48ae760
+UntaggedTag_3,1.02255,1.34582,0.316143
+./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_4_2016preVFP.root
+
+Attaching file ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_4_2016preVFP.root as _file0...
+(TFile *) 0x4812f70
+UntaggedTag_4,0.800644,1.18603,0.481339
+./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_5_2016preVFP.root
+
+Attaching file ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_5_2016preVFP.root as _file0...
+(TFile *) 0x3fc19f0
+UntaggedTag_5,1.04456,1.36262,0.304492
+./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_6_2016preVFP.root
+
+Attaching file ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_6_2016preVFP.root as _file0...
+(TFile *) 0x434f090
+UntaggedTag_6,0.820432,1.19947,0.462001
+./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_7_2016preVFP.root
+
+Attaching file ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_7_2016preVFP.root as _file0...
+(TFile *) 0x47b1ac0
+UntaggedTag_7,1.12161,1.42254,0.268306
+./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_8_2016preVFP.root
+
+Attaching file ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_8_2016preVFP.root as _file0...
+(TFile *) 0x53638d0
+UntaggedTag_8,0.909547,1.2621,0.387616
+./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_9_2016preVFP.root
+
+Attaching file ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_9_2016preVFP.root as _file0...
+(TFile *) 0x39efd00
+UntaggedTag_9,1.17092,1.46174,0.248367
+./Models/signal/CMS-HGG_sigfit_packaged_VBFTag_0_2016preVFP.root
+
+Attaching file ./Models/signal/CMS-HGG_sigfit_packaged_VBFTag_0_2016preVFP.root as _file0...
+(TFile *) 0x4730550
+VBFTag_0,0.995302,1.32524,0.331492

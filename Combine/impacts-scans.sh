@@ -11,6 +11,7 @@ for year in "${years[@]}"; do
 done
 
 combine -M MultiDimFit Datacard_${1}_xsec.root -n _scan_singles_${1} \
+ --freezeParameters MH \
  --floatOtherPOIs 1 -t -1 -m 125.38 -v 1 --points 50 -P gamma \
  --setParameters gamma=1,MH=125.38,mu=1,mu_V=1 \
  --setParameterRanges gamma=-0.1,9.9 \
@@ -28,7 +29,7 @@ _excluded=$(cat unchosen_bkg_pdfs_out.txt | grep "env_" | tr -d "\n")
 excluded=${_excluded::-1}
 
 combineTool.py -M Impacts -d /afs/cern.ch/work/r/rgargiul/CMSSW_14_1_0_pre4/src/flashggFinalFit/Combine/Datacard_${1}_xsec.root \
- -m 125.38 --setParameters gamma=1,MH=125.38,mu=1,mu_V=1 -n _${1}_prova  \
+ --freezeParameters MH -m 125.38 --setParameters gamma=1,MH=125.38,mu=1,mu_V=1 -n _${1}_prova  \
  -t -1 \
  --saveSpecifiedNuis all  --setRobustFitAlgo=Minuit2,Migrad \
                           --cminDefaultMinimizerStrategy 0 \

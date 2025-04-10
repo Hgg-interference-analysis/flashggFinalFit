@@ -3,8 +3,8 @@
 #step2
 combine -M MultiDimFit -m 125.38 \
 -d /afs/cern.ch/work/r/rgargiul/CMSSW_14_1_0_pre4/src/flashggFinalFit/Combine/Datacard_all_xsec.root \
---floatOtherPOIs 1 -t -1 -n _width.postfit -P gamma --algo grid  --points 25 --alignEdges 1 -v 1 \
---setParameters gamma=1,mu=1,mu_V=1,MH=125.38 --setParameterRanges gamma=0.2,10.21 \
+ --floatOtherPOIs 1 --freezeParameters MH  -t -1 -n _width.postfit -P gamma --algo grid  --points 50 --alignEdges 1 -v 1 \
+--setParameters gamma=1,mu=1,mu_V=1,MH=125.38 --setParameterRanges gamma=0.1,10.1 \
 --saveSpecifiedNuis all --saveInactivePOI 1   --cminDefaultMinimizerStrategy 0 \
 --X-rtd MINIMIZER_freezeDisassociatedParams --X-rtd MINIMIZER_multiMin_hideConstants \
 --X-rtd MINIMIZER_multiMin_maskConstraints --X-rtd MINIMIZER_multiMin_maskChannels=2 --saveWorkspace
@@ -12,72 +12,73 @@ combine -M MultiDimFit -m 125.38 \
 #step3
 combine -M MultiDimFit -m 125.38 \
  -d /afs/cern.ch/work/r/rgargiul/CMSSW_14_1_0_pre4/src/flashggFinalFit/Combine/higgsCombine_width.postfit.MultiDimFit.mH125.38.root \
- --floatOtherPOIs 1 -t -1 -n _width.total -P gamma --algo grid --points 25 --alignEdges 1 -v 1 --setParameters gamma=1,MH=125.38 \
- --setParameterRanges gamma=0.2,10.2 \
+   --floatOtherPOIs 1 --freezeParameters MH  -t -1 -n _width.total -P gamma --algo grid --points 50 --alignEdges 1 -v 1 --setParameters gamma=1,MH=125.38 \
+ --setParameterRanges gamma=0.1,10.1 \
  --saveSpecifiedNuis all --saveInactivePOI 1 \
  --cminDefaultMinimizerStrategy 0 --X-rtd MINIMIZER_freezeDisassociatedParams --X-rtd MINIMIZER_multiMin_hideConstants \
  --X-rtd MINIMIZER_multiMin_maskConstraints --X-rtd MINIMIZER_multiMin_maskChannels=2  --snapshotName MultiDimFit &
 
+
 combine -M MultiDimFit -m 125.38 \
 -d /afs/cern.ch/work/r/rgargiul/CMSSW_14_1_0_pre4/src/flashggFinalFit/Combine/higgsCombine_width.postfit.MultiDimFit.mH125.38.root \
---floatOtherPOIs 1 -t -1 -P gamma --algo grid  --points 25 --alignEdges 1 -v 1 \
---setParameters gamma=1,MH=125.38 --setParameterRanges gamma=0.2,10.2:CMS_hgg_nuisance_IntNorm_13TeVscaleCorr=-1,1 \
+  --floatOtherPOIs 1 --freezeParameters MH,CMS_hgg_nuisance_NonLinearity_13TeVscale  -t -1 -P gamma --algo grid  --points 50 --alignEdges 1 -v 1 \
+--setParameters gamma=1,MH=125.38 --setParameterRanges gamma=0.1,10.1:CMS_hgg_nuisance_IntNorm_13TeVscaleCorr=-1,1 \
 --X-rtd FITTER_NEW_CROSSING_ALGO --X-rtd FITTER_BOUND --saveSpecifiedNuis all --saveInactivePOI 1   \
 --cminDefaultMinimizerStrategy 0 --X-rtd MINIMIZER_freezeDisassociatedParams --X-rtd MINIMIZER_multiMin_hideConstants \
 --X-rtd MINIMIZER_multiMin_maskConstraints --X-rtd MINIMIZER_multiMin_maskChannels=2  --snapshotName MultiDimFit \
---freezeNuisanceGroups IntNorm -n _width.freeze_intnorm &
+  -n _width.freeze_nonlinearity &
 
 
 combine -M MultiDimFit -m 125.38 \
 -d /afs/cern.ch/work/r/rgargiul/CMSSW_14_1_0_pre4/src/flashggFinalFit/Combine/higgsCombine_width.postfit.MultiDimFit.mH125.38.root \
---floatOtherPOIs 1 -t -1 -P gamma --algo grid  --points 25 --alignEdges 1 -v 1 \
---setParameters gamma=1,MH=125.38 --setParameterRanges gamma=0.2,10.2:CMS_hgg_nuisance_IntNorm_13TeVscaleCorr=-1,1 \
+  --floatOtherPOIs 1 --freezeParameters MH,CMS_hgg_nuisance_NonLinearity_13TeVscale   -t -1 -P gamma --algo grid  --points 50 --alignEdges 1 -v 1 \
+--setParameters gamma=1,MH=125.38 --setParameterRanges gamma=0.1,10.1:CMS_hgg_nuisance_IntNorm_13TeVscaleCorr=-1,1 \
 --X-rtd FITTER_NEW_CROSSING_ALGO --X-rtd FITTER_BOUND --saveSpecifiedNuis all --saveInactivePOI 1   \
 --cminDefaultMinimizerStrategy 0 --X-rtd MINIMIZER_freezeDisassociatedParams --X-rtd MINIMIZER_multiMin_hideConstants \
 --X-rtd MINIMIZER_multiMin_maskConstraints --X-rtd MINIMIZER_multiMin_maskChannels=2  --snapshotName MultiDimFit \
---freezeNuisanceGroups IntNorm,HighR9Smear -n _width.freeze_intnorm_highr9smear &
+  --freezeNuisanceGroups Material -n _width.freeze_nonlinearity_material &
 
 combine -M MultiDimFit -m 125.38 \
 -d /afs/cern.ch/work/r/rgargiul/CMSSW_14_1_0_pre4/src/flashggFinalFit/Combine/higgsCombine_width.postfit.MultiDimFit.mH125.38.root \
---floatOtherPOIs 1 -t -1 -P gamma --algo grid  --points 25 --alignEdges 1 -v 1 \
---setParameters gamma=1,MH=125.38 --setParameterRanges gamma=0.2,10.2:CMS_hgg_nuisance_IntNorm_13TeVscaleCorr=-1,1 \
+  --floatOtherPOIs 1 --freezeParameters MH,CMS_hgg_nuisance_NonLinearity_13TeVscale   -t -1 -P gamma --algo grid  --points 50 --alignEdges 1 -v 1 \
+--setParameters gamma=1,MH=125.38 --setParameterRanges gamma=0.1,10.1:CMS_hgg_nuisance_IntNorm_13TeVscaleCorr=-1,1 \
 --X-rtd FITTER_NEW_CROSSING_ALGO --X-rtd FITTER_BOUND --saveSpecifiedNuis all --saveInactivePOI 1   \
 --cminDefaultMinimizerStrategy 0 --X-rtd MINIMIZER_freezeDisassociatedParams --X-rtd MINIMIZER_multiMin_hideConstants \
 --X-rtd MINIMIZER_multiMin_maskConstraints --X-rtd MINIMIZER_multiMin_maskChannels=2  --snapshotName MultiDimFit \
---freezeNuisanceGroups IntNorm,HighR9Smear,LowR9Smear -n _width.freeze_intnorm_highr9smear_lowr9smear &
+  --freezeNuisanceGroups Material,IntNorm -n _width.freeze_nonlinearity_material_intnorm &
 
 combine -M MultiDimFit -m 125.38 \
 -d /afs/cern.ch/work/r/rgargiul/CMSSW_14_1_0_pre4/src/flashggFinalFit/Combine/higgsCombine_width.postfit.MultiDimFit.mH125.38.root \
---floatOtherPOIs 1 -t -1 -P gamma --algo grid  --points 25 --alignEdges 1 -v 1 \
---setParameters gamma=1,MH=125.38 --setParameterRanges gamma=0.2,10.2:CMS_hgg_nuisance_IntNorm_13TeVscaleCorr=-1,1 \
+--floatOtherPOIs 1   --freezeParameters MH,CMS_hgg_nuisance_NonLinearity_13TeVscale  -t -1 -P gamma --algo grid  --points 50 --alignEdges 1 -v 1 \
+--setParameters gamma=1,MH=125.38 --setParameterRanges gamma=0.1,10.1:CMS_hgg_nuisance_IntNorm_13TeVscaleCorr=-1,1 \
 --X-rtd FITTER_NEW_CROSSING_ALGO --X-rtd FITTER_BOUND --saveSpecifiedNuis all --saveInactivePOI 1   \
 --cminDefaultMinimizerStrategy 0 --X-rtd MINIMIZER_freezeDisassociatedParams --X-rtd MINIMIZER_multiMin_hideConstants \
 --X-rtd MINIMIZER_multiMin_maskConstraints --X-rtd MINIMIZER_multiMin_maskChannels=2  --snapshotName MultiDimFit \
---freezeNuisanceGroups IntNorm,HighR9Smear,LowR9Smear,FNUF -n _width.freeze_intnorm_highr9smear_lowr9smear_fnuf &
+--freezeNuisanceGroups Material,IntNorm,HighR9Smear,LowR9Smear -n _width.freeze_nonlinearity_material_intnorm_smear &
 
 combine -M MultiDimFit -m 125.38 \
 -d /afs/cern.ch/work/r/rgargiul/CMSSW_14_1_0_pre4/src/flashggFinalFit/Combine/higgsCombine_width.postfit.MultiDimFit.mH125.38.root \
---floatOtherPOIs 1 -t -1 -P gamma --algo grid  --points 25 --alignEdges 1 -v 1 \
---setParameters gamma=1,MH=125.38 --setParameterRanges gamma=0.2,10.2:CMS_hgg_nuisance_IntNorm_13TeVscaleCorr=-1,1 \
+--floatOtherPOIs 1 --freezeParameters MH,CMS_hgg_nuisance_NonLinearity_13TeVscale  -t -1 -P gamma --algo grid  --points 50 --alignEdges 1 -v 1 \
+--setParameters gamma=1,MH=125.38 --setParameterRanges gamma=0.1,10.1:CMS_hgg_nuisance_IntNorm_13TeVscaleCorr=-1,1 \
 --X-rtd FITTER_NEW_CROSSING_ALGO --X-rtd FITTER_BOUND --saveSpecifiedNuis all --saveInactivePOI 1   \
 --cminDefaultMinimizerStrategy 0 --X-rtd MINIMIZER_freezeDisassociatedParams --X-rtd MINIMIZER_multiMin_hideConstants \
 --X-rtd MINIMIZER_multiMin_maskConstraints --X-rtd MINIMIZER_multiMin_maskChannels=2  --snapshotName MultiDimFit \
---freezeNuisanceGroups IntNorm,HighR9Smear,LowR9Smear,FNUF,Material -n _width.freeze_intnorm_highr9smear_lowr9smear_fnuf_material &
+--freezeNuisanceGroups Material,IntNorm,HighR9Smear,LowR9Smear,FNUF -n _width.freeze_nonlinearity_material_intnorm_smear_fnuf &
 
 combine -M MultiDimFit -m 125.38 \
 -d /afs/cern.ch/work/r/rgargiul/CMSSW_14_1_0_pre4/src/flashggFinalFit/Combine/higgsCombine_width.postfit.MultiDimFit.mH125.38.root \
---floatOtherPOIs 1 -t -1 -P gamma --algo grid  --points 25 --alignEdges 1 -v 1 \
---setParameters gamma=1,MH=125.38 --setParameterRanges gamma=0.2,10.2:CMS_hgg_nuisance_IntNorm_13TeVscaleCorr=-1,1 \
+--floatOtherPOIs 1 --freezeParameters MH,CMS_hgg_nuisance_NonLinearity_13TeVscale  -t -1 -P gamma --algo grid  --points 50 --alignEdges 1 -v 1 \
+--setParameters gamma=1,MH=125.38 --setParameterRanges gamma=0.1,10.1:CMS_hgg_nuisance_IntNorm_13TeVscaleCorr=-1,1 \
 --X-rtd FITTER_NEW_CROSSING_ALGO --X-rtd FITTER_BOUND --saveSpecifiedNuis all --saveInactivePOI 1   \
 --cminDefaultMinimizerStrategy 0 --X-rtd MINIMIZER_freezeDisassociatedParams --X-rtd MINIMIZER_multiMin_hideConstants \
 --X-rtd MINIMIZER_multiMin_maskConstraints --X-rtd MINIMIZER_multiMin_maskChannels=2  --snapshotName MultiDimFit \
---freezeNuisanceGroups IntNorm,HighR9Smear,LowR9Smear,FNUF,Material,ShowerShape -n _width.freeze_intnorm_highr9smear_lowr9smear_fnuf_material_ss &
+--freezeNuisanceGroups Material,IntNorm,HighR9Smear,LowR9Smear,FNUF,Material,ShowerShape -n _width.freeze_nonlinearity_material_intnorm_smear_fnuf_ss &
 
 combine -M MultiDimFit -m 125.38 \
 -d /afs/cern.ch/work/r/rgargiul/CMSSW_14_1_0_pre4/src/flashggFinalFit/Combine/higgsCombine_width.postfit.MultiDimFit.mH125.38.root \
---floatOtherPOIs 1 -t -1 -P gamma --algo grid --points 25 --alignEdges 1 -v 1 \
---setParameters gamma=1,MH=125.38 --setParameterRanges gamma=0.2,10.2:CMS_hgg_nuisance_IntNorm_13TeVscaleCorr=-1,1 \
+--floatOtherPOIs 1  -t -1 -P gamma --algo grid --points 50 --alignEdges 1 -v 1 \
+--setParameters gamma=1,MH=125.38 --setParameterRanges gamma=0.1,10.1:CMS_hgg_nuisance_IntNorm_13TeVscaleCorr=-1,1 \
 --X-rtd FITTER_NEW_CROSSING_ALGO --X-rtd FITTER_BOUND --saveSpecifiedNuis all --saveInactivePOI 1   \
 --cminDefaultMinimizerStrategy 0 --X-rtd MINIMIZER_freezeDisassociatedParams --X-rtd MINIMIZER_multiMin_hideConstants \
 --X-rtd MINIMIZER_multiMin_maskConstraints --X-rtd MINIMIZER_multiMin_maskChannels=2  --snapshotName MultiDimFit \
---freezeParameters allConstrainedNuisances -n _width.freeze_all &
+--freezeParameters MH,allConstrainedNuisances -n _width.freeze_all &
