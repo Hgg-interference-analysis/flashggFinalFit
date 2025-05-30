@@ -44,7 +44,7 @@ smprocs_csv=$(IFS=, ; echo "${smprocs[*]}")
 ext='final'$YEAR
 if [[ $STEP == "yields" ]]; then
     # for mu-simple: exclude ALT processes
-    python3 RunYields.py --cats "auto" --inputWSDirMap $YEAR=/eos/cms/store/group/phys_higgs/cmshgg/rgargiul/ws_$YEAR --procs $smprocs_csv --doSystematics --skipZeroes --ext ${ext} --batch local --queue cmsan ${DROPT}
+    python3 RunYields.py --cats "auto" --inputWSDirMap $YEAR=/eos/cms/store/group/phys_higgs/cmshgg/rgargiul/ws_withTheoryWeight/ws_$YEAR --procs $smprocs_csv --doSystematics --skipZeroes --ext ${ext} --batch local --queue cmsan ${DROPT}
     
 elif [[ $STEP == "datacard" ]]; then
     echo "making datacard for ext: $ext"
