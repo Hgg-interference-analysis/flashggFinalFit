@@ -23,6 +23,7 @@ def leave():
 def get_options():
   parser = OptionParser()
   parser.add_option("--xvar", dest='xvar', default='CMS_hgg_mass', help="Observable")
+  parser.add_option("--year", dest='year', default='2018', help="year")
   parser.add_option("--cat", dest='cat', default='', help="RECO category")
   parser.add_option("--procs", dest='procs', default='', help="Signal processes")
   parser.add_option("--ext", dest='ext', default='', help="Extension")
@@ -134,12 +135,27 @@ for ir,r in data.iterrows():
       sname = "%s%s"%(inputNuisanceExtMap[stype],s)
       #print("    * Systematic = %s (%s)"%(sname,stype)
       hists = getHistograms(inputWS,r['nominalDataName'],sname)
+
+      if "MCSmear" in sname and "EB" in sname and "Rho" in sname:
+        r9_flag = "high" if "High" in sname else "low"
+        for direction in ["up", "down"]:
+          tail = "up_smeared7permille_pt_gt_50" if direction == "up" else "down_nosmear"
+          filename = f"/afs/cern.ch/work/r/rgargiul/CMSSW_14_1_0_pre4/src/flashggFinalFit/HistoMaker/{opt.cat}_{opt.year}_{r['proc']}_{r9_flag}r9EBsmear{tail}.root"
+          print(filename)
+          file = ROOT.TFile(filename)
+          ROOT.gROOT.cd()
+          print(f"{opt.cat}_{r9_flag}r9EBsmear{tail}")
+          hists[direction] = file.Get(f"{opt.cat}_{r9_flag}r9EBsmear{tail}").Clone()
+          file.Close()
+      
       # If nominal yield = 0:
       if hists['nominal'].Integral() == 0: _meanVar, _sigmaVar, _rateVar = 0, 0, 0
       else:
         _meanVar = getMeanVar(hists)
         _sigmaVar = getSigmaVar(hists)
         _rateVar = getRateVar(hists)
+      print("***************",_meanVar)
+      print("***************",_sigmaVar)
       # Add values to dataFrame
       data.at[ir,'%s_%s_mean'%(s,outputNuisanceExtMap[stype])] = _meanVar
       data.at[ir,'%s_%s_sigma'%(s,outputNuisanceExtMap[stype])] = _sigmaVar

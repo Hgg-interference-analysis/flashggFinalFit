@@ -189,7 +189,8 @@ def calcSystYields(_nominalDataName,_nominalDataContents,_inputWS,_systFactoryTy
         else:
           if "scaleWeight" in s: centralWeightStr = "scaleWeight_0"
           elif "alphaSWeight" in s: centralWeightStr = "scaleWeight_0" 
-          elif "pdfWeight" in s: centralWeightStr = "pdfWeight_0"
+          #elif "pdfWeight" in s: centralWeightStr = "pdfWeight_0"
+          elif "pdfWeight" in s: centralWeightStr = "scaleWeight_0"
           else: centralWeightStr = "centralObjectWeight"
           f_central = p.getRealValue(centralWeightStr) if centralWeightStr in _nominalDataContents else 1.
           f = p.getRealValue(s)
@@ -333,6 +334,7 @@ def theorySystFactory(d,systs,ftype,options,stxsMergeScheme=None,_removal=False)
     # For ggH theory uncertainties: require proc contains "ggH"
     if "THU_ggH" in s['name']: mask = (d['type']=='sig')&(d['nominal_yield']!=0)&(d['proc'].str.contains('gg'))
     else: mask = (d['type']=='sig')&(d['nominal_yield']!=0)
+    if "scaleWeight" in s['name']: mask = (d['type']=='sig')&(d['nominal_yield']!=0)&((d['proc'].str.contains('qqH') | d['proc'].str.contains('vh')) )
     # Loop over tiers and use appropriate mode for compareYield function: skip mnorm as treated separately below
     if 'tiers' in s:
       for tier in s['tiers']: 
