@@ -96,7 +96,8 @@ for year in years:
     if opt.mergeYears: _cat = opt.cat
     else: _cat = "%s_%s"%(opt.cat,year)
 
-    # Input flashgg ws 
+    # Input flashgg ws
+    print("%s/*M%s*_%s.root"%(inputWSDirMap[year],opt.mass,proc))
     _inputWSFile = glob.glob("%s/*M%s*_%s.root"%(inputWSDirMap[year],opt.mass,proc))[0]
     _nominalDataName = "%s_%s_%s_%s"%(_proc_s0,opt.mass,sqrts__,opt.cat)
 

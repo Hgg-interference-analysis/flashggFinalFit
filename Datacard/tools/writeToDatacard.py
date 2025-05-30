@@ -69,7 +69,7 @@ def writeSystematic(f,d,s,options,stxsMergeScheme=None,scaleCorrScheme=None):
     stitle = "%s_%s"%(outputWSNuisanceTitle__,s['title'])
     if s['mode'] != 'other': stitle += "_%s"%outputNuisanceExtMap[s['mode']]
     # If not correlated: separate nuisance per year
-    if s['mode'] in ['scales','smears']:
+    if s['mode'] in ['scales','smears','other']:
       for year in options.years.split(","):
         stitle_y = "%s_%s"%(stitle,year) 
         lsyst = "%-70s  param    %-6s %-6s"%(stitle_y,s['mean'],s['sigma'])
