@@ -1,0 +1,4 @@
+python3 getCondorQueue.py /GluGluHToGG_intqg_M120_13TeV-sherpa/RunIISummer20UL16MiniAODAPVv2-106X_mcRun2_asymptotic_preVFP_v11-v2/MINIAODSIM qg 120 2016preVFP
+python3 getCondorQueue.py /GluGluHToGG_intqg_M120_13TeV-sherpa/RunIISummer20UL16MiniAODv2-106X_mcRun2_asymptotic_v17-v2/MINIAODSIM qg 120 2016postVFP
+python3 getCondorQueue.py /GluGluHToGG_intqg_M120_13TeV-sherpa/RunIISummer20UL17MiniAODv2-106X_mc2017_realistic_v9-v2/MINIAODSIM qg 120 2017
+python3 getCondorQueue.py /GluGluHToGG_intqg_M120_13TeV-sherpa/RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v2/MINIAODSIM qg 120 2018

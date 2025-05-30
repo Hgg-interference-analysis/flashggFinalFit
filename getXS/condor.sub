@@ -1,0 +1,9 @@
+Universe = vanilla
+Executable = condor.sh
+Arguments = "$(dataset) $(ProcId) $(proc) $(mass) $(year)"
+Output = logs/job_$(Cluster)_$(ProcIdRequestCpus = 1
+transfer_input_files = condor.sh, extract_weights.py
+environment = "ProcId=$(ProcId)"
++JobFlavour = "espresso"
+
+Queue dataset, ProcId, proc, mass, year from ./queueArgs/queue_args_gg_m125_2016postVFP.txt

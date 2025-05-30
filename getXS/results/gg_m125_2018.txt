@@ -1,0 +1,3 @@
+Integral(sumW) = 181032.234375
+Integral(sumNtrials) = 377642848.0
+Total cross-section = 0.00047937419001511185
