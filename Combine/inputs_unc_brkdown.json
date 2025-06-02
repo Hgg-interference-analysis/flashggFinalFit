@@ -1,0 +1,23 @@
+{
+    "mu_inclusive":{
+        "pois":"r",
+        "fits":"profile1D:freezeScale:all+profile1D:freezeScaleSmear:all+profile1D:freezeScaleSmearAlpha:all+profile1D:freezeSSAlphaMaterial:all+profile1D:freezeSSAmatSS:all+profile1D:freezeSSAmatSSfnuf:all",
+        "points":"100:1+100:1+100:1+100:1+100:1+100:1",
+        "fit_opts":"--redefineSignalPOIs GammaH,r -P GammaH --setParameterRanges GammaH=0,100 --saveSpecifiedNuis all --setParameters GammaH=1,lumi_scaler=2.167 --saveInactivePOI 1 --freezeNuisanceGroups scale+--setParameterRanges GammaH=0,100 --saveSpecifiedNuis all --setParameters GammaH=1,lumi_scaler=2.167 --saveInactivePOI 1 --freezeNuisanceGroups scale,smear+--setParameterRanges GammaH=0,100 --saveSpecifiedNuis all --setParameters GammaH=1,lumi_scaler=2.167 --saveInactivePOI 1 --freezeNuisanceGroups scale,smear,alpha+--setParameterRanges GammaH=0,100 --saveSpecifiedNuis all --setParameters GammaH=1,lumi_scaler=2.167 --saveInactivePOI 1 --freezeNuisanceGroups scale,smear,alpha,material+--setParameterRanges GammaH=0,100 --saveSpecifiedNuis all --setParameters GammaH=1,lumi_scaler=2.167 --saveInactivePOI 1 --freezeNuisanceGroups scale,smear,alpha,material,shower_shape +--setParameterRanges GammaH=0,100 --saveSpecifiedNuis all --setParameters GammaH=1,lumi_scaler=2.167 --saveInactivePOI 1 --freezeNuisanceGroups scale,smear,alpha,material,shower_shape,fnuf"
+    },
+
+    "mu":{
+        "pois":"r_ggH",
+        "fits":"profile1D:syst:all+profile1D:statonly:all+profile1D:freezeScale:all+profile1D:freezeScaleSS:all+profile1D:freezeScaleSSMat:all+profile1D:freezeSSSMatAlpha:all+profile1D:freezeSSSMatAlphaFnuf:all+profile1D:freezeSSSMatAlphaFnufSmear:all+profile1D:freezeSSSMatAlphaFnufSmearThu:all",
+        "points":"100:1+100:1+100:1+100:1+100:1+100:1+100:1+100:1+100:1",
+        "fit_opts":"--setParameterRanges GammaH=0.,50. --saveSpecifiedNuis all --setParameters GammaH=1,MH=125.38,r_ggH=1.0,r_VBF=1.0,r_VH=1.0 --saveInactivePOI 1 +--setParameterRanges GammaH=0.,50. --saveSpecifiedNuis all --setParameters GammaH=1,MH=125.38,r_ggH=1.0,r_VBF=1.0,r_VH=1.0 --freezeParameters allConstrainedNuisances --saveInactivePOI 1+--setParameterRanges GammaH=0,50. --saveSpecifiedNuis all --setParameters GammaH=1,MH=125.38,r_ggH=1.0,r_VBF=1.0,r_VH=1.0 --saveInactivePOI 1 --freezeNuisanceGroups scale+--setParameterRanges GammaH=0,50. --saveSpecifiedNuis all --setParameters GammaH=1,MH=125.38,r_ggH=1.0,r_VBF=1.0,r_VH=1.0 --saveInactivePOI 1 --freezeNuisanceGroups scale,shower_shape+--setParameterRanges GammaH=0,50. --saveSpecifiedNuis all --setParameters GammaH=1,MH=125.38,r_ggH=1.0,r_VBF=1.0,r_VH=1.0 --saveInactivePOI 1 --freezeNuisanceGroups scale,shower_shape,material+--setParameterRanges GammaH=0,50. --saveSpecifiedNuis all --setParameters GammaH=1,MH=125.38,r_ggH=1.0,r_VBF=1.0,r_VH=1.0 --saveInactivePOI 1 --freezeNuisanceGroups scale,shower_shape,material,alpha+--setParameterRanges GammaH=0,50. --saveSpecifiedNuis all --setParameters GammaH=1,MH=125.38,r_ggH=1.0,r_VBF=1.0,r_VH=1.0 --saveInactivePOI 1 --freezeNuisanceGroups scale,shower_shape,material,alpha,fnuf +--setParameterRanges GammaH=0,50. --saveSpecifiedNuis all --setParameters GammaH=1,MH=125.38,r_ggH=1.0,r_VBF=1.0,r_VH=1.0 --saveInactivePOI 1 --freezeNuisanceGroups scale,shower_shape,material,alpha,fnuf,smear +--setParameterRanges GammaH=0,50. --saveSpecifiedNuis all --setParameters GammaH=1,MH=125.38,r_ggH=1.0,r_VBF=1.0,r_VH=1.0 --saveInactivePOI 1 --freezeNuisanceGroups scale,shower_shape,material,alpha,fnuf,smear,theory"
+    },
+    
+    "MH":{
+        "pois":"MH",
+        "fits":"profile1D:freezeScale:all+profile1D:freezeScaleSmear:all+profile1D:freezeSSmaterial:all+profile1D:freezeSSmaterialSS:all+profile1D:freezeSSmaterialSSfnuf:all",
+        "points":"20:1+20:1+20:1+20:1+20:1",
+        "fit_opts":"--saveSpecifiedNuis all --saveInactivePOI 1 --cminApproxPreFitTolerance=10 --setParameters MH=125.38 --setParameterRanges MH=122,128 --freezeNuisanceGroups scale+--saveSpecifiedNuis all --saveInactivePOI 1 --cminApproxPreFitTolerance=10 --setParameters MH=125.38 --setParameterRanges MH=122,128 --freezeNuisanceGroups scale,smear+--saveSpecifiedNuis all --saveInactivePOI 1 --cminApproxPreFitTolerance=10 --setParameters MH=125.38 --setParameterRanges MH=122,128 --freezeNuisanceGroups scale,smear,material+--saveSpecifiedNuis all --saveInactivePOI 1 --cminApproxPreFitTolerance=10 --setParameters MH=125.38 --setParameterRanges MH=122,128 --freezeNuisanceGroups scale,smear,material,shower_shape +--saveSpecifiedNuis all --saveInactivePOI 1 --cminApproxPreFitTolerance=10 --setParameters MH=125.38 --setParameterRanges MH=122,128 --freezeNuisanceGroups scale,smear,material,shower_shape,fnuf"
+
+    }
+}
