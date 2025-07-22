@@ -1,5 +1,5 @@
-combineTool.py -v 0 -M Impacts -d /afs/cern.ch/user/a/amkrishn/CMSSW_14_1_0_pre4/src/flashggFinalFit/Combine/Datacard_fullRun2_final.root \
--m 125.38 --setParameters GammaH=1,MH=125.38,r_ggH=1.0,r_VBF=1.0,r_VH=1.0 --setParameterRanges GammaH=0,60 \
+combineTool.py -v 0 -M Impacts -d /afs/cern.ch/user/a/amkrishn/CMSSW_14_1_0_pre4/src/flashggFinalFit/Combine/Datacard_Voigt.root \
+-m 125.38 --setParameters GammaH=0.004,MH=125.38,r_ggH=1.0,r_VBF=1.0,r_VH=1.0 --setParameterRanges GammaH=0.0,0.8 \
 --redefineSignalPOIs GammaH \
  -t -1 \
  --saveSpecifiedNuis all \
