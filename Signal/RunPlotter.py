@@ -27,20 +27,21 @@ def get_options():
   parser.add_option("--label", dest="label", default='Simulation Preliminary', help="CMS Sub-label")
   parser.add_option("--doFWHM", dest="doFWHM", default=False, action='store_true', help="Do FWHM")
   parser.add_option("--outdir", dest='outdir', default=swd__, help="Output directory (default is the current one)")
+  parser.add_option('--minMassForIntegration', dest='minMassForIntegration', default=110, help="Min. mass when summing entries")
+  parser.add_option('--maxMassForIntegration', dest='maxMassForIntegration', default=135, help="Max. mass when summing entries")
   return parser.parse_args()
 (opt,args) = get_options()
 
 ROOT.gROOT.SetBatch(True)
 ROOT.gStyle.SetOptStat(0)
 
-outputWSObjectTitle__ = "dcb"
+#outputWSObjectTitle__ = "dcb"
 
 # Extract input files: for first file extract xvar
 inputFiles = od()
 citr = 0
 
 print("opt.cats: %s"%opt.cats)
-
 print("opt.procs: %s"%opt.procs)
 
 if opt.cats in ['all','wall']:
@@ -99,68 +100,96 @@ for cat,f in inputFiles.items():
   norms = od()
   data_rwgt = od()
   hpdfs = od()
-  for year in opt.years.split(","):
-    if opt.procs == 'all':
-      allNorms = w.allFunctions().selectByName("*%s*normThisLumi"%year)
-      for norm in rooiter(allNorms):
-        #proc = norm.GetName().split("%s_"%outputWSObjectTitle__)[-1].split("_%s"%year)[0]
-        proc = norm.GetName().split("%s_"%outputWSObjectTitle__)[-1]
-        k  =  "%s_%s"%(proc,year)
-        _id = "%s_%s_%s_%s"%(proc,year,cat,sqrts__)
-        print(proc,year,cat,sqrts__)
-        print("%s_%s_normThisLumi"%(outputWSObjectTitle__,_id))
-        print(f"k: {k}")
-        norms[k] = w.function("%s_%s_normThisLumi"%(outputWSObjectTitle__,_id))
-        print("norms[k]: %s"%norms[k])
-    else:
-      for proc in opt.procs.split(","):
-        k = "%s_%s"%(proc,year)
-        _id = "%s_%s_%s_%s"%(proc,year,cat,sqrts__)
-        print(proc,year,cat,sqrts__)
-        print("%s_%s_normThisLumi"%(outputWSObjectTitle__,_id))
-        print(f"k: {k}")
-        norms[k] = w.function("%s_%s_normThisLumi"%(outputWSObjectTitle__,_id))
-        print("norms[k]: %s"%norms[k])
+  if len(opt.years.split(",")) == 1:
+    year = opt.years
+  else:
+    year = f.split("_")[-1].split(".")[0]
+  #for year in opt.years.split(","):
+  if opt.procs == 'all':
+    allNorms = w.allFunctions().selectByName("%s*%s*normThisLumi"%(outputWSObjectTitle__,year))
+    for norm in rooiter(allNorms):
+      proc = norm.GetName().split("%s_"%outputWSObjectTitle__)[-1].split("_%s"%year)[0]
+      #proc = norm.GetName().split("%s_"%outputWSObjectTitle__)
+      k  =  "%s_%s"%(proc,year)
+      _id = "%s_%s_%s_%s"%(proc,year,cat,sqrts__)
+      print(proc,year,cat,sqrts__)
+      print("%s_%s_normThisLumi"%(outputWSObjectTitle__,_id))
+      print(f"k: {k}")
+      norms[k] = w.function("%s_%s_normThisLumi"%(outputWSObjectTitle__,_id))
+      #norms[k] = w.function("%s_%s_norm"%(outputWSObjectTitle__,_id))
+      print("norms[k]: %s"%norms[k])
+  else:
+    for proc in opt.procs.split(","):
+      k = "%s_%s"%(proc,year)
+      _id = "%s_%s_%s_%s"%(proc,year,cat,sqrts__)
+      print(proc,year,cat,sqrts__)
+      print("%s_%s_normThisLumi"%(outputWSObjectTitle__,_id))
+      print(f"k: {k}")
+      norms[k] = w.function("%s_%s_normThisLumi"%(outputWSObjectTitle__,_id))
+      #norms[k] = w.function("%s_%s_norm"%(outputWSObjectTitle__,_id))
+      print("norms[k]: %s"%norms[k])
 
   # Iterate over norms: extract total category norm
   catNorm = 0
   for k, norm in norms.items():
     proc, year = k.split("_")
     w.var("IntLumi").setVal(lumiScaleFactor*lumiMap[year])
+    #catNorm += norm.getVal()*(lumiScaleFactor*lumiMap[year])
     catNorm += norm.getVal()
-
+    
   # Iterate over norms and extract data sets + pdfs
   for k, norm in norms.items():
     proc, year = k.split("_")
     _id = "%s_%s_%s_%s"%(proc,year,cat,sqrts__)
     w.var("IntLumi").setVal(lumiScaleFactor*lumiMap[year])
-
+    
     # Prune
+    #nval = norm.getVal()*(lumiScaleFactor*lumiMap[year])
     nval = norm.getVal()
     if nval < opt.threshold*catNorm: continue # Prune processes which contribute less that threshold of signal mod
 
     # Make empty copy of dataset
     d = w.data("sig_mass_m%s_%s"%(opt.mass,_id))
     d_rwgt = d.emptyClone(_id)
+
+    sumEntries = 0
+    for i in range(d.numEntries()):
+      p = d.get(i)
+      mass = p.getRealValue("CMS_hgg_mass")
+      if mass < opt.minMassForIntegration or mass > opt.maxMassForIntegration: continue
+      sumEntries += d.weight()
     
     # Calc norm factor
     if d.sumEntries() == 0: nf = 0
-    else: nf = nval/d.sumEntries()
+    #else: nf = nval/d.sumEntries()
+    else: nf = nval/sumEntries
     # Fill dataset with correct normalisation + reweight if using cat weights
     for i in range(d.numEntries()):
       p = d.get(i)
+      mass = p.getRealValue("CMS_hgg_mass")
+      if mass < opt.minMassForIntegration or mass > opt.maxMassForIntegration: continue
       rw, rwe = d.weight()*nf*wcat, d.weightError()*nf*wcat
       d_rwgt.add(p,rw,rwe)
     # Add dataset to container
     data_rwgt[_id] = d_rwgt
 
     # Extract pdf and create histogram
-    pdf = w.pdf("extend%s_%sThisLumi"%(outputWSObjectTitle__,_id)) 
+    pdf = w.pdf("extend%s_%sThisLumi"%(outputWSObjectTitle__,_id))
+    print("extend%s_%sThisLumi"%(outputWSObjectTitle__,_id))
+    #pdf = w.pdf("%s_%s"%(outputWSObjectTitle__,_id))
+    #xvar.setRange(opt.minMassForIntegration, opt.maxMassForIntegration)
     hpdfs[_id] = pdf.createHistogram("h_pdf_%s"%_id,xvar,ROOT.RooFit.Binning(opt.pdf_nBins))
-    hpdfs[_id].Scale(wcat*float(opt.nBins)/320) # FIXME: hardcoded 320
+    print(f"[{_id}] norm: {norm.getVal():.3f}, PDF integral before scaling: {hpdfs[_id].Integral():.3f}")
+    hpdfs[_id].Scale(wcat*float(opt.nBins)/3200) # FIXME: hardcoded 320
+    hpdfs[_id].Scale(0.5)
 
   # Fill total histograms: data, per-year pdfs and pdfs
   for _id,d in data_rwgt.items(): d.fillHistogram(hists['data'],alist)
+
+  print("*************************************************************************************************************")
+  print(f"--> {_id}: norm = {norm.getVal()}, data sum = {d_rwgt.sumEntries()}, pdf integral = {hpdfs[_id].Integral()}")
+  print("*************************************************************************************************************")
+
 
   # Sum pdf histograms
   for _id,p in hpdfs.items():
@@ -186,6 +215,7 @@ for cat,f in inputFiles.items():
   for p in hpdfs.values(): p.Delete()
   w.Delete()
   '''
+  
   fin.Close()
 
 # Make plot

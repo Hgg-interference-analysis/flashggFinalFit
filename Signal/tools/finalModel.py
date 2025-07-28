@@ -105,7 +105,9 @@ class FinalModel:
     # Options:
     self.useDCB = _useDCB
     self.doVoigtian = _doVoigtian
-    if self.doVoigtian: self.GammaH = ROOT.RooRealVar("GammaH","GammaH",0.004,0.,5.)
+    if self.doVoigtian:
+      self.GammaH = ROOT.RooRealVar("GammaH","GammaH",0.004,0.,1.)
+      #self.GammaH.setConstant(True)
     self.skipVertexScenarioSplit = _skipVertexScenarioSplit
     self.doEffAccFromJson = _doEffAccFromJson
     self.verbose = True

@@ -235,7 +235,10 @@ def plotPdfComponents(ssf,_outdir='./',_extension='',_proc='',_cat=''):
         if "gaus" in k: frac = ssf.Pdfs['final'].getComponents().getRealValue("frac_g0_constrained")
         else: frac = ssf.Pdfs['final'].getComponents().getRealValue("frac_constrained")
       else:
-        frac = ssf.Pdfs['final'].getComponents().getRealValue("%s_%s_recursive_fraction_%s"%(ssf.proc,ssf.cat,k))
+        #frac = ssf.Pdfs['final'].getComponents().getRealValue("frac_g%d_constrained"%pdfItr)
+        frac = ssf.Pdfs['final'].getComponents().getRealValue("%s_%s_recursive_fraction_%s_%d"%(ssf.proc,ssf.cat,k,pdfItr+1))
+        #print("**********************TEST***************************")
+        #print("%s_%s_recursive_fraction_%s"%(ssf.proc,ssf.cat,k))
       # Create histogram with 1600 bins
       hists[k] = v.createHistogram("h_%s%s"%(k,_extension),ssf.xvar,ROOT.RooFit.Binning(1600))
       hists[k].Scale(frac)

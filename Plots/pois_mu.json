@@ -1,6 +1,6 @@
 {
   "MH":"m_{H}",
-  "GammaH":"#Gamma_{H}/#Gamma_{H}^{SM}",
+  "GammaH":"#Gamma_{H} (GeV)",
   "r":"#mu",
   "r_inclusive":"#mu",
   "r_ggH":"#mu_{ggH}",

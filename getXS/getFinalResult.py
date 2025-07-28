@@ -7,7 +7,7 @@ years = ["2016preVFP", "2016postVFP", "2017", "2018"]
 values = []
 
 for year in years:
-    file_path = f"./results/gg_m125_{year}.txt"
+    file_path = f"./results/qg_m130_{year}.txt"
     if not os.path.exists(file_path):
         print(f"Missing file: {file_path}")
         continue

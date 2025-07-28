@@ -15,7 +15,7 @@ sqrts__ = "13TeV"
 
 # Luminosity map in fb^-1
 lumiMap = {'2016':36.33, '2016preVFP': 19.52, '2016postVFP': 16.81, '2017':41.48, '2018':63.67, 'combined':138, 'merged':138}
-lumiScaleFactor = 1000. # Converting from pb to fb
+lumiScaleFactor = 1000. # Converting from fb-1 to pb-1
 
 # Constants
 BR_W_lnu = 3.*10.86*0.01
@@ -33,8 +33,9 @@ inputWSName__ = "tagsDumper/cms_hgg_13TeV"
 inputNuisanceExtMap = {'scales':'MCScale','scalesCorr':'','smears':'MCSmear'}
 # Signal output WS objects
 outputWSName__ = "wsig"
-#outputWSObjectTitle__ = "hggpdfsmrel"
-outputWSObjectTitle__ = "dcb_shift"
+#outputWSObjectTitle__ = "hggpdfsmrel_shift"
+outputWSObjectTitle__ = "hggpdfsmrel"
+#outputWSObjectTitle__ = "dcb_shift"
 outputWSNuisanceTitle__ = "CMS_hgg_nuisance"
 outputNuisanceExtMap = {'scales':'%sscale'%sqrts__,'scalesCorr':'%sscaleCorr'%sqrts__,'smears':'%ssmear'%sqrts__,'scalesGlobal':'%sscale'%sqrts__}
 # Bkg output WS objects

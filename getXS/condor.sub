@@ -6,4 +6,4 @@ transfer_input_files = condor.sh, extract_weights.py
 environment = "ProcId=$(ProcId)"
 +JobFlavour = "espresso"
 
-Queue dataset, ProcId, proc, mass, year from ./queueArgs/queue_args_gg_m125_2016postVFP.txt
+Queue dataset, ProcId, proc, mass, year from ./queueArgs/queue_args_qg_m130_2018.txt

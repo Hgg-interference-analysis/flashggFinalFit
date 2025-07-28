@@ -1,5 +1,5 @@
 combineTool.py -v 0 -M Impacts -d ../Datacard_Voigt.root \
--m 125.38 --setParameters GammaH=0.004,MH=125.38,r_ggH=1.0,r_VBF=1.0,r_VH=1.0 --setParameterRanges GammaH=0.0,0.8 \
+-m 125.38 --setParameters GammaH=0.004,MH=125.38,r_ggH=1.0,r_VBF=1.0,r_VH=1.0 --setParameterRanges GammaH=0.0,0.9 \
 --redefineSignalPOIs GammaH \
  -t -1 \
  --saveSpecifiedNuis all \
@@ -8,5 +8,5 @@ combineTool.py -v 0 -M Impacts -d ../Datacard_Voigt.root \
                          --X-rtd MINIMIZER_multiMin_hideConstants \
                          --X-rtd MINIMIZER_multiMin_maskConstraints \
                          --X-rtd MINIMIZER_multiMin_maskChannels=2 \
-			 --exclude 'rgx{env.*}' --parallel 12 \
+			 --exclude 'rgx{env.*}' --parallel 20 \
 --doFits

@@ -35,7 +35,7 @@ if [[ $DR ]]; then
 fi
 
 #fits=("latest_cat0" "latest_cat1" "latest_cat2" "latest_cat3" "latest_cat4" "latest_cat5" "latest_cat6" "latest_cat7" "latest_cat8" "latest_cat9" "latest_cat10")
-fits=("fullRun2")
+fits=("Voigt")
 mode=("mu")
 
 if [[ $STEP == "t2w" ]]; then
@@ -56,7 +56,8 @@ elif [[ $STEP == "redefPOI" ]]; then
 	for fit in ${fits[*]}
 	do
 	    directory="runFits${fit}_${mode}"
-        for r in "r_ggH" "r_VBF" "r_VH"; do
+            #for r in "r_ggH" "r_VBF" "r_VH"; do
+	    for r in "r_ggH"; do
 	        if [ ! -d "$directory" ]; then
 		    echo "Error: Directory $directory does not exist."
 		    exit 1

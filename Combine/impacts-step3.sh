@@ -3,7 +3,7 @@ combineTool.py -v 0 -M Impacts -d /afs/cern.ch/user/a/amkrishn/CMSSW_14_1_0_pre4
 --redefineSignalPOIs GammaH \
  -t -1 \
  --saveSpecifiedNuis all \
- --X-rtd MINIMIZER_multiMin_maskConstraints \
+ --cminDefaultMinimizerStrategy 1 \
                          --X-rtd MINIMIZER_freezeDisassociatedParams \
                          --X-rtd MINIMIZER_multiMin_hideConstants \
                          --X-rtd MINIMIZER_multiMin_maskConstraints \

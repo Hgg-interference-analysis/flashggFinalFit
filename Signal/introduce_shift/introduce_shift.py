@@ -125,7 +125,8 @@ if opt.proc == 'GG2H':
   
   m_dict = {
       120.0:(52.22, 0.002218, 1.482e-03, 1.35, -2.168e-04),
-      125.0:(48.58, 0.00227, 1.608e-03, 1.26, -2.051e-04),
+      #125.0:(48.58, 0.00227, 1.608e-03, 1.26, -2.051e-04),
+      125.0:(48.58, 0.00227, 0.56e-03, 1.26, -2.051e-04),
       130.0:(45.31, 0.002238, 1.82e-03, 1.14, -2.067e-04)
       }
   xs_ratio = []
@@ -187,8 +188,11 @@ w.factory(factory_string)
 # change also the norm function name
 original_norm_func = w.function("hggpdfsmrel_%s_%s_%s_13TeV_norm"%(opt.proc, opt.year, opt.cat))
 new_norm_func = original_norm_func.Clone("hggpdfsmrel_shift_%s_%s_%s_13TeV_norm"%(opt.proc, opt.year, opt.cat))
+original_normThisLumi = w.function("hggpdfsmrel_%s_%s_%s_13TeV_normThisLumi"%(opt.proc, opt.year, opt.cat))
+new_normThisLumi = original_normThisLumi.Clone("hggpdfsmrel_shift_%s_%s_%s_13TeV_normThisLumi"%(opt.proc, opt.year, opt.cat))
 imp = getattr(w,"import")
 imp(new_norm_func, ROOT.RooFit.RecycleConflictNodes())
+imp(new_normThisLumi, ROOT.RooFit.RecycleConflictNodes())
 
 # the new dcb mean is called "mean_dcb_HHggTauTaukl1_2016_SR1_13TeV_hggpdfsmrel_shift_HHggTauTaukl1_2016_SR1_13TeV"
 # how does that change as a function of GammaH?

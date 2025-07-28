@@ -35,8 +35,8 @@ pLUT['DCB']['a2_p0'] = [1.,0.1,4.]
 pLUT['DCB']['a2_p1'] = [0.0,-0.1,0.1]
 pLUT['DCB']['a2_p2'] = [0.0,-0.001,0.001]
 pLUT['Gaussian_wdcb'] = od()
-pLUT['Gaussian_wdcb']['dm_p0'] = [0.1,-1.5,1.5]
-pLUT['Gaussian_wdcb']['dm_p1'] = [0.01,-0.01,0.01]
+pLUT['Gaussian_wdcb']['dm_p0'] = [0.1,-3.0,3.0]
+pLUT['Gaussian_wdcb']['dm_p1'] = [0.01,-0.1,0.1]
 pLUT['Gaussian_wdcb']['dm_p2'] = [0.01,-0.01,0.01]
 pLUT['Gaussian_wdcb']['sigma_p0'] = [1.5,1.0,4.]
 pLUT['Gaussian_wdcb']['sigma_p1'] = [0.0,-0.1,0.1]
@@ -46,11 +46,11 @@ pLUT['Frac']['p0'] = [0.25,0.01,0.99]
 pLUT['Frac']['p1'] = [0.,-0.05,0.05]
 pLUT['Frac']['p2'] = [0.,-0.0001,0.0001]
 pLUT['Gaussian'] = od()
-pLUT['Gaussian']['dm_p0'] = [0.1,-5.,5.]
-pLUT['Gaussian']['dm_p1'] = [0.0,-0.01,0.01]
+pLUT['Gaussian']['dm_p0'] = [0.1,-3.0,3.0]
+pLUT['Gaussian']['dm_p1'] = [0.0,-0.1,0.1]
 pLUT['Gaussian']['dm_p2'] = [0.0,-0.01,0.01]
 pLUT['Gaussian']['sigma_p0'] = ['func',0.5,10.0]
-pLUT['Gaussian']['sigma_p1'] = [0.0,-0.01,0.01]
+pLUT['Gaussian']['sigma_p1'] = [0.0,-0.1,0.1]
 pLUT['Gaussian']['sigma_p2'] = [0.0,-0.01,0.01]
 pLUT['FracGaussian'] = od()
 pLUT['FracGaussian']['p0'] = ['func',0.01,0.99]
@@ -327,7 +327,7 @@ class SimultaneousFit:
         for po in range(0,self.MHPolyOrder+1):
           # p0 value of sigma is function of g (creates gaussians of increasing width)
           if(f == "sigma")&(po==0): 
-            self.Vars['%s_p%g'%(k,po)] = ROOT.RooRealVar("%s_p%g"%(k,po),"%s_p%g"%(k,po),(g+1)*1.0,pLUT['Gaussian']["%s_p%s"%(f,po)][1],pLUT['Gaussian']["%s_p%s"%(f,po)][2])
+            self.Vars['%s_p%g'%(k,po)] = ROOT.RooRealVar("%s_p%g"%(k,po),"%s_p%g"%(k,po),(g+1.1)*1.0,pLUT['Gaussian']["%s_p%s"%(f,po)][1],pLUT['Gaussian']["%s_p%s"%(f,po)][2])
           else:
             self.Vars['%s_p%g'%(k,po)] = ROOT.RooRealVar("%s_p%g"%(k,po),"%s_p%g"%(k,po),pLUT['Gaussian']["%s_p%s"%(f,po)][0],pLUT['Gaussian']["%s_p%s"%(f,po)][1],pLUT['Gaussian']["%s_p%s"%(f,po)][2])
           self.Varlists[k].add( self.Vars['%s_p%g'%(k,po)] ) 
@@ -360,7 +360,8 @@ class SimultaneousFit:
       _pdfs.add(self.Pdfs['gaus_g%g'%g])
       if g < nGaussians-1: _coeffs.add(self.Coeffs['frac_g%g_constrained'%g])
     self.Pdfs['final'] = ROOT.RooAddPdf("%s_%s"%(self.proc,self.cat),"%s_%s"%(self.proc,self.cat),_pdfs,_coeffs,_recursive)
-    
+    #print("**********************PRINT PDF COMPONENTS*********************************")
+    #self.Pdfs['final'].getComponents().Print()
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~   
   def runFit(self):
     # Extract fit variables: remove xvar from fit parameters
@@ -380,6 +381,12 @@ class SimultaneousFit:
     if self.verbose: print(" --> (%s) Running fit"%self.name)
     self.FitResult = minimize(nChi2Addition,x0,args=self,bounds=xbounds,method=self.minimizerMethod)
     self.Chi2 = self.getChi2()
+    count = 0
+    while (self.getChi2()/int(self.Ndof) > 1.0 and count<5):
+      newFit = minimize(nChi2Addition,self.FitResult.x,args=self,bounds=xbounds,method=self.minimizerMethod)
+      self.FitResult = newFit
+      count+=1
+      self.Chi2 = self.getChi2()
     #self.Chi2 = nChi2Addition(self.FitResult['x'],self)
     # Print parameter post-fit values
     if self.verbose: self.printFitParameters(title="Post-fit")
