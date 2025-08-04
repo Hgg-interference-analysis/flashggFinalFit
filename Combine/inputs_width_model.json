@@ -1,0 +1,23 @@
+{
+    "mu_inclusive":{
+        "pois":"r",
+        "fits":"profile1D:syst:all+profile1D:statonly:all",
+        "points":"40:1+40:1",
+        "fit_opts":"--setParameterRanges GammaH=0,80 --saveSpecifiedNuis all --setParameters GammaH=1,MH=125.38,r_ggH=1.0,r_VBF=1.0,r_VH=1.0 --freezeParameters MH --saveInactivePOI 1 +--setParameterRanges GammaH=0,80 --saveSpecifiedNuis all --setParameters GammaH=1,MH=125.38,r_ggH=1.0,r_VBF=1.0,r_VH=1.0 --freezeParameters MH --saveInactivePOI 1"
+    },
+    
+    "mu":{
+        "pois":"r_ggH",
+        "fits":"profile1D:syst:all+profile1D:statonly:all",
+        "points":"100:1+100:1",
+        "fit_opts":"--setParameterRanges GammaH=0.,0.8 --saveSpecifiedNuis all --setParameters GammaH=0.004,MH=125.38,r_ggH=1.0,r_VBF=1.0,r_VH=1.0 --saveInactivePOI 1 +--setParameterRanges GammaH=0.,0.8 --saveSpecifiedNuis all --setParameters GammaH=0.004,MH=125.38,r_ggH=1.0,r_VBF=1.0,r_VH=1.0 --freezeParameters allConstrainedNuisances --saveInactivePOI 1"
+    },
+    
+    "MH":{
+        "pois":"MH",
+        "fits":"profile1D:syst:all+profile1D:statonly:all",
+        "points":"20:1+20:1",
+        "fit_opts":"--saveSpecifiedNuis all --saveInactivePOI 1 --cminApproxPreFitTolerance=10 --setParameters MH=125.38,lumi_scaler=2.167 --setParameterRanges MH=122,128 +--saveSpecifiedNuis all --saveInactivePOI 1 --cminApproxPreFitTolerance=10 --setParameters MH=125.38,lumi_scaler=2.3 --setParameterRanges MH=122,128"
+
+    }
+}
