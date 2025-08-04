@@ -1,7 +1,7 @@
 Combination of Name1=Datacard_final2016preVFP.txt  Name2=Datacard_final2016postVFP.txt  Name3=Datacard_final2017.txt  Name4=Datacard_final2018.txt
 imax 44 number of bins
 jmax 12 number of processes minus 1
-kmax 120 number of nuisance parameters
+kmax 248 number of nuisance parameters
 ----------------------------------------------------------------------------------------------------------------------------------
 shapes bkg_mass                         Name1_UntaggedTag_0_2016preVFP   ./Models/background/CMS-HGG_multipdf_UntaggedTag_0_2016preVFP.root multipdf:CMS_hgg_UntaggedTag_0_2016preVFP_13TeV_bkgshape
 shapes data_obs                         Name1_UntaggedTag_0_2016preVFP   ./Models/background/CMS-HGG_multipdf_UntaggedTag_0_2016preVFP.root multipdf:roohist_data_mass_UntaggedTag_0
@@ -312,7 +312,39 @@ CMS_hgg_nuisance_LowR9EBPhi_13TeVsmear_2016preVFP  param  0.0 1.0
 CMS_hgg_nuisance_LowR9EBRho_13TeVsmear_2016preVFP  param  0.0 1.0
 CMS_hgg_nuisance_LowR9EEPhi_13TeVsmear_2016preVFP  param  0.0 1.0
 CMS_hgg_nuisance_LowR9EERho_13TeVsmear_2016preVFP  param  0.0 1.0
-CMS_hgg_nuisance_alpha_2016preVFP  param  0.0 1.0
+CMS_hgg_nuisance_alpha_GG2H_2016preVFP_UntaggedTag_0  param  0.0 1.0
+CMS_hgg_nuisance_alpha_VBF_2016preVFP_UntaggedTag_0  param  0.0 1.0
+CMS_hgg_nuisance_alpha_vh_2016preVFP_UntaggedTag_0  param  0.0 1.0
+CMS_hgg_nuisance_alpha_GG2H_2016preVFP_UntaggedTag_1  param  0.0 1.0
+CMS_hgg_nuisance_alpha_VBF_2016preVFP_UntaggedTag_1  param  0.0 1.0
+CMS_hgg_nuisance_alpha_vh_2016preVFP_UntaggedTag_1  param  0.0 1.0
+CMS_hgg_nuisance_alpha_GG2H_2016preVFP_UntaggedTag_2  param  0.0 1.0
+CMS_hgg_nuisance_alpha_VBF_2016preVFP_UntaggedTag_2  param  0.0 1.0
+CMS_hgg_nuisance_alpha_vh_2016preVFP_UntaggedTag_2  param  0.0 1.0
+CMS_hgg_nuisance_alpha_GG2H_2016preVFP_UntaggedTag_3  param  0.0 1.0
+CMS_hgg_nuisance_alpha_VBF_2016preVFP_UntaggedTag_3  param  0.0 1.0
+CMS_hgg_nuisance_alpha_vh_2016preVFP_UntaggedTag_3  param  0.0 1.0
+CMS_hgg_nuisance_alpha_GG2H_2016preVFP_UntaggedTag_4  param  0.0 1.0
+CMS_hgg_nuisance_alpha_VBF_2016preVFP_UntaggedTag_4  param  0.0 1.0
+CMS_hgg_nuisance_alpha_vh_2016preVFP_UntaggedTag_4  param  0.0 1.0
+CMS_hgg_nuisance_alpha_GG2H_2016preVFP_UntaggedTag_5  param  0.0 1.0
+CMS_hgg_nuisance_alpha_VBF_2016preVFP_UntaggedTag_5  param  0.0 1.0
+CMS_hgg_nuisance_alpha_vh_2016preVFP_UntaggedTag_5  param  0.0 1.0
+CMS_hgg_nuisance_alpha_GG2H_2016preVFP_UntaggedTag_6  param  0.0 1.0
+CMS_hgg_nuisance_alpha_VBF_2016preVFP_UntaggedTag_6  param  0.0 1.0
+CMS_hgg_nuisance_alpha_vh_2016preVFP_UntaggedTag_6  param  0.0 1.0
+CMS_hgg_nuisance_alpha_GG2H_2016preVFP_UntaggedTag_7  param  0.0 1.0
+CMS_hgg_nuisance_alpha_VBF_2016preVFP_UntaggedTag_7  param  0.0 1.0
+CMS_hgg_nuisance_alpha_vh_2016preVFP_UntaggedTag_7  param  0.0 1.0
+CMS_hgg_nuisance_alpha_GG2H_2016preVFP_UntaggedTag_8  param  0.0 1.0
+CMS_hgg_nuisance_alpha_VBF_2016preVFP_UntaggedTag_8  param  0.0 1.0
+CMS_hgg_nuisance_alpha_vh_2016preVFP_UntaggedTag_8  param  0.0 1.0
+CMS_hgg_nuisance_alpha_GG2H_2016preVFP_UntaggedTag_9  param  0.0 1.0
+CMS_hgg_nuisance_alpha_VBF_2016preVFP_UntaggedTag_9  param  0.0 1.0
+CMS_hgg_nuisance_alpha_vh_2016preVFP_UntaggedTag_9  param  0.0 1.0
+CMS_hgg_nuisance_alpha_GG2H_2016preVFP_VBFTag_0  param  0.0 1.0
+CMS_hgg_nuisance_alpha_VBF_2016preVFP_VBFTag_0  param  0.0 1.0
+CMS_hgg_nuisance_alpha_vh_2016preVFP_VBFTag_0  param  0.0 1.0
 CMS_hgg_nuisance_HighR9EB_13TeVscale_2016postVFP  param  0.0 1.0
 CMS_hgg_nuisance_HighR9EE_13TeVscale_2016postVFP  param  0.0 1.0
 CMS_hgg_nuisance_LowR9EB_13TeVscale_2016postVFP  param  0.0 1.0
@@ -325,7 +357,39 @@ CMS_hgg_nuisance_LowR9EBPhi_13TeVsmear_2016postVFP  param  0.0 1.0
 CMS_hgg_nuisance_LowR9EBRho_13TeVsmear_2016postVFP  param  0.0 1.0
 CMS_hgg_nuisance_LowR9EEPhi_13TeVsmear_2016postVFP  param  0.0 1.0
 CMS_hgg_nuisance_LowR9EERho_13TeVsmear_2016postVFP  param  0.0 1.0
-CMS_hgg_nuisance_alpha_2016postVFP  param  0.0 1.0
+CMS_hgg_nuisance_alpha_GG2H_2016postVFP_UntaggedTag_0  param  0.0 1.0
+CMS_hgg_nuisance_alpha_VBF_2016postVFP_UntaggedTag_0  param  0.0 1.0
+CMS_hgg_nuisance_alpha_vh_2016postVFP_UntaggedTag_0  param  0.0 1.0
+CMS_hgg_nuisance_alpha_GG2H_2016postVFP_UntaggedTag_1  param  0.0 1.0
+CMS_hgg_nuisance_alpha_VBF_2016postVFP_UntaggedTag_1  param  0.0 1.0
+CMS_hgg_nuisance_alpha_vh_2016postVFP_UntaggedTag_1  param  0.0 1.0
+CMS_hgg_nuisance_alpha_GG2H_2016postVFP_UntaggedTag_2  param  0.0 1.0
+CMS_hgg_nuisance_alpha_VBF_2016postVFP_UntaggedTag_2  param  0.0 1.0
+CMS_hgg_nuisance_alpha_vh_2016postVFP_UntaggedTag_2  param  0.0 1.0
+CMS_hgg_nuisance_alpha_GG2H_2016postVFP_UntaggedTag_3  param  0.0 1.0
+CMS_hgg_nuisance_alpha_VBF_2016postVFP_UntaggedTag_3  param  0.0 1.0
+CMS_hgg_nuisance_alpha_vh_2016postVFP_UntaggedTag_3  param  0.0 1.0
+CMS_hgg_nuisance_alpha_GG2H_2016postVFP_UntaggedTag_4  param  0.0 1.0
+CMS_hgg_nuisance_alpha_VBF_2016postVFP_UntaggedTag_4  param  0.0 1.0
+CMS_hgg_nuisance_alpha_vh_2016postVFP_UntaggedTag_4  param  0.0 1.0
+CMS_hgg_nuisance_alpha_GG2H_2016postVFP_UntaggedTag_5  param  0.0 1.0
+CMS_hgg_nuisance_alpha_VBF_2016postVFP_UntaggedTag_5  param  0.0 1.0
+CMS_hgg_nuisance_alpha_vh_2016postVFP_UntaggedTag_5  param  0.0 1.0
+CMS_hgg_nuisance_alpha_GG2H_2016postVFP_UntaggedTag_6  param  0.0 1.0
+CMS_hgg_nuisance_alpha_VBF_2016postVFP_UntaggedTag_6  param  0.0 1.0
+CMS_hgg_nuisance_alpha_vh_2016postVFP_UntaggedTag_6  param  0.0 1.0
+CMS_hgg_nuisance_alpha_GG2H_2016postVFP_UntaggedTag_7  param  0.0 1.0
+CMS_hgg_nuisance_alpha_VBF_2016postVFP_UntaggedTag_7  param  0.0 1.0
+CMS_hgg_nuisance_alpha_vh_2016postVFP_UntaggedTag_7  param  0.0 1.0
+CMS_hgg_nuisance_alpha_GG2H_2016postVFP_UntaggedTag_8  param  0.0 1.0
+CMS_hgg_nuisance_alpha_VBF_2016postVFP_UntaggedTag_8  param  0.0 1.0
+CMS_hgg_nuisance_alpha_vh_2016postVFP_UntaggedTag_8  param  0.0 1.0
+CMS_hgg_nuisance_alpha_GG2H_2016postVFP_UntaggedTag_9  param  0.0 1.0
+CMS_hgg_nuisance_alpha_VBF_2016postVFP_UntaggedTag_9  param  0.0 1.0
+CMS_hgg_nuisance_alpha_vh_2016postVFP_UntaggedTag_9  param  0.0 1.0
+CMS_hgg_nuisance_alpha_GG2H_2016postVFP_VBFTag_0  param  0.0 1.0
+CMS_hgg_nuisance_alpha_VBF_2016postVFP_VBFTag_0  param  0.0 1.0
+CMS_hgg_nuisance_alpha_vh_2016postVFP_VBFTag_0  param  0.0 1.0
 CMS_hgg_nuisance_HighR9EB_13TeVscale_2017  param  0.0 1.0
 CMS_hgg_nuisance_HighR9EE_13TeVscale_2017  param  0.0 1.0
 CMS_hgg_nuisance_LowR9EB_13TeVscale_2017  param  0.0 1.0
@@ -338,7 +402,39 @@ CMS_hgg_nuisance_LowR9EBPhi_13TeVsmear_2017  param  0.0 1.0
 CMS_hgg_nuisance_LowR9EBRho_13TeVsmear_2017  param  0.0 1.0
 CMS_hgg_nuisance_LowR9EEPhi_13TeVsmear_2017  param  0.0 1.0
 CMS_hgg_nuisance_LowR9EERho_13TeVsmear_2017  param  0.0 1.0
-CMS_hgg_nuisance_alpha_2017  param  0.0 1.0
+CMS_hgg_nuisance_alpha_GG2H_2017_UntaggedTag_0  param  0.0 1.0
+CMS_hgg_nuisance_alpha_VBF_2017_UntaggedTag_0  param  0.0 1.0
+CMS_hgg_nuisance_alpha_vh_2017_UntaggedTag_0  param  0.0 1.0
+CMS_hgg_nuisance_alpha_GG2H_2017_UntaggedTag_1  param  0.0 1.0
+CMS_hgg_nuisance_alpha_VBF_2017_UntaggedTag_1  param  0.0 1.0
+CMS_hgg_nuisance_alpha_vh_2017_UntaggedTag_1  param  0.0 1.0
+CMS_hgg_nuisance_alpha_GG2H_2017_UntaggedTag_2  param  0.0 1.0
+CMS_hgg_nuisance_alpha_VBF_2017_UntaggedTag_2  param  0.0 1.0
+CMS_hgg_nuisance_alpha_vh_2017_UntaggedTag_2  param  0.0 1.0
+CMS_hgg_nuisance_alpha_GG2H_2017_UntaggedTag_3  param  0.0 1.0
+CMS_hgg_nuisance_alpha_VBF_2017_UntaggedTag_3  param  0.0 1.0
+CMS_hgg_nuisance_alpha_vh_2017_UntaggedTag_3  param  0.0 1.0
+CMS_hgg_nuisance_alpha_GG2H_2017_UntaggedTag_4  param  0.0 1.0
+CMS_hgg_nuisance_alpha_VBF_2017_UntaggedTag_4  param  0.0 1.0
+CMS_hgg_nuisance_alpha_vh_2017_UntaggedTag_4  param  0.0 1.0
+CMS_hgg_nuisance_alpha_GG2H_2017_UntaggedTag_5  param  0.0 1.0
+CMS_hgg_nuisance_alpha_VBF_2017_UntaggedTag_5  param  0.0 1.0
+CMS_hgg_nuisance_alpha_vh_2017_UntaggedTag_5  param  0.0 1.0
+CMS_hgg_nuisance_alpha_GG2H_2017_UntaggedTag_6  param  0.0 1.0
+CMS_hgg_nuisance_alpha_VBF_2017_UntaggedTag_6  param  0.0 1.0
+CMS_hgg_nuisance_alpha_vh_2017_UntaggedTag_6  param  0.0 1.0
+CMS_hgg_nuisance_alpha_GG2H_2017_UntaggedTag_7  param  0.0 1.0
+CMS_hgg_nuisance_alpha_VBF_2017_UntaggedTag_7  param  0.0 1.0
+CMS_hgg_nuisance_alpha_vh_2017_UntaggedTag_7  param  0.0 1.0
+CMS_hgg_nuisance_alpha_GG2H_2017_UntaggedTag_8  param  0.0 1.0
+CMS_hgg_nuisance_alpha_VBF_2017_UntaggedTag_8  param  0.0 1.0
+CMS_hgg_nuisance_alpha_vh_2017_UntaggedTag_8  param  0.0 1.0
+CMS_hgg_nuisance_alpha_GG2H_2017_UntaggedTag_9  param  0.0 1.0
+CMS_hgg_nuisance_alpha_VBF_2017_UntaggedTag_9  param  0.0 1.0
+CMS_hgg_nuisance_alpha_vh_2017_UntaggedTag_9  param  0.0 1.0
+CMS_hgg_nuisance_alpha_GG2H_2017_VBFTag_0  param  0.0 1.0
+CMS_hgg_nuisance_alpha_VBF_2017_VBFTag_0  param  0.0 1.0
+CMS_hgg_nuisance_alpha_vh_2017_VBFTag_0  param  0.0 1.0
 CMS_hgg_nuisance_HighR9EB_13TeVscale_2018  param  0.0 1.0
 CMS_hgg_nuisance_HighR9EE_13TeVscale_2018  param  0.0 1.0
 CMS_hgg_nuisance_LowR9EB_13TeVscale_2018  param  0.0 1.0
@@ -351,7 +447,39 @@ CMS_hgg_nuisance_LowR9EBPhi_13TeVsmear_2018  param  0.0 1.0
 CMS_hgg_nuisance_LowR9EBRho_13TeVsmear_2018  param  0.0 1.0
 CMS_hgg_nuisance_LowR9EEPhi_13TeVsmear_2018  param  0.0 1.0
 CMS_hgg_nuisance_LowR9EERho_13TeVsmear_2018  param  0.0 1.0
-CMS_hgg_nuisance_alpha_2018  param  0.0 1.0
+CMS_hgg_nuisance_alpha_GG2H_2018_UntaggedTag_0  param  0.0 1.0
+CMS_hgg_nuisance_alpha_VBF_2018_UntaggedTag_0  param  0.0 1.0
+CMS_hgg_nuisance_alpha_vh_2018_UntaggedTag_0  param  0.0 1.0
+CMS_hgg_nuisance_alpha_GG2H_2018_UntaggedTag_1  param  0.0 1.0
+CMS_hgg_nuisance_alpha_VBF_2018_UntaggedTag_1  param  0.0 1.0
+CMS_hgg_nuisance_alpha_vh_2018_UntaggedTag_1  param  0.0 1.0
+CMS_hgg_nuisance_alpha_GG2H_2018_UntaggedTag_2  param  0.0 1.0
+CMS_hgg_nuisance_alpha_VBF_2018_UntaggedTag_2  param  0.0 1.0
+CMS_hgg_nuisance_alpha_vh_2018_UntaggedTag_2  param  0.0 1.0
+CMS_hgg_nuisance_alpha_GG2H_2018_UntaggedTag_3  param  0.0 1.0
+CMS_hgg_nuisance_alpha_VBF_2018_UntaggedTag_3  param  0.0 1.0
+CMS_hgg_nuisance_alpha_vh_2018_UntaggedTag_3  param  0.0 1.0
+CMS_hgg_nuisance_alpha_GG2H_2018_UntaggedTag_4  param  0.0 1.0
+CMS_hgg_nuisance_alpha_VBF_2018_UntaggedTag_4  param  0.0 1.0
+CMS_hgg_nuisance_alpha_vh_2018_UntaggedTag_4  param  0.0 1.0
+CMS_hgg_nuisance_alpha_GG2H_2018_UntaggedTag_5  param  0.0 1.0
+CMS_hgg_nuisance_alpha_VBF_2018_UntaggedTag_5  param  0.0 1.0
+CMS_hgg_nuisance_alpha_vh_2018_UntaggedTag_5  param  0.0 1.0
+CMS_hgg_nuisance_alpha_GG2H_2018_UntaggedTag_6  param  0.0 1.0
+CMS_hgg_nuisance_alpha_VBF_2018_UntaggedTag_6  param  0.0 1.0
+CMS_hgg_nuisance_alpha_vh_2018_UntaggedTag_6  param  0.0 1.0
+CMS_hgg_nuisance_alpha_GG2H_2018_UntaggedTag_7  param  0.0 1.0
+CMS_hgg_nuisance_alpha_VBF_2018_UntaggedTag_7  param  0.0 1.0
+CMS_hgg_nuisance_alpha_vh_2018_UntaggedTag_7  param  0.0 1.0
+CMS_hgg_nuisance_alpha_GG2H_2018_UntaggedTag_8  param  0.0 1.0
+CMS_hgg_nuisance_alpha_VBF_2018_UntaggedTag_8  param  0.0 1.0
+CMS_hgg_nuisance_alpha_vh_2018_UntaggedTag_8  param  0.0 1.0
+CMS_hgg_nuisance_alpha_GG2H_2018_UntaggedTag_9  param  0.0 1.0
+CMS_hgg_nuisance_alpha_VBF_2018_UntaggedTag_9  param  0.0 1.0
+CMS_hgg_nuisance_alpha_vh_2018_UntaggedTag_9  param  0.0 1.0
+CMS_hgg_nuisance_alpha_GG2H_2018_VBFTag_0  param  0.0 1.0
+CMS_hgg_nuisance_alpha_VBF_2018_VBFTag_0  param  0.0 1.0
+CMS_hgg_nuisance_alpha_vh_2018_VBFTag_0  param  0.0 1.0
 pdfindex_UntaggedTag_0_2016preVFP_13TeV  discrete
 pdfindex_UntaggedTag_1_2016preVFP_13TeV  discrete
 pdfindex_UntaggedTag_2_2016preVFP_13TeV  discrete
@@ -397,11 +525,11 @@ pdfindex_UntaggedTag_8_2018_13TeV  discrete
 pdfindex_UntaggedTag_9_2018_13TeV  discrete
 pdfindex_VBFTag_0_2018_13TeV  discrete
 
+
 scale           group = CMS_hgg_nuisance_NonLinearity_13TeVscale CMS_hgg_nuisance_HighR9EB_13TeVscale_2016postVFP CMS_hgg_nuisance_HighR9EB_13TeVscale_2016preVFP CMS_hgg_nuisance_HighR9EB_13TeVscale_2017 CMS_hgg_nuisance_HighR9EB_13TeVscale_2018 CMS_hgg_nuisance_HighR9EE_13TeVscale_2016postVFP CMS_hgg_nuisance_HighR9EE_13TeVscale_2016preVFP CMS_hgg_nuisance_HighR9EE_13TeVscale_2017 CMS_hgg_nuisance_HighR9EE_13TeVscale_2018 CMS_hgg_nuisance_LowR9EB_13TeVscale_2016postVFP CMS_hgg_nuisance_LowR9EB_13TeVscale_2016preVFP CMS_hgg_nuisance_LowR9EB_13TeVscale_2017 CMS_hgg_nuisance_LowR9EB_13TeVscale_2018 CMS_hgg_nuisance_LowR9EE_13TeVscale_2016postVFP CMS_hgg_nuisance_LowR9EE_13TeVscale_2016preVFP CMS_hgg_nuisance_LowR9EE_13TeVscale_2017 CMS_hgg_nuisance_LowR9EE_13TeVscale_2018
 shower_shape    group = CMS_hgg_nuisance_ShowerShapeHighR9EB_13TeVscaleCorr CMS_hgg_nuisance_ShowerShapeHighR9EE_13TeVscaleCorr CMS_hgg_nuisance_ShowerShapeLowR9EB_13TeVscaleCorr CMS_hgg_nuisance_ShowerShapeLowR9EE_13TeVscaleCorr
 material        group = CMS_hgg_nuisance_MaterialCentralBarrel_13TeVscaleCorr CMS_hgg_nuisance_MaterialOuterBarrel_13TeVscaleCorr CMS_hgg_nuisance_MaterialForward_13TeVscaleCorr
 fnuf            group = CMS_hgg_nuisance_FNUFEE_13TeVscaleCorr CMS_hgg_nuisance_FNUFInnerEB_13TeVscaleCorr CMS_hgg_nuisance_FNUFOuterEB_13TeVscaleCorr
-alpha           group = CMS_hgg_nuisance_alpha_2016postVFP CMS_hgg_nuisance_alpha_2016preVFP CMS_hgg_nuisance_alpha_2017 CMS_hgg_nuisance_alpha_2018
+alpha           group = CMS_hgg_nuisance_alpha_GG2H_2016postVFP_UntaggedTag_0 CMS_hgg_nuisance_alpha_GG2H_2016postVFP_UntaggedTag_1 CMS_hgg_nuisance_alpha_GG2H_2016postVFP_UntaggedTag_2 CMS_hgg_nuisance_alpha_GG2H_2016postVFP_UntaggedTag_3 CMS_hgg_nuisance_alpha_GG2H_2016postVFP_UntaggedTag_4 CMS_hgg_nuisance_alpha_GG2H_2016postVFP_UntaggedTag_5 CMS_hgg_nuisance_alpha_GG2H_2016postVFP_UntaggedTag_6 CMS_hgg_nuisance_alpha_GG2H_2016postVFP_UntaggedTag_7 CMS_hgg_nuisance_alpha_GG2H_2016postVFP_UntaggedTag_8 CMS_hgg_nuisance_alpha_GG2H_2016postVFP_UntaggedTag_9 CMS_hgg_nuisance_alpha_GG2H_2016postVFP_VBFTag_0 CMS_hgg_nuisance_alpha_GG2H_2016preVFP_UntaggedTag_0 CMS_hgg_nuisance_alpha_GG2H_2016preVFP_UntaggedTag_1 CMS_hgg_nuisance_alpha_GG2H_2016preVFP_UntaggedTag_2 CMS_hgg_nuisance_alpha_GG2H_2016preVFP_UntaggedTag_3 CMS_hgg_nuisance_alpha_GG2H_2016preVFP_UntaggedTag_4 CMS_hgg_nuisance_alpha_GG2H_2016preVFP_UntaggedTag_5 CMS_hgg_nuisance_alpha_GG2H_2016preVFP_UntaggedTag_6 CMS_hgg_nuisance_alpha_GG2H_2016preVFP_UntaggedTag_7 CMS_hgg_nuisance_alpha_GG2H_2016preVFP_UntaggedTag_8 CMS_hgg_nuisance_alpha_GG2H_2016preVFP_UntaggedTag_9 CMS_hgg_nuisance_alpha_GG2H_2016preVFP_VBFTag_0 CMS_hgg_nuisance_alpha_GG2H_2017_UntaggedTag_0 CMS_hgg_nuisance_alpha_GG2H_2017_UntaggedTag_1 CMS_hgg_nuisance_alpha_GG2H_2017_UntaggedTag_2 CMS_hgg_nuisance_alpha_GG2H_2017_UntaggedTag_3 CMS_hgg_nuisance_alpha_GG2H_2017_UntaggedTag_4 CMS_hgg_nuisance_alpha_GG2H_2017_UntaggedTag_5 CMS_hgg_nuisance_alpha_GG2H_2017_UntaggedTag_6 CMS_hgg_nuisance_alpha_GG2H_2017_UntaggedTag_7 CMS_hgg_nuisance_alpha_GG2H_2017_UntaggedTag_8 CMS_hgg_nuisance_alpha_GG2H_2017_UntaggedTag_9 CMS_hgg_nuisance_alpha_GG2H_2017_VBFTag_0 CMS_hgg_nuisance_alpha_GG2H_2018_UntaggedTag_0 CMS_hgg_nuisance_alpha_GG2H_2018_UntaggedTag_1 CMS_hgg_nuisance_alpha_GG2H_2018_UntaggedTag_2 CMS_hgg_nuisance_alpha_GG2H_2018_UntaggedTag_3 CMS_hgg_nuisance_alpha_GG2H_2018_UntaggedTag_4 CMS_hgg_nuisance_alpha_GG2H_2018_UntaggedTag_5 CMS_hgg_nuisance_alpha_GG2H_2018_UntaggedTag_6 CMS_hgg_nuisance_alpha_GG2H_2018_UntaggedTag_7 CMS_hgg_nuisance_alpha_GG2H_2018_UntaggedTag_8 CMS_hgg_nuisance_alpha_GG2H_2018_UntaggedTag_9 CMS_hgg_nuisance_alpha_GG2H_2018_VBFTag_0
 smear           group = CMS_hgg_nuisance_HighR9EBPhi_13TeVsmear_2016postVFP CMS_hgg_nuisance_HighR9EBPhi_13TeVsmear_2016preVFP CMS_hgg_nuisance_HighR9EBPhi_13TeVsmear_2017 CMS_hgg_nuisance_HighR9EBPhi_13TeVsmear_2018 CMS_hgg_nuisance_HighR9EBRho_13TeVsmear_2016postVFP CMS_hgg_nuisance_HighR9EBRho_13TeVsmear_2016preVFP CMS_hgg_nuisance_HighR9EBRho_13TeVsmear_2017 CMS_hgg_nuisance_HighR9EBRho_13TeVsmear_2018 CMS_hgg_nuisance_HighR9EEPhi_13TeVsmear_2016postVFP  CMS_hgg_nuisance_HighR9EEPhi_13TeVsmear_2016preVFP CMS_hgg_nuisance_HighR9EEPhi_13TeVsmear_2017 CMS_hgg_nuisance_HighR9EEPhi_13TeVsmear_2018 CMS_hgg_nuisance_HighR9EERho_13TeVsmear_2016postVFP CMS_hgg_nuisance_HighR9EERho_13TeVsmear_2016preVFP CMS_hgg_nuisance_HighR9EERho_13TeVsmear_2017 CMS_hgg_nuisance_HighR9EERho_13TeVsmear_2018 CMS_hgg_nuisance_LowR9EBPhi_13TeVsmear_2016postVFP CMS_hgg_nuisance_LowR9EBPhi_13TeVsmear_2016preVFP CMS_hgg_nuisance_LowR9EBPhi_13TeVsmear_2017 CMS_hgg_nuisance_LowR9EBPhi_13TeVsmear_2018 CMS_hgg_nuisance_LowR9EBRho_13TeVsmear_2016postVFP CMS_hgg_nuisance_LowR9EBRho_13TeVsmear_2016preVFP CMS_hgg_nuisance_LowR9EBRho_13TeVsmear_2017 CMS_hgg_nuisance_LowR9EBRho_13TeVsmear_2018 CMS_hgg_nuisance_LowR9EEPhi_13TeVsmear_2016postVFP CMS_hgg_nuisance_LowR9EEPhi_13TeVsmear_2016preVFP CMS_hgg_nuisance_LowR9EEPhi_13TeVsmear_2017 CMS_hgg_nuisance_LowR9EEPhi_13TeVsmear_2018 CMS_hgg_nuisance_LowR9EERho_13TeVsmear_2016postVFP CMS_hgg_nuisance_LowR9EERho_13TeVsmear_2016preVFP CMS_hgg_nuisance_LowR9EERho_13TeVsmear_2017 CMS_hgg_nuisance_LowR9EERho_13TeVsmear_2018
 theory          group = BR_hgg CMS_hgg_scale_5_shape CMS_hgg_scale_7_shape CMS_hgg_scale_gr0_shape CMS_hgg_scale_gr1_shape CMS_hgg_scale_gr2_shape CMS_hgg_pdfWeight_0_shape CMS_hgg_alphaSWeight_gr0_shape THU_ggH_Mig01_inorm THU_ggH_Mig12_inorm THU_ggH_Mu_inorm THU_ggH_PT120_inorm THU_ggH_PT60_inorm THU_ggH_qmtop_inorm THU_ggH_Res_inorm
-

@@ -5,13 +5,13 @@ plot1DScan.py ./runFitsVoigt_mu/profile1D_syst_Voigt_r_ggH.root \
     --translate ../Plots/pois_mu.json \
     --main-label "Total Unc." --main-color 1 \
     --others \
-    ./runFitsVoigt_mu/profile1D_freezeScale_Voigt_r_ggH.root:"freeze scale":4 \
-    ./runFitsVoigt_mu/profile1D_freezeScaleSS_Voigt_r_ggH.root:"freeze scale+showershape":38 \
-    ./runFitsVoigt_mu/profile1D_freezeScaleSSMat_Voigt_r_ggH.root:"freeze scale+showershape+material":30 \
-    ./runFitsVoigt_mu/profile1D_freezeSSSMatAlpha_Voigt_r_ggH.root:"freeze scale+showershape+material+alpha":3 \
-    ./runFitsVoigt_mu/profile1D_freezeSSSMatAlphaFnuf_Voigt_r_ggH.root:"freeze scale+showershape+material+alpha+fnuf":7 \
-    ./runFitsVoigt_mu/profile1D_freezeSSSMatAlphaFnufSmear_Voigt_r_ggH.root:"freeze scale+showershape+material+alpha+fnuf+smear":209 \
-    ./runFitsVoigt_mu/profile1D_freezeSSSMatAlphaFnufSmearThu_Voigt_r_ggH.root:"freeze scale+showershape+material+alpha+fnuf+smear+theory":46 \
+    ./runFitsVoigt_mu/profile1D_freezeMat_Voigt_r_ggH.root:"1.freeze material":4 \
+    ./runFitsVoigt_mu/profile1D_freezeMatSmear_Voigt_r_ggH.root:"2.freeze also smear":30 \
+    ./runFitsVoigt_mu/profile1D_freezeMatSmearScale_Voigt_r_ggH.root:"3.freeze also scale":3 \
+    ./runFitsVoigt_mu/profile1D_freezeMatSSfnuf_Voigt_r_ggH.root:"4.freeze also fnuf":7 \
+    ./runFitsVoigt_mu/profile1D_freezeMatSSfnufSS_Voigt_r_ggH.root:"5.freeze also showershape":209 \
+    ./runFitsVoigt_mu/profile1D_freezeMatSSfnufSSthu_Voigt_r_ggH.root:"6.freeze also theory":46 \
+    ./runFitsVoigt_mu/profile1D_freezeMatSSfnufSSthuAlpha_Voigt_r_ggH.root:"7.freeze alpha":38 \
     ./runFitsVoigt_mu/profile1D_statonly_Voigt_r_ggH.root:"stat. only":2 \
     --logo-sub "Preliminary" \
-    --breakdown "scale,shower shape,material,alpha,FNUF,smear,theory,rest,stat"
+    --breakdown "material,smear,scale,FNUF,shower shape,theory,alpha,rest,stat"

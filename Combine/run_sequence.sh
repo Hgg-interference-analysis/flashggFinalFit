@@ -67,7 +67,7 @@ elif [[ $STEP == "redefPOI" ]]; then
 	        for file in $directory/*.sh; do
                     if [ -f "$file" ]; then
 		        echo "Processing $file..."
-		        sed -i.bak "s|$search_string|$replace_string|g" "$file"
+		        sed -i "s|$search_string|$replace_string|g" "$file"
 		    else
 		        echo "Warning: File $file does not exist, skipping."
 		    fi
@@ -76,7 +76,9 @@ elif [[ $STEP == "redefPOI" ]]; then
         cd "$directory" || { echo "Failed to navigate to $directory"; exit 1; }
         ## Find and submit all .sub files
         for sub_file in *.sub; do
-        if [ -f "$sub_file" ]; then
+            if [ -f "$sub_file" ]; then
+		# Comment out lines to produce output and log -- those files are way too big
+		sed -i '3s/^/#/;5s/^/#/' "$sub_file"
                 echo "Submitting job: $sub_file"
                 condor_submit "$sub_file"
                 if [ $? -ne 0 ]; then

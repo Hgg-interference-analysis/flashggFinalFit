@@ -27,8 +27,8 @@ def get_options():
   parser.add_option("--label", dest="label", default='Simulation Preliminary', help="CMS Sub-label")
   parser.add_option("--doFWHM", dest="doFWHM", default=False, action='store_true', help="Do FWHM")
   parser.add_option("--outdir", dest='outdir', default=swd__, help="Output directory (default is the current one)")
-  parser.add_option('--minMassForIntegration', dest='minMassForIntegration', default=110, help="Min. mass when summing entries")
-  parser.add_option('--maxMassForIntegration', dest='maxMassForIntegration', default=135, help="Max. mass when summing entries")
+  parser.add_option('--minMassForIntegration', dest='minMassForIntegration', default=100, help="Min. mass when summing entries")
+  parser.add_option('--maxMassForIntegration', dest='maxMassForIntegration', default=180, help="Max. mass when summing entries")
   return parser.parse_args()
 (opt,args) = get_options()
 
@@ -180,14 +180,16 @@ for cat,f in inputFiles.items():
     #xvar.setRange(opt.minMassForIntegration, opt.maxMassForIntegration)
     hpdfs[_id] = pdf.createHistogram("h_pdf_%s"%_id,xvar,ROOT.RooFit.Binning(opt.pdf_nBins))
     print(f"[{_id}] norm: {norm.getVal():.3f}, PDF integral before scaling: {hpdfs[_id].Integral():.3f}")
-    hpdfs[_id].Scale(wcat*float(opt.nBins)/3200) # FIXME: hardcoded 320
-    hpdfs[_id].Scale(0.5)
+    #hpdfs[_id].Scale(nval/hpdfs[_id].Integral("width"))
+    hpdfs[_id].Scale(wcat*float(opt.nBins)/320) # FIXME: hardcoded 320
+    #hpdfs[_id].Rebin(20)
 
   # Fill total histograms: data, per-year pdfs and pdfs
   for _id,d in data_rwgt.items(): d.fillHistogram(hists['data'],alist)
 
   print("*************************************************************************************************************")
   print(f"--> {_id}: norm = {norm.getVal()}, data sum = {d_rwgt.sumEntries()}, pdf integral = {hpdfs[_id].Integral()}")
+  print("xvar range:", xvar.getMin(), xvar.getMax())
   print("*************************************************************************************************************")
 
 
@@ -196,7 +198,9 @@ for cat,f in inputFiles.items():
     if 'pdf' not in hists: 
       hists['pdf'] = p.Clone("h_pdf")
       hists['pdf'].Reset()
+      print(hists['pdf'].Integral())
     # Fill
+    print("********TEST1*********")
     hists['pdf'] += p
 
   # Per-year pdf histograms
