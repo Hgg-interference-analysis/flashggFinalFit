@@ -48,11 +48,11 @@ elif [[ $STEP == "fit" ]]; then
     do
         for fit in ${fits[*]}
         do
-            python3 RunFits.py --inputJson inputs_width_model.json --ext $fit --mode mu_inclusive --batch local --queue cmsan ${DROPT} $obs
+            python3 RunFits.py --inputJson inputs_width_model.json --ext $fit --mode mu --setPdfIndices 1 --batch condor --queue longlunch --dryRun
         done
     done
 
-elif [[ $STEP == "redefPOI" ]]; then
+#elif [[ $STEP == "redefPOI" ]]; then
 	for fit in ${fits[*]}
 	do
 	    directory="runFits${fit}_${mode}"
@@ -98,7 +98,7 @@ elif [[ $STEP == "collect" ]]; then
     do
 	for fit in ${fits[*]}
 	do
-	    python3 CollectFits.py --inputJson inputs_width_model.json --ext $fit --mode mu_inclusive $obs
+	    python3 CollectFits.py --inputJson inputs_width_model.json --ext $fit --mode mu
 	done
     done
 elif [[ $STEP == "plot" ]]; then
