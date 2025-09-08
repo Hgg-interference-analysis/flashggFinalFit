@@ -1,228 +1,228 @@
 Combination of Name1=Datacard_final2016preVFP.txt  Name2=Datacard_final2016postVFP.txt  Name3=Datacard_final2017.txt  Name4=Datacard_final2018.txt
 imax 44 number of bins
 jmax 12 number of processes minus 1
-kmax 248 number of nuisance parameters
+kmax 160 number of nuisance parameters
 ----------------------------------------------------------------------------------------------------------------------------------
 shapes bkg_mass                         Name1_UntaggedTag_0_2016preVFP   ./Models/background/CMS-HGG_multipdf_UntaggedTag_0_2016preVFP.root multipdf:CMS_hgg_UntaggedTag_0_2016preVFP_13TeV_bkgshape
 shapes data_obs                         Name1_UntaggedTag_0_2016preVFP   ./Models/background/CMS-HGG_multipdf_UntaggedTag_0_2016preVFP.root multipdf:roohist_data_mass_UntaggedTag_0
 shapes ggH_2016preVFP_hgg               Name1_UntaggedTag_0_2016preVFP   ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_0_2016preVFP.root wsig_13TeV:hggpdfsmrel_shift_GG2H_2016preVFP_UntaggedTag_0_13TeV
-shapes qqH_2016preVFP_hgg               Name1_UntaggedTag_0_2016preVFP   ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_0_2016preVFP.root wsig_13TeV:hggpdfsmrel_shift_VBF_2016preVFP_UntaggedTag_0_13TeV
-shapes vh_2016preVFP_hgg                Name1_UntaggedTag_0_2016preVFP   ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_0_2016preVFP.root wsig_13TeV:hggpdfsmrel_shift_vh_2016preVFP_UntaggedTag_0_13TeV
+shapes qqH_2016preVFP_hgg               Name1_UntaggedTag_0_2016preVFP   ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_0_2016preVFP.root wsig_13TeV:hggpdfsmrel_VBF_2016preVFP_UntaggedTag_0_13TeV
+shapes vh_2016preVFP_hgg                Name1_UntaggedTag_0_2016preVFP   ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_0_2016preVFP.root wsig_13TeV:hggpdfsmrel_vh_2016preVFP_UntaggedTag_0_13TeV
 shapes bkg_mass                         Name1_UntaggedTag_1_2016preVFP   ./Models/background/CMS-HGG_multipdf_UntaggedTag_1_2016preVFP.root multipdf:CMS_hgg_UntaggedTag_1_2016preVFP_13TeV_bkgshape
 shapes data_obs                         Name1_UntaggedTag_1_2016preVFP   ./Models/background/CMS-HGG_multipdf_UntaggedTag_1_2016preVFP.root multipdf:roohist_data_mass_UntaggedTag_1
 shapes ggH_2016preVFP_hgg               Name1_UntaggedTag_1_2016preVFP   ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_1_2016preVFP.root wsig_13TeV:hggpdfsmrel_shift_GG2H_2016preVFP_UntaggedTag_1_13TeV
-shapes qqH_2016preVFP_hgg               Name1_UntaggedTag_1_2016preVFP   ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_1_2016preVFP.root wsig_13TeV:hggpdfsmrel_shift_VBF_2016preVFP_UntaggedTag_1_13TeV
-shapes vh_2016preVFP_hgg                Name1_UntaggedTag_1_2016preVFP   ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_1_2016preVFP.root wsig_13TeV:hggpdfsmrel_shift_vh_2016preVFP_UntaggedTag_1_13TeV
+shapes qqH_2016preVFP_hgg               Name1_UntaggedTag_1_2016preVFP   ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_1_2016preVFP.root wsig_13TeV:hggpdfsmrel_VBF_2016preVFP_UntaggedTag_1_13TeV
+shapes vh_2016preVFP_hgg                Name1_UntaggedTag_1_2016preVFP   ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_1_2016preVFP.root wsig_13TeV:hggpdfsmrel_vh_2016preVFP_UntaggedTag_1_13TeV
 shapes bkg_mass                         Name1_UntaggedTag_2_2016preVFP   ./Models/background/CMS-HGG_multipdf_UntaggedTag_2_2016preVFP.root multipdf:CMS_hgg_UntaggedTag_2_2016preVFP_13TeV_bkgshape
 shapes data_obs                         Name1_UntaggedTag_2_2016preVFP   ./Models/background/CMS-HGG_multipdf_UntaggedTag_2_2016preVFP.root multipdf:roohist_data_mass_UntaggedTag_2
 shapes ggH_2016preVFP_hgg               Name1_UntaggedTag_2_2016preVFP   ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_2_2016preVFP.root wsig_13TeV:hggpdfsmrel_shift_GG2H_2016preVFP_UntaggedTag_2_13TeV
-shapes qqH_2016preVFP_hgg               Name1_UntaggedTag_2_2016preVFP   ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_2_2016preVFP.root wsig_13TeV:hggpdfsmrel_shift_VBF_2016preVFP_UntaggedTag_2_13TeV
-shapes vh_2016preVFP_hgg                Name1_UntaggedTag_2_2016preVFP   ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_2_2016preVFP.root wsig_13TeV:hggpdfsmrel_shift_vh_2016preVFP_UntaggedTag_2_13TeV
+shapes qqH_2016preVFP_hgg               Name1_UntaggedTag_2_2016preVFP   ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_2_2016preVFP.root wsig_13TeV:hggpdfsmrel_VBF_2016preVFP_UntaggedTag_2_13TeV
+shapes vh_2016preVFP_hgg                Name1_UntaggedTag_2_2016preVFP   ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_2_2016preVFP.root wsig_13TeV:hggpdfsmrel_vh_2016preVFP_UntaggedTag_2_13TeV
 shapes bkg_mass                         Name1_UntaggedTag_3_2016preVFP   ./Models/background/CMS-HGG_multipdf_UntaggedTag_3_2016preVFP.root multipdf:CMS_hgg_UntaggedTag_3_2016preVFP_13TeV_bkgshape
 shapes data_obs                         Name1_UntaggedTag_3_2016preVFP   ./Models/background/CMS-HGG_multipdf_UntaggedTag_3_2016preVFP.root multipdf:roohist_data_mass_UntaggedTag_3
 shapes ggH_2016preVFP_hgg               Name1_UntaggedTag_3_2016preVFP   ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_3_2016preVFP.root wsig_13TeV:hggpdfsmrel_shift_GG2H_2016preVFP_UntaggedTag_3_13TeV
-shapes qqH_2016preVFP_hgg               Name1_UntaggedTag_3_2016preVFP   ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_3_2016preVFP.root wsig_13TeV:hggpdfsmrel_shift_VBF_2016preVFP_UntaggedTag_3_13TeV
-shapes vh_2016preVFP_hgg                Name1_UntaggedTag_3_2016preVFP   ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_3_2016preVFP.root wsig_13TeV:hggpdfsmrel_shift_vh_2016preVFP_UntaggedTag_3_13TeV
+shapes qqH_2016preVFP_hgg               Name1_UntaggedTag_3_2016preVFP   ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_3_2016preVFP.root wsig_13TeV:hggpdfsmrel_VBF_2016preVFP_UntaggedTag_3_13TeV
+shapes vh_2016preVFP_hgg                Name1_UntaggedTag_3_2016preVFP   ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_3_2016preVFP.root wsig_13TeV:hggpdfsmrel_vh_2016preVFP_UntaggedTag_3_13TeV
 shapes bkg_mass                         Name1_UntaggedTag_4_2016preVFP   ./Models/background/CMS-HGG_multipdf_UntaggedTag_4_2016preVFP.root multipdf:CMS_hgg_UntaggedTag_4_2016preVFP_13TeV_bkgshape
 shapes data_obs                         Name1_UntaggedTag_4_2016preVFP   ./Models/background/CMS-HGG_multipdf_UntaggedTag_4_2016preVFP.root multipdf:roohist_data_mass_UntaggedTag_4
 shapes ggH_2016preVFP_hgg               Name1_UntaggedTag_4_2016preVFP   ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_4_2016preVFP.root wsig_13TeV:hggpdfsmrel_shift_GG2H_2016preVFP_UntaggedTag_4_13TeV
-shapes qqH_2016preVFP_hgg               Name1_UntaggedTag_4_2016preVFP   ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_4_2016preVFP.root wsig_13TeV:hggpdfsmrel_shift_VBF_2016preVFP_UntaggedTag_4_13TeV
-shapes vh_2016preVFP_hgg                Name1_UntaggedTag_4_2016preVFP   ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_4_2016preVFP.root wsig_13TeV:hggpdfsmrel_shift_vh_2016preVFP_UntaggedTag_4_13TeV
+shapes qqH_2016preVFP_hgg               Name1_UntaggedTag_4_2016preVFP   ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_4_2016preVFP.root wsig_13TeV:hggpdfsmrel_VBF_2016preVFP_UntaggedTag_4_13TeV
+shapes vh_2016preVFP_hgg                Name1_UntaggedTag_4_2016preVFP   ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_4_2016preVFP.root wsig_13TeV:hggpdfsmrel_vh_2016preVFP_UntaggedTag_4_13TeV
 shapes bkg_mass                         Name1_UntaggedTag_5_2016preVFP   ./Models/background/CMS-HGG_multipdf_UntaggedTag_5_2016preVFP.root multipdf:CMS_hgg_UntaggedTag_5_2016preVFP_13TeV_bkgshape
 shapes data_obs                         Name1_UntaggedTag_5_2016preVFP   ./Models/background/CMS-HGG_multipdf_UntaggedTag_5_2016preVFP.root multipdf:roohist_data_mass_UntaggedTag_5
 shapes ggH_2016preVFP_hgg               Name1_UntaggedTag_5_2016preVFP   ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_5_2016preVFP.root wsig_13TeV:hggpdfsmrel_shift_GG2H_2016preVFP_UntaggedTag_5_13TeV
-shapes qqH_2016preVFP_hgg               Name1_UntaggedTag_5_2016preVFP   ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_5_2016preVFP.root wsig_13TeV:hggpdfsmrel_shift_VBF_2016preVFP_UntaggedTag_5_13TeV
-shapes vh_2016preVFP_hgg                Name1_UntaggedTag_5_2016preVFP   ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_5_2016preVFP.root wsig_13TeV:hggpdfsmrel_shift_vh_2016preVFP_UntaggedTag_5_13TeV
+shapes qqH_2016preVFP_hgg               Name1_UntaggedTag_5_2016preVFP   ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_5_2016preVFP.root wsig_13TeV:hggpdfsmrel_VBF_2016preVFP_UntaggedTag_5_13TeV
+shapes vh_2016preVFP_hgg                Name1_UntaggedTag_5_2016preVFP   ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_5_2016preVFP.root wsig_13TeV:hggpdfsmrel_vh_2016preVFP_UntaggedTag_5_13TeV
 shapes bkg_mass                         Name1_UntaggedTag_6_2016preVFP   ./Models/background/CMS-HGG_multipdf_UntaggedTag_6_2016preVFP.root multipdf:CMS_hgg_UntaggedTag_6_2016preVFP_13TeV_bkgshape
 shapes data_obs                         Name1_UntaggedTag_6_2016preVFP   ./Models/background/CMS-HGG_multipdf_UntaggedTag_6_2016preVFP.root multipdf:roohist_data_mass_UntaggedTag_6
 shapes ggH_2016preVFP_hgg               Name1_UntaggedTag_6_2016preVFP   ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_6_2016preVFP.root wsig_13TeV:hggpdfsmrel_shift_GG2H_2016preVFP_UntaggedTag_6_13TeV
-shapes qqH_2016preVFP_hgg               Name1_UntaggedTag_6_2016preVFP   ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_6_2016preVFP.root wsig_13TeV:hggpdfsmrel_shift_VBF_2016preVFP_UntaggedTag_6_13TeV
-shapes vh_2016preVFP_hgg                Name1_UntaggedTag_6_2016preVFP   ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_6_2016preVFP.root wsig_13TeV:hggpdfsmrel_shift_vh_2016preVFP_UntaggedTag_6_13TeV
+shapes qqH_2016preVFP_hgg               Name1_UntaggedTag_6_2016preVFP   ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_6_2016preVFP.root wsig_13TeV:hggpdfsmrel_VBF_2016preVFP_UntaggedTag_6_13TeV
+shapes vh_2016preVFP_hgg                Name1_UntaggedTag_6_2016preVFP   ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_6_2016preVFP.root wsig_13TeV:hggpdfsmrel_vh_2016preVFP_UntaggedTag_6_13TeV
 shapes bkg_mass                         Name1_UntaggedTag_7_2016preVFP   ./Models/background/CMS-HGG_multipdf_UntaggedTag_7_2016preVFP.root multipdf:CMS_hgg_UntaggedTag_7_2016preVFP_13TeV_bkgshape
 shapes data_obs                         Name1_UntaggedTag_7_2016preVFP   ./Models/background/CMS-HGG_multipdf_UntaggedTag_7_2016preVFP.root multipdf:roohist_data_mass_UntaggedTag_7
 shapes ggH_2016preVFP_hgg               Name1_UntaggedTag_7_2016preVFP   ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_7_2016preVFP.root wsig_13TeV:hggpdfsmrel_shift_GG2H_2016preVFP_UntaggedTag_7_13TeV
-shapes qqH_2016preVFP_hgg               Name1_UntaggedTag_7_2016preVFP   ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_7_2016preVFP.root wsig_13TeV:hggpdfsmrel_shift_VBF_2016preVFP_UntaggedTag_7_13TeV
-shapes vh_2016preVFP_hgg                Name1_UntaggedTag_7_2016preVFP   ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_7_2016preVFP.root wsig_13TeV:hggpdfsmrel_shift_vh_2016preVFP_UntaggedTag_7_13TeV
+shapes qqH_2016preVFP_hgg               Name1_UntaggedTag_7_2016preVFP   ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_7_2016preVFP.root wsig_13TeV:hggpdfsmrel_VBF_2016preVFP_UntaggedTag_7_13TeV
+shapes vh_2016preVFP_hgg                Name1_UntaggedTag_7_2016preVFP   ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_7_2016preVFP.root wsig_13TeV:hggpdfsmrel_vh_2016preVFP_UntaggedTag_7_13TeV
 shapes bkg_mass                         Name1_UntaggedTag_8_2016preVFP   ./Models/background/CMS-HGG_multipdf_UntaggedTag_8_2016preVFP.root multipdf:CMS_hgg_UntaggedTag_8_2016preVFP_13TeV_bkgshape
 shapes data_obs                         Name1_UntaggedTag_8_2016preVFP   ./Models/background/CMS-HGG_multipdf_UntaggedTag_8_2016preVFP.root multipdf:roohist_data_mass_UntaggedTag_8
 shapes ggH_2016preVFP_hgg               Name1_UntaggedTag_8_2016preVFP   ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_8_2016preVFP.root wsig_13TeV:hggpdfsmrel_shift_GG2H_2016preVFP_UntaggedTag_8_13TeV
-shapes qqH_2016preVFP_hgg               Name1_UntaggedTag_8_2016preVFP   ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_8_2016preVFP.root wsig_13TeV:hggpdfsmrel_shift_VBF_2016preVFP_UntaggedTag_8_13TeV
-shapes vh_2016preVFP_hgg                Name1_UntaggedTag_8_2016preVFP   ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_8_2016preVFP.root wsig_13TeV:hggpdfsmrel_shift_vh_2016preVFP_UntaggedTag_8_13TeV
+shapes qqH_2016preVFP_hgg               Name1_UntaggedTag_8_2016preVFP   ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_8_2016preVFP.root wsig_13TeV:hggpdfsmrel_VBF_2016preVFP_UntaggedTag_8_13TeV
+shapes vh_2016preVFP_hgg                Name1_UntaggedTag_8_2016preVFP   ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_8_2016preVFP.root wsig_13TeV:hggpdfsmrel_vh_2016preVFP_UntaggedTag_8_13TeV
 shapes bkg_mass                         Name1_UntaggedTag_9_2016preVFP   ./Models/background/CMS-HGG_multipdf_UntaggedTag_9_2016preVFP.root multipdf:CMS_hgg_UntaggedTag_9_2016preVFP_13TeV_bkgshape
 shapes data_obs                         Name1_UntaggedTag_9_2016preVFP   ./Models/background/CMS-HGG_multipdf_UntaggedTag_9_2016preVFP.root multipdf:roohist_data_mass_UntaggedTag_9
 shapes ggH_2016preVFP_hgg               Name1_UntaggedTag_9_2016preVFP   ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_9_2016preVFP.root wsig_13TeV:hggpdfsmrel_shift_GG2H_2016preVFP_UntaggedTag_9_13TeV
-shapes qqH_2016preVFP_hgg               Name1_UntaggedTag_9_2016preVFP   ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_9_2016preVFP.root wsig_13TeV:hggpdfsmrel_shift_VBF_2016preVFP_UntaggedTag_9_13TeV
-shapes vh_2016preVFP_hgg                Name1_UntaggedTag_9_2016preVFP   ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_9_2016preVFP.root wsig_13TeV:hggpdfsmrel_shift_vh_2016preVFP_UntaggedTag_9_13TeV
+shapes qqH_2016preVFP_hgg               Name1_UntaggedTag_9_2016preVFP   ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_9_2016preVFP.root wsig_13TeV:hggpdfsmrel_VBF_2016preVFP_UntaggedTag_9_13TeV
+shapes vh_2016preVFP_hgg                Name1_UntaggedTag_9_2016preVFP   ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_9_2016preVFP.root wsig_13TeV:hggpdfsmrel_vh_2016preVFP_UntaggedTag_9_13TeV
 shapes bkg_mass                         Name1_VBFTag_0_2016preVFP        ./Models/background/CMS-HGG_multipdf_VBFTag_0_2016preVFP.root multipdf:CMS_hgg_VBFTag_0_2016preVFP_13TeV_bkgshape
 shapes data_obs                         Name1_VBFTag_0_2016preVFP        ./Models/background/CMS-HGG_multipdf_VBFTag_0_2016preVFP.root multipdf:roohist_data_mass_VBFTag_0
 shapes ggH_2016preVFP_hgg               Name1_VBFTag_0_2016preVFP        ./Models/signal/CMS-HGG_sigfit_packaged_VBFTag_0_2016preVFP.root wsig_13TeV:hggpdfsmrel_shift_GG2H_2016preVFP_VBFTag_0_13TeV
-shapes qqH_2016preVFP_hgg               Name1_VBFTag_0_2016preVFP        ./Models/signal/CMS-HGG_sigfit_packaged_VBFTag_0_2016preVFP.root wsig_13TeV:hggpdfsmrel_shift_VBF_2016preVFP_VBFTag_0_13TeV
-shapes vh_2016preVFP_hgg                Name1_VBFTag_0_2016preVFP        ./Models/signal/CMS-HGG_sigfit_packaged_VBFTag_0_2016preVFP.root wsig_13TeV:hggpdfsmrel_shift_vh_2016preVFP_VBFTag_0_13TeV
+shapes qqH_2016preVFP_hgg               Name1_VBFTag_0_2016preVFP        ./Models/signal/CMS-HGG_sigfit_packaged_VBFTag_0_2016preVFP.root wsig_13TeV:hggpdfsmrel_VBF_2016preVFP_VBFTag_0_13TeV
+shapes vh_2016preVFP_hgg                Name1_VBFTag_0_2016preVFP        ./Models/signal/CMS-HGG_sigfit_packaged_VBFTag_0_2016preVFP.root wsig_13TeV:hggpdfsmrel_vh_2016preVFP_VBFTag_0_13TeV
 shapes bkg_mass                         Name2_UntaggedTag_0_2016postVFP  ./Models/background/CMS-HGG_multipdf_UntaggedTag_0_2016postVFP.root multipdf:CMS_hgg_UntaggedTag_0_2016postVFP_13TeV_bkgshape
 shapes data_obs                         Name2_UntaggedTag_0_2016postVFP  ./Models/background/CMS-HGG_multipdf_UntaggedTag_0_2016postVFP.root multipdf:roohist_data_mass_UntaggedTag_0
 shapes ggH_2016postVFP_hgg              Name2_UntaggedTag_0_2016postVFP  ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_0_2016postVFP.root wsig_13TeV:hggpdfsmrel_shift_GG2H_2016postVFP_UntaggedTag_0_13TeV
-shapes qqH_2016postVFP_hgg              Name2_UntaggedTag_0_2016postVFP  ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_0_2016postVFP.root wsig_13TeV:hggpdfsmrel_shift_VBF_2016postVFP_UntaggedTag_0_13TeV
-shapes vh_2016postVFP_hgg               Name2_UntaggedTag_0_2016postVFP  ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_0_2016postVFP.root wsig_13TeV:hggpdfsmrel_shift_vh_2016postVFP_UntaggedTag_0_13TeV
+shapes qqH_2016postVFP_hgg              Name2_UntaggedTag_0_2016postVFP  ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_0_2016postVFP.root wsig_13TeV:hggpdfsmrel_VBF_2016postVFP_UntaggedTag_0_13TeV
+shapes vh_2016postVFP_hgg               Name2_UntaggedTag_0_2016postVFP  ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_0_2016postVFP.root wsig_13TeV:hggpdfsmrel_vh_2016postVFP_UntaggedTag_0_13TeV
 shapes bkg_mass                         Name2_UntaggedTag_1_2016postVFP  ./Models/background/CMS-HGG_multipdf_UntaggedTag_1_2016postVFP.root multipdf:CMS_hgg_UntaggedTag_1_2016postVFP_13TeV_bkgshape
 shapes data_obs                         Name2_UntaggedTag_1_2016postVFP  ./Models/background/CMS-HGG_multipdf_UntaggedTag_1_2016postVFP.root multipdf:roohist_data_mass_UntaggedTag_1
 shapes ggH_2016postVFP_hgg              Name2_UntaggedTag_1_2016postVFP  ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_1_2016postVFP.root wsig_13TeV:hggpdfsmrel_shift_GG2H_2016postVFP_UntaggedTag_1_13TeV
-shapes qqH_2016postVFP_hgg              Name2_UntaggedTag_1_2016postVFP  ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_1_2016postVFP.root wsig_13TeV:hggpdfsmrel_shift_VBF_2016postVFP_UntaggedTag_1_13TeV
-shapes vh_2016postVFP_hgg               Name2_UntaggedTag_1_2016postVFP  ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_1_2016postVFP.root wsig_13TeV:hggpdfsmrel_shift_vh_2016postVFP_UntaggedTag_1_13TeV
+shapes qqH_2016postVFP_hgg              Name2_UntaggedTag_1_2016postVFP  ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_1_2016postVFP.root wsig_13TeV:hggpdfsmrel_VBF_2016postVFP_UntaggedTag_1_13TeV
+shapes vh_2016postVFP_hgg               Name2_UntaggedTag_1_2016postVFP  ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_1_2016postVFP.root wsig_13TeV:hggpdfsmrel_vh_2016postVFP_UntaggedTag_1_13TeV
 shapes bkg_mass                         Name2_UntaggedTag_2_2016postVFP  ./Models/background/CMS-HGG_multipdf_UntaggedTag_2_2016postVFP.root multipdf:CMS_hgg_UntaggedTag_2_2016postVFP_13TeV_bkgshape
 shapes data_obs                         Name2_UntaggedTag_2_2016postVFP  ./Models/background/CMS-HGG_multipdf_UntaggedTag_2_2016postVFP.root multipdf:roohist_data_mass_UntaggedTag_2
 shapes ggH_2016postVFP_hgg              Name2_UntaggedTag_2_2016postVFP  ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_2_2016postVFP.root wsig_13TeV:hggpdfsmrel_shift_GG2H_2016postVFP_UntaggedTag_2_13TeV
-shapes qqH_2016postVFP_hgg              Name2_UntaggedTag_2_2016postVFP  ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_2_2016postVFP.root wsig_13TeV:hggpdfsmrel_shift_VBF_2016postVFP_UntaggedTag_2_13TeV
-shapes vh_2016postVFP_hgg               Name2_UntaggedTag_2_2016postVFP  ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_2_2016postVFP.root wsig_13TeV:hggpdfsmrel_shift_vh_2016postVFP_UntaggedTag_2_13TeV
+shapes qqH_2016postVFP_hgg              Name2_UntaggedTag_2_2016postVFP  ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_2_2016postVFP.root wsig_13TeV:hggpdfsmrel_VBF_2016postVFP_UntaggedTag_2_13TeV
+shapes vh_2016postVFP_hgg               Name2_UntaggedTag_2_2016postVFP  ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_2_2016postVFP.root wsig_13TeV:hggpdfsmrel_vh_2016postVFP_UntaggedTag_2_13TeV
 shapes bkg_mass                         Name2_UntaggedTag_3_2016postVFP  ./Models/background/CMS-HGG_multipdf_UntaggedTag_3_2016postVFP.root multipdf:CMS_hgg_UntaggedTag_3_2016postVFP_13TeV_bkgshape
 shapes data_obs                         Name2_UntaggedTag_3_2016postVFP  ./Models/background/CMS-HGG_multipdf_UntaggedTag_3_2016postVFP.root multipdf:roohist_data_mass_UntaggedTag_3
 shapes ggH_2016postVFP_hgg              Name2_UntaggedTag_3_2016postVFP  ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_3_2016postVFP.root wsig_13TeV:hggpdfsmrel_shift_GG2H_2016postVFP_UntaggedTag_3_13TeV
-shapes qqH_2016postVFP_hgg              Name2_UntaggedTag_3_2016postVFP  ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_3_2016postVFP.root wsig_13TeV:hggpdfsmrel_shift_VBF_2016postVFP_UntaggedTag_3_13TeV
-shapes vh_2016postVFP_hgg               Name2_UntaggedTag_3_2016postVFP  ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_3_2016postVFP.root wsig_13TeV:hggpdfsmrel_shift_vh_2016postVFP_UntaggedTag_3_13TeV
+shapes qqH_2016postVFP_hgg              Name2_UntaggedTag_3_2016postVFP  ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_3_2016postVFP.root wsig_13TeV:hggpdfsmrel_VBF_2016postVFP_UntaggedTag_3_13TeV
+shapes vh_2016postVFP_hgg               Name2_UntaggedTag_3_2016postVFP  ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_3_2016postVFP.root wsig_13TeV:hggpdfsmrel_vh_2016postVFP_UntaggedTag_3_13TeV
 shapes bkg_mass                         Name2_UntaggedTag_4_2016postVFP  ./Models/background/CMS-HGG_multipdf_UntaggedTag_4_2016postVFP.root multipdf:CMS_hgg_UntaggedTag_4_2016postVFP_13TeV_bkgshape
 shapes data_obs                         Name2_UntaggedTag_4_2016postVFP  ./Models/background/CMS-HGG_multipdf_UntaggedTag_4_2016postVFP.root multipdf:roohist_data_mass_UntaggedTag_4
 shapes ggH_2016postVFP_hgg              Name2_UntaggedTag_4_2016postVFP  ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_4_2016postVFP.root wsig_13TeV:hggpdfsmrel_shift_GG2H_2016postVFP_UntaggedTag_4_13TeV
-shapes qqH_2016postVFP_hgg              Name2_UntaggedTag_4_2016postVFP  ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_4_2016postVFP.root wsig_13TeV:hggpdfsmrel_shift_VBF_2016postVFP_UntaggedTag_4_13TeV
-shapes vh_2016postVFP_hgg               Name2_UntaggedTag_4_2016postVFP  ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_4_2016postVFP.root wsig_13TeV:hggpdfsmrel_shift_vh_2016postVFP_UntaggedTag_4_13TeV
+shapes qqH_2016postVFP_hgg              Name2_UntaggedTag_4_2016postVFP  ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_4_2016postVFP.root wsig_13TeV:hggpdfsmrel_VBF_2016postVFP_UntaggedTag_4_13TeV
+shapes vh_2016postVFP_hgg               Name2_UntaggedTag_4_2016postVFP  ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_4_2016postVFP.root wsig_13TeV:hggpdfsmrel_vh_2016postVFP_UntaggedTag_4_13TeV
 shapes bkg_mass                         Name2_UntaggedTag_5_2016postVFP  ./Models/background/CMS-HGG_multipdf_UntaggedTag_5_2016postVFP.root multipdf:CMS_hgg_UntaggedTag_5_2016postVFP_13TeV_bkgshape
 shapes data_obs                         Name2_UntaggedTag_5_2016postVFP  ./Models/background/CMS-HGG_multipdf_UntaggedTag_5_2016postVFP.root multipdf:roohist_data_mass_UntaggedTag_5
 shapes ggH_2016postVFP_hgg              Name2_UntaggedTag_5_2016postVFP  ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_5_2016postVFP.root wsig_13TeV:hggpdfsmrel_shift_GG2H_2016postVFP_UntaggedTag_5_13TeV
-shapes qqH_2016postVFP_hgg              Name2_UntaggedTag_5_2016postVFP  ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_5_2016postVFP.root wsig_13TeV:hggpdfsmrel_shift_VBF_2016postVFP_UntaggedTag_5_13TeV
-shapes vh_2016postVFP_hgg               Name2_UntaggedTag_5_2016postVFP  ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_5_2016postVFP.root wsig_13TeV:hggpdfsmrel_shift_vh_2016postVFP_UntaggedTag_5_13TeV
+shapes qqH_2016postVFP_hgg              Name2_UntaggedTag_5_2016postVFP  ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_5_2016postVFP.root wsig_13TeV:hggpdfsmrel_VBF_2016postVFP_UntaggedTag_5_13TeV
+shapes vh_2016postVFP_hgg               Name2_UntaggedTag_5_2016postVFP  ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_5_2016postVFP.root wsig_13TeV:hggpdfsmrel_vh_2016postVFP_UntaggedTag_5_13TeV
 shapes bkg_mass                         Name2_UntaggedTag_6_2016postVFP  ./Models/background/CMS-HGG_multipdf_UntaggedTag_6_2016postVFP.root multipdf:CMS_hgg_UntaggedTag_6_2016postVFP_13TeV_bkgshape
 shapes data_obs                         Name2_UntaggedTag_6_2016postVFP  ./Models/background/CMS-HGG_multipdf_UntaggedTag_6_2016postVFP.root multipdf:roohist_data_mass_UntaggedTag_6
 shapes ggH_2016postVFP_hgg              Name2_UntaggedTag_6_2016postVFP  ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_6_2016postVFP.root wsig_13TeV:hggpdfsmrel_shift_GG2H_2016postVFP_UntaggedTag_6_13TeV
-shapes qqH_2016postVFP_hgg              Name2_UntaggedTag_6_2016postVFP  ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_6_2016postVFP.root wsig_13TeV:hggpdfsmrel_shift_VBF_2016postVFP_UntaggedTag_6_13TeV
-shapes vh_2016postVFP_hgg               Name2_UntaggedTag_6_2016postVFP  ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_6_2016postVFP.root wsig_13TeV:hggpdfsmrel_shift_vh_2016postVFP_UntaggedTag_6_13TeV
+shapes qqH_2016postVFP_hgg              Name2_UntaggedTag_6_2016postVFP  ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_6_2016postVFP.root wsig_13TeV:hggpdfsmrel_VBF_2016postVFP_UntaggedTag_6_13TeV
+shapes vh_2016postVFP_hgg               Name2_UntaggedTag_6_2016postVFP  ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_6_2016postVFP.root wsig_13TeV:hggpdfsmrel_vh_2016postVFP_UntaggedTag_6_13TeV
 shapes bkg_mass                         Name2_UntaggedTag_7_2016postVFP  ./Models/background/CMS-HGG_multipdf_UntaggedTag_7_2016postVFP.root multipdf:CMS_hgg_UntaggedTag_7_2016postVFP_13TeV_bkgshape
 shapes data_obs                         Name2_UntaggedTag_7_2016postVFP  ./Models/background/CMS-HGG_multipdf_UntaggedTag_7_2016postVFP.root multipdf:roohist_data_mass_UntaggedTag_7
 shapes ggH_2016postVFP_hgg              Name2_UntaggedTag_7_2016postVFP  ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_7_2016postVFP.root wsig_13TeV:hggpdfsmrel_shift_GG2H_2016postVFP_UntaggedTag_7_13TeV
-shapes qqH_2016postVFP_hgg              Name2_UntaggedTag_7_2016postVFP  ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_7_2016postVFP.root wsig_13TeV:hggpdfsmrel_shift_VBF_2016postVFP_UntaggedTag_7_13TeV
-shapes vh_2016postVFP_hgg               Name2_UntaggedTag_7_2016postVFP  ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_7_2016postVFP.root wsig_13TeV:hggpdfsmrel_shift_vh_2016postVFP_UntaggedTag_7_13TeV
+shapes qqH_2016postVFP_hgg              Name2_UntaggedTag_7_2016postVFP  ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_7_2016postVFP.root wsig_13TeV:hggpdfsmrel_VBF_2016postVFP_UntaggedTag_7_13TeV
+shapes vh_2016postVFP_hgg               Name2_UntaggedTag_7_2016postVFP  ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_7_2016postVFP.root wsig_13TeV:hggpdfsmrel_vh_2016postVFP_UntaggedTag_7_13TeV
 shapes bkg_mass                         Name2_UntaggedTag_8_2016postVFP  ./Models/background/CMS-HGG_multipdf_UntaggedTag_8_2016postVFP.root multipdf:CMS_hgg_UntaggedTag_8_2016postVFP_13TeV_bkgshape
 shapes data_obs                         Name2_UntaggedTag_8_2016postVFP  ./Models/background/CMS-HGG_multipdf_UntaggedTag_8_2016postVFP.root multipdf:roohist_data_mass_UntaggedTag_8
 shapes ggH_2016postVFP_hgg              Name2_UntaggedTag_8_2016postVFP  ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_8_2016postVFP.root wsig_13TeV:hggpdfsmrel_shift_GG2H_2016postVFP_UntaggedTag_8_13TeV
-shapes qqH_2016postVFP_hgg              Name2_UntaggedTag_8_2016postVFP  ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_8_2016postVFP.root wsig_13TeV:hggpdfsmrel_shift_VBF_2016postVFP_UntaggedTag_8_13TeV
-shapes vh_2016postVFP_hgg               Name2_UntaggedTag_8_2016postVFP  ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_8_2016postVFP.root wsig_13TeV:hggpdfsmrel_shift_vh_2016postVFP_UntaggedTag_8_13TeV
+shapes qqH_2016postVFP_hgg              Name2_UntaggedTag_8_2016postVFP  ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_8_2016postVFP.root wsig_13TeV:hggpdfsmrel_VBF_2016postVFP_UntaggedTag_8_13TeV
+shapes vh_2016postVFP_hgg               Name2_UntaggedTag_8_2016postVFP  ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_8_2016postVFP.root wsig_13TeV:hggpdfsmrel_vh_2016postVFP_UntaggedTag_8_13TeV
 shapes bkg_mass                         Name2_UntaggedTag_9_2016postVFP  ./Models/background/CMS-HGG_multipdf_UntaggedTag_9_2016postVFP.root multipdf:CMS_hgg_UntaggedTag_9_2016postVFP_13TeV_bkgshape
 shapes data_obs                         Name2_UntaggedTag_9_2016postVFP  ./Models/background/CMS-HGG_multipdf_UntaggedTag_9_2016postVFP.root multipdf:roohist_data_mass_UntaggedTag_9
 shapes ggH_2016postVFP_hgg              Name2_UntaggedTag_9_2016postVFP  ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_9_2016postVFP.root wsig_13TeV:hggpdfsmrel_shift_GG2H_2016postVFP_UntaggedTag_9_13TeV
-shapes qqH_2016postVFP_hgg              Name2_UntaggedTag_9_2016postVFP  ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_9_2016postVFP.root wsig_13TeV:hggpdfsmrel_shift_VBF_2016postVFP_UntaggedTag_9_13TeV
-shapes vh_2016postVFP_hgg               Name2_UntaggedTag_9_2016postVFP  ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_9_2016postVFP.root wsig_13TeV:hggpdfsmrel_shift_vh_2016postVFP_UntaggedTag_9_13TeV
+shapes qqH_2016postVFP_hgg              Name2_UntaggedTag_9_2016postVFP  ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_9_2016postVFP.root wsig_13TeV:hggpdfsmrel_VBF_2016postVFP_UntaggedTag_9_13TeV
+shapes vh_2016postVFP_hgg               Name2_UntaggedTag_9_2016postVFP  ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_9_2016postVFP.root wsig_13TeV:hggpdfsmrel_vh_2016postVFP_UntaggedTag_9_13TeV
 shapes bkg_mass                         Name2_VBFTag_0_2016postVFP       ./Models/background/CMS-HGG_multipdf_VBFTag_0_2016postVFP.root multipdf:CMS_hgg_VBFTag_0_2016postVFP_13TeV_bkgshape
 shapes data_obs                         Name2_VBFTag_0_2016postVFP       ./Models/background/CMS-HGG_multipdf_VBFTag_0_2016postVFP.root multipdf:roohist_data_mass_VBFTag_0
 shapes ggH_2016postVFP_hgg              Name2_VBFTag_0_2016postVFP       ./Models/signal/CMS-HGG_sigfit_packaged_VBFTag_0_2016postVFP.root wsig_13TeV:hggpdfsmrel_shift_GG2H_2016postVFP_VBFTag_0_13TeV
-shapes qqH_2016postVFP_hgg              Name2_VBFTag_0_2016postVFP       ./Models/signal/CMS-HGG_sigfit_packaged_VBFTag_0_2016postVFP.root wsig_13TeV:hggpdfsmrel_shift_VBF_2016postVFP_VBFTag_0_13TeV
-shapes vh_2016postVFP_hgg               Name2_VBFTag_0_2016postVFP       ./Models/signal/CMS-HGG_sigfit_packaged_VBFTag_0_2016postVFP.root wsig_13TeV:hggpdfsmrel_shift_vh_2016postVFP_VBFTag_0_13TeV
+shapes qqH_2016postVFP_hgg              Name2_VBFTag_0_2016postVFP       ./Models/signal/CMS-HGG_sigfit_packaged_VBFTag_0_2016postVFP.root wsig_13TeV:hggpdfsmrel_VBF_2016postVFP_VBFTag_0_13TeV
+shapes vh_2016postVFP_hgg               Name2_VBFTag_0_2016postVFP       ./Models/signal/CMS-HGG_sigfit_packaged_VBFTag_0_2016postVFP.root wsig_13TeV:hggpdfsmrel_vh_2016postVFP_VBFTag_0_13TeV
 shapes bkg_mass                         Name3_UntaggedTag_0_2017         ./Models/background/CMS-HGG_multipdf_UntaggedTag_0_2017.root multipdf:CMS_hgg_UntaggedTag_0_2017_13TeV_bkgshape
 shapes data_obs                         Name3_UntaggedTag_0_2017         ./Models/background/CMS-HGG_multipdf_UntaggedTag_0_2017.root multipdf:roohist_data_mass_UntaggedTag_0
 shapes ggH_2017_hgg                     Name3_UntaggedTag_0_2017         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_0_2017.root wsig_13TeV:hggpdfsmrel_shift_GG2H_2017_UntaggedTag_0_13TeV
-shapes qqH_2017_hgg                     Name3_UntaggedTag_0_2017         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_0_2017.root wsig_13TeV:hggpdfsmrel_shift_VBF_2017_UntaggedTag_0_13TeV
-shapes vh_2017_hgg                      Name3_UntaggedTag_0_2017         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_0_2017.root wsig_13TeV:hggpdfsmrel_shift_vh_2017_UntaggedTag_0_13TeV
+shapes qqH_2017_hgg                     Name3_UntaggedTag_0_2017         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_0_2017.root wsig_13TeV:hggpdfsmrel_VBF_2017_UntaggedTag_0_13TeV
+shapes vh_2017_hgg                      Name3_UntaggedTag_0_2017         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_0_2017.root wsig_13TeV:hggpdfsmrel_vh_2017_UntaggedTag_0_13TeV
 shapes bkg_mass                         Name3_UntaggedTag_1_2017         ./Models/background/CMS-HGG_multipdf_UntaggedTag_1_2017.root multipdf:CMS_hgg_UntaggedTag_1_2017_13TeV_bkgshape
 shapes data_obs                         Name3_UntaggedTag_1_2017         ./Models/background/CMS-HGG_multipdf_UntaggedTag_1_2017.root multipdf:roohist_data_mass_UntaggedTag_1
 shapes ggH_2017_hgg                     Name3_UntaggedTag_1_2017         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_1_2017.root wsig_13TeV:hggpdfsmrel_shift_GG2H_2017_UntaggedTag_1_13TeV
-shapes qqH_2017_hgg                     Name3_UntaggedTag_1_2017         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_1_2017.root wsig_13TeV:hggpdfsmrel_shift_VBF_2017_UntaggedTag_1_13TeV
-shapes vh_2017_hgg                      Name3_UntaggedTag_1_2017         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_1_2017.root wsig_13TeV:hggpdfsmrel_shift_vh_2017_UntaggedTag_1_13TeV
+shapes qqH_2017_hgg                     Name3_UntaggedTag_1_2017         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_1_2017.root wsig_13TeV:hggpdfsmrel_VBF_2017_UntaggedTag_1_13TeV
+shapes vh_2017_hgg                      Name3_UntaggedTag_1_2017         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_1_2017.root wsig_13TeV:hggpdfsmrel_vh_2017_UntaggedTag_1_13TeV
 shapes bkg_mass                         Name3_UntaggedTag_2_2017         ./Models/background/CMS-HGG_multipdf_UntaggedTag_2_2017.root multipdf:CMS_hgg_UntaggedTag_2_2017_13TeV_bkgshape
 shapes data_obs                         Name3_UntaggedTag_2_2017         ./Models/background/CMS-HGG_multipdf_UntaggedTag_2_2017.root multipdf:roohist_data_mass_UntaggedTag_2
 shapes ggH_2017_hgg                     Name3_UntaggedTag_2_2017         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_2_2017.root wsig_13TeV:hggpdfsmrel_shift_GG2H_2017_UntaggedTag_2_13TeV
-shapes qqH_2017_hgg                     Name3_UntaggedTag_2_2017         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_2_2017.root wsig_13TeV:hggpdfsmrel_shift_VBF_2017_UntaggedTag_2_13TeV
-shapes vh_2017_hgg                      Name3_UntaggedTag_2_2017         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_2_2017.root wsig_13TeV:hggpdfsmrel_shift_vh_2017_UntaggedTag_2_13TeV
+shapes qqH_2017_hgg                     Name3_UntaggedTag_2_2017         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_2_2017.root wsig_13TeV:hggpdfsmrel_VBF_2017_UntaggedTag_2_13TeV
+shapes vh_2017_hgg                      Name3_UntaggedTag_2_2017         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_2_2017.root wsig_13TeV:hggpdfsmrel_vh_2017_UntaggedTag_2_13TeV
 shapes bkg_mass                         Name3_UntaggedTag_3_2017         ./Models/background/CMS-HGG_multipdf_UntaggedTag_3_2017.root multipdf:CMS_hgg_UntaggedTag_3_2017_13TeV_bkgshape
 shapes data_obs                         Name3_UntaggedTag_3_2017         ./Models/background/CMS-HGG_multipdf_UntaggedTag_3_2017.root multipdf:roohist_data_mass_UntaggedTag_3
 shapes ggH_2017_hgg                     Name3_UntaggedTag_3_2017         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_3_2017.root wsig_13TeV:hggpdfsmrel_shift_GG2H_2017_UntaggedTag_3_13TeV
-shapes qqH_2017_hgg                     Name3_UntaggedTag_3_2017         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_3_2017.root wsig_13TeV:hggpdfsmrel_shift_VBF_2017_UntaggedTag_3_13TeV
-shapes vh_2017_hgg                      Name3_UntaggedTag_3_2017         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_3_2017.root wsig_13TeV:hggpdfsmrel_shift_vh_2017_UntaggedTag_3_13TeV
+shapes qqH_2017_hgg                     Name3_UntaggedTag_3_2017         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_3_2017.root wsig_13TeV:hggpdfsmrel_VBF_2017_UntaggedTag_3_13TeV
+shapes vh_2017_hgg                      Name3_UntaggedTag_3_2017         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_3_2017.root wsig_13TeV:hggpdfsmrel_vh_2017_UntaggedTag_3_13TeV
 shapes bkg_mass                         Name3_UntaggedTag_4_2017         ./Models/background/CMS-HGG_multipdf_UntaggedTag_4_2017.root multipdf:CMS_hgg_UntaggedTag_4_2017_13TeV_bkgshape
 shapes data_obs                         Name3_UntaggedTag_4_2017         ./Models/background/CMS-HGG_multipdf_UntaggedTag_4_2017.root multipdf:roohist_data_mass_UntaggedTag_4
 shapes ggH_2017_hgg                     Name3_UntaggedTag_4_2017         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_4_2017.root wsig_13TeV:hggpdfsmrel_shift_GG2H_2017_UntaggedTag_4_13TeV
-shapes qqH_2017_hgg                     Name3_UntaggedTag_4_2017         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_4_2017.root wsig_13TeV:hggpdfsmrel_shift_VBF_2017_UntaggedTag_4_13TeV
-shapes vh_2017_hgg                      Name3_UntaggedTag_4_2017         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_4_2017.root wsig_13TeV:hggpdfsmrel_shift_vh_2017_UntaggedTag_4_13TeV
+shapes qqH_2017_hgg                     Name3_UntaggedTag_4_2017         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_4_2017.root wsig_13TeV:hggpdfsmrel_VBF_2017_UntaggedTag_4_13TeV
+shapes vh_2017_hgg                      Name3_UntaggedTag_4_2017         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_4_2017.root wsig_13TeV:hggpdfsmrel_vh_2017_UntaggedTag_4_13TeV
 shapes bkg_mass                         Name3_UntaggedTag_5_2017         ./Models/background/CMS-HGG_multipdf_UntaggedTag_5_2017.root multipdf:CMS_hgg_UntaggedTag_5_2017_13TeV_bkgshape
 shapes data_obs                         Name3_UntaggedTag_5_2017         ./Models/background/CMS-HGG_multipdf_UntaggedTag_5_2017.root multipdf:roohist_data_mass_UntaggedTag_5
 shapes ggH_2017_hgg                     Name3_UntaggedTag_5_2017         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_5_2017.root wsig_13TeV:hggpdfsmrel_shift_GG2H_2017_UntaggedTag_5_13TeV
-shapes qqH_2017_hgg                     Name3_UntaggedTag_5_2017         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_5_2017.root wsig_13TeV:hggpdfsmrel_shift_VBF_2017_UntaggedTag_5_13TeV
-shapes vh_2017_hgg                      Name3_UntaggedTag_5_2017         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_5_2017.root wsig_13TeV:hggpdfsmrel_shift_vh_2017_UntaggedTag_5_13TeV
+shapes qqH_2017_hgg                     Name3_UntaggedTag_5_2017         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_5_2017.root wsig_13TeV:hggpdfsmrel_VBF_2017_UntaggedTag_5_13TeV
+shapes vh_2017_hgg                      Name3_UntaggedTag_5_2017         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_5_2017.root wsig_13TeV:hggpdfsmrel_vh_2017_UntaggedTag_5_13TeV
 shapes bkg_mass                         Name3_UntaggedTag_6_2017         ./Models/background/CMS-HGG_multipdf_UntaggedTag_6_2017.root multipdf:CMS_hgg_UntaggedTag_6_2017_13TeV_bkgshape
 shapes data_obs                         Name3_UntaggedTag_6_2017         ./Models/background/CMS-HGG_multipdf_UntaggedTag_6_2017.root multipdf:roohist_data_mass_UntaggedTag_6
 shapes ggH_2017_hgg                     Name3_UntaggedTag_6_2017         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_6_2017.root wsig_13TeV:hggpdfsmrel_shift_GG2H_2017_UntaggedTag_6_13TeV
-shapes qqH_2017_hgg                     Name3_UntaggedTag_6_2017         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_6_2017.root wsig_13TeV:hggpdfsmrel_shift_VBF_2017_UntaggedTag_6_13TeV
-shapes vh_2017_hgg                      Name3_UntaggedTag_6_2017         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_6_2017.root wsig_13TeV:hggpdfsmrel_shift_vh_2017_UntaggedTag_6_13TeV
+shapes qqH_2017_hgg                     Name3_UntaggedTag_6_2017         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_6_2017.root wsig_13TeV:hggpdfsmrel_VBF_2017_UntaggedTag_6_13TeV
+shapes vh_2017_hgg                      Name3_UntaggedTag_6_2017         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_6_2017.root wsig_13TeV:hggpdfsmrel_vh_2017_UntaggedTag_6_13TeV
 shapes bkg_mass                         Name3_UntaggedTag_7_2017         ./Models/background/CMS-HGG_multipdf_UntaggedTag_7_2017.root multipdf:CMS_hgg_UntaggedTag_7_2017_13TeV_bkgshape
 shapes data_obs                         Name3_UntaggedTag_7_2017         ./Models/background/CMS-HGG_multipdf_UntaggedTag_7_2017.root multipdf:roohist_data_mass_UntaggedTag_7
 shapes ggH_2017_hgg                     Name3_UntaggedTag_7_2017         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_7_2017.root wsig_13TeV:hggpdfsmrel_shift_GG2H_2017_UntaggedTag_7_13TeV
-shapes qqH_2017_hgg                     Name3_UntaggedTag_7_2017         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_7_2017.root wsig_13TeV:hggpdfsmrel_shift_VBF_2017_UntaggedTag_7_13TeV
-shapes vh_2017_hgg                      Name3_UntaggedTag_7_2017         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_7_2017.root wsig_13TeV:hggpdfsmrel_shift_vh_2017_UntaggedTag_7_13TeV
+shapes qqH_2017_hgg                     Name3_UntaggedTag_7_2017         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_7_2017.root wsig_13TeV:hggpdfsmrel_VBF_2017_UntaggedTag_7_13TeV
+shapes vh_2017_hgg                      Name3_UntaggedTag_7_2017         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_7_2017.root wsig_13TeV:hggpdfsmrel_vh_2017_UntaggedTag_7_13TeV
 shapes bkg_mass                         Name3_UntaggedTag_8_2017         ./Models/background/CMS-HGG_multipdf_UntaggedTag_8_2017.root multipdf:CMS_hgg_UntaggedTag_8_2017_13TeV_bkgshape
 shapes data_obs                         Name3_UntaggedTag_8_2017         ./Models/background/CMS-HGG_multipdf_UntaggedTag_8_2017.root multipdf:roohist_data_mass_UntaggedTag_8
 shapes ggH_2017_hgg                     Name3_UntaggedTag_8_2017         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_8_2017.root wsig_13TeV:hggpdfsmrel_shift_GG2H_2017_UntaggedTag_8_13TeV
-shapes qqH_2017_hgg                     Name3_UntaggedTag_8_2017         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_8_2017.root wsig_13TeV:hggpdfsmrel_shift_VBF_2017_UntaggedTag_8_13TeV
-shapes vh_2017_hgg                      Name3_UntaggedTag_8_2017         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_8_2017.root wsig_13TeV:hggpdfsmrel_shift_vh_2017_UntaggedTag_8_13TeV
+shapes qqH_2017_hgg                     Name3_UntaggedTag_8_2017         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_8_2017.root wsig_13TeV:hggpdfsmrel_VBF_2017_UntaggedTag_8_13TeV
+shapes vh_2017_hgg                      Name3_UntaggedTag_8_2017         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_8_2017.root wsig_13TeV:hggpdfsmrel_vh_2017_UntaggedTag_8_13TeV
 shapes bkg_mass                         Name3_UntaggedTag_9_2017         ./Models/background/CMS-HGG_multipdf_UntaggedTag_9_2017.root multipdf:CMS_hgg_UntaggedTag_9_2017_13TeV_bkgshape
 shapes data_obs                         Name3_UntaggedTag_9_2017         ./Models/background/CMS-HGG_multipdf_UntaggedTag_9_2017.root multipdf:roohist_data_mass_UntaggedTag_9
 shapes ggH_2017_hgg                     Name3_UntaggedTag_9_2017         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_9_2017.root wsig_13TeV:hggpdfsmrel_shift_GG2H_2017_UntaggedTag_9_13TeV
-shapes qqH_2017_hgg                     Name3_UntaggedTag_9_2017         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_9_2017.root wsig_13TeV:hggpdfsmrel_shift_VBF_2017_UntaggedTag_9_13TeV
-shapes vh_2017_hgg                      Name3_UntaggedTag_9_2017         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_9_2017.root wsig_13TeV:hggpdfsmrel_shift_vh_2017_UntaggedTag_9_13TeV
+shapes qqH_2017_hgg                     Name3_UntaggedTag_9_2017         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_9_2017.root wsig_13TeV:hggpdfsmrel_VBF_2017_UntaggedTag_9_13TeV
+shapes vh_2017_hgg                      Name3_UntaggedTag_9_2017         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_9_2017.root wsig_13TeV:hggpdfsmrel_vh_2017_UntaggedTag_9_13TeV
 shapes bkg_mass                         Name3_VBFTag_0_2017              ./Models/background/CMS-HGG_multipdf_VBFTag_0_2017.root multipdf:CMS_hgg_VBFTag_0_2017_13TeV_bkgshape
 shapes data_obs                         Name3_VBFTag_0_2017              ./Models/background/CMS-HGG_multipdf_VBFTag_0_2017.root multipdf:roohist_data_mass_VBFTag_0
 shapes ggH_2017_hgg                     Name3_VBFTag_0_2017              ./Models/signal/CMS-HGG_sigfit_packaged_VBFTag_0_2017.root wsig_13TeV:hggpdfsmrel_shift_GG2H_2017_VBFTag_0_13TeV
-shapes qqH_2017_hgg                     Name3_VBFTag_0_2017              ./Models/signal/CMS-HGG_sigfit_packaged_VBFTag_0_2017.root wsig_13TeV:hggpdfsmrel_shift_VBF_2017_VBFTag_0_13TeV
-shapes vh_2017_hgg                      Name3_VBFTag_0_2017              ./Models/signal/CMS-HGG_sigfit_packaged_VBFTag_0_2017.root wsig_13TeV:hggpdfsmrel_shift_vh_2017_VBFTag_0_13TeV
+shapes qqH_2017_hgg                     Name3_VBFTag_0_2017              ./Models/signal/CMS-HGG_sigfit_packaged_VBFTag_0_2017.root wsig_13TeV:hggpdfsmrel_VBF_2017_VBFTag_0_13TeV
+shapes vh_2017_hgg                      Name3_VBFTag_0_2017              ./Models/signal/CMS-HGG_sigfit_packaged_VBFTag_0_2017.root wsig_13TeV:hggpdfsmrel_vh_2017_VBFTag_0_13TeV
 shapes bkg_mass                         Name4_UntaggedTag_0_2018         ./Models/background/CMS-HGG_multipdf_UntaggedTag_0_2018.root multipdf:CMS_hgg_UntaggedTag_0_2018_13TeV_bkgshape
 shapes data_obs                         Name4_UntaggedTag_0_2018         ./Models/background/CMS-HGG_multipdf_UntaggedTag_0_2018.root multipdf:roohist_data_mass_UntaggedTag_0
 shapes ggH_2018_hgg                     Name4_UntaggedTag_0_2018         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_0_2018.root wsig_13TeV:hggpdfsmrel_shift_GG2H_2018_UntaggedTag_0_13TeV
-shapes qqH_2018_hgg                     Name4_UntaggedTag_0_2018         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_0_2018.root wsig_13TeV:hggpdfsmrel_shift_VBF_2018_UntaggedTag_0_13TeV
-shapes vh_2018_hgg                      Name4_UntaggedTag_0_2018         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_0_2018.root wsig_13TeV:hggpdfsmrel_shift_vh_2018_UntaggedTag_0_13TeV
+shapes qqH_2018_hgg                     Name4_UntaggedTag_0_2018         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_0_2018.root wsig_13TeV:hggpdfsmrel_VBF_2018_UntaggedTag_0_13TeV
+shapes vh_2018_hgg                      Name4_UntaggedTag_0_2018         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_0_2018.root wsig_13TeV:hggpdfsmrel_vh_2018_UntaggedTag_0_13TeV
 shapes bkg_mass                         Name4_UntaggedTag_1_2018         ./Models/background/CMS-HGG_multipdf_UntaggedTag_1_2018.root multipdf:CMS_hgg_UntaggedTag_1_2018_13TeV_bkgshape
 shapes data_obs                         Name4_UntaggedTag_1_2018         ./Models/background/CMS-HGG_multipdf_UntaggedTag_1_2018.root multipdf:roohist_data_mass_UntaggedTag_1
 shapes ggH_2018_hgg                     Name4_UntaggedTag_1_2018         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_1_2018.root wsig_13TeV:hggpdfsmrel_shift_GG2H_2018_UntaggedTag_1_13TeV
-shapes qqH_2018_hgg                     Name4_UntaggedTag_1_2018         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_1_2018.root wsig_13TeV:hggpdfsmrel_shift_VBF_2018_UntaggedTag_1_13TeV
-shapes vh_2018_hgg                      Name4_UntaggedTag_1_2018         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_1_2018.root wsig_13TeV:hggpdfsmrel_shift_vh_2018_UntaggedTag_1_13TeV
+shapes qqH_2018_hgg                     Name4_UntaggedTag_1_2018         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_1_2018.root wsig_13TeV:hggpdfsmrel_VBF_2018_UntaggedTag_1_13TeV
+shapes vh_2018_hgg                      Name4_UntaggedTag_1_2018         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_1_2018.root wsig_13TeV:hggpdfsmrel_vh_2018_UntaggedTag_1_13TeV
 shapes bkg_mass                         Name4_UntaggedTag_2_2018         ./Models/background/CMS-HGG_multipdf_UntaggedTag_2_2018.root multipdf:CMS_hgg_UntaggedTag_2_2018_13TeV_bkgshape
 shapes data_obs                         Name4_UntaggedTag_2_2018         ./Models/background/CMS-HGG_multipdf_UntaggedTag_2_2018.root multipdf:roohist_data_mass_UntaggedTag_2
 shapes ggH_2018_hgg                     Name4_UntaggedTag_2_2018         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_2_2018.root wsig_13TeV:hggpdfsmrel_shift_GG2H_2018_UntaggedTag_2_13TeV
-shapes qqH_2018_hgg                     Name4_UntaggedTag_2_2018         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_2_2018.root wsig_13TeV:hggpdfsmrel_shift_VBF_2018_UntaggedTag_2_13TeV
-shapes vh_2018_hgg                      Name4_UntaggedTag_2_2018         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_2_2018.root wsig_13TeV:hggpdfsmrel_shift_vh_2018_UntaggedTag_2_13TeV
+shapes qqH_2018_hgg                     Name4_UntaggedTag_2_2018         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_2_2018.root wsig_13TeV:hggpdfsmrel_VBF_2018_UntaggedTag_2_13TeV
+shapes vh_2018_hgg                      Name4_UntaggedTag_2_2018         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_2_2018.root wsig_13TeV:hggpdfsmrel_vh_2018_UntaggedTag_2_13TeV
 shapes bkg_mass                         Name4_UntaggedTag_3_2018         ./Models/background/CMS-HGG_multipdf_UntaggedTag_3_2018.root multipdf:CMS_hgg_UntaggedTag_3_2018_13TeV_bkgshape
 shapes data_obs                         Name4_UntaggedTag_3_2018         ./Models/background/CMS-HGG_multipdf_UntaggedTag_3_2018.root multipdf:roohist_data_mass_UntaggedTag_3
 shapes ggH_2018_hgg                     Name4_UntaggedTag_3_2018         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_3_2018.root wsig_13TeV:hggpdfsmrel_shift_GG2H_2018_UntaggedTag_3_13TeV
-shapes qqH_2018_hgg                     Name4_UntaggedTag_3_2018         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_3_2018.root wsig_13TeV:hggpdfsmrel_shift_VBF_2018_UntaggedTag_3_13TeV
-shapes vh_2018_hgg                      Name4_UntaggedTag_3_2018         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_3_2018.root wsig_13TeV:hggpdfsmrel_shift_vh_2018_UntaggedTag_3_13TeV
+shapes qqH_2018_hgg                     Name4_UntaggedTag_3_2018         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_3_2018.root wsig_13TeV:hggpdfsmrel_VBF_2018_UntaggedTag_3_13TeV
+shapes vh_2018_hgg                      Name4_UntaggedTag_3_2018         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_3_2018.root wsig_13TeV:hggpdfsmrel_vh_2018_UntaggedTag_3_13TeV
 shapes bkg_mass                         Name4_UntaggedTag_4_2018         ./Models/background/CMS-HGG_multipdf_UntaggedTag_4_2018.root multipdf:CMS_hgg_UntaggedTag_4_2018_13TeV_bkgshape
 shapes data_obs                         Name4_UntaggedTag_4_2018         ./Models/background/CMS-HGG_multipdf_UntaggedTag_4_2018.root multipdf:roohist_data_mass_UntaggedTag_4
 shapes ggH_2018_hgg                     Name4_UntaggedTag_4_2018         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_4_2018.root wsig_13TeV:hggpdfsmrel_shift_GG2H_2018_UntaggedTag_4_13TeV
-shapes qqH_2018_hgg                     Name4_UntaggedTag_4_2018         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_4_2018.root wsig_13TeV:hggpdfsmrel_shift_VBF_2018_UntaggedTag_4_13TeV
-shapes vh_2018_hgg                      Name4_UntaggedTag_4_2018         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_4_2018.root wsig_13TeV:hggpdfsmrel_shift_vh_2018_UntaggedTag_4_13TeV
+shapes qqH_2018_hgg                     Name4_UntaggedTag_4_2018         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_4_2018.root wsig_13TeV:hggpdfsmrel_VBF_2018_UntaggedTag_4_13TeV
+shapes vh_2018_hgg                      Name4_UntaggedTag_4_2018         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_4_2018.root wsig_13TeV:hggpdfsmrel_vh_2018_UntaggedTag_4_13TeV
 shapes bkg_mass                         Name4_UntaggedTag_5_2018         ./Models/background/CMS-HGG_multipdf_UntaggedTag_5_2018.root multipdf:CMS_hgg_UntaggedTag_5_2018_13TeV_bkgshape
 shapes data_obs                         Name4_UntaggedTag_5_2018         ./Models/background/CMS-HGG_multipdf_UntaggedTag_5_2018.root multipdf:roohist_data_mass_UntaggedTag_5
 shapes ggH_2018_hgg                     Name4_UntaggedTag_5_2018         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_5_2018.root wsig_13TeV:hggpdfsmrel_shift_GG2H_2018_UntaggedTag_5_13TeV
-shapes qqH_2018_hgg                     Name4_UntaggedTag_5_2018         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_5_2018.root wsig_13TeV:hggpdfsmrel_shift_VBF_2018_UntaggedTag_5_13TeV
-shapes vh_2018_hgg                      Name4_UntaggedTag_5_2018         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_5_2018.root wsig_13TeV:hggpdfsmrel_shift_vh_2018_UntaggedTag_5_13TeV
+shapes qqH_2018_hgg                     Name4_UntaggedTag_5_2018         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_5_2018.root wsig_13TeV:hggpdfsmrel_VBF_2018_UntaggedTag_5_13TeV
+shapes vh_2018_hgg                      Name4_UntaggedTag_5_2018         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_5_2018.root wsig_13TeV:hggpdfsmrel_vh_2018_UntaggedTag_5_13TeV
 shapes bkg_mass                         Name4_UntaggedTag_6_2018         ./Models/background/CMS-HGG_multipdf_UntaggedTag_6_2018.root multipdf:CMS_hgg_UntaggedTag_6_2018_13TeV_bkgshape
 shapes data_obs                         Name4_UntaggedTag_6_2018         ./Models/background/CMS-HGG_multipdf_UntaggedTag_6_2018.root multipdf:roohist_data_mass_UntaggedTag_6
 shapes ggH_2018_hgg                     Name4_UntaggedTag_6_2018         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_6_2018.root wsig_13TeV:hggpdfsmrel_shift_GG2H_2018_UntaggedTag_6_13TeV
-shapes qqH_2018_hgg                     Name4_UntaggedTag_6_2018         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_6_2018.root wsig_13TeV:hggpdfsmrel_shift_VBF_2018_UntaggedTag_6_13TeV
-shapes vh_2018_hgg                      Name4_UntaggedTag_6_2018         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_6_2018.root wsig_13TeV:hggpdfsmrel_shift_vh_2018_UntaggedTag_6_13TeV
+shapes qqH_2018_hgg                     Name4_UntaggedTag_6_2018         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_6_2018.root wsig_13TeV:hggpdfsmrel_VBF_2018_UntaggedTag_6_13TeV
+shapes vh_2018_hgg                      Name4_UntaggedTag_6_2018         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_6_2018.root wsig_13TeV:hggpdfsmrel_vh_2018_UntaggedTag_6_13TeV
 shapes bkg_mass                         Name4_UntaggedTag_7_2018         ./Models/background/CMS-HGG_multipdf_UntaggedTag_7_2018.root multipdf:CMS_hgg_UntaggedTag_7_2018_13TeV_bkgshape
 shapes data_obs                         Name4_UntaggedTag_7_2018         ./Models/background/CMS-HGG_multipdf_UntaggedTag_7_2018.root multipdf:roohist_data_mass_UntaggedTag_7
 shapes ggH_2018_hgg                     Name4_UntaggedTag_7_2018         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_7_2018.root wsig_13TeV:hggpdfsmrel_shift_GG2H_2018_UntaggedTag_7_13TeV
-shapes qqH_2018_hgg                     Name4_UntaggedTag_7_2018         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_7_2018.root wsig_13TeV:hggpdfsmrel_shift_VBF_2018_UntaggedTag_7_13TeV
-shapes vh_2018_hgg                      Name4_UntaggedTag_7_2018         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_7_2018.root wsig_13TeV:hggpdfsmrel_shift_vh_2018_UntaggedTag_7_13TeV
+shapes qqH_2018_hgg                     Name4_UntaggedTag_7_2018         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_7_2018.root wsig_13TeV:hggpdfsmrel_VBF_2018_UntaggedTag_7_13TeV
+shapes vh_2018_hgg                      Name4_UntaggedTag_7_2018         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_7_2018.root wsig_13TeV:hggpdfsmrel_vh_2018_UntaggedTag_7_13TeV
 shapes bkg_mass                         Name4_UntaggedTag_8_2018         ./Models/background/CMS-HGG_multipdf_UntaggedTag_8_2018.root multipdf:CMS_hgg_UntaggedTag_8_2018_13TeV_bkgshape
 shapes data_obs                         Name4_UntaggedTag_8_2018         ./Models/background/CMS-HGG_multipdf_UntaggedTag_8_2018.root multipdf:roohist_data_mass_UntaggedTag_8
 shapes ggH_2018_hgg                     Name4_UntaggedTag_8_2018         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_8_2018.root wsig_13TeV:hggpdfsmrel_shift_GG2H_2018_UntaggedTag_8_13TeV
-shapes qqH_2018_hgg                     Name4_UntaggedTag_8_2018         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_8_2018.root wsig_13TeV:hggpdfsmrel_shift_VBF_2018_UntaggedTag_8_13TeV
-shapes vh_2018_hgg                      Name4_UntaggedTag_8_2018         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_8_2018.root wsig_13TeV:hggpdfsmrel_shift_vh_2018_UntaggedTag_8_13TeV
+shapes qqH_2018_hgg                     Name4_UntaggedTag_8_2018         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_8_2018.root wsig_13TeV:hggpdfsmrel_VBF_2018_UntaggedTag_8_13TeV
+shapes vh_2018_hgg                      Name4_UntaggedTag_8_2018         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_8_2018.root wsig_13TeV:hggpdfsmrel_vh_2018_UntaggedTag_8_13TeV
 shapes bkg_mass                         Name4_UntaggedTag_9_2018         ./Models/background/CMS-HGG_multipdf_UntaggedTag_9_2018.root multipdf:CMS_hgg_UntaggedTag_9_2018_13TeV_bkgshape
 shapes data_obs                         Name4_UntaggedTag_9_2018         ./Models/background/CMS-HGG_multipdf_UntaggedTag_9_2018.root multipdf:roohist_data_mass_UntaggedTag_9
 shapes ggH_2018_hgg                     Name4_UntaggedTag_9_2018         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_9_2018.root wsig_13TeV:hggpdfsmrel_shift_GG2H_2018_UntaggedTag_9_13TeV
-shapes qqH_2018_hgg                     Name4_UntaggedTag_9_2018         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_9_2018.root wsig_13TeV:hggpdfsmrel_shift_VBF_2018_UntaggedTag_9_13TeV
-shapes vh_2018_hgg                      Name4_UntaggedTag_9_2018         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_9_2018.root wsig_13TeV:hggpdfsmrel_shift_vh_2018_UntaggedTag_9_13TeV
+shapes qqH_2018_hgg                     Name4_UntaggedTag_9_2018         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_9_2018.root wsig_13TeV:hggpdfsmrel_VBF_2018_UntaggedTag_9_13TeV
+shapes vh_2018_hgg                      Name4_UntaggedTag_9_2018         ./Models/signal/CMS-HGG_sigfit_packaged_UntaggedTag_9_2018.root wsig_13TeV:hggpdfsmrel_vh_2018_UntaggedTag_9_13TeV
 shapes bkg_mass                         Name4_VBFTag_0_2018              ./Models/background/CMS-HGG_multipdf_VBFTag_0_2018.root multipdf:CMS_hgg_VBFTag_0_2018_13TeV_bkgshape
 shapes data_obs                         Name4_VBFTag_0_2018              ./Models/background/CMS-HGG_multipdf_VBFTag_0_2018.root multipdf:roohist_data_mass_VBFTag_0
 shapes ggH_2018_hgg                     Name4_VBFTag_0_2018              ./Models/signal/CMS-HGG_sigfit_packaged_VBFTag_0_2018.root wsig_13TeV:hggpdfsmrel_shift_GG2H_2018_VBFTag_0_13TeV
-shapes qqH_2018_hgg                     Name4_VBFTag_0_2018              ./Models/signal/CMS-HGG_sigfit_packaged_VBFTag_0_2018.root wsig_13TeV:hggpdfsmrel_shift_VBF_2018_VBFTag_0_13TeV
-shapes vh_2018_hgg                      Name4_VBFTag_0_2018              ./Models/signal/CMS-HGG_sigfit_packaged_VBFTag_0_2018.root wsig_13TeV:hggpdfsmrel_shift_vh_2018_VBFTag_0_13TeV
+shapes qqH_2018_hgg                     Name4_VBFTag_0_2018              ./Models/signal/CMS-HGG_sigfit_packaged_VBFTag_0_2018.root wsig_13TeV:hggpdfsmrel_VBF_2018_VBFTag_0_13TeV
+shapes vh_2018_hgg                      Name4_VBFTag_0_2018              ./Models/signal/CMS-HGG_sigfit_packaged_VBFTag_0_2018.root wsig_13TeV:hggpdfsmrel_vh_2018_VBFTag_0_13TeV
 ----------------------------------------------------------------------------------------------------------------------------------
 bin          Name1_UntaggedTag_0_2016preVFP   Name1_UntaggedTag_1_2016preVFP   Name1_UntaggedTag_2_2016preVFP   Name1_UntaggedTag_3_2016preVFP   Name1_UntaggedTag_4_2016preVFP   Name1_UntaggedTag_5_2016preVFP   Name1_UntaggedTag_6_2016preVFP   Name1_UntaggedTag_7_2016preVFP   Name1_UntaggedTag_8_2016preVFP   Name1_UntaggedTag_9_2016preVFP   Name1_VBFTag_0_2016preVFP        Name2_UntaggedTag_0_2016postVFP  Name2_UntaggedTag_1_2016postVFP  Name2_UntaggedTag_2_2016postVFP  Name2_UntaggedTag_3_2016postVFP  Name2_UntaggedTag_4_2016postVFP  Name2_UntaggedTag_5_2016postVFP  Name2_UntaggedTag_6_2016postVFP  Name2_UntaggedTag_7_2016postVFP  Name2_UntaggedTag_8_2016postVFP  Name2_UntaggedTag_9_2016postVFP  Name2_VBFTag_0_2016postVFP       Name3_UntaggedTag_0_2017         Name3_UntaggedTag_1_2017         Name3_UntaggedTag_2_2017         Name3_UntaggedTag_3_2017         Name3_UntaggedTag_4_2017         Name3_UntaggedTag_5_2017         Name3_UntaggedTag_6_2017         Name3_UntaggedTag_7_2017         Name3_UntaggedTag_8_2017         Name3_UntaggedTag_9_2017         Name3_VBFTag_0_2017              Name4_UntaggedTag_0_2018         Name4_UntaggedTag_1_2018         Name4_UntaggedTag_2_2018         Name4_UntaggedTag_3_2018         Name4_UntaggedTag_4_2018         Name4_UntaggedTag_5_2018         Name4_UntaggedTag_6_2018         Name4_UntaggedTag_7_2018         Name4_UntaggedTag_8_2018         Name4_UntaggedTag_9_2018         Name4_VBFTag_0_2018            
 observation  -1                               -1                               -1                               -1                               -1                               -1                               -1                               -1                               -1                               -1                               -1                               -1                               -1                               -1                               -1                               -1                               -1                               -1                               -1                               -1                               -1                               -1                               -1                               -1                               -1                               -1                               -1                               -1                               -1                               -1                               -1                               -1                               -1                               -1                               -1                               -1                               -1                               -1                               -1                               -1                               -1                               -1                               -1                               -1                             
@@ -313,38 +313,16 @@ CMS_hgg_nuisance_LowR9EBRho_13TeVsmear_2016preVFP  param  0.0 1.0
 CMS_hgg_nuisance_LowR9EEPhi_13TeVsmear_2016preVFP  param  0.0 1.0
 CMS_hgg_nuisance_LowR9EERho_13TeVsmear_2016preVFP  param  0.0 1.0
 CMS_hgg_nuisance_alpha_GG2H_2016preVFP_UntaggedTag_0  param  0.0 1.0
-CMS_hgg_nuisance_alpha_VBF_2016preVFP_UntaggedTag_0  param  0.0 1.0
-CMS_hgg_nuisance_alpha_vh_2016preVFP_UntaggedTag_0  param  0.0 1.0
 CMS_hgg_nuisance_alpha_GG2H_2016preVFP_UntaggedTag_1  param  0.0 1.0
-CMS_hgg_nuisance_alpha_VBF_2016preVFP_UntaggedTag_1  param  0.0 1.0
-CMS_hgg_nuisance_alpha_vh_2016preVFP_UntaggedTag_1  param  0.0 1.0
 CMS_hgg_nuisance_alpha_GG2H_2016preVFP_UntaggedTag_2  param  0.0 1.0
-CMS_hgg_nuisance_alpha_VBF_2016preVFP_UntaggedTag_2  param  0.0 1.0
-CMS_hgg_nuisance_alpha_vh_2016preVFP_UntaggedTag_2  param  0.0 1.0
 CMS_hgg_nuisance_alpha_GG2H_2016preVFP_UntaggedTag_3  param  0.0 1.0
-CMS_hgg_nuisance_alpha_VBF_2016preVFP_UntaggedTag_3  param  0.0 1.0
-CMS_hgg_nuisance_alpha_vh_2016preVFP_UntaggedTag_3  param  0.0 1.0
 CMS_hgg_nuisance_alpha_GG2H_2016preVFP_UntaggedTag_4  param  0.0 1.0
-CMS_hgg_nuisance_alpha_VBF_2016preVFP_UntaggedTag_4  param  0.0 1.0
-CMS_hgg_nuisance_alpha_vh_2016preVFP_UntaggedTag_4  param  0.0 1.0
 CMS_hgg_nuisance_alpha_GG2H_2016preVFP_UntaggedTag_5  param  0.0 1.0
-CMS_hgg_nuisance_alpha_VBF_2016preVFP_UntaggedTag_5  param  0.0 1.0
-CMS_hgg_nuisance_alpha_vh_2016preVFP_UntaggedTag_5  param  0.0 1.0
 CMS_hgg_nuisance_alpha_GG2H_2016preVFP_UntaggedTag_6  param  0.0 1.0
-CMS_hgg_nuisance_alpha_VBF_2016preVFP_UntaggedTag_6  param  0.0 1.0
-CMS_hgg_nuisance_alpha_vh_2016preVFP_UntaggedTag_6  param  0.0 1.0
 CMS_hgg_nuisance_alpha_GG2H_2016preVFP_UntaggedTag_7  param  0.0 1.0
-CMS_hgg_nuisance_alpha_VBF_2016preVFP_UntaggedTag_7  param  0.0 1.0
-CMS_hgg_nuisance_alpha_vh_2016preVFP_UntaggedTag_7  param  0.0 1.0
 CMS_hgg_nuisance_alpha_GG2H_2016preVFP_UntaggedTag_8  param  0.0 1.0
-CMS_hgg_nuisance_alpha_VBF_2016preVFP_UntaggedTag_8  param  0.0 1.0
-CMS_hgg_nuisance_alpha_vh_2016preVFP_UntaggedTag_8  param  0.0 1.0
 CMS_hgg_nuisance_alpha_GG2H_2016preVFP_UntaggedTag_9  param  0.0 1.0
-CMS_hgg_nuisance_alpha_VBF_2016preVFP_UntaggedTag_9  param  0.0 1.0
-CMS_hgg_nuisance_alpha_vh_2016preVFP_UntaggedTag_9  param  0.0 1.0
 CMS_hgg_nuisance_alpha_GG2H_2016preVFP_VBFTag_0  param  0.0 1.0
-CMS_hgg_nuisance_alpha_VBF_2016preVFP_VBFTag_0  param  0.0 1.0
-CMS_hgg_nuisance_alpha_vh_2016preVFP_VBFTag_0  param  0.0 1.0
 CMS_hgg_nuisance_HighR9EB_13TeVscale_2016postVFP  param  0.0 1.0
 CMS_hgg_nuisance_HighR9EE_13TeVscale_2016postVFP  param  0.0 1.0
 CMS_hgg_nuisance_LowR9EB_13TeVscale_2016postVFP  param  0.0 1.0
@@ -358,38 +336,16 @@ CMS_hgg_nuisance_LowR9EBRho_13TeVsmear_2016postVFP  param  0.0 1.0
 CMS_hgg_nuisance_LowR9EEPhi_13TeVsmear_2016postVFP  param  0.0 1.0
 CMS_hgg_nuisance_LowR9EERho_13TeVsmear_2016postVFP  param  0.0 1.0
 CMS_hgg_nuisance_alpha_GG2H_2016postVFP_UntaggedTag_0  param  0.0 1.0
-CMS_hgg_nuisance_alpha_VBF_2016postVFP_UntaggedTag_0  param  0.0 1.0
-CMS_hgg_nuisance_alpha_vh_2016postVFP_UntaggedTag_0  param  0.0 1.0
 CMS_hgg_nuisance_alpha_GG2H_2016postVFP_UntaggedTag_1  param  0.0 1.0
-CMS_hgg_nuisance_alpha_VBF_2016postVFP_UntaggedTag_1  param  0.0 1.0
-CMS_hgg_nuisance_alpha_vh_2016postVFP_UntaggedTag_1  param  0.0 1.0
 CMS_hgg_nuisance_alpha_GG2H_2016postVFP_UntaggedTag_2  param  0.0 1.0
-CMS_hgg_nuisance_alpha_VBF_2016postVFP_UntaggedTag_2  param  0.0 1.0
-CMS_hgg_nuisance_alpha_vh_2016postVFP_UntaggedTag_2  param  0.0 1.0
 CMS_hgg_nuisance_alpha_GG2H_2016postVFP_UntaggedTag_3  param  0.0 1.0
-CMS_hgg_nuisance_alpha_VBF_2016postVFP_UntaggedTag_3  param  0.0 1.0
-CMS_hgg_nuisance_alpha_vh_2016postVFP_UntaggedTag_3  param  0.0 1.0
 CMS_hgg_nuisance_alpha_GG2H_2016postVFP_UntaggedTag_4  param  0.0 1.0
-CMS_hgg_nuisance_alpha_VBF_2016postVFP_UntaggedTag_4  param  0.0 1.0
-CMS_hgg_nuisance_alpha_vh_2016postVFP_UntaggedTag_4  param  0.0 1.0
 CMS_hgg_nuisance_alpha_GG2H_2016postVFP_UntaggedTag_5  param  0.0 1.0
-CMS_hgg_nuisance_alpha_VBF_2016postVFP_UntaggedTag_5  param  0.0 1.0
-CMS_hgg_nuisance_alpha_vh_2016postVFP_UntaggedTag_5  param  0.0 1.0
 CMS_hgg_nuisance_alpha_GG2H_2016postVFP_UntaggedTag_6  param  0.0 1.0
-CMS_hgg_nuisance_alpha_VBF_2016postVFP_UntaggedTag_6  param  0.0 1.0
-CMS_hgg_nuisance_alpha_vh_2016postVFP_UntaggedTag_6  param  0.0 1.0
 CMS_hgg_nuisance_alpha_GG2H_2016postVFP_UntaggedTag_7  param  0.0 1.0
-CMS_hgg_nuisance_alpha_VBF_2016postVFP_UntaggedTag_7  param  0.0 1.0
-CMS_hgg_nuisance_alpha_vh_2016postVFP_UntaggedTag_7  param  0.0 1.0
 CMS_hgg_nuisance_alpha_GG2H_2016postVFP_UntaggedTag_8  param  0.0 1.0
-CMS_hgg_nuisance_alpha_VBF_2016postVFP_UntaggedTag_8  param  0.0 1.0
-CMS_hgg_nuisance_alpha_vh_2016postVFP_UntaggedTag_8  param  0.0 1.0
 CMS_hgg_nuisance_alpha_GG2H_2016postVFP_UntaggedTag_9  param  0.0 1.0
-CMS_hgg_nuisance_alpha_VBF_2016postVFP_UntaggedTag_9  param  0.0 1.0
-CMS_hgg_nuisance_alpha_vh_2016postVFP_UntaggedTag_9  param  0.0 1.0
 CMS_hgg_nuisance_alpha_GG2H_2016postVFP_VBFTag_0  param  0.0 1.0
-CMS_hgg_nuisance_alpha_VBF_2016postVFP_VBFTag_0  param  0.0 1.0
-CMS_hgg_nuisance_alpha_vh_2016postVFP_VBFTag_0  param  0.0 1.0
 CMS_hgg_nuisance_HighR9EB_13TeVscale_2017  param  0.0 1.0
 CMS_hgg_nuisance_HighR9EE_13TeVscale_2017  param  0.0 1.0
 CMS_hgg_nuisance_LowR9EB_13TeVscale_2017  param  0.0 1.0
@@ -403,38 +359,16 @@ CMS_hgg_nuisance_LowR9EBRho_13TeVsmear_2017  param  0.0 1.0
 CMS_hgg_nuisance_LowR9EEPhi_13TeVsmear_2017  param  0.0 1.0
 CMS_hgg_nuisance_LowR9EERho_13TeVsmear_2017  param  0.0 1.0
 CMS_hgg_nuisance_alpha_GG2H_2017_UntaggedTag_0  param  0.0 1.0
-CMS_hgg_nuisance_alpha_VBF_2017_UntaggedTag_0  param  0.0 1.0
-CMS_hgg_nuisance_alpha_vh_2017_UntaggedTag_0  param  0.0 1.0
 CMS_hgg_nuisance_alpha_GG2H_2017_UntaggedTag_1  param  0.0 1.0
-CMS_hgg_nuisance_alpha_VBF_2017_UntaggedTag_1  param  0.0 1.0
-CMS_hgg_nuisance_alpha_vh_2017_UntaggedTag_1  param  0.0 1.0
 CMS_hgg_nuisance_alpha_GG2H_2017_UntaggedTag_2  param  0.0 1.0
-CMS_hgg_nuisance_alpha_VBF_2017_UntaggedTag_2  param  0.0 1.0
-CMS_hgg_nuisance_alpha_vh_2017_UntaggedTag_2  param  0.0 1.0
 CMS_hgg_nuisance_alpha_GG2H_2017_UntaggedTag_3  param  0.0 1.0
-CMS_hgg_nuisance_alpha_VBF_2017_UntaggedTag_3  param  0.0 1.0
-CMS_hgg_nuisance_alpha_vh_2017_UntaggedTag_3  param  0.0 1.0
 CMS_hgg_nuisance_alpha_GG2H_2017_UntaggedTag_4  param  0.0 1.0
-CMS_hgg_nuisance_alpha_VBF_2017_UntaggedTag_4  param  0.0 1.0
-CMS_hgg_nuisance_alpha_vh_2017_UntaggedTag_4  param  0.0 1.0
 CMS_hgg_nuisance_alpha_GG2H_2017_UntaggedTag_5  param  0.0 1.0
-CMS_hgg_nuisance_alpha_VBF_2017_UntaggedTag_5  param  0.0 1.0
-CMS_hgg_nuisance_alpha_vh_2017_UntaggedTag_5  param  0.0 1.0
 CMS_hgg_nuisance_alpha_GG2H_2017_UntaggedTag_6  param  0.0 1.0
-CMS_hgg_nuisance_alpha_VBF_2017_UntaggedTag_6  param  0.0 1.0
-CMS_hgg_nuisance_alpha_vh_2017_UntaggedTag_6  param  0.0 1.0
 CMS_hgg_nuisance_alpha_GG2H_2017_UntaggedTag_7  param  0.0 1.0
-CMS_hgg_nuisance_alpha_VBF_2017_UntaggedTag_7  param  0.0 1.0
-CMS_hgg_nuisance_alpha_vh_2017_UntaggedTag_7  param  0.0 1.0
 CMS_hgg_nuisance_alpha_GG2H_2017_UntaggedTag_8  param  0.0 1.0
-CMS_hgg_nuisance_alpha_VBF_2017_UntaggedTag_8  param  0.0 1.0
-CMS_hgg_nuisance_alpha_vh_2017_UntaggedTag_8  param  0.0 1.0
 CMS_hgg_nuisance_alpha_GG2H_2017_UntaggedTag_9  param  0.0 1.0
-CMS_hgg_nuisance_alpha_VBF_2017_UntaggedTag_9  param  0.0 1.0
-CMS_hgg_nuisance_alpha_vh_2017_UntaggedTag_9  param  0.0 1.0
 CMS_hgg_nuisance_alpha_GG2H_2017_VBFTag_0  param  0.0 1.0
-CMS_hgg_nuisance_alpha_VBF_2017_VBFTag_0  param  0.0 1.0
-CMS_hgg_nuisance_alpha_vh_2017_VBFTag_0  param  0.0 1.0
 CMS_hgg_nuisance_HighR9EB_13TeVscale_2018  param  0.0 1.0
 CMS_hgg_nuisance_HighR9EE_13TeVscale_2018  param  0.0 1.0
 CMS_hgg_nuisance_LowR9EB_13TeVscale_2018  param  0.0 1.0
@@ -448,38 +382,16 @@ CMS_hgg_nuisance_LowR9EBRho_13TeVsmear_2018  param  0.0 1.0
 CMS_hgg_nuisance_LowR9EEPhi_13TeVsmear_2018  param  0.0 1.0
 CMS_hgg_nuisance_LowR9EERho_13TeVsmear_2018  param  0.0 1.0
 CMS_hgg_nuisance_alpha_GG2H_2018_UntaggedTag_0  param  0.0 1.0
-CMS_hgg_nuisance_alpha_VBF_2018_UntaggedTag_0  param  0.0 1.0
-CMS_hgg_nuisance_alpha_vh_2018_UntaggedTag_0  param  0.0 1.0
 CMS_hgg_nuisance_alpha_GG2H_2018_UntaggedTag_1  param  0.0 1.0
-CMS_hgg_nuisance_alpha_VBF_2018_UntaggedTag_1  param  0.0 1.0
-CMS_hgg_nuisance_alpha_vh_2018_UntaggedTag_1  param  0.0 1.0
 CMS_hgg_nuisance_alpha_GG2H_2018_UntaggedTag_2  param  0.0 1.0
-CMS_hgg_nuisance_alpha_VBF_2018_UntaggedTag_2  param  0.0 1.0
-CMS_hgg_nuisance_alpha_vh_2018_UntaggedTag_2  param  0.0 1.0
 CMS_hgg_nuisance_alpha_GG2H_2018_UntaggedTag_3  param  0.0 1.0
-CMS_hgg_nuisance_alpha_VBF_2018_UntaggedTag_3  param  0.0 1.0
-CMS_hgg_nuisance_alpha_vh_2018_UntaggedTag_3  param  0.0 1.0
 CMS_hgg_nuisance_alpha_GG2H_2018_UntaggedTag_4  param  0.0 1.0
-CMS_hgg_nuisance_alpha_VBF_2018_UntaggedTag_4  param  0.0 1.0
-CMS_hgg_nuisance_alpha_vh_2018_UntaggedTag_4  param  0.0 1.0
 CMS_hgg_nuisance_alpha_GG2H_2018_UntaggedTag_5  param  0.0 1.0
-CMS_hgg_nuisance_alpha_VBF_2018_UntaggedTag_5  param  0.0 1.0
-CMS_hgg_nuisance_alpha_vh_2018_UntaggedTag_5  param  0.0 1.0
 CMS_hgg_nuisance_alpha_GG2H_2018_UntaggedTag_6  param  0.0 1.0
-CMS_hgg_nuisance_alpha_VBF_2018_UntaggedTag_6  param  0.0 1.0
-CMS_hgg_nuisance_alpha_vh_2018_UntaggedTag_6  param  0.0 1.0
 CMS_hgg_nuisance_alpha_GG2H_2018_UntaggedTag_7  param  0.0 1.0
-CMS_hgg_nuisance_alpha_VBF_2018_UntaggedTag_7  param  0.0 1.0
-CMS_hgg_nuisance_alpha_vh_2018_UntaggedTag_7  param  0.0 1.0
 CMS_hgg_nuisance_alpha_GG2H_2018_UntaggedTag_8  param  0.0 1.0
-CMS_hgg_nuisance_alpha_VBF_2018_UntaggedTag_8  param  0.0 1.0
-CMS_hgg_nuisance_alpha_vh_2018_UntaggedTag_8  param  0.0 1.0
 CMS_hgg_nuisance_alpha_GG2H_2018_UntaggedTag_9  param  0.0 1.0
-CMS_hgg_nuisance_alpha_VBF_2018_UntaggedTag_9  param  0.0 1.0
-CMS_hgg_nuisance_alpha_vh_2018_UntaggedTag_9  param  0.0 1.0
 CMS_hgg_nuisance_alpha_GG2H_2018_VBFTag_0  param  0.0 1.0
-CMS_hgg_nuisance_alpha_VBF_2018_VBFTag_0  param  0.0 1.0
-CMS_hgg_nuisance_alpha_vh_2018_VBFTag_0  param  0.0 1.0
 pdfindex_UntaggedTag_0_2016preVFP_13TeV  discrete
 pdfindex_UntaggedTag_1_2016preVFP_13TeV  discrete
 pdfindex_UntaggedTag_2_2016preVFP_13TeV  discrete
