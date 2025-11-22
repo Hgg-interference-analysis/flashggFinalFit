@@ -136,17 +136,18 @@ for ir,r in data.iterrows():
       #print("    * Systematic = %s (%s)"%(sname,stype)
       hists = getHistograms(inputWS,r['nominalDataName'],sname)
 
-      if "MCSmear" in sname and "EB" in sname and "Rho" in sname:
-        r9_flag = "high" if "High" in sname else "low"
-        for direction in ["up", "down"]:
-          tail = "up_smeared7permille_pt_gt_50" if direction == "up" else "down_nosmear"
-          filename = f"/afs/cern.ch/work/r/rgargiul/CMSSW_14_1_0_pre4/src/flashggFinalFit/HistoMaker/{opt.cat}_{opt.year}_{r['proc']}_{r9_flag}r9EBsmear{tail}.root"
-          print(filename)
-          file = ROOT.TFile(filename)
-          ROOT.gROOT.cd()
-          print(f"{opt.cat}_{r9_flag}r9EBsmear{tail}")
-          hists[direction] = file.Get(f"{opt.cat}_{r9_flag}r9EBsmear{tail}").Clone()
-          file.Close()
+      if opt.year!='2018':
+        if "MCSmear" in sname and "EB" in sname and "Rho" in sname:
+          r9_flag = "high" if "High" in sname else "low"
+          for direction in ["up", "down"]:
+            tail = "up_smeared7permille_pt_gt_50" if direction == "up" else "down_nosmear"
+            filename = f"/afs/cern.ch/work/r/rgargiul/CMSSW_14_1_0_pre4/src/flashggFinalFit/HistoMaker/{opt.cat}_{opt.year}_{r['proc']}_{r9_flag}r9EBsmear{tail}.root"
+            print(filename)
+            file = ROOT.TFile(filename)
+            ROOT.gROOT.cd()
+            print(f"{opt.cat}_{r9_flag}r9EBsmear{tail}")
+            hists[direction] = file.Get(f"{opt.cat}_{r9_flag}r9EBsmear{tail}").Clone()
+            file.Close()
       
       # If nominal yield = 0:
       if hists['nominal'].Integral() == 0: _meanVar, _sigmaVar, _rateVar = 0, 0, 0

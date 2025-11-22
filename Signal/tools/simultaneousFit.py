@@ -142,7 +142,7 @@ def calcChi2(x,pdf,d,errorType="Poisson",_verbose=False,fitRange=[110,140]):
   return result,k
 
 # Function to add chi2 for multiple mass points
-def nChi2Addition(X,ssf,verbose=False):
+def nChi2Addition(X,ssf,doVoigtian,freezeGammaH,verbose=False):
   # X: vector of param values (updated with minimise function)
   # Loop over parameters and set RooVars
   for i in range(len(X)): ssf.FitParameters[i].setVal(X[i])
@@ -150,20 +150,26 @@ def nChi2Addition(X,ssf,verbose=False):
   chi2sum = 0
   K = 0 # number of non empty bins
   C = len(X)-1 # number of fit params (-1 for MH)
+  if doVoigtian and freezeGammaH: C = C - 1 # FIemmi: (-1 for GammaH)
   for mp,d in ssf.DataHists.items():
     ssf.MH.setVal(int(mp))
-    chi2, k  = calcChi2(ssf.xvar,ssf.Pdfs['final'],d,_verbose=verbose,fitRange=[float(mp)-7, float(mp) + 3])
+    #if doVoigtian and freezeGammaH: ssf.GammaH.setVal(0.00407)
+    if doVoigtian and freezeGammaH: ssf.l.setVal(1.0)
+    chi2, k  = calcChi2(ssf.xvar,ssf.Pdfs['final'],d,_verbose=verbose,fitRange=[float(mp)-10, float(mp) + 5])
     chi2sum += chi2
     K += k
   # N degrees of freedom
   ndof = K-C
+  #print("K:", K)
+  #print("C:", C)
+  #print("ndof:", ndof)
   ssf.setNdof(ndof)
   return chi2sum
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~   
 class SimultaneousFit:
   # Constructor
-  def __init__(self,_name,_proc,_cat,_datasetForFit,_xvar,_MH,_MHLow,_MHHigh,_massPoints,_nBins,_MHPolyOrder,_minimizerMethod,_minimizerTolerance,year=2018,verbose=True):
+  def __init__(self,_name,_proc,_cat,_datasetForFit,_xvar,_MH,_MHLow,_MHHigh,_massPoints,_nBins,_MHPolyOrder,_minimizerMethod,_minimizerTolerance,_doVoigtian,_freezeGammaH,year=2018,verbose=True):
     self.name = _name
     self.proc = _proc
     self.cat = _cat
@@ -186,6 +192,19 @@ class SimultaneousFit:
     self.dMH = ROOT.RooFormulaVar("dMH","dMH","@0-125.0",ROOT.RooArgList(self.MH)) 
     self.xvar.setVal(125)
     self.xvar.setBins(self.nBins)
+    # For Voigt
+    self.freezeGammaH = _freezeGammaH
+    self.doVoigtian = _doVoigtian
+    if self.doVoigtian:
+      #self.GammaH = ROOT.RooRealVar("GammaH", "GammaH", 0.00407, 0.0, 5.0)
+      self.l = ROOT.RooRealVar("lambda", "lambda", 1.0, -35.0, 35.0)
+      if self.l.getVal() > 0.0:
+        formula = "(@0**2)*0.00407"
+        args = ROOT.RooArgList(self.l)
+      else:
+        formula = "0.0"
+        args = ROOT.RooArgList()
+      self.GammaH = ROOT.RooFormulaVar("GammaH", "GammaH", formula, args)
     # Dicts to store all fit vars, polynomials, pdfs and splines
     self.nGaussians = 1
     self.Vars = od()
@@ -379,11 +398,11 @@ class SimultaneousFit:
 
     # Run fit
     if self.verbose: print(" --> (%s) Running fit"%self.name)
-    self.FitResult = minimize(nChi2Addition,x0,args=self,bounds=xbounds,method=self.minimizerMethod)
+    self.FitResult = minimize(nChi2Addition,x0,args=(self,self.doVoigtian,self.freezeGammaH),bounds=xbounds,method=self.minimizerMethod)
     self.Chi2 = self.getChi2()
     count = 0
-    while (self.getChi2()/int(self.Ndof) > 1.0 and count<5):
-      newFit = minimize(nChi2Addition,self.FitResult.x,args=self,bounds=xbounds,method=self.minimizerMethod)
+    while (self.getChi2()/int(self.Ndof) > 1.0 and count<=5):
+      newFit = minimize(nChi2Addition,self.FitResult.x,args=(self,self.doVoigtian,self.freezeGammaH),bounds=xbounds,method=self.minimizerMethod)
       self.FitResult = newFit
       count+=1
       self.Chi2 = self.getChi2()
@@ -431,14 +450,14 @@ class SimultaneousFit:
   # Function to re-calculate chi2 after setting vars
   def getChi2(self,verbose=False):
     x = self.extractX0()
-    self.Chi2 = nChi2Addition(x,self,verbose=verbose)
+    self.Chi2 = nChi2Addition(x,self,self.doVoigtian,self.freezeGammaH,verbose=verbose)
     return self.Chi2
 
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~   
   # Function to re-calculate chi2/ndof after setting vars
   def getReducedChi2(self):
     x = self.extractX0()
-    self.Chi2 = nChi2Addition(x,self)
+    self.Chi2 = nChi2Addition(x,self,self.doVoigtian,self.freezeGammaH)
     return self.Chi2/int(self.Ndof)
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  

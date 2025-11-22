@@ -43,9 +43,10 @@ cats=("UntaggedTag_0" "UntaggedTag_1" "UntaggedTag_2" "UntaggedTag_3" "UntaggedT
     for proc in ${procs[*]}; do
         for cat in ${cats[*]}; do
         inputWS=${inwsDir}/CMS-HGG_sigfit_${ext}_${proc}_${YEAR}_${cat}.root
-        echo "Running: python3 introduce_shift.py --inputWS $inputWS --ext $ext --cat $cat --proc $proc"
-        python3 introduce_shift.py --inputWS $inputWS --cat ${cat} --proc ${proc} --ext ${ext} --year ${YEAR}
-        done
+        echo "Running: python3 introduce_shift_nosqrt.py --inputWS $inputWS --ext $ext --cat $cat --proc $proc"
+        #python3 introduce_shift.py --inputWS $inputWS --cat ${cat} --proc ${proc} --ext ${ext} --year ${YEAR}
+	python3 introduce_shift_nosqrt.py --inputWS $inputWS --cat ${cat} --proc ${proc} --ext ${ext} --year ${YEAR}
+	done
     done
 
 echo "Done!"

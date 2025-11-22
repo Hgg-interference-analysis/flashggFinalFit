@@ -44,6 +44,7 @@ def get_options():
   parser.add_option('--skipBeamspotReweigh', dest='skipBeamspotReweigh', default=False, action="store_true", help="Skip beamspot reweigh to match beamspot distribution in data")
   parser.add_option('--doPlots', dest='doPlots', default=False, action="store_true", help="Produce Signal Fitting plots")
   parser.add_option("--doVoigtian", dest='doVoigtian', default=False, action="store_true", help="Use Voigtians instead of Gaussians for signal models with Higgs width as parameter")
+  parser.add_option("--freezeGammaH", dest='freezeGammaH', default=False, action="store_true", help="When paired with doVoigtian, freeze GammaH parameters in fTest and signalFit")
   parser.add_option("--useDCB", dest='useDCB', default=False, action="store_true", help="Use DCB in signal fitting")
   parser.add_option("--useDiagonalProcForShape", dest='useDiagonalProcForShape', default=False, action="store_true", help="Use shape of diagonal process, keeping normalisation (requires diagonal mapping produced by getDiagProc script)")
   parser.add_option('--skipVertexScenarioSplit', dest='skipVertexScenarioSplit', default=False, action="store_true", help="Skip vertex scenario split")
@@ -316,7 +317,7 @@ print("scripts/signalFit.py line 305")
 # FIT: simultaneous signal fit (ssf)
 ssfMap = od()
 name = "Total" if opt.skipVertexScenarioSplit else "RV"
-ssfRV = SimultaneousFit(name,opt.proc,opt.cat,datasetRVForFit,xvar.Clone(),MH,MHLow,MHHigh,opt.massPoints,opt.nBins,opt.MHPolyOrder,opt.minimizerMethod,opt.minimizerTolerance,opt.year)
+ssfRV = SimultaneousFit(name,opt.proc,opt.cat,datasetRVForFit,xvar.Clone(),MH,MHLow,MHHigh,opt.massPoints,opt.nBins,opt.MHPolyOrder,opt.minimizerMethod,opt.minimizerTolerance,opt.doVoigtian,opt.freezeGammaH,opt.year)
 #if opt.useDCB: ssfRV.buildDCBplusGaussian()
 if opt.useDCB: ssfRV.buildDCB()
 else: ssfRV.buildNGaussians(nRV)
@@ -326,7 +327,7 @@ ssfMap[name] = ssfRV
 
 if not opt.skipVertexScenarioSplit:
   name = "WV"
-  ssfWV = SimultaneousFit(name,opt.proc,opt.cat,datasetWVForFit,xvar.Clone(),MH,MHLow,MHHigh,opt.massPoints,opt.nBins,opt.MHPolyOrder,opt.minimizerMethod,opt.minimizerTolerance)
+  ssfWV = SimultaneousFit(name,opt.proc,opt.cat,datasetWVForFit,xvar.Clone(),MH,MHLow,MHHigh,opt.massPoints,opt.nBins,opt.MHPolyOrder,opt.minimizerMethod,opt.minimizerTolerance,opt.doVoigtian,opt.freezeGammaH)
   #if opt.useDCB: ssfWV.buildDCBplusGaussian()
   if opt.useDCB: ssfWV.buildDCB()
   else: ssfWV.buildNGaussians(nWV)

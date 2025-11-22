@@ -56,18 +56,18 @@ if [[ $STEP == "fTest" ]] || [[ $STEP == "calcPhotonSyst" ]] || [[ $STEP == 'sig
 	if [[ $year == $YEAR ]] || [[ $YEAR == "all" ]]; then
 	    echo "====> Running $STEP for year $year"
 	    if [[ $STEP == "fTest" ]]; then
-		python3 RunSignalScripts.py --inputConfig config_test_${year}.py --mode fTest --modeOpts "--doPlots --outdir /eos/user/a/amkrishn/www/hggWidth/finalfit/sig_el9/newFNUF_VBFTag0 --nProcsToFTest -1" ${DROPT}
+		python3 RunSignalScripts.py --inputConfig config_test_${year}.py --mode fTest --modeOpts "--doPlots --freezeGammaH --doVoigtian --skipWV --outdir /eos/user/a/amkrishn/www/hggWidth/finalfit/VoigtianSignal --nProcsToFTest -1" ${DROPT}
 	    elif [[ $STEP == "calcPhotonSyst" ]]; then
 		python3 RunSignalScripts.py --inputConfig config_test_${year}.py --mode calcPhotonSyst ${DROPT}
 	    elif [[ $STEP == 'signalFit' ]]; then
 		#python3 RunSignalScripts.py --inputConfig config_test_${year}.py --mode signalFit --modeOpts="--skipVertexScenarioSplit --useDCB --doPlots" ${DROPT}
-		python3 RunSignalScripts.py --inputConfig config_test_${year}.py --mode signalFit --modeOpts="--skipVertexScenarioSplit --doVoigtian --doPlots" ${DROPT}
+		python3 RunSignalScripts.py --inputConfig config_test_${year}.py --mode signalFit --modeOpts="--skipVertexScenarioSplit --freezeGammaH --doVoigtian --doPlots" ${DROPT}
 	    fi
 	fi
     done
 elif [[ $STEP == 'packager' ]]; then
     #python3 RunPackager.py --cats "auto" --inputWSDir /eos/user/a/amkrishn/hggWidth/mcNtuples/condor_output/2018/UL18_sigMC_newFNUF_VBFTag0/hadded_trees/ws_sig --outputExt packaged --exts newFNUF_VBFTag0_2018 --year $YEAR --massPoints 125 --batch local
-    python3 RunPackager.py --cats UntaggedTag_0,UntaggedTag_1,UntaggedTag_2,UntaggedTag_3,UntaggedTag_4,UntaggedTag_5,UntaggedTag_6,UntaggedTag_7,UntaggedTag_8,UntaggedTag_9,VBFTag_0 --outputExt packaged --exts final$YEAR --year $YEAR --massPoints 120,125,130 --batch local
+    python3 RunPackager.py --cats UntaggedTag_0,UntaggedTag_1,UntaggedTag_2,UntaggedTag_3,UntaggedTag_4,UntaggedTag_5,UntaggedTag_6,UntaggedTag_7,UntaggedTag_8,UntaggedTag_9,VBFTag_0 --outputExt packaged --exts final${YEAR} --year $YEAR --massPoints 120,125,130 --batch local
 elif [[ $STEP == 'plotter' ]]; then
     smprocs_csv=("VBF,GG2H,vh")
     echo $smprocs_csv

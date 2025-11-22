@@ -106,7 +106,15 @@ class FinalModel:
     self.useDCB = _useDCB
     self.doVoigtian = _doVoigtian
     if self.doVoigtian:
-      self.GammaH = ROOT.RooRealVar("GammaH","GammaH",0.004,0.,1.)
+      #self.GammaH = ROOT.RooRealVar("GammaH", "GammaH", 0.00407, 0.0, 5.0)
+      self.l = ROOT.RooRealVar("lambda", "lambda", 1.0, -35.0, 35.0)
+      if self.l.getVal() > 0.0:
+        formula = "(@0**2)*0.00407"
+        args = ROOT.RooArgList(self.l)
+      else:
+        formula = "0.0"
+        args = ROOT.RooArgList()
+      self.GammaH = ROOT.RooFormulaVar("GammaH", "GammaH", formula, args)     
       #self.GammaH.setConstant(True)
     self.skipVertexScenarioSplit = _skipVertexScenarioSplit
     self.doEffAccFromJson = _doEffAccFromJson
@@ -139,6 +147,7 @@ class FinalModel:
     self.buildDatasets()
     self.buildExtended() 
 
+  '''
     # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     # Extract mass shift values to modify the XS, BR and EA splines correctly
     if self.cat == "VBFTag_0":
@@ -150,7 +159,7 @@ class FinalModel:
         values = [float(i.strip()) for i in line.split(',')]
         if self.proc == "GG2H":
           self.deltaM = values[0]
-  
+  '''
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   # Functions to get XS, BR and EA splines for given proc/decay from map
   def buildXSBRSplines(self):
@@ -339,11 +348,18 @@ class FinalModel:
         self.buildMean('dm_g%g_%s'%(g,extStr),skipSystematics=self.skipSystematics)
         self.buildSigma('sigma_g%g_%s'%(g,extStr),skipSystematics=self.skipSystematics)
         # Build Gaussian
-        if self.doVoigtian: 
-          self.Pdfs['gaus_g%g_%s'%(g,extStr)] = ROOT.RooVoigtian("gaus_g%g_%s"%(g,extStr),"gaus_g%g_%s"%(g,extStr),self.xvar,self.Functions["mean_g%g_%s"%(g,extStr)],self.GammaH,self.Functions["sigma_g%g_%s"%(g,extStr)])
+        if self.doVoigtian:
+          #self.GammaH.setVal(0.00407)
+          #self.GammaH.setConstant(True)
+          self.l.setVal(1.0)
+          self.l.setConstant(True)
+          self.Pdfs['voigt_g%g_%s'%(g,extStr)] = ROOT.RooVoigtian("voigt_g%g_%s"%(g,extStr),"voigt_g%g_%s"%(g,extStr),self.xvar,self.Functions["mean_g%g_%s"%(g,extStr)],self.GammaH,self.Functions["sigma_g%g_%s"%(g,extStr)])
         else: 
           self.Pdfs['gaus_g%g_%s'%(g,extStr)] = ROOT.RooGaussian("gaus_g%g_%s"%(g,extStr),"gaus_g%g_%s"%(g,extStr),self.xvar,self.Functions["mean_g%g_%s"%(g,extStr)],self.Functions["sigma_g%g_%s"%(g,extStr)])
-        _pdfs.add(self.Pdfs['gaus_g%g_%s'%(g,extStr)])
+        if self.doVoigtian:
+          _pdfs.add(self.Pdfs['voigt_g%g_%s'%(g,extStr)])
+        else:
+          _pdfs.add(self.Pdfs['gaus_g%g_%s'%(g,extStr)])
 
         # Fractions
         if g < ssf.nGaussians-1:

@@ -4,7 +4,7 @@ _year = '2018'
 
 signalScriptCfg = {
     # Setup
-    'inputWSDir': '/eos/cms/store/group/phys_higgs/cmshgg/rgargiul/ws_2018',
+    'inputWSDir': '/eos/cms/store/group/phys_higgs/cmshgg/rgargiul/ws_withTheoryWeight/ws_2018',
     #'procs':'auto',
     'procs':'GG2H,VBF,vh',
     'cats':'auto',
@@ -24,5 +24,5 @@ signalScriptCfg = {
 
     # Job submission options
     'batch':'condor', # ['condor','SGE','IC','Rome','local']
-    'queue':'espresso'
+    'queue':'microcentury'
 }

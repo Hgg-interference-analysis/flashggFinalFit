@@ -43,6 +43,8 @@ def get_options():
   # Minimizer options
   parser.add_option('--minimizerMethod', dest='minimizerMethod', default='TNC', help="(Scipy) Minimizer method")
   parser.add_option('--minimizerTolerance', dest='minimizerTolerance', default=1e-8, type='float', help="(Scipy) Minimizer toleranve")
+  parser.add_option("--freezeGammaH", dest='freezeGammaH', default=False, action="store_true", help="When paired with doVoigtian, freeze GammaH parameters in fTest and signalFit")
+  parser.add_option("--doVoigtian", dest='doVoigtian', default=False, action="store_true", help="Use Voigtians instead of Gaussians for signal models with Higgs width as parameter")
   return parser.parse_args()
 (opt,args) = get_options()
 
@@ -107,7 +109,7 @@ for pidx, proc in enumerate(procsToFTest):
     min_reduced_chi2, nGauss_opt = 999, 1
     for nGauss in range(1,opt.nGaussMax+1):
       k = "nGauss_%g"%nGauss
-      ssf = SimultaneousFit("fTest_RV_%g"%nGauss,proc,opt.cat,datasets_RV,xvar.Clone(),MH,MHLow,MHHigh,opt.mass,opt.nBins,0,opt.minimizerMethod,opt.minimizerTolerance,verbose=False)
+      ssf = SimultaneousFit("fTest_RV_%g"%nGauss,proc,opt.cat,datasets_RV,xvar.Clone(),MH,MHLow,MHHigh,opt.mass,opt.nBins,0,opt.minimizerMethod,opt.minimizerTolerance,opt.doVoigtian,opt.freezeGammaH,'',verbose=False)
       ssf.buildNGaussians(nGauss)
       ssf.runFit()
       ssf.buildSplines()
